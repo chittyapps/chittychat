@@ -6,6 +6,7 @@ import TaskList from "@/components/task-list";
 import ActivityFeed from "@/components/activity-feed";
 import QuickAddTask from "@/components/quick-add-task";
 import { useWebSocket } from "@/hooks/use-websocket";
+import type { Project, Agent } from "@shared/schema";
 
 export default function Dashboard() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
@@ -16,19 +17,24 @@ export default function Dashboard() {
   useWebSocket();
 
   // Fetch dashboard stats
-  const { data: dashboardStats } = useQuery({
+  const { data: dashboardStats } = useQuery<{
+    totalProjects: number;
+    activeProjects: number;
+    activeAgents: number;
+    recentActivities: any[];
+  }>({
     queryKey: ['/api/dashboard/stats'],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
   // Fetch selected project details
-  const { data: selectedProject } = useQuery({
+  const { data: selectedProject } = useQuery<Project>({
     queryKey: ['/api/projects', selectedProjectId],
     enabled: !!selectedProjectId,
   });
 
   // Fetch active agents
-  const { data: activeAgents = [] } = useQuery({
+  const { data: activeAgents = [] } = useQuery<Agent[]>({
     queryKey: ['/api/agents/active'],
     refetchInterval: 15000, // Refetch every 15 seconds
   });
