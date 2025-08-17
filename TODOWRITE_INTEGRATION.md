@@ -184,7 +184,7 @@ The MCP protocol ensures ChittyPM can replace todowrite functionality across:
 
 The MCP server is accessible via WebSocket at:
 ```
-ws://localhost:5000/
+ws://localhost:5000/mcp
 ```
 
 ### Capabilities Response

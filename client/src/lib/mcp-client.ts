@@ -1,325 +1,236 @@
-import { apiRequest } from "./queryClient";
-
-interface MCPRequest {
+// MCP Client for todowrite replacement functionality
+export interface MCPMessage {
+  id: string;
   method: string;
   params?: any;
+  result?: any;
+  error?: any;
 }
 
-interface MCPResponse {
-  success: boolean;
-  data?: any;
-  error?: string;
+export interface TodoWriteRequest {
+  content: string;
+  project?: string;
+  priority?: 'low' | 'medium' | 'high';
+  category?: string;
+  assignTo?: string;
+  dueDate?: string;
+  tags?: string[];
 }
 
-export class MCPClient {
-  private static instance: MCPClient;
-  private requestId: number = 0;
-
-  static getInstance(): MCPClient {
-    if (!MCPClient.instance) {
-      MCPClient.instance = new MCPClient();
-    }
-    return MCPClient.instance;
-  }
-
-  private generateRequestId(): string {
-    return `mcp_${++this.requestId}_${Date.now()}`;
-  }
-
-  async listProjects(agentId?: string, isGlobal: boolean = true): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/projects/list', {
-        agentId,
-        isGlobal,
-      });
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to list projects',
-      };
-    }
-  }
-
-  async createProject(agentId: string, projectData: {
-    name: string;
-    description?: string;
-    isGlobal?: boolean;
-    category?: string;
-  }): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/projects', {
-        agentId,
-        projectData,
-      });
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to create project',
-      };
-    }
-  }
-
-  async listTasks(projectId: string, agentId?: string): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/tasks/list', {
-        projectId,
-        agentId,
-      });
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to list tasks',
-      };
-    }
-  }
-
-  async createTask(agentId: string, taskData: {
-    projectId: string;
+export interface TodoWriteResponse {
+  task: {
+    id: string;
     title: string;
-    description?: string;
-    priority?: string;
-  }): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/tasks', {
-        agentId,
-        taskData,
-      });
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to create task',
-      };
-    }
-  }
-
-  async updateTask(taskId: string, updates: any, agentId: string): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/tasks/update', {
-        taskId,
-        updates,
-        agentId,
-      });
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to update task',
-      };
-    }
-  }
-
-  async registerAgent(agentData: {
-    name: string;
+    description: string;
+    status: string;
+    priority: string;
+    category: string;
+    projectId?: string;
+    tags: string[];
+    createdAt: string;
+  };
+  autoAssigned: {
+    project?: string;
+    priority: string;
+    tags: string[];
+  };
+  recommendations: Array<{
     type: string;
-    capabilities?: string[];
-  }): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/agents/register', agentData);
-      
-      return await response.json();
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to register agent',
-      };
+    name: string;
+    reason: string;
+  }>;
+  message: string;
+}
+
+class MCPClient {
+  private ws: WebSocket | null = null;
+  private callbacks: Map<string, (response: MCPMessage) => void> = new Map();
+  private connectionPromise: Promise<void> | null = null;
+
+  async connect(): Promise<void> {
+    if (this.connectionPromise) {
+      return this.connectionPromise;
     }
+
+    this.connectionPromise = new Promise((resolve, reject) => {
+      const wsUrl = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/mcp`;
+      this.ws = new WebSocket(wsUrl);
+
+      this.ws.onopen = () => {
+        console.log('MCP Client connected for todowrite replacement');
+        resolve();
+      };
+
+      this.ws.onmessage = (event) => {
+        try {
+          const message: MCPMessage = JSON.parse(event.data);
+          
+          if (message.id === 'welcome') {
+            console.log('MCP Server capabilities:', message.result);
+            return;
+          }
+
+          const callback = this.callbacks.get(message.id);
+          if (callback) {
+            callback(message);
+            this.callbacks.delete(message.id);
+          }
+        } catch (error) {
+          console.error('Error parsing MCP message:', error);
+        }
+      };
+
+      this.ws.onerror = (error) => {
+        console.error('MCP WebSocket error:', error);
+        reject(error);
+      };
+
+      this.ws.onclose = () => {
+        console.log('MCP Client disconnected');
+        this.ws = null;
+        this.connectionPromise = null;
+        
+        // Auto-reconnect after 5 seconds
+        setTimeout(() => {
+          this.connect();
+        }, 5000);
+      };
+    });
+
+    return this.connectionPromise;
   }
 
-  async discoverTools(): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('GET', '/api/mcp/discovery');
-      const tools = await response.json();
-      
-      return {
-        success: true,
-        data: tools,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to discover tools',
-      };
-    }
-  }
+  private async sendMessage(message: MCPMessage): Promise<MCPMessage> {
+    await this.connect();
 
-  async searchTools(query: string, category?: string): Promise<MCPResponse> {
-    try {
-      const params = new URLSearchParams({ q: query });
-      if (category) {
-        params.append('category', category);
+    return new Promise((resolve, reject) => {
+      if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+        reject(new Error('MCP connection not available'));
+        return;
       }
-      
-      const response = await apiRequest('GET', `/api/mcp/tools/search?${params}`);
-      const tools = await response.json();
-      
-      return {
-        success: true,
-        data: tools,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to search tools',
-      };
-    }
-  }
 
-  async getToolSuggestions(projectContext: string): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('POST', '/api/mcp/tools/suggestions', {
-        context: projectContext,
+      this.callbacks.set(message.id, (response) => {
+        if (response.error) {
+          reject(new Error(response.error.message));
+        } else {
+          resolve(response);
+        }
       });
-      const suggestions = await response.json();
-      
-      return {
-        success: true,
-        data: suggestions,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to get tool suggestions',
-      };
-    }
+
+      this.ws.send(JSON.stringify(message));
+
+      // Timeout after 30 seconds
+      setTimeout(() => {
+        if (this.callbacks.has(message.id)) {
+          this.callbacks.delete(message.id);
+          reject(new Error('MCP request timeout'));
+        }
+      }, 30000);
+    });
   }
 
-  // Workflow enforcement methods
-  async validateProjectCreation(projectData: any): Promise<{ valid: boolean; errors: string[] }> {
-    const errors: string[] = [];
-    
-    if (!projectData.name?.trim()) {
-      errors.push('Project name is required');
-    }
-    
-    if (projectData.name && projectData.name.length < 3) {
-      errors.push('Project name must be at least 3 characters');
-    }
-    
-    if (projectData.name && projectData.name.length > 100) {
-      errors.push('Project name must be less than 100 characters');
-    }
-    
-    return {
-      valid: errors.length === 0,
-      errors,
+  private generateId(): string {
+    return 'mcp_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+  }
+
+  // Replace Claude's todowrite function
+  async todowrite(request: TodoWriteRequest): Promise<TodoWriteResponse> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'todowrite.create',
+      params: request
     };
+
+    const response = await this.sendMessage(message);
+    return response.result as TodoWriteResponse;
   }
 
-  async validateTaskCreation(taskData: any): Promise<{ valid: boolean; errors: string[] }> {
-    const errors: string[] = [];
-    
-    if (!taskData.title?.trim()) {
-      errors.push('Task title is required');
-    }
-    
-    if (!taskData.projectId) {
-      errors.push('Project ID is required');
-    }
-    
-    if (taskData.title && taskData.title.length < 3) {
-      errors.push('Task title must be at least 3 characters');
-    }
-    
-    if (taskData.title && taskData.title.length > 200) {
-      errors.push('Task title must be less than 200 characters');
-    }
-    
-    const validPriorities = ['low', 'medium', 'high', 'urgent'];
-    if (taskData.priority && !validPriorities.includes(taskData.priority)) {
-      errors.push('Invalid priority level');
-    }
-    
-    return {
-      valid: errors.length === 0,
-      errors,
+  async listTodos(filters?: {
+    projectId?: string;
+    status?: string;
+    limit?: number;
+  }): Promise<{ tasks: any[]; total: number; filtered: boolean }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'todowrite.list',
+      params: filters || {}
     };
+
+    const response = await this.sendMessage(message);
+    return response.result;
   }
 
-  // Helper method for agents to get their assigned tasks
-  async getAgentTasks(agentName: string): Promise<MCPResponse> {
-    try {
-      const response = await apiRequest('GET', `/api/agents/${encodeURIComponent(agentName)}/tasks`);
-      const tasks = await response.json();
-      
-      return {
-        success: true,
-        data: tasks,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to get agent tasks',
-      };
+  async updateTodo(taskId: string, updates: any): Promise<{ task: any; message: string }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'todowrite.update',
+      params: { taskId, updates }
+    };
+
+    const response = await this.sendMessage(message);
+    return response.result;
+  }
+
+  async deleteTodo(taskId: string): Promise<{ message: string }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'todowrite.delete',
+      params: { taskId }
+    };
+
+    const response = await this.sendMessage(message);
+    return response.result;
+  }
+
+  async createProject(name: string, description?: string, category?: string): Promise<{ project: any; message: string }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'project.create',
+      params: { name, description, category }
+    };
+
+    const response = await this.sendMessage(message);
+    return response.result;
+  }
+
+  async getRecommendations(type: string, targetId: string): Promise<{ recommendations: any[] }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'recommendations.get',
+      params: { type, targetId }
+    };
+
+    const response = await this.sendMessage(message);
+    return response.result;
+  }
+
+  async getReputation(agentAddress: string): Promise<{ reputation: any }> {
+    const message: MCPMessage = {
+      id: this.generateId(),
+      method: 'reputation.get',
+      params: { agentAddress }
+    };
+
+    const response = await this.sendMessage(message);
+    return response.result;
+  }
+
+  disconnect(): void {
+    if (this.ws) {
+      this.ws.close();
+      this.ws = null;
     }
+    this.connectionPromise = null;
+    this.callbacks.clear();
   }
 }
 
-// Export singleton instance
-export const mcpClient = MCPClient.getInstance();
+// Global MCP client instance for todowrite replacement
+export const mcpClient = new MCPClient();
 
-// Export helper functions for common MCP operations
-export const mcpOperations = {
-  // Quick project creation with validation
-  async quickCreateProject(agentId: string, name: string, description?: string) {
-    const validation = await mcpClient.validateProjectCreation({ name, description });
-    if (!validation.valid) {
-      return {
-        success: false,
-        error: validation.errors.join(', '),
-      };
-    }
-    
-    return await mcpClient.createProject(agentId, { name, description });
-  },
+// Auto-connect when module loads
+mcpClient.connect().catch(console.error);
 
-  // Quick task creation with validation
-  async quickCreateTask(agentId: string, projectId: string, title: string, priority: string = 'medium') {
-    const validation = await mcpClient.validateTaskCreation({ title, projectId, priority });
-    if (!validation.valid) {
-      return {
-        success: false,
-        error: validation.errors.join(', '),
-      };
-    }
-    
-    return await mcpClient.createTask(agentId, { projectId, title, priority });
-  },
-
-  // Mark task as complete
-  async completeTask(taskId: string, agentId: string) {
-    return await mcpClient.updateTask(taskId, { status: 'completed' }, agentId);
-  },
-
-  // Get project overview
-  async getProjectOverview(projectId: string, agentId: string) {
-    const tasksResult = await mcpClient.listTasks(projectId, agentId);
-    
-    if (!tasksResult.success) {
-      return tasksResult;
-    }
-    
-    const tasks = tasksResult.data || [];
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter((task: any) => task.status === 'completed').length;
-    const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-    
-    return {
-      success: true,
-      data: {
-        totalTasks,
-        completedTasks,
-        progress,
-        tasks,
-      },
-    };
-  },
-};
+// Export todowrite function to replace Claude's native function
+export const todowrite = (content: string, options?: Partial<TodoWriteRequest>) => 
+  mcpClient.todowrite({ content, ...options });

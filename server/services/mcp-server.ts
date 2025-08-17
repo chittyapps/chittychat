@@ -26,7 +26,10 @@ class MCPServer {
   private connections: Map<string, any> = new Map();
 
   initialize(server: any) {
-    this.wss = new WebSocketServer({ server });
+    this.wss = new WebSocketServer({ 
+      server,
+      path: '/mcp' // Use specific path to avoid conflicts
+    });
     
     this.wss.on('connection', (ws, req) => {
       const connectionId = this.generateConnectionId();

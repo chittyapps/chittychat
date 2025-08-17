@@ -10,6 +10,7 @@ import IntegrationsView from "@/components/integrations-view";
 import SmartRecommendations from "@/components/smart-recommendations";
 import ReputationLeaderboard from "@/components/reputation-leaderboard";
 import OverviewDashboard from "@/components/overview-dashboard";
+import TodoWriteReplacement from "@/components/todowrite-replacement";
 import { useWebSocket } from "@/hooks/use-websocket";
 import type { Project, Agent } from "@shared/schema";
 
@@ -143,7 +144,7 @@ export default function Dashboard() {
           {/* Project Tabs - Mobile Scrollable */}
           <div className="mt-4 border-b border-white/20">
             <nav className="-mb-px flex space-x-2 lg:space-x-8 overflow-x-auto custom-scrollbar pb-2">
-              {["overview", "tasks", "timeline", "agents-log", "integrations", "recommendations", "reputation"].map((tab) => (
+              {["overview", "todowrite", "tasks", "timeline", "agents-log", "integrations", "recommendations", "reputation"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -154,7 +155,8 @@ export default function Dashboard() {
                   }`}
                   data-testid={`tab-${tab}`}
                 >
-                  {tab === 'recommendations' ? 'Smart Lists' : 
+                  {tab === 'todowrite' ? 'TodoWrite' :
+                   tab === 'recommendations' ? 'Smart Lists' : 
                    tab === 'reputation' ? 'Reputation' :
                    tab.split('-').map(word => 
                      word.charAt(0).toUpperCase() + word.slice(1)
@@ -170,6 +172,12 @@ export default function Dashboard() {
           {activeTab === "overview" && (
             <div className="animate-fade-in-up">
               <OverviewDashboard />
+            </div>
+          )}
+
+          {activeTab === "todowrite" && (
+            <div className="animate-fade-in-up">
+              <TodoWriteReplacement />
             </div>
           )}
 
