@@ -5,6 +5,7 @@ import ProjectOverview from "@/components/project-overview";
 import TaskList from "@/components/task-list";
 import ActivityFeed from "@/components/activity-feed";
 import QuickAddTask from "@/components/quick-add-task";
+import IntegrationsView from "@/components/integrations-view";
 import { useWebSocket } from "@/hooks/use-websocket";
 import type { Project, Agent } from "@shared/schema";
 
@@ -176,10 +177,7 @@ export default function Dashboard() {
           )}
 
           {activeTab === "integrations" && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Integrations</h3>
-              <p className="text-gray-500">Integration management coming soon...</p>
-            </div>
+            <IntegrationsView />
           )}
         </main>
       </div>

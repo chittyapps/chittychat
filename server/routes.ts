@@ -7,6 +7,7 @@ import { mcpServer } from "./services/mcp-server";
 import { chittyidClient } from "./services/chittyid-client";
 import { registryClient } from "./services/registry-client";
 import { backgroundJobs } from "./services/background-jobs";
+import { getChittyBeacon } from "./services/chitty-beacon";
 import { z } from "zod";
 
 interface WebSocketClient extends WebSocket {
@@ -331,6 +332,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch dashboard stats', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Get ChittyBeacon status
+  app.get('/api/beacon/status', (req, res) => {
+    try {
+      const beacon = getChittyBeacon();
+      if (beacon) {
+        res.json({
+          success: true,
+          status: beacon.getStatus(),
+          message: 'ChittyBeacon is active and tracking application metrics'
+        });
+      } else {
+        res.json({
+          success: false,
+          message: 'ChittyBeacon is not initialized or disabled',
+          status: { disabled: true }
+        });
+      }
+    } catch (error) {
+      res.status(500).json({ 
+        success: false,
+        message: 'Failed to get beacon status',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
     }
   });
 

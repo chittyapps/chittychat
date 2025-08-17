@@ -55,6 +55,12 @@ Preferred communication style: Simple, everyday language.
 - **@neondatabase/serverless**: Neon PostgreSQL serverless driver
 - **ws**: WebSocket library for real-time communication
 
+### ChittyBeacon Integration
+- **ChittyBeacon**: Custom application tracking and monitoring system
+- **Platform Detection**: Automatically detects Replit, GitHub Actions, Vercel, and other platforms
+- **Heartbeat Monitoring**: Sends periodic status updates every 5 minutes
+- **Usage Analytics**: Tracks application startup, uptime, and system metrics
+
 ### UI and Styling Dependencies
 - **@radix-ui/react-***: Comprehensive set of accessible UI primitives
 - **tailwindcss**: Utility-first CSS framework
