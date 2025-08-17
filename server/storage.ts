@@ -1,9 +1,10 @@
 import { 
-  users, projects, tasks, agents, activities, integrations, mcpTools,
+  users, projects, tasks, agents, activities, integrations, mcpTools, smartRecommendations, ethRegistryEntries,
   type User, type InsertUser, type Project, type InsertProject,
   type Task, type InsertTask, type Agent, type InsertAgent,
   type Activity, type InsertActivity, type Integration, type InsertIntegration,
-  type McpTool, type InsertMcpTool
+  type McpTool, type InsertMcpTool, type SmartRecommendation, type InsertSmartRecommendation,
+  type EthRegistryEntry, type InsertEthRegistryEntry
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, sql, count } from "drizzle-orm";
@@ -58,6 +59,23 @@ export interface IStorage {
   createMcpTool(tool: InsertMcpTool): Promise<McpTool>;
   updateMcpTool(id: string, updates: Partial<McpTool>): Promise<McpTool>;
   syncMcpTools(tools: InsertMcpTool[]): Promise<void>;
+
+  // Smart Recommendations
+  getSmartRecommendations(type: string, targetId: string): Promise<SmartRecommendation[]>;
+  createSmartRecommendation(recommendation: InsertSmartRecommendation): Promise<SmartRecommendation>;
+  getRecommendationStats(): Promise<{
+    totalRecommendations: number;
+    activeRecommendations: number;
+    recentGenerations: number;
+    ethRegistryEntries: number;
+  }>;
+
+  // ETH Registry
+  getEthRegistryEntries(): Promise<EthRegistryEntry[]>;
+  upsertEthRegistryEntry(entry: InsertEthRegistryEntry): Promise<EthRegistryEntry>;
+  
+  // Additional methods
+  getUserProjects(userId: string): Promise<Project[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -288,6 +306,78 @@ export class DatabaseStorage implements IStorage {
         await db.insert(mcpTools).values({ ...tool, isActive: true });
       }
     }
+  }
+
+  // Smart Recommendations
+  async getSmartRecommendations(type: string, targetId: string): Promise<SmartRecommendation[]> {
+    return await db.select()
+      .from(smartRecommendations)
+      .where(and(
+        eq(smartRecommendations.type, type as any),
+        eq(smartRecommendations.targetId, targetId)
+      ))
+      .orderBy(desc(smartRecommendations.generatedAt));
+  }
+
+  async createSmartRecommendation(recommendation: InsertSmartRecommendation): Promise<SmartRecommendation> {
+    const [result] = await db.insert(smartRecommendations).values(recommendation).returning();
+    return result;
+  }
+
+  async getRecommendationStats(): Promise<{
+    totalRecommendations: number;
+    activeRecommendations: number;
+    recentGenerations: number;
+    ethRegistryEntries: number;
+  }> {
+    const now = new Date();
+    const dayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+
+    const [totalResult] = await db.select({ count: count() }).from(smartRecommendations);
+    const [activeResult] = await db.select({ count: count() })
+      .from(smartRecommendations)
+      .where(sql`expires_at > NOW()`);
+    const [recentResult] = await db.select({ count: count() })
+      .from(smartRecommendations)
+      .where(sql`generated_at > ${dayAgo}`);
+    const [ethResult] = await db.select({ count: count() }).from(ethRegistryEntries);
+
+    return {
+      totalRecommendations: totalResult.count,
+      activeRecommendations: activeResult.count,
+      recentGenerations: recentResult.count,
+      ethRegistryEntries: ethResult.count
+    };
+  }
+
+  // ETH Registry
+  async getEthRegistryEntries(): Promise<EthRegistryEntry[]> {
+    return await db.select().from(ethRegistryEntries).orderBy(desc(ethRegistryEntries.reputation));
+  }
+
+  async upsertEthRegistryEntry(entry: InsertEthRegistryEntry): Promise<EthRegistryEntry> {
+    const existing = await db.select()
+      .from(ethRegistryEntries)
+      .where(eq(ethRegistryEntries.address, entry.address));
+
+    if (existing.length > 0) {
+      const [result] = await db.update(ethRegistryEntries)
+        .set({ ...entry, updatedAt: sql`NOW()` })
+        .where(eq(ethRegistryEntries.address, entry.address))
+        .returning();
+      return result;
+    } else {
+      const [result] = await db.insert(ethRegistryEntries).values(entry).returning();
+      return result;
+    }
+  }
+
+  // Additional methods
+  async getUserProjects(userId: string): Promise<Project[]> {
+    return await db.select()
+      .from(projects)
+      .where(eq(projects.ownerId, userId))
+      .orderBy(desc(projects.updatedAt));
   }
 }
 

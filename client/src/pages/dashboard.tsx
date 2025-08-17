@@ -6,6 +6,7 @@ import TaskList from "@/components/task-list";
 import ActivityFeed from "@/components/activity-feed";
 import QuickAddTask from "@/components/quick-add-task";
 import IntegrationsView from "@/components/integrations-view";
+import SmartRecommendations from "@/components/smart-recommendations";
 import { useWebSocket } from "@/hooks/use-websocket";
 import type { Project, Agent } from "@shared/schema";
 
@@ -106,7 +107,7 @@ export default function Dashboard() {
           {/* Project Tabs */}
           <div className="mt-4 border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
-              {["overview", "tasks", "timeline", "agents-log", "integrations"].map((tab) => (
+              {["overview", "tasks", "timeline", "agents-log", "integrations", "recommendations"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -117,9 +118,10 @@ export default function Dashboard() {
                   }`}
                   data-testid={`tab-${tab}`}
                 >
-                  {tab.split('-').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1)
-                  ).join(' ')}
+                  {tab === 'recommendations' ? 'Smart Lists' : 
+                   tab.split('-').map(word => 
+                     word.charAt(0).toUpperCase() + word.slice(1)
+                   ).join(' ')}
                 </button>
               ))}
             </nav>
@@ -178,6 +180,24 @@ export default function Dashboard() {
 
           {activeTab === "integrations" && (
             <IntegrationsView />
+          )}
+
+          {activeTab === "recommendations" && (
+            <div className="space-y-6">
+              {selectedProject ? (
+                <SmartRecommendations 
+                  type="project" 
+                  targetId={selectedProject.id}
+                  title={`Smart Lists for ${selectedProject.name}`}
+                />
+              ) : (
+                <SmartRecommendations 
+                  type="user" 
+                  targetId="default-user"
+                  title="Personal Smart Lists"
+                />
+              )}
+            </div>
           )}
         </main>
       </div>

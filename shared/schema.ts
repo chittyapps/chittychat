@@ -98,6 +98,41 @@ export const mcpTools = pgTable("mcp_tools", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const smartRecommendations = pgTable("smart_recommendations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type", { enum: ["agent", "project", "user", "tool"] }).notNull(),
+  targetId: text("target_id").notNull(),
+  recommendations: json("recommendations").$type<{
+    itemId: string;
+    itemType: string;
+    title: string;
+    description: string;
+    score: number;
+    reason: string;
+    metadata: Record<string, any>;
+  }[]>().notNull(),
+  generatedAt: timestamp("generated_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const ethRegistryEntries = pgTable("eth_registry_entries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  address: text("address").notNull().unique(),
+  ensName: text("ens_name"),
+  agentType: text("agent_type").notNull(),
+  capabilities: json("capabilities").$type<string[]>().notNull(),
+  reputation: integer("reputation").default(0),
+  lastActive: timestamp("last_active").defaultNow().notNull(),
+  description: text("description"),
+  tags: json("tags").$type<string[]>().notNull(),
+  verified: boolean("verified").default(false),
+  mcpTools: json("mcp_tools").$type<string[]>(),
+  metadata: json("metadata").$type<Record<string, any>>().default({}),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   projects: many(projects),
@@ -194,6 +229,18 @@ export const insertMcpToolSchema = createInsertSchema(mcpTools).omit({
   updatedAt: true,
 });
 
+export const insertSmartRecommendationSchema = createInsertSchema(smartRecommendations).omit({
+  id: true,
+  generatedAt: true,
+  createdAt: true,
+});
+
+export const insertEthRegistryEntrySchema = createInsertSchema(ethRegistryEntries).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -209,3 +256,7 @@ export type Integration = typeof integrations.$inferSelect;
 export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;
 export type McpTool = typeof mcpTools.$inferSelect;
 export type InsertMcpTool = z.infer<typeof insertMcpToolSchema>;
+export type SmartRecommendation = typeof smartRecommendations.$inferSelect;
+export type InsertSmartRecommendation = z.infer<typeof insertSmartRecommendationSchema>;
+export type EthRegistryEntry = typeof ethRegistryEntries.$inferSelect;
+export type InsertEthRegistryEntry = z.infer<typeof insertEthRegistryEntrySchema>;

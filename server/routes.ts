@@ -8,6 +8,7 @@ import { chittyidClient } from "./services/chittyid-client";
 import { registryClient } from "./services/registry-client";
 import { backgroundJobs } from "./services/background-jobs";
 import { getChittyBeacon } from "./services/chitty-beacon";
+import { smartRecommendationsService } from "./services/smart-recommendations";
 import { z } from "zod";
 
 interface WebSocketClient extends WebSocket {
@@ -356,6 +357,74 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         success: false,
         message: 'Failed to get beacon status',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  // Smart Recommendations API
+  app.get('/api/recommendations/:type/:targetId', async (req, res) => {
+    try {
+      const { type, targetId } = req.params;
+      const { forceRefresh } = req.query;
+      
+      if (!['agent', 'project', 'user'].includes(type)) {
+        return res.status(400).json({ message: 'Invalid recommendation type' });
+      }
+
+      const recommendations = await smartRecommendationsService.getRecommendations(
+        type as 'agent' | 'project' | 'user',
+        targetId,
+        forceRefresh === 'true'
+      );
+
+      res.json(recommendations);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get recommendations',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/registry/search', async (req, res) => {
+    try {
+      const { q: query = '', agentType, minReputation, verified } = req.query;
+      
+      const filters: Record<string, any> = {};
+      if (agentType) filters.agentType = agentType;
+      if (minReputation) filters.minReputation = parseInt(minReputation as string);
+      if (verified !== undefined) filters.verified = verified === 'true';
+
+      const results = await smartRecommendationsService.searchRegistry(query as string, filters);
+      res.json(results);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to search registry',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.post('/api/registry/sync', async (req, res) => {
+    try {
+      await smartRecommendationsService.syncEthRegistryData();
+      res.json({ message: 'ETH registry data synced successfully' });
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to sync ETH registry',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/recommendations/stats', async (req, res) => {
+    try {
+      const stats = await smartRecommendationsService.getRecommendationStats();
+      res.json(stats);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get recommendation stats',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
