@@ -104,11 +104,15 @@ Agents connect and register via WebSocket with:
 }
 ```
 
-### MCP Protocol
-- Project creation: `POST /api/mcp/projects`
-- Task creation: `POST /api/mcp/tasks`
-- Tool discovery: `GET /api/mcp/discovery`
-- Agent registration: `POST /api/mcp/agents/register`
+### MCP Protocol Endpoints
+- **Project search/list**: `GET /api/projects` - Search existing projects first
+- **Project details**: `GET /api/projects/:id` - Check project status and progress
+- **Project creation**: `POST /api/mcp/projects` - Only after confirming no duplicates
+- **Task list**: `GET /api/tasks?projectId=:id` - Review existing tasks and their status
+- **Task creation**: `POST /api/mcp/tasks` - Add new tasks to existing projects
+- **Tool discovery**: `GET /api/mcp/discovery` - Find available tools and capabilities
+- **Agent registration**: `POST /api/mcp/agents/register` - Register agent with the system
+- **Activity feed**: `GET /api/activities?projectId=:id` - See recent project activity
 
 ## Environment Variables
 
