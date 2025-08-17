@@ -37,10 +37,10 @@ export default function SmartRecommendations({ type, targetId, title }: SmartRec
     refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes
   });
 
-  // Search ETH registry
+  // Search ETH registry with enhanced filtering
   const { data: searchResults = [], isLoading: isSearching } = useQuery({
     queryKey: ['/api/registry/search', searchQuery, selectedFilters],
-    enabled: searchQuery.length > 2,
+    enabled: searchQuery.length > 1, // Lower threshold for better UX
     refetchInterval: false,
   });
 
@@ -149,44 +149,136 @@ export default function SmartRecommendations({ type, targetId, title }: SmartRec
           </button>
         </div>
 
-        {/* Search Registry */}
-        <div className="mb-4">
+        {/* Enhanced Search with Filters */}
+        <div className="mb-4 space-y-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Search ETH registry for agents and tools..."
+              placeholder="Search agents, domains, capabilities, tags..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               data-testid="input-search-registry"
             />
           </div>
+          
+          {/* Search Filters */}
+          <div className="flex flex-wrap gap-2 text-sm">
+            <select
+              value={selectedFilters.agentType || ''}
+              onChange={(e) => setSelectedFilters({...selectedFilters, agentType: e.target.value || undefined})}
+              className="px-3 py-1 border border-gray-300 rounded text-sm"
+              data-testid="select-agent-type"
+            >
+              <option value="">All Types</option>
+              <option value="task-manager">Task Manager</option>
+              <option value="developer">Developer</option>
+              <option value="analyst">Analyst</option>
+            </select>
+            
+            <select
+              value={selectedFilters.minReputation || ''}
+              onChange={(e) => setSelectedFilters({...selectedFilters, minReputation: e.target.value ? parseInt(e.target.value) : undefined})}
+              className="px-3 py-1 border border-gray-300 rounded text-sm"
+              data-testid="select-min-reputation"
+            >
+              <option value="">Any Reputation</option>
+              <option value="80">80+ Reputation</option>
+              <option value="90">90+ Reputation</option>
+              <option value="95">95+ Reputation</option>
+            </select>
+            
+            <label className="flex items-center space-x-1">
+              <input
+                type="checkbox"
+                checked={selectedFilters.verified === true}
+                onChange={(e) => setSelectedFilters({...selectedFilters, verified: e.target.checked ? true : undefined})}
+                className="rounded"
+                data-testid="checkbox-verified-only"
+              />
+              <span>Verified Only</span>
+            </label>
+          </div>
         </div>
 
-        {/* Search Results */}
-        {searchQuery.length > 2 && (
+        {/* Enhanced Search Results with Alignment Info */}
+        {searchQuery.length > 1 && (
           <div className="mb-6">
-            <h4 className="text-sm font-medium text-gray-700 mb-3">
-              Registry Search Results {isSearching && "(Loading...)"}
+            <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+              Registry Search Results 
+              {isSearching && <span className="ml-2 text-blue-500">(Searching...)</span>}
+              {searchResults.length > 0 && (
+                <span className="ml-2 text-gray-500">({searchResults.length} found)</span>
+              )}
             </h4>
-            <div className="space-y-2 max-h-60 overflow-y-auto">
+            <div className="space-y-3 max-h-80 overflow-y-auto">
               {searchResults.length > 0 ? (
                 searchResults.map((result: any, index: number) => (
-                  <div key={result.id || index} className="border border-gray-200 rounded p-3 text-sm">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-medium">{result.ensName || result.address}</span>
-                      <span className="text-xs text-gray-500">{result.agentType}</span>
+                  <div key={result.id || index} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-colors">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <span className="font-medium text-blue-600">
+                            {result.ensName || `${result.address.slice(0, 8)}...${result.address.slice(-6)}`}
+                          </span>
+                          {result.verified && (
+                            <Star className="w-3 h-3 text-yellow-500 fill-current" />
+                          )}
+                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
+                            {result.agentType}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 text-xs mb-2">{result.description}</p>
+                        
+                        {/* Alignment factors */}
+                        {result.alignmentFactors && result.alignmentFactors.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {result.alignmentFactors.slice(0, 2).map((factor: string, i: number) => (
+                              <span key={i} className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">
+                                {factor}
+                              </span>
+                            ))}
+                            {result.alignmentFactors.length > 2 && (
+                              <span className="text-xs text-gray-500">+{result.alignmentFactors.length - 2} more</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="text-right">
+                        {result.relevanceScore && (
+                          <div className="text-xs text-gray-500 mb-1">
+                            Relevance: {Math.round(result.relevanceScore * 100) / 100}
+                          </div>
+                        )}
+                        <div className="text-xs text-gray-500">
+                          Rep: {result.reputation}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-gray-600 text-xs mb-2">{result.description}</p>
+                    
                     <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span>Reputation: {result.reputation}</span>
+                      <div className="flex flex-wrap gap-1">
+                        {result.capabilities?.slice(0, 3).map((cap: string, i: number) => (
+                          <span key={i} className="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">
+                            {cap}
+                          </span>
+                        ))}
+                        {result.capabilities?.length > 3 && (
+                          <span>+{result.capabilities.length - 3} more</span>
+                        )}
+                      </div>
                       <span>{result.capabilities?.length || 0} capabilities</span>
                     </div>
                   </div>
                 ))
-              ) : searchQuery.length > 2 && !isSearching ? (
-                <p className="text-sm text-gray-500">No results found</p>
+              ) : searchQuery.length > 1 && !isSearching ? (
+                <div className="text-center py-4">
+                  <Search className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-500">No agents found matching your search</p>
+                  <p className="text-xs text-gray-400">Try different keywords or remove filters</p>
+                </div>
               ) : null}
             </div>
           </div>

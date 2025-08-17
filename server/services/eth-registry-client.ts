@@ -119,7 +119,7 @@ class EthRegistryClient {
     return MOCK_AGENT_REGISTRY;
   }
 
-  // Search registry with filters
+  // Advanced search with natural language processing and alignment
   async searchRegistry(
     query: string, 
     filters: Record<string, any> = {}
@@ -135,24 +135,86 @@ class EthRegistryClient {
     tags: string[];
     verified: boolean;
     mcpTools?: string[];
+    relevanceScore?: number;
+    alignmentFactors?: string[];
   }>> {
     let results = [...MOCK_AGENT_REGISTRY];
 
-    // Text search
+    // Enhanced text search with fuzzy matching and domain awareness
     if (query && query.length > 0) {
-      const searchTerm = query.toLowerCase();
-      results = results.filter(agent => 
-        agent.ensName?.toLowerCase().includes(searchTerm) ||
-        agent.description?.toLowerCase().includes(searchTerm) ||
-        agent.agentType.toLowerCase().includes(searchTerm) ||
-        agent.capabilities.some(cap => cap.toLowerCase().includes(searchTerm)) ||
-        agent.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-      );
+      const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+      
+      results = results.map(agent => {
+        let relevanceScore = 0;
+        const alignmentFactors: string[] = [];
+        
+        // Search across all searchable fields
+        const searchableContent = [
+          agent.ensName || '',
+          agent.address,
+          agent.agentType,
+          agent.description || '',
+          ...agent.capabilities,
+          ...agent.tags,
+          ...(agent.mcpTools || [])
+        ].join(' ').toLowerCase();
+
+        // Calculate relevance based on term matches
+        searchTerms.forEach(term => {
+          // Exact matches get higher scores
+          if (searchableContent.includes(term)) {
+            relevanceScore += 1;
+            
+            // Domain-specific scoring
+            if (agent.ensName?.toLowerCase().includes(term)) {
+              relevanceScore += 2;
+              alignmentFactors.push(`Domain match: ${term}`);
+            }
+            if (agent.agentType.toLowerCase().includes(term)) {
+              relevanceScore += 1.5;
+              alignmentFactors.push(`Type alignment: ${term}`);
+            }
+            if (agent.capabilities.some(cap => cap.toLowerCase().includes(term))) {
+              relevanceScore += 1.8;
+              alignmentFactors.push(`Capability match: ${term}`);
+            }
+            if (agent.tags.some(tag => tag.toLowerCase().includes(term))) {
+              relevanceScore += 1.2;
+              alignmentFactors.push(`Tag relevance: ${term}`);
+            }
+          }
+          
+          // Fuzzy matching for similar terms
+          if (this.fuzzyMatch(term, searchableContent)) {
+            relevanceScore += 0.5;
+            alignmentFactors.push(`Fuzzy match: ${term}`);
+          }
+        });
+
+        return { 
+          ...agent, 
+          relevanceScore,
+          alignmentFactors: alignmentFactors.length > 0 ? alignmentFactors : ['General match']
+        };
+      }).filter(agent => agent.relevanceScore > 0);
+    } else {
+      // No query - return all with basic scoring
+      results = results.map(agent => ({
+        ...agent,
+        relevanceScore: agent.reputation / 100,
+        alignmentFactors: ['Available agent']
+      }));
     }
 
-    // Apply filters
+    // Apply filters with natural alignment
     if (filters.agentType) {
-      results = results.filter(agent => agent.agentType === filters.agentType);
+      results = results.filter(agent => {
+        const typeMatch = agent.agentType.toLowerCase().includes(filters.agentType.toLowerCase());
+        if (typeMatch && agent.alignmentFactors) {
+          agent.alignmentFactors.push(`Type filter: ${filters.agentType}`);
+        }
+        return typeMatch;
+      });
     }
 
     if (filters.minReputation) {
@@ -164,15 +226,97 @@ class EthRegistryClient {
     }
 
     if (filters.capabilities && filters.capabilities.length > 0) {
-      results = results.filter(agent => 
-        filters.capabilities.some((cap: string) => agent.capabilities.includes(cap))
-      );
+      results = results.filter(agent => {
+        const capMatch = filters.capabilities.some((cap: string) => 
+          agent.capabilities.some(agentCap => 
+            agentCap.toLowerCase().includes(cap.toLowerCase())
+          )
+        );
+        if (capMatch && agent.alignmentFactors) {
+          agent.alignmentFactors.push(`Capability filter: ${filters.capabilities.join(', ')}`);
+        }
+        return capMatch;
+      });
     }
 
-    // Sort by reputation by default
-    results.sort((a, b) => b.reputation - a.reputation);
+    // Remove duplicates based on address and ENS name
+    const uniqueResults = this.deduplicateResults(results);
 
-    return results.slice(0, 20); // Limit to 20 results
+    // Sort by relevance score and reputation
+    uniqueResults.sort((a, b) => {
+      const scoreA = (a.relevanceScore || 0) + (a.reputation / 200);
+      const scoreB = (b.relevanceScore || 0) + (b.reputation / 200);
+      return scoreB - scoreA;
+    });
+
+    return uniqueResults.slice(0, 20);
+  }
+
+  // Fuzzy matching for better search results
+  private fuzzyMatch(term: string, content: string): boolean {
+    if (term.length < 3) return false;
+    
+    // Simple Levenshtein distance approximation
+    const words = content.split(/\s+/);
+    return words.some(word => {
+      if (word.length === 0) return false;
+      const distance = this.levenshteinDistance(term, word);
+      return distance <= Math.max(1, Math.floor(term.length * 0.3));
+    });
+  }
+
+  // Calculate Levenshtein distance for fuzzy matching
+  private levenshteinDistance(str1: string, str2: string): number {
+    const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+    
+    for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
+    for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+    
+    for (let j = 1; j <= str2.length; j++) {
+      for (let i = 1; i <= str1.length; i++) {
+        const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+        matrix[j][i] = Math.min(
+          matrix[j][i - 1] + 1,
+          matrix[j - 1][i] + 1,
+          matrix[j - 1][i - 1] + indicator
+        );
+      }
+    }
+    
+    return matrix[str2.length][str1.length];
+  }
+
+  // Deduplicate results based on address and domain
+  private deduplicateResults(results: any[]): any[] {
+    const seen = new Set<string>();
+    const unique: any[] = [];
+    
+    for (const result of results) {
+      // Create unique key from address and ENS name
+      const key = `${result.address}-${result.ensName || 'no-ens'}`;
+      
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push(result);
+      } else {
+        // Merge alignment factors if duplicate found
+        const existing = unique.find(r => 
+          r.address === result.address && r.ensName === result.ensName
+        );
+        if (existing && result.alignmentFactors) {
+          existing.alignmentFactors = [
+            ...(existing.alignmentFactors || []),
+            ...result.alignmentFactors
+          ];
+          // Update score if higher
+          if ((result.relevanceScore || 0) > (existing.relevanceScore || 0)) {
+            existing.relevanceScore = result.relevanceScore;
+          }
+        }
+      }
+    }
+    
+    return unique;
   }
 
   // Generate smart recommendations based on context

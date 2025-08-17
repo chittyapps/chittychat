@@ -238,6 +238,8 @@ class SmartRecommendationsService {
     tags: string[];
     verified: boolean;
     mcpTools?: string[];
+    relevanceScore?: number;
+    alignmentFactors?: string[];
   }>> {
     return await ethRegistryClient.searchRegistry(query, filters);
   }

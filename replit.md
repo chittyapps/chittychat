@@ -45,6 +45,8 @@ Preferred communication style: Simple, everyday language.
 - **ChittyID Client**: Synchronizes projects and tasks with external ChittyID service
 - **Registry Client**: Discovers and manages MCP tools from registry.chitty.cc
 - **Background Jobs**: Automated data integrity checks and cleanup processes
+- **ETH Registry Client**: Blockchain-based agent discovery with ENS resolution and fuzzy search
+- **Smart Recommendations Service**: Personalized agent matching with natural language alignment and deduplication
 
 ## External Dependencies
 
@@ -77,6 +79,8 @@ Preferred communication style: Simple, everyday language.
 - **ChittyID API**: External project management service integration
 - **registry.chitty.cc**: MCP tool discovery and registry service
 - **Neon Database**: Serverless PostgreSQL hosting platform
+- **ETH Registry**: Ethereum-based agent registry with ENS domain resolution
+- **Smart Recommendations**: AI-powered agent and tool recommendations with natural alignment
 
 ### Authentication and Session Management
 - **connect-pg-simple**: PostgreSQL session store for Express
