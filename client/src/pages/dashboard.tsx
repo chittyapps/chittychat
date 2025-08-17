@@ -7,6 +7,7 @@ import ActivityFeed from "@/components/activity-feed";
 import QuickAddTask from "@/components/quick-add-task";
 import IntegrationsView from "@/components/integrations-view";
 import SmartRecommendations from "@/components/smart-recommendations";
+import ReputationLeaderboard from "@/components/reputation-leaderboard";
 import { useWebSocket } from "@/hooks/use-websocket";
 import type { Project, Agent } from "@shared/schema";
 
@@ -107,7 +108,7 @@ export default function Dashboard() {
           {/* Project Tabs */}
           <div className="mt-4 border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
-              {["overview", "tasks", "timeline", "agents-log", "integrations", "recommendations"].map((tab) => (
+              {["overview", "tasks", "timeline", "agents-log", "integrations", "recommendations", "reputation"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -119,6 +120,7 @@ export default function Dashboard() {
                   data-testid={`tab-${tab}`}
                 >
                   {tab === 'recommendations' ? 'Smart Lists' : 
+                   tab === 'reputation' ? 'Reputation' :
                    tab.split('-').map(word => 
                      word.charAt(0).toUpperCase() + word.slice(1)
                    ).join(' ')}
@@ -198,6 +200,10 @@ export default function Dashboard() {
                 />
               )}
             </div>
+          )}
+
+          {activeTab === "reputation" && (
+            <ReputationLeaderboard />
           )}
         </main>
       </div>

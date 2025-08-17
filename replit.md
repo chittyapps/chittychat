@@ -47,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - **Background Jobs**: Automated data integrity checks and cleanup processes
 - **ETH Registry Client**: Blockchain-based agent discovery with ENS resolution and fuzzy search
 - **Smart Recommendations Service**: Personalized agent matching with natural language alignment and deduplication
+- **Blockchain Reputation System**: Transparent, verifiable agent reputation scoring with on-chain verification
 
 ## External Dependencies
 

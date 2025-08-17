@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Star, ExternalLink, Zap, Users, Search, RefreshCw } from "lucide-react";
+import ReputationDashboard from "./reputation-dashboard";
 
 interface Recommendation {
   itemId: string;
@@ -230,6 +231,14 @@ export default function SmartRecommendations({ type, targetId, title }: SmartRec
                           </span>
                         </div>
                         <p className="text-gray-600 text-xs mb-2">{result.description}</p>
+                        
+                        {/* Blockchain Reputation */}
+                        <div className="mb-2">
+                          <ReputationDashboard 
+                            agentAddress={result.address}
+                            showDetailedView={false}
+                          />
+                        </div>
                         
                         {/* Alignment factors */}
                         {result.alignmentFactors && result.alignmentFactors.length > 0 && (

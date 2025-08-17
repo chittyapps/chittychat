@@ -9,6 +9,7 @@ import { registryClient } from "./services/registry-client";
 import { backgroundJobs } from "./services/background-jobs";
 import { getChittyBeacon } from "./services/chitty-beacon";
 import { smartRecommendationsService } from "./services/smart-recommendations";
+import { reputationSystem } from "./services/reputation-system";
 import { z } from "zod";
 
 interface WebSocketClient extends WebSocket {
@@ -425,6 +426,116 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       res.status(500).json({ 
         message: 'Failed to get recommendation stats',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  // Blockchain Reputation System API
+  app.get('/api/reputation/:agentAddress', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const reputation = await reputationSystem.getAgentReputation(agentAddress);
+      
+      if (!reputation) {
+        return res.status(404).json({ message: 'Agent reputation not found' });
+      }
+
+      res.json(reputation);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get agent reputation',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/history', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const history = await reputationSystem.getReputationHistory(agentAddress);
+      res.json(history);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get reputation history',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/metrics', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const metrics = await reputationSystem.calculateAgentMetrics(agentAddress);
+      res.json(metrics);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get agent metrics',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/ranking', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const ranking = await reputationSystem.getAgentRanking(agentAddress);
+      res.json(ranking);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get agent ranking',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/verification', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const verification = await reputationSystem.verifyReputationAuthenticity(agentAddress);
+      res.json(verification);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to verify reputation',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/trends', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const trends = await reputationSystem.getReputationTrends(agentAddress);
+      res.json(trends);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get reputation trends',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/:agentAddress/analysis', async (req, res) => {
+    try {
+      const { agentAddress } = req.params;
+      const analysis = await reputationSystem.getComparativeAnalysis(agentAddress);
+      res.json(analysis);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get comparative analysis',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  app.get('/api/reputation/leaderboard', async (req, res) => {
+    try {
+      const { limit = 10 } = req.query;
+      const leaderboard = await reputationSystem.getReputationLeaderboard(parseInt(limit as string));
+      res.json(leaderboard);
+    } catch (error) {
+      res.status(500).json({ 
+        message: 'Failed to get reputation leaderboard',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
