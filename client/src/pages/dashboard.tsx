@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Home, CheckSquare, Plus, Bot, Clock, Puzzle, Star, Menu, X } from "lucide-react";
 import Sidebar from "@/components/sidebar";
 import ProjectOverview from "@/components/project-overview";
 import TaskList from "@/components/task-list";
@@ -8,6 +9,7 @@ import QuickAddTask from "@/components/quick-add-task";
 import IntegrationsView from "@/components/integrations-view";
 import SmartRecommendations from "@/components/smart-recommendations";
 import ReputationLeaderboard from "@/components/reputation-leaderboard";
+import OverviewDashboard from "@/components/overview-dashboard";
 import { useWebSocket } from "@/hooks/use-websocket";
 import type { Project, Agent } from "@shared/schema";
 
@@ -15,6 +17,7 @@ export default function Dashboard() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [isGlobalMode, setIsGlobalMode] = useState(true);
   const [activeTab, setActiveTab] = useState("overview");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // WebSocket connection for real-time updates
   useWebSocket();
@@ -43,28 +46,60 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
-      {/* Sidebar */}
-      <Sidebar
-        selectedProjectId={selectedProjectId}
-        onSelectProject={setSelectedProjectId}
-        isGlobalMode={isGlobalMode}
-        onToggleGlobalMode={setIsGlobalMode}
-        dashboardStats={dashboardStats}
-      />
+    <div className="flex h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg glass"
+        data-testid="mobile-menu-toggle"
+      >
+        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Sidebar - Mobile Overlay */}
+      <div className={`lg:hidden fixed inset-0 z-40 transition-opacity ${
+        isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
+        <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}></div>
+        <div className={`absolute left-0 top-0 h-full w-80 max-w-xs transform transition-transform ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
+          <Sidebar
+            selectedProjectId={selectedProjectId}
+            onSelectProject={(id) => {
+              setSelectedProjectId(id);
+              setIsMobileMenuOpen(false);
+            }}
+            isGlobalMode={isGlobalMode}
+            onToggleGlobalMode={setIsGlobalMode}
+            dashboardStats={dashboardStats}
+          />
+        </div>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden lg:block">
+        <Sidebar
+          selectedProjectId={selectedProjectId}
+          onSelectProject={setSelectedProjectId}
+          isGlobalMode={isGlobalMode}
+          onToggleGlobalMode={setIsGlobalMode}
+          dashboardStats={dashboardStats}
+        />
+      </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Navigation */}
-        <header className="bg-white border-b border-gray-200 px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <h2 className="text-2xl font-bold text-gray-900" data-testid="page-title">
+        <header className="glass border-b border-white/20 mobile-padding">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            <div className="flex items-center space-x-4 ml-16 lg:ml-0">
+              <h2 className="text-xl lg:text-2xl font-bold text-gray-900" data-testid="page-title">
                 {selectedProject?.name || "ChittyPM Dashboard"}
               </h2>
               {selectedProject && (
                 <span 
-                  className={`px-3 py-1 text-sm font-medium rounded-full ${
+                  className={`px-2 lg:px-3 py-1 text-xs lg:text-sm font-medium rounded-full ${
                     selectedProject.status === 'active' 
                       ? 'bg-green-100 text-green-800' 
                       : selectedProject.status === 'completed'
@@ -79,13 +114,13 @@ export default function Dashboard() {
               )}
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
               {/* Search */}
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Search tasks..."
-                  className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent glass"
                   data-testid="input-search"
                 />
                 <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -93,29 +128,29 @@ export default function Dashboard() {
 
               {/* AI Agent Indicator */}
               <div 
-                className="flex items-center space-x-2 px-3 py-2 bg-gray-50 rounded-lg"
+                className="flex items-center justify-center space-x-2 px-3 py-2 glass rounded-lg animate-pulse-glow"
                 data-testid="agent-indicator"
               >
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm text-gray-600">AI Agents Active</span>
-                <span className="text-sm font-medium text-gray-900" data-testid="active-agent-count">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse status-indicator online"></div>
+                <span className="text-xs lg:text-sm text-gray-600">AI Agents</span>
+                <span className="text-xs lg:text-sm font-bold text-gray-900" data-testid="active-agent-count">
                   {activeAgents.length}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Project Tabs */}
-          <div className="mt-4 border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
+          {/* Project Tabs - Mobile Scrollable */}
+          <div className="mt-4 border-b border-white/20">
+            <nav className="-mb-px flex space-x-2 lg:space-x-8 overflow-x-auto custom-scrollbar pb-2">
               {["overview", "tasks", "timeline", "agents-log", "integrations", "recommendations", "reputation"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`border-b-2 py-2 px-1 text-sm font-medium ${
+                  className={`flex-shrink-0 border-b-2 py-2 px-3 lg:px-1 text-xs lg:text-sm font-medium transition-all ${
                     activeTab === tab
-                      ? "border-primary-500 text-primary-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      ? "border-primary-500 text-primary-600 bg-primary-50 rounded-t-lg"
+                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 hover:bg-white/50 rounded-t-lg"
                   }`}
                   data-testid={`tab-${tab}`}
                 >
@@ -131,37 +166,17 @@ export default function Dashboard() {
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto custom-scrollbar bg-gradient-to-br from-white/50 to-blue-50/50">
           {activeTab === "overview" && (
-            <>
-              {/* Project Overview Cards */}
-              {selectedProject && (
-                <ProjectOverview 
-                  project={selectedProject} 
-                  activeAgents={activeAgents}
-                />
-              )}
-
-              {/* Quick Add Task */}
-              {selectedProject && (
-                <QuickAddTask projectId={selectedProject.id} />
-              )}
-
-              {/* Task List */}
-              {selectedProject && (
-                <TaskList projectId={selectedProject.id} />
-              )}
-
-              {/* Recent Activity */}
-              <ActivityFeed 
-                projectId={selectedProject?.id} 
-                limit={10} 
-              />
-            </>
+            <div className="animate-fade-in-up">
+              <OverviewDashboard />
+            </div>
           )}
 
           {activeTab === "tasks" && selectedProject && (
-            <TaskList projectId={selectedProject.id} />
+            <div className="animate-fade-in-up mobile-padding">
+              <TaskList projectId={selectedProject.id} />
+            </div>
           )}
 
           {activeTab === "agents-log" && (
@@ -181,11 +196,13 @@ export default function Dashboard() {
           )}
 
           {activeTab === "integrations" && (
-            <IntegrationsView />
+            <div className="animate-fade-in-up mobile-padding">
+              <IntegrationsView />
+            </div>
           )}
 
           {activeTab === "recommendations" && (
-            <div className="space-y-6">
+            <div className="animate-fade-in-up mobile-padding space-y-6">
               {selectedProject ? (
                 <SmartRecommendations 
                   type="project" 
@@ -203,7 +220,9 @@ export default function Dashboard() {
           )}
 
           {activeTab === "reputation" && (
-            <ReputationLeaderboard />
+            <div className="animate-fade-in-up mobile-padding">
+              <ReputationLeaderboard />
+            </div>
           )}
         </main>
       </div>

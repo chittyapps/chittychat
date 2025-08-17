@@ -72,6 +72,26 @@ Located in `shared/schema.ts` using Drizzle ORM:
 
 ## Key Integration Points
 
+### Agent Task Management Workflow
+When AI agents need to manage tasks, they should:
+1. Connect to ChittyPM via WebSocket or MCP endpoints
+2. **Search for existing projects** before creating new ones:
+   - Check if a similar project already exists (`GET /api/projects`)
+   - Review project status (active/inactive) and last activity
+   - Examine where previous work left off by checking task completion status
+   - Continue existing projects when appropriate rather than creating duplicates
+3. If no suitable project exists, create a new one (global for team collaboration, local for isolated work)
+4. Add tasks to the centralized board instead of using local todowrite
+5. Update task status as work progresses
+6. All agents working on the same project see real-time updates
+
+### Project Discovery Best Practices
+- **Always search first**: Use project name, description, and tags to find related work
+- **Check activity status**: Look at `lastActivityAt` to see if project is actively being worked on
+- **Review task progress**: Examine completed vs pending tasks to understand current state
+- **Avoid duplication**: Only create new projects when genuinely new work, not continuation
+- **Smart Recommendations**: The system provides AI-powered suggestions for similar projects
+
 ### WebSocket Agent Registration
 Agents connect and register via WebSocket with:
 ```javascript
