@@ -1,293 +1,453 @@
-import { storage } from "../storage";
-import { type InsertTask, type InsertProject, type InsertActivity } from "@shared/schema";
+import { WebSocketServer } from 'ws';
+import { storage } from '../storage';
+import { reputationSystem } from './reputation-system';
+import { smartRecommendationsService } from './smart-recommendations';
 
-export class MCPServer {
-  async handleRequest(payload: any) {
-    switch (payload.method) {
-      case 'projects/list':
-        return await this.listProjects(payload.params);
-      case 'projects/create':
-        return await this.createProject(payload.params.agentId, payload.params.project);
-      case 'tasks/list':
-        return await this.listTasks(payload.params);
-      case 'tasks/create':
-        return await this.createTask(payload.params.agentId, payload.params.task);
-      case 'tasks/update':
-        return await this.updateTask(payload.params.taskId, payload.params.updates, payload.params.agentId);
-      case 'agents/register':
-        return await this.registerAgent(payload.params);
-      default:
-        throw new Error(`Unknown MCP method: ${payload.method}`);
-    }
-  }
+interface MCPMessage {
+  id: string;
+  method: string;
+  params?: any;
+  result?: any;
+  error?: any;
+}
 
-  async listProjects(params: { agentId?: string; isGlobal?: boolean }) {
-    try {
-      const projects = await storage.getProjects();
-      
-      // Filter based on global/local mode
-      const filteredProjects = params.isGlobal !== false 
-        ? projects.filter(p => p.isGlobal) 
-        : projects;
-      
-      return {
-        success: true,
-        data: filteredProjects,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to list projects',
-      };
-    }
-  }
+interface TodoWriteRequest {
+  content: string;
+  project?: string;
+  priority?: 'low' | 'medium' | 'high';
+  category?: string;
+  assignTo?: string;
+  dueDate?: string;
+  tags?: string[];
+}
 
-  async createProject(agentId: string, projectData: InsertProject) {
-    try {
-      // AI-enhanced project creation with auto-categorization
-      const enhancedProject = await this.enhanceProject(projectData);
-      const project = await storage.createProject(enhancedProject);
+class MCPServer {
+  private wss: WebSocketServer | null = null;
+  private connections: Map<string, any> = new Map();
+
+  initialize(server: any) {
+    this.wss = new WebSocketServer({ server });
+    
+    this.wss.on('connection', (ws, req) => {
+      const connectionId = this.generateConnectionId();
+      this.connections.set(connectionId, ws);
       
-      // Log activity
-      await storage.createActivity({
-        type: 'project_created',
-        description: `Project "${project.name}" was created by AI agent`,
-        projectId: project.id,
-        agentId,
+      console.log(`MCP Client connected: ${connectionId}`);
+      
+      ws.on('message', async (data) => {
+        try {
+          const message: MCPMessage = JSON.parse(data.toString());
+          await this.handleMessage(connectionId, message);
+        } catch (error) {
+          console.error('MCP message parsing error:', error);
+          this.sendError(ws, 'parse_error', 'Invalid JSON message');
+        }
       });
       
-      return {
-        success: true,
-        data: project,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to create project',
-      };
-    }
-  }
-
-  async listTasks(params: { projectId: string; agentId?: string }) {
-    try {
-      const tasks = await storage.getTasks(params.projectId);
-      
-      return {
-        success: true,
-        data: tasks,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to list tasks',
-      };
-    }
-  }
-
-  async createTask(agentId: string, taskData: InsertTask) {
-    try {
-      const enhancedTask = await this.enhanceTask(taskData);
-      const task = await storage.createTask({
-        ...enhancedTask,
-        assignedAgent: await this.getAgentName(agentId),
+      ws.on('close', () => {
+        this.connections.delete(connectionId);
+        console.log(`MCP Client disconnected: ${connectionId}`);
       });
       
-      // Log activity
-      await storage.createActivity({
-        type: 'task_created',
-        description: `Task "${task.title}" was created by AI agent`,
-        projectId: task.projectId,
-        taskId: task.id,
-        agentId,
+      ws.on('error', (error) => {
+        console.error(`MCP WebSocket error for ${connectionId}:`, error);
+        this.connections.delete(connectionId);
       });
       
-      return {
-        success: true,
-        data: task,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to create task',
-      };
-    }
+      // Send welcome message
+      this.sendMessage(ws, {
+        id: 'welcome',
+        method: 'server.initialized',
+        result: {
+          capabilities: {
+            todowrite: true,
+            projectManagement: true,
+            smartRecommendations: true,
+            blockchainReputation: true,
+            selfOrganizing: true
+          },
+          version: '1.0.0'
+        }
+      });
+    });
   }
 
-  async updateTask(taskId: string, updates: Partial<any>, agentId: string) {
+  private async handleMessage(connectionId: string, message: MCPMessage) {
+    const ws = this.connections.get(connectionId);
+    if (!ws) return;
+
     try {
-      const task = await storage.updateTask(taskId, updates);
-      
-      // Log activity
-      const activityType = updates.status === 'completed' ? 'task_completed' : 'task_updated';
-      await storage.createActivity({
-        type: activityType,
-        description: `Task "${task.title}" was ${updates.status === 'completed' ? 'completed' : 'updated'} by AI agent`,
-        projectId: task.projectId,
-        taskId: task.id,
-        agentId,
-      });
-      
-      return {
-        success: true,
-        data: task,
-      };
+      switch (message.method) {
+        case 'todowrite.create':
+          await this.handleTodoWrite(ws, message);
+          break;
+          
+        case 'todowrite.list':
+          await this.handleListTodos(ws, message);
+          break;
+          
+        case 'todowrite.update':
+          await this.handleUpdateTodo(ws, message);
+          break;
+          
+        case 'todowrite.delete':
+          await this.handleDeleteTodo(ws, message);
+          break;
+          
+        case 'project.create':
+          await this.handleCreateProject(ws, message);
+          break;
+          
+        case 'recommendations.get':
+          await this.handleGetRecommendations(ws, message);
+          break;
+          
+        case 'reputation.get':
+          await this.handleGetReputation(ws, message);
+          break;
+          
+        default:
+          this.sendError(ws, 'method_not_found', `Unknown method: ${message.method}`);
+      }
     } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to update task',
-      };
+      console.error(`Error handling MCP message ${message.method}:`, error);
+      this.sendError(ws, 'internal_error', error instanceof Error ? error.message : 'Unknown error');
     }
   }
 
-  async registerAgent(params: { name: string; type: string; capabilities: string[] }) {
+  // Main todowrite functionality - replaces Claude's todowrite
+  private async handleTodoWrite(ws: any, message: MCPMessage) {
+    const params: TodoWriteRequest = message.params;
+    
+    if (!params.content) {
+      return this.sendError(ws, 'invalid_params', 'Content is required');
+    }
+
     try {
-      const agent = await storage.createAgent({
-        name: params.name,
-        type: params.type,
-        status: 'active',
-        capabilities: params.capabilities,
+      // Auto-categorize and organize the todo
+      const category = await this.autoCategorizeTodo(params.content);
+      const priority = params.priority || await this.autoPrioritizeTodo(params.content);
+      const project = params.project || await this.autoAssignProject(params.content);
+      
+      // Create the task
+      const task = {
+        id: this.generateId(),
+        title: this.extractTitle(params.content),
+        description: params.content,
+        status: 'todo' as const,
+        priority,
+        category,
+        projectId: project,
+        assignedTo: params.assignTo,
+        dueDate: params.dueDate ? new Date(params.dueDate) : undefined,
+        tags: params.tags || await this.autoGenerateTags(params.content),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+
+      // Store the task
+      await storage.createTask(task);
+      
+      // Get smart recommendations for the task
+      const recommendations = await smartRecommendationsService.getTaskRecommendations(task.id);
+      
+      // Send success response
+      this.sendMessage(ws, {
+        id: message.id,
+        result: {
+          task,
+          category,
+          autoAssigned: {
+            project,
+            priority,
+            tags: task.tags
+          },
+          recommendations: recommendations.slice(0, 3), // Top 3 recommendations
+          message: 'Todo created successfully with smart categorization'
+        }
+      });
+
+      // Broadcast to other connected clients
+      this.broadcast('task.created', { task });
+      
+    } catch (error) {
+      this.sendError(ws, 'creation_failed', error instanceof Error ? error.message : 'Failed to create todo');
+    }
+  }
+
+  private async handleListTodos(ws: any, message: MCPMessage) {
+    try {
+      const { projectId, status, limit = 50 } = message.params || {};
+      
+      let tasks;
+      if (projectId) {
+        tasks = await storage.getTasksByProject(projectId);
+      } else {
+        tasks = await storage.getAllTasks();
+      }
+      
+      // Filter by status if provided
+      if (status) {
+        tasks = tasks.filter(task => task.status === status);
+      }
+      
+      // Limit results
+      tasks = tasks.slice(0, limit);
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: {
+          tasks,
+          total: tasks.length,
+          filtered: !!status || !!projectId
+        }
       });
       
-      return {
-        success: true,
-        data: agent,
-      };
     } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to register agent',
+      this.sendError(ws, 'list_failed', error instanceof Error ? error.message : 'Failed to list todos');
+    }
+  }
+
+  private async handleUpdateTodo(ws: any, message: MCPMessage) {
+    try {
+      const { taskId, updates } = message.params;
+      
+      if (!taskId) {
+        return this.sendError(ws, 'invalid_params', 'Task ID is required');
+      }
+      
+      const updatedTask = await storage.updateTask(taskId, {
+        ...updates,
+        updatedAt: new Date()
+      });
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: {
+          task: updatedTask,
+          message: 'Todo updated successfully'
+        }
+      });
+      
+      // Broadcast update
+      this.broadcast('task.updated', { task: updatedTask });
+      
+    } catch (error) {
+      this.sendError(ws, 'update_failed', error instanceof Error ? error.message : 'Failed to update todo');
+    }
+  }
+
+  private async handleDeleteTodo(ws: any, message: MCPMessage) {
+    try {
+      const { taskId } = message.params;
+      
+      if (!taskId) {
+        return this.sendError(ws, 'invalid_params', 'Task ID is required');
+      }
+      
+      await storage.deleteTask(taskId);
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: {
+          message: 'Todo deleted successfully'
+        }
+      });
+      
+      // Broadcast deletion
+      this.broadcast('task.deleted', { taskId });
+      
+    } catch (error) {
+      this.sendError(ws, 'delete_failed', error instanceof Error ? error.message : 'Failed to delete todo');
+    }
+  }
+
+  private async handleCreateProject(ws: any, message: MCPMessage) {
+    try {
+      const { name, description, category } = message.params;
+      
+      if (!name) {
+        return this.sendError(ws, 'invalid_params', 'Project name is required');
+      }
+      
+      const project = {
+        id: this.generateId(),
+        name,
+        description: description || '',
+        status: 'active' as const,
+        category: category || 'general',
+        createdAt: new Date(),
+        updatedAt: new Date()
       };
+      
+      await storage.createProject(project);
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: {
+          project,
+          message: 'Project created successfully'
+        }
+      });
+      
+    } catch (error) {
+      this.sendError(ws, 'creation_failed', error instanceof Error ? error.message : 'Failed to create project');
     }
   }
 
-  async enhanceProject(projectData: InsertProject): Promise<InsertProject> {
-    // AI-powered project enhancement
-    const enhanced = { ...projectData };
-    
-    // Auto-categorization based on name and description
-    if (!enhanced.category) {
-      enhanced.category = this.categorizeProject(enhanced.name, enhanced.description);
+  private async handleGetRecommendations(ws: any, message: MCPMessage) {
+    try {
+      const { type, targetId } = message.params;
+      const recommendations = await smartRecommendationsService.getRecommendations(type, targetId);
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: { recommendations }
+      });
+      
+    } catch (error) {
+      this.sendError(ws, 'recommendations_failed', error instanceof Error ? error.message : 'Failed to get recommendations');
     }
-    
-    // Auto-tagging
-    if (!enhanced.tags || enhanced.tags.length === 0) {
-      enhanced.tags = this.generateTags(enhanced.name, enhanced.description);
-    }
-    
-    return enhanced;
   }
 
-  async enhanceTask(taskData: InsertTask): Promise<InsertTask> {
-    // AI-powered task enhancement
-    const enhanced = { ...taskData };
-    
-    // Auto-categorization
-    if (!enhanced.category) {
-      enhanced.category = this.categorizeTask(enhanced.title, enhanced.description);
+  private async handleGetReputation(ws: any, message: MCPMessage) {
+    try {
+      const { agentAddress } = message.params;
+      const reputation = await reputationSystem.getAgentReputation(agentAddress);
+      
+      this.sendMessage(ws, {
+        id: message.id,
+        result: { reputation }
+      });
+      
+    } catch (error) {
+      this.sendError(ws, 'reputation_failed', error instanceof Error ? error.message : 'Failed to get reputation');
     }
-    
-    // Priority estimation based on keywords
-    if (!enhanced.priority || enhanced.priority === 'medium') {
-      enhanced.priority = this.estimatePriority(enhanced.title, enhanced.description);
-    }
-    
-    // Auto-tagging
-    if (!enhanced.tags || enhanced.tags.length === 0) {
-      enhanced.tags = this.generateTaskTags(enhanced.title, enhanced.description);
-    }
-    
-    return enhanced;
   }
 
-  private categorizeProject(name: string, description?: string): string {
-    const text = `${name} ${description || ''}`.toLowerCase();
+  // AI-powered auto-categorization
+  private async autoCategorizeTodo(content: string): Promise<string> {
+    const contentLower = content.toLowerCase();
     
-    if (text.includes('api') || text.includes('backend') || text.includes('server')) {
-      return 'Backend Development';
+    // Simple keyword-based categorization (would be enhanced with ML)
+    if (contentLower.includes('bug') || contentLower.includes('fix') || contentLower.includes('error')) {
+      return 'bug-fix';
     }
-    if (text.includes('ui') || text.includes('frontend') || text.includes('react')) {
-      return 'Frontend Development';
+    if (contentLower.includes('feature') || contentLower.includes('add') || contentLower.includes('implement')) {
+      return 'feature';
     }
-    if (text.includes('database') || text.includes('db') || text.includes('data')) {
-      return 'Database';
+    if (contentLower.includes('doc') || contentLower.includes('write') || contentLower.includes('readme')) {
+      return 'documentation';
     }
-    if (text.includes('auth') || text.includes('security') || text.includes('chittyid')) {
-      return 'Authentication';
+    if (contentLower.includes('test') || contentLower.includes('spec')) {
+      return 'testing';
     }
-    if (text.includes('integration') || text.includes('mcp') || text.includes('tool')) {
-      return 'Integration';
+    if (contentLower.includes('deploy') || contentLower.includes('release')) {
+      return 'deployment';
     }
     
-    return 'General';
+    return 'general';
   }
 
-  private categorizeTask(title: string, description?: string): string {
-    const text = `${title} ${description || ''}`.toLowerCase();
+  private async autoPrioritizeTodo(content: string): Promise<'low' | 'medium' | 'high'> {
+    const contentLower = content.toLowerCase();
     
-    if (text.includes('implement') || text.includes('create') || text.includes('build')) {
-      return 'Development';
-    }
-    if (text.includes('fix') || text.includes('bug') || text.includes('error')) {
-      return 'Bug Fix';
-    }
-    if (text.includes('test') || text.includes('verify') || text.includes('validate')) {
-      return 'Testing';
-    }
-    if (text.includes('deploy') || text.includes('release') || text.includes('publish')) {
-      return 'Deployment';
-    }
-    if (text.includes('design') || text.includes('ui') || text.includes('ux')) {
-      return 'Design';
-    }
-    
-    return 'General';
-  }
-
-  private estimatePriority(title: string, description?: string): string {
-    const text = `${title} ${description || ''}`.toLowerCase();
-    
-    if (text.includes('urgent') || text.includes('critical') || text.includes('asap')) {
-      return 'urgent';
-    }
-    if (text.includes('important') || text.includes('high') || text.includes('priority')) {
+    // High priority keywords
+    if (contentLower.includes('urgent') || contentLower.includes('critical') || 
+        contentLower.includes('asap') || contentLower.includes('immediately')) {
       return 'high';
     }
-    if (text.includes('minor') || text.includes('low') || text.includes('nice to have')) {
+    
+    // Low priority keywords
+    if (contentLower.includes('later') || contentLower.includes('nice to have') || 
+        contentLower.includes('someday') || contentLower.includes('optional')) {
       return 'low';
     }
     
     return 'medium';
   }
 
-  private generateTags(name: string, description?: string): string[] {
-    const text = `${name} ${description || ''}`.toLowerCase();
-    const tags: string[] = [];
+  private async autoAssignProject(content: string): Promise<string | undefined> {
+    // Get existing projects and try to match
+    const projects = await storage.getAllProjects();
+    const contentLower = content.toLowerCase();
     
-    const keywords = [
-      'api', 'frontend', 'backend', 'database', 'auth', 'mcp', 'integration',
-      'react', 'typescript', 'websocket', 'chittyid', 'registry', 'tool'
-    ];
-    
-    keywords.forEach(keyword => {
-      if (text.includes(keyword)) {
-        tags.push(keyword);
+    for (const project of projects) {
+      if (contentLower.includes(project.name.toLowerCase())) {
+        return project.id;
       }
-    });
-    
-    return tags.slice(0, 5); // Limit to 5 tags
-  }
-
-  private generateTaskTags(title: string, description?: string): string[] {
-    return this.generateTags(title, description);
-  }
-
-  private async getAgentName(agentId: string): Promise<string> {
-    try {
-      const agent = await storage.getAgent(agentId);
-      return agent?.name || 'Unknown Agent';
-    } catch {
-      return 'Unknown Agent';
     }
+    
+    return undefined;
+  }
+
+  private async autoGenerateTags(content: string): Promise<string[]> {
+    const tags: string[] = [];
+    const contentLower = content.toLowerCase();
+    
+    // Extract common technical tags
+    const tagPatterns = {
+      'frontend': ['frontend', 'ui', 'react', 'vue', 'angular'],
+      'backend': ['backend', 'api', 'server', 'database'],
+      'mobile': ['mobile', 'ios', 'android', 'react-native'],
+      'security': ['security', 'auth', 'login', 'encryption'],
+      'performance': ['performance', 'optimize', 'speed', 'cache'],
+      'testing': ['test', 'spec', 'qa', 'coverage']
+    };
+    
+    for (const [tag, keywords] of Object.entries(tagPatterns)) {
+      if (keywords.some(keyword => contentLower.includes(keyword))) {
+        tags.push(tag);
+      }
+    }
+    
+    return tags;
+  }
+
+  private extractTitle(content: string): string {
+    // Extract first line or first sentence as title
+    const lines = content.split('\n');
+    const firstLine = lines[0].trim();
+    
+    if (firstLine.length > 0 && firstLine.length <= 100) {
+      return firstLine;
+    }
+    
+    // If first line is too long, take first 100 chars
+    return content.substring(0, 100).trim() + (content.length > 100 ? '...' : '');
+  }
+
+  private generateId(): string {
+    return Math.random().toString(36).substring(2) + Date.now().toString(36);
+  }
+
+  private generateConnectionId(): string {
+    return 'mcp_' + Math.random().toString(36).substring(2);
+  }
+
+  private sendMessage(ws: any, message: MCPMessage) {
+    if (ws.readyState === 1) { // WebSocket.OPEN
+      ws.send(JSON.stringify(message));
+    }
+  }
+
+  private sendError(ws: any, code: string, message: string) {
+    this.sendMessage(ws, {
+      id: 'error',
+      error: { code, message }
+    });
+  }
+
+  private broadcast(event: string, data: any) {
+    const message = {
+      id: 'broadcast',
+      method: event,
+      params: data
+    };
+    
+    this.connections.forEach((ws) => {
+      this.sendMessage(ws, message);
+    });
   }
 }
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is ChittyPM - a comprehensive project management system built as a full-stack web application. The application serves as a centralized platform for managing projects, tasks, and AI agents with real-time collaboration capabilities. It features a React-based frontend with shadcn/ui components, an Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. The system is designed to integrate with external services like ChittyID and registry.chitty.cc for enhanced functionality and AI agent coordination.
+This project is ChittyPM - an MCP-based todo and project management system designed to replace Claude's "todowrite" function seamlessly across various channels. The application serves as a comprehensive, self-organizing platform for managing tasks, projects, and AI agents with blockchain-powered reputation scoring and smart recommendations. It features a mobile-first React frontend with glass morphism design, an Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. The system integrates with ChittyID, ETH registry, and registry.chitty.cc for enhanced functionality and cross-platform compatibility.
 
 ## User Preferences
 
@@ -44,10 +44,12 @@ Preferred communication style: Simple, everyday language.
 ### Service Integrations
 - **ChittyID Client**: Synchronizes projects and tasks with external ChittyID service
 - **Registry Client**: Discovers and manages MCP tools from registry.chitty.cc
-- **Background Jobs**: Automated data integrity checks and cleanup processes
+- **Background Jobs**: Automated data integrity checks and cleanup processes with self-organizing capabilities
 - **ETH Registry Client**: Blockchain-based agent discovery with ENS resolution and fuzzy search
 - **Smart Recommendations Service**: Personalized agent matching with natural language alignment and deduplication
 - **Blockchain Reputation System**: Transparent, verifiable agent reputation scoring with on-chain verification
+- **MCP Server**: Model Context Protocol server for todowrite function replacement across channels
+- **Self-Organizing System**: Automatic categorization and intelligent task management
 
 ## External Dependencies
 
@@ -77,11 +79,12 @@ Preferred communication style: Simple, everyday language.
 - **esbuild**: JavaScript bundler for server-side code
 
 ### External Services
-- **ChittyID API**: External project management service integration
+- **ChittyID API**: External project management service integration for Neon database ingestion
 - **registry.chitty.cc**: MCP tool discovery and registry service
 - **Neon Database**: Serverless PostgreSQL hosting platform
 - **ETH Registry**: Ethereum-based agent registry with ENS domain resolution
 - **Smart Recommendations**: AI-powered agent and tool recommendations with natural alignment
+- **MCP Protocol Integration**: Model Context Protocol for seamless todowrite replacement functionality
 
 ### Authentication and Session Management
 - **connect-pg-simple**: PostgreSQL session store for Express
