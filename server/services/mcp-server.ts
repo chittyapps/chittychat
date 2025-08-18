@@ -82,7 +82,11 @@ class MCPServer {
     try {
       switch (message.method) {
         case 'todowrite.create':
-          await this.handleTodoWrite(ws, message);
+          await this.handleUniversalTodoWrite(ws, message);
+          break;
+          
+        case 'universal.board.get':
+          await this.handleUniversalBoardGet(ws, message);
           break;
           
         case 'todowrite.list':
@@ -118,8 +122,8 @@ class MCPServer {
     }
   }
 
-  // Main todowrite functionality - replaces Claude's todowrite
-  private async handleTodoWrite(ws: any, message: MCPMessage) {
+  // Universal todowrite functionality - replaces Claude's todowrite for ALL agents
+  private async handleUniversalTodoWrite(ws: any, message: MCPMessage) {
     const params: TodoWriteRequest = message.params;
     
     if (!params.content) {
@@ -166,7 +170,9 @@ class MCPServer {
             tags: task.tags
           },
           recommendations: recommendations.slice(0, 3), // Top 3 recommendations
-          message: 'Todo created successfully with smart categorization'
+          message: 'Task added to universal PM board - replaces todowrite for all agents',
+          universalBoard: true,
+          projectId: project
         }
       });
 

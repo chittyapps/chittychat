@@ -301,6 +301,105 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Universal PM Board endpoints - replaces todowrite for ALL agents
+  app.get("/api/projects/:id/board", async (req, res) => {
+    try {
+      const { id: projectId } = req.params;
+      const tasks = await storage.getTasksByProject(projectId);
+      res.json(tasks);
+    } catch (error) {
+      console.error('Error fetching universal board:', error);
+      res.status(500).json({ message: "Failed to fetch universal board" });
+    }
+  });
+
+  app.get("/api/projects/:id/agents", async (req, res) => {
+    try {
+      const { id: projectId } = req.params;
+      const agents = await storage.getAgentsByProject(projectId);
+      res.json(agents);
+    } catch (error) {
+      console.error('Error fetching project agents:', error);
+      res.status(500).json({ message: "Failed to fetch project agents" });
+    }
+  });
+
+  app.post("/api/mcp/universal-todowrite", async (req, res) => {
+    try {
+      const { title, priority, projectId, source, agentName } = req.body;
+      
+      const task = await storage.createTask({
+        title,
+        description: title,
+        status: 'pending',
+        priority: priority || 'medium',
+        projectId,
+        assignedAgent: agentName,
+        metadata: {
+          source: source || 'unknown',
+          createdVia: 'universal-todowrite',
+          mcpProtocol: true
+        }
+      });
+
+      // Log activity for universal board
+      await storage.createActivity({
+        type: 'universal_task_created',
+        description: `Task "${title}" added to universal PM board${agentName ? ` by ${agentName}` : ''}`,
+        projectId,
+        taskId: task.id,
+        metadata: {
+          source,
+          universalBoard: true
+        }
+      });
+
+      res.json({ 
+        task,
+        message: `Task added to universal PM board for project ${projectId}`,
+        universalBoard: true
+      });
+    } catch (error) {
+      console.error('Error creating universal task:', error);
+      res.status(500).json({ message: "Failed to create universal task" });
+    }
+  });
+
+  app.patch("/api/mcp/universal-todowrite/:taskId", async (req, res) => {
+    try {
+      const { taskId } = req.params;
+      const { status, agentName } = req.body;
+      
+      const task = await storage.updateTask(taskId, { 
+        status,
+        updatedAt: new Date()
+      });
+
+      // Log activity for universal board
+      await storage.createActivity({
+        type: 'universal_task_updated',
+        description: `Task status changed to "${status}"${agentName ? ` by ${agentName}` : ''}`,
+        taskId,
+        projectId: task?.projectId,
+        metadata: {
+          previousStatus: task?.status,
+          newStatus: status,
+          agentName,
+          universalBoard: true
+        }
+      });
+
+      res.json({ 
+        task,
+        message: `Task updated on universal PM board`,
+        universalBoard: true
+      });
+    } catch (error) {
+      console.error('Error updating universal task:', error);
+      res.status(500).json({ message: "Failed to update universal task" });
+    }
+  });
+
   // ChittyID integration
   app.post('/api/chittyid/sync', async (req, res) => {
     try {

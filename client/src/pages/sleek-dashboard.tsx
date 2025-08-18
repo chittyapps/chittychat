@@ -20,6 +20,7 @@ import {
 import { useWebSocket } from "@/hooks/use-websocket";
 import TodoWriteReplacement from "@/components/todowrite-replacement";
 import IntegrationsStatus from "@/components/integrations-status";
+import UniversalPMBoard from "@/components/universal-pm-board";
 import type { Project, Agent } from "@shared/schema";
 
 interface DashboardStats {
@@ -299,6 +300,24 @@ function TodoWriteContent() {
 }
 
 function ProjectsContent({ projects }: { projects: Project[] }) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  
+  if (selectedProject) {
+    return (
+      <div className="space-y-6 animate-slide-in">
+        <div className="flex items-center space-x-4">
+          <button 
+            onClick={() => setSelectedProject(null)}
+            className="btn-secondary text-sm px-3 py-2"
+          >
+            ← Back to Projects
+          </button>
+          <h2 className="text-xl font-bold text-white">Universal PM Board</h2>
+        </div>
+        <UniversalPMBoard project={selectedProject} />
+      </div>
+    );
+  }
   return (
     <div className="space-y-6 animate-slide-in">
       <div className="flex items-center justify-between">
@@ -311,19 +330,31 @@ function ProjectsContent({ projects }: { projects: Project[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <div key={project.id} className="glass-card p-6 group cursor-pointer">
+          <div 
+            key={project.id} 
+            className="glass-card p-6 group cursor-pointer"
+            onClick={() => setSelectedProject(project)}
+          >
             <div className="flex items-center justify-between mb-4">
               <h4 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
                 {project.name}
               </h4>
-              <div className={`status-${project.status}`}>
-                {project.status}
+              <div className="flex items-center space-x-2">
+                <div className={`status-${project.status}`}>
+                  {project.status}
+                </div>
+                <div className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full text-xs">
+                  Universal Board
+                </div>
               </div>
             </div>
             <p className="text-white/60 text-sm mb-4">{project.description}</p>
-            <div className="flex items-center justify-between text-xs text-white/40">
-              <span>Updated recently</span>
-              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center space-x-2 text-white/60">
+                <Target className="w-3 h-3" />
+                <span>TodoWrite replacement for all agents</span>
+              </div>
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-white/40" />
             </div>
           </div>
         ))}
