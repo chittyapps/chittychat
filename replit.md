@@ -45,7 +45,7 @@ Preferred communication style: Simple, everyday language.
 - **ChittyID Client**: Synchronizes projects and tasks with external ChittyID service
 - **Registry Client**: Discovers and manages MCP tools from registry.chitty.cc
 - **Background Jobs**: Automated data integrity checks and cleanup processes with self-organizing capabilities
-- **ETH Registry Client**: Blockchain-based agent discovery with ENS resolution and fuzzy search
+- **The Registry Client**: Blockchain-based agent discovery with ENS resolution and fuzzy search
 - **Smart Recommendations Service**: Personalized agent matching with natural language alignment and deduplication
 - **Blockchain Reputation System**: Transparent, verifiable agent reputation scoring with on-chain verification
 - **MCP Server**: Model Context Protocol server for todowrite function replacement across channels
@@ -82,7 +82,7 @@ Preferred communication style: Simple, everyday language.
 - **ChittyID API**: External project management service integration for Neon database ingestion
 - **registry.chitty.cc**: MCP tool discovery and registry service
 - **Neon Database**: Serverless PostgreSQL hosting platform
-- **ETH Registry**: Ethereum-based agent registry with ENS domain resolution
+- **The Registry**: Ethereum-based agent registry with ENS domain resolution
 - **Smart Recommendations**: AI-powered agent and tool recommendations with natural alignment
 - **MCP Protocol Integration**: Model Context Protocol for seamless todowrite replacement functionality
 

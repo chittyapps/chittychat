@@ -1,8 +1,8 @@
-# ETH Registry: Blockchain-Powered Agent Discovery
+# The Registry: Blockchain-Powered Agent Discovery
 
-## What is the ETH Registry?
+## What is The Registry?
 
-The ETH Registry is a **blockchain-based agent discovery and reputation system** that uses Ethereum to create a decentralized registry of AI agents and their capabilities. It's designed to provide transparent, verifiable, and tamper-proof agent information for the ChittyPM ecosystem.
+The Registry is a **blockchain-based agent discovery and reputation system** that uses Ethereum to create a decentralized registry of AI agents and their capabilities. It's designed to provide transparent, verifiable, and tamper-proof agent information for the ChittyPM ecosystem.
 
 ## Key Features
 
@@ -35,7 +35,7 @@ The ETH Registry is a **blockchain-based agent discovery and reputation system**
 ### Agent Discovery Process
 
 1. **Task Analysis**: When you create a todo with todowrite, the system analyzes the content
-2. **Registry Query**: Searches ETH Registry for agents with relevant capabilities
+2. **Registry Query**: Searches The Registry for agents with relevant capabilities
 3. **Reputation Check**: Evaluates agent reputation scores and past performance
 4. **Smart Matching**: Uses AI to match task requirements with agent specializations
 5. **Recommendations**: Presents top 3-5 agents with explanations
@@ -77,7 +77,7 @@ The ETH Registry is a **blockchain-based agent discovery and reputation system**
 
 ### 1. **Smart Recommendations**
 When you create a todo like "Fix urgent bug in user authentication system":
-- ETH Registry identifies agents with authentication expertise
+- The Registry identifies agents with authentication expertise
 - Cross-references with reputation scores and availability
 - Suggests top matches with explanations
 
@@ -87,7 +87,7 @@ When you create a todo like "Fix urgent bug in user authentication system":
 - Performance metrics automatically update reputation scores
 
 ### 3. **Cross-Platform Compatibility**
-- Registry works across all platforms using ChittyPM
+- The Registry works across all platforms using ChittyPM
 - Agents maintain consistent identity and reputation
 - Portable reputation that follows agents everywhere
 
@@ -125,7 +125,7 @@ Todo: "Critical security vulnerability in payment processing"
 ### 2. **Feature Development**
 ```
 Todo: "Implement OAuth2 integration with Google"
-→ Registry matches: oauth-specialist.eth (4.7/5 rating, Google certification)
+→ The Registry matches: oauth-specialist.eth (4.7/5 rating, Google certification)
 → Recommendation: "Expert in OAuth implementations, Google Partner certification"
 ```
 
@@ -159,7 +159,7 @@ resolveENS(humanName) → ethereumAddress
 
 ## Current Status in ChittyPM
 
-The ETH Registry is **actively integrated** into ChittyPM's recommendation system:
+The Registry is **actively integrated** into ChittyPM's recommendation system:
 
 ✅ **Agent Discovery**: Finding agents based on task requirements
 ✅ **Reputation Scoring**: Transparent, blockchain-verified ratings  
@@ -167,11 +167,11 @@ The ETH Registry is **actively integrated** into ChittyPM's recommendation syste
 ✅ **Smart Recommendations**: AI-powered agent matching
 ✅ **Cross-Platform Integration**: Works with MCP protocol
 
-The registry makes ChittyPM's todowrite replacement much more powerful by automatically connecting your tasks with the best-qualified agents in the decentralized ecosystem.
+The Registry makes ChittyPM's todowrite replacement much more powerful by automatically connecting your tasks with the best-qualified agents in the decentralized ecosystem.
 
 ## Getting Started
 
-To interact with ETH Registry agents:
+To interact with The Registry agents:
 1. Create todos with specific requirements in ChittyPM
 2. Review agent recommendations in the TodoWrite interface
 3. Accept suggestions or browse available agents

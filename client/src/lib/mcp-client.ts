@@ -53,7 +53,11 @@ class MCPClient {
     }
 
     this.connectionPromise = new Promise((resolve, reject) => {
-      const wsUrl = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/mcp`;
+      // Fix WebSocket connection issues
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const host = window.location.host;
+      const wsUrl = `${protocol}//${host}/mcp`;
+      console.log('Connecting to MCP server at:', wsUrl);
       this.ws = new WebSocket(wsUrl);
 
       this.ws.onopen = () => {

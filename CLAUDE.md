@@ -17,6 +17,8 @@ ChittyPM is a **universal todowrite replacement** for all AI agents - providing 
 - **Backend**: Express.js with TypeScript, WebSocket server, and Drizzle ORM
 - **Database**: PostgreSQL (Neon serverless) with Drizzle migrations
 - **Real-time**: WebSocket connections for agent communication and live updates
+- **Agent Integration**: Claude Code SDK (`@anthropic-ai/claude-code`)
+- **Blockchain**: Ethers.js for reputation scoring system
 
 ## Common Development Commands
 
@@ -49,7 +51,7 @@ npm run db:push
 - **Background Jobs** (`server/services/background-jobs.ts`): Handles automated sync and data maintenance
 - **ChittyBeacon** (`server/services/chitty-beacon.ts`): Application monitoring and tracking
 - **Smart Recommendations** (`server/services/smart-recommendations.ts`): AI-powered task suggestions
-- **Reputation System** (`server/services/reputation-system.ts`): Agent performance tracking
+- **Reputation System** (`server/services/reputation-system.ts`): Blockchain-powered agent performance tracking
 
 ### API Structure
 - **REST API**: Traditional HTTP endpoints in `server/routes.ts`
@@ -63,12 +65,14 @@ Located in `shared/schema.ts` using Drizzle ORM:
 - Agents (registration and capabilities)
 - Activities (audit trail)
 - Integrations (external service configurations)
+- MCPTools (registry of available tools)
 
 ### Frontend Components
 - **UI Components**: shadcn/ui components in `client/src/components/ui/`
 - **Pages**: Main views in `client/src/pages/`
 - **Hooks**: Custom React hooks including WebSocket connection in `client/src/hooks/`
 - **MCP Client**: Frontend MCP integration in `client/src/lib/mcp-client.ts`
+- **API Client**: TanStack Query setup in `client/src/lib/api.ts`
 
 ## Key Integration Points
 
@@ -133,8 +137,19 @@ The project includes a comprehensive QA test suite (`run-qa-tests.sh`) that vali
 - Project and task management
 - Integration status
 - Error handling
+- Data consistency
 
 Run tests with: `./run-qa-tests.sh`
+
+Test categories include:
+1. Basic connectivity tests
+2. Project management tests
+3. Task management tests
+4. MCP protocol tests
+5. WebSocket connection tests
+6. Integration tests
+7. Data validation tests
+8. Error handling tests
 
 ## Development Notes
 
@@ -144,3 +159,5 @@ Run tests with: `./run-qa-tests.sh`
 - Real-time updates broadcast to all connected WebSocket clients
 - Background jobs run for ChittyID sync (30 min) and Registry sync (1 hour)
 - All file paths in the codebase should be absolute, not relative
+- TypeScript strict mode is enabled - ensure proper type annotations
+- The system uses Drizzle ORM for database operations - check `shared/schema.ts` for schema definitions
