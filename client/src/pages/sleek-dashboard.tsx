@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useWebSocket } from "@/hooks/use-websocket";
 import TodoWriteReplacement from "@/components/todowrite-replacement";
+import IntegrationsStatus from "@/components/integrations-status";
 import type { Project, Agent } from "@shared/schema";
 
 interface DashboardStats {
@@ -61,6 +62,7 @@ export default function SleekDashboard() {
     { id: "agents", label: "Agents", icon: Bot },
     { id: "recommendations", label: "Smart AI", icon: Sparkles },
     { id: "activity", label: "Activity", icon: Activity },
+    { id: "integrations", label: "Integrations", icon: Settings },
   ];
 
   return (
@@ -200,6 +202,7 @@ export default function SleekDashboard() {
           {activeView === "agents" && <AgentsContent agents={agents} />}
           {activeView === "recommendations" && <RecommendationsContent />}
           {activeView === "activity" && <ActivityContent />}
+          {activeView === "integrations" && <IntegrationsContent />}
         </main>
       </div>
     </div>
@@ -414,6 +417,14 @@ function RecommendationsContent() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function IntegrationsContent() {
+  return (
+    <div className="animate-slide-in">
+      <IntegrationsStatus />
     </div>
   );
 }
