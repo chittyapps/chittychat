@@ -1,371 +1,282 @@
-import { useState, useEffect } from "react";
-import { Plus, Zap, CheckCircle, Clock, AlertTriangle, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/hooks/use-toast";
-import { mcpClient, todowrite, type TodoWriteResponse } from "@/lib/mcp-client";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Plus, CheckSquare, Clock, Zap, Sparkles, Bot, ArrowRight } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
 
-interface TodoItem {
+interface Task {
   id: string;
-  title: string;
-  description: string;
-  status: string;
-  priority: string;
+  content: string;
   category: string;
-  tags: string[];
+  priority: "low" | "medium" | "high";
+  status: "pending" | "in-progress" | "completed";
   createdAt: string;
-  autoAssigned?: {
-    project?: string;
-    priority: string;
-    tags: string[];
+  recommendations?: {
+    agents: Array<{
+      name: string;
+      score: number;
+      reasoning: string;
+    }>;
   };
-  recommendations?: Array<{
-    type: string;
-    name: string;
-    reason: string;
-  }>;
 }
 
 export default function TodoWriteReplacement() {
-  const [content, setContent] = useState("");
-  const [project, setProject] = useState("");
-  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
-  const [isCreating, setIsCreating] = useState(false);
-  const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [mcpConnected, setMcpConnected] = useState(false);
-  const { toast } = useToast();
+  const [newTaskContent, setNewTaskContent] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("general");
+  const [selectedPriority, setSelectedPriority] = useState<"low" | "medium" | "high">("medium");
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    // Check MCP connection status
-    const checkConnection = () => {
-      const connected = mcpClient && typeof mcpClient.connect === 'function';
-      setMcpConnected(connected);
-    };
+  // Fetch tasks
+  const { data: tasks = [], isLoading } = useQuery<Task[]>({
+    queryKey: ['/api/mcp/todowrite/list'],
+    refetchInterval: 10000,
+  });
 
-    checkConnection();
-    loadTodos();
-
-    // Periodic connection check
-    const interval = setInterval(checkConnection, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const loadTodos = async () => {
-    try {
-      setIsLoading(true);
-      const response = await mcpClient.listTodos({ limit: 20 });
-      setTodos(response.tasks);
-    } catch (error) {
-      console.error('Error loading todos:', error);
-      toast({
-        title: "Connection Error",
-        description: "Could not load todos. MCP server may be unavailable.",
-        variant: "destructive"
+  // Create task mutation
+  const createTaskMutation = useMutation({
+    mutationFn: async (taskData: { content: string; category: string; priority: string }) => {
+      return apiRequest('/api/mcp/todowrite/create', {
+        method: 'POST',
+        body: JSON.stringify(taskData),
       });
-    } finally {
-      setIsLoading(false);
-    }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/mcp/todowrite/list'] });
+      setNewTaskContent("");
+    },
+  });
+
+  // Update task status mutation
+  const updateTaskMutation = useMutation({
+    mutationFn: async ({ taskId, status }: { taskId: string; status: string }) => {
+      return apiRequest(`/api/mcp/todowrite/update/${taskId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ status }),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/mcp/todowrite/list'] });
+    },
+  });
+
+  const handleCreateTask = () => {
+    if (!newTaskContent.trim()) return;
+    
+    createTaskMutation.mutate({
+      content: newTaskContent,
+      category: selectedCategory,
+      priority: selectedPriority,
+    });
   };
 
-  const handleTodoWrite = async () => {
-    if (!content.trim()) {
-      toast({
-        title: "Content Required",
-        description: "Please enter todo content before creating.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    try {
-      setIsCreating(true);
-      
-      // Use the todowrite replacement function
-      const response: TodoWriteResponse = await todowrite(content, {
-        project: project || undefined,
-        priority
-      });
-
-      // Add the new todo to the list
-      const newTodo: TodoItem = {
-        ...response.task,
-        autoAssigned: response.autoAssigned,
-        recommendations: response.recommendations
-      };
-      
-      setTodos(prev => [newTodo, ...prev]);
-      
-      // Clear form
-      setContent("");
-      setProject("");
-      setPriority('medium');
-      
-      toast({
-        title: "Todo Created Successfully!",
-        description: response.message,
-        variant: "default"
-      });
-
-      // Show auto-assignment details
-      if (response.autoAssigned) {
-        const details = [];
-        if (response.autoAssigned.project) details.push(`Project: ${response.autoAssigned.project}`);
-        if (response.autoAssigned.tags?.length) details.push(`Tags: ${response.autoAssigned.tags.join(', ')}`);
-        if (response.autoAssigned.priority) details.push(`Priority: ${response.autoAssigned.priority}`);
-        
-        if (details.length > 0) {
-          toast({
-            title: "Smart Assignment Applied",
-            description: details.join(' • '),
-            variant: "default"
-          });
-        }
-      }
-
-    } catch (error) {
-      console.error('Error creating todo:', error);
-      toast({
-        title: "Creation Failed",
-        description: error instanceof Error ? error.message : "Failed to create todo",
-        variant: "destructive"
-      });
-    } finally {
-      setIsCreating(false);
-    }
+  const handleUpdateStatus = (taskId: string, status: string) => {
+    updateTaskMutation.mutate({ taskId, status });
   };
 
-  const handleStatusUpdate = async (todoId: string, newStatus: string) => {
-    try {
-      await mcpClient.updateTodo(todoId, { 
-        status: newStatus,
-        completedAt: newStatus === 'completed' ? new Date().toISOString() : undefined
-      });
-      
-      setTodos(prev => prev.map(todo => 
-        todo.id === todoId 
-          ? { ...todo, status: newStatus }
-          : todo
-      ));
-      
-      toast({
-        title: "Status Updated",
-        description: `Todo marked as ${newStatus}`,
-        variant: "default"
-      });
-    } catch (error) {
-      toast({
-        title: "Update Failed",
-        description: "Could not update todo status",
-        variant: "destructive"
-      });
-    }
-  };
+  const categories = [
+    { id: "general", label: "General", color: "bg-gradient-cosmic" },
+    { id: "bug-fix", label: "Bug Fix", color: "bg-gradient-sunset" },
+    { id: "feature", label: "Feature", color: "bg-gradient-ocean" },
+    { id: "security", label: "Security", color: "bg-gradient-aurora" },
+    { id: "documentation", label: "Documentation", color: "bg-gradient-cosmic" },
+  ];
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'bg-red-100 text-red-800 border-red-200';
-      case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'low': return 'bg-green-100 text-green-800 border-green-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case 'in-progress': return <Clock className="w-4 h-4 text-blue-500" />;
-      case 'blocked': return <AlertTriangle className="w-4 h-4 text-red-500" />;
-      default: return <Clock className="w-4 h-4 text-gray-500" />;
-    }
+  const priorityColors = {
+    low: "bg-blue-500",
+    medium: "bg-yellow-500", 
+    high: "bg-red-500"
   };
 
   return (
-    <div className="space-y-6 mobile-padding">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="glass rounded-2xl p-6 bg-gradient-primary text-white">
+      <div className="glass-card p-6">
         <div className="flex items-center space-x-3 mb-4">
-          <div className="p-2 bg-white/20 rounded-lg animate-float">
+          <div className="w-12 h-12 rounded-xl bg-gradient-cosmic flex items-center justify-center">
             <Zap className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold">TodoWrite Replacement</h2>
-            <p className="text-white/80">
-              MCP-powered task management with smart auto-categorization
-            </p>
+            <h2 className="text-2xl font-bold text-white">TodoWrite Replacement</h2>
+            <p className="text-white/60">Powered by MCP Protocol & registry.chitty.cc</p>
+          </div>
+          <div className="ml-auto">
+            <div className="status-active">Claude Function Replaced</div>
           </div>
         </div>
-        
-        {/* Connection Status */}
-        <div className="flex items-center space-x-2">
-          <div className={`w-2 h-2 rounded-full ${mcpConnected ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>
-          <span className="text-sm text-white/80">
-            MCP Server: {mcpConnected ? 'Connected' : 'Disconnected'}
-          </span>
-        </div>
-      </div>
 
-      {/* Todo Creation Form */}
-      <div className="glass rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Create New Todo</h3>
-        
+        {/* Task Creation */}
         <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Todo Content
-            </label>
-            <Textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Describe what needs to be done... (e.g., 'Fix urgent bug in authentication system')"
-              className="min-h-[100px]"
-              data-testid="textarea-todo-content"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Project (Optional)
-              </label>
-              <Input
-                value={project}
-                onChange={(e) => setProject(e.target.value)}
-                placeholder="Project name (auto-assigned if empty)"
-                data-testid="input-project"
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <textarea
+                value={newTaskContent}
+                onChange={(e) => setNewTaskContent(e.target.value)}
+                placeholder="Describe your task... (e.g., Fix authentication bug in login system)"
+                className="glass-input w-full px-4 py-3 resize-none h-20"
+                data-testid="task-input"
               />
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Priority
-              </label>
-              <Select value={priority} onValueChange={(value: 'low' | 'medium' | 'high') => setPriority(value)}>
-                <SelectTrigger data-testid="select-priority">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="low">Low Priority</SelectItem>
-                  <SelectItem value="medium">Medium Priority</SelectItem>
-                  <SelectItem value="high">High Priority</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="flex flex-col space-y-2 md:w-48">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="glass-input px-3 py-2 text-sm"
+                data-testid="category-select"
+              >
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id} className="bg-gray-800">
+                    {cat.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={selectedPriority}
+                onChange={(e) => setSelectedPriority(e.target.value as "low" | "medium" | "high")}
+                className="glass-input px-3 py-2 text-sm"
+                data-testid="priority-select"
+              >
+                <option value="low" className="bg-gray-800">Low Priority</option>
+                <option value="medium" className="bg-gray-800">Medium Priority</option>
+                <option value="high" className="bg-gray-800">High Priority</option>
+              </select>
             </div>
           </div>
 
-          <Button
-            onClick={handleTodoWrite}
-            disabled={isCreating || !content.trim() || !mcpConnected}
-            className="w-full bg-gradient-primary hover:opacity-90 text-white"
-            data-testid="button-create-todo"
-          >
-            {isCreating ? (
-              <>
-                <div className="spinner mr-2"></div>
-                Creating Todo...
-              </>
-            ) : (
-              <>
-                <Plus className="w-4 h-4 mr-2" />
-                Create Todo with Smart Assignment
-              </>
-            )}
-          </Button>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2 text-white/60 text-sm">
+              <Sparkles className="w-4 h-4" />
+              <span>AI agents will be recommended based on task analysis</span>
+            </div>
+            <button
+              onClick={handleCreateTask}
+              disabled={!newTaskContent.trim() || createTaskMutation.isPending}
+              className="btn-primary flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              data-testid="create-task-btn"
+            >
+              {createTaskMutation.isPending ? (
+                <div className="animate-pulse">Creating...</div>
+              ) : (
+                <>
+                  <Plus className="w-4 h-4" />
+                  <span>Create Task</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Todo List */}
-      <div className="glass rounded-xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Recent Todos</h3>
-          <Button
-            onClick={loadTodos}
-            variant="outline"
-            size="sm"
-            disabled={isLoading}
-            data-testid="button-refresh-todos"
-          >
-            {isLoading ? <div className="spinner"></div> : "Refresh"}
-          </Button>
+      {/* Tasks List */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-bold text-white">Your Tasks</h3>
+          <div className="flex items-center space-x-2 text-white/60 text-sm">
+            <CheckSquare className="w-4 h-4" />
+            <span>{tasks.filter(t => t.status === 'completed').length} / {tasks.length} completed</span>
+          </div>
         </div>
 
         {isLoading ? (
-          <div className="text-center py-8">
-            <div className="spinner mx-auto mb-2"></div>
-            <p className="text-gray-500">Loading todos...</p>
-          </div>
-        ) : todos.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-gray-500">No todos yet. Create your first one above!</p>
-          </div>
-        ) : (
           <div className="space-y-3">
-            {todos.map((todo) => (
-              <div key={todo.id} className="bg-white rounded-lg p-4 border border-gray-100 card-hover">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 mb-1">{todo.title}</h4>
-                    <p className="text-sm text-gray-600 mb-2">{todo.description}</p>
-                    
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <Badge className={getPriorityColor(todo.priority)}>
-                        {todo.priority}
-                      </Badge>
-                      <Badge variant="outline">
-                        {todo.category}
-                      </Badge>
-                      {todo.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Auto-assignment details */}
-                    {todo.autoAssigned && (
-                      <div className="text-xs text-gray-500 mb-2">
-                        <Star className="w-3 h-3 inline mr-1" />
-                        Smart Assignment: {todo.autoAssigned.tags.join(', ')}
-                      </div>
-                    )}
-
-                    {/* Recommendations */}
-                    {todo.recommendations && todo.recommendations.length > 0 && (
-                      <div className="text-xs text-blue-600">
-                        💡 Recommended: {todo.recommendations[0].name}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex items-center space-x-2 ml-4">
-                    <div className="flex items-center space-x-1">
-                      {getStatusIcon(todo.status)}
-                      <span className="text-sm text-gray-600 capitalize">{todo.status}</span>
-                    </div>
-                    
-                    <Select
-                      value={todo.status}
-                      onValueChange={(value) => handleStatusUpdate(todo.id, value)}
-                    >
-                      <SelectTrigger className="w-32">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="todo">Todo</SelectItem>
-                        <SelectItem value="in-progress">In Progress</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                        <SelectItem value="blocked">Blocked</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="glass-card p-4">
+                <div className="animate-pulse space-y-2">
+                  <div className="skeleton h-4 w-3/4"></div>
+                  <div className="skeleton h-3 w-1/2"></div>
                 </div>
               </div>
             ))}
           </div>
+        ) : tasks.length === 0 ? (
+          <div className="glass-card p-8 text-center">
+            <CheckSquare className="w-12 h-12 text-white/40 mx-auto mb-4" />
+            <h4 className="text-lg font-semibold text-white mb-2">No tasks yet</h4>
+            <p className="text-white/60">Create your first task to get started with AI-powered recommendations</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {tasks.map((task) => (
+              <div key={task.id} className="glass-card p-4 group hover:bg-white/15 transition-all">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <h4 className="text-white font-medium">{task.content}</h4>
+                      <div className={`w-2 h-2 rounded-full ${priorityColors[task.priority]}`}></div>
+                    </div>
+                    <div className="flex items-center space-x-4 text-sm text-white/60">
+                      <span className="capitalize">{task.category.replace('-', ' ')}</span>
+                      <span className="capitalize">{task.priority} priority</span>
+                      <span>{new Date(task.createdAt).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <select
+                      value={task.status}
+                      onChange={(e) => handleUpdateStatus(task.id, e.target.value)}
+                      className="glass-input px-3 py-1 text-xs"
+                      data-testid={`status-select-${task.id}`}
+                    >
+                      <option value="pending" className="bg-gray-800">Pending</option>
+                      <option value="in-progress" className="bg-gray-800">In Progress</option>
+                      <option value="completed" className="bg-gray-800">Completed</option>
+                    </select>
+                    
+                    <div className={`status-${task.status}`}>
+                      {task.status.replace('-', ' ')}
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Recommendations */}
+                {task.recommendations && task.recommendations.agents.length > 0 && (
+                  <div className="mt-4 p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Bot className="w-4 h-4 text-blue-400" />
+                      <span className="text-sm font-medium text-white">Recommended Agents</span>
+                      <div className="status-active text-xs">registry.chitty.cc</div>
+                    </div>
+                    <div className="space-y-2">
+                      {task.recommendations.agents.slice(0, 2).map((agent, index) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-6 h-6 rounded-full bg-gradient-ocean flex items-center justify-center">
+                              <Bot className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-sm text-white">{agent.name}</span>
+                            <span className="text-xs text-yellow-400">★ {agent.score}</span>
+                          </div>
+                          <button className="btn-secondary text-xs px-3 py-1 flex items-center space-x-1">
+                            <span>Connect</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         )}
+      </div>
+
+      {/* MCP Protocol Status */}
+      <div className="glass-card p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-cosmic flex items-center justify-center">
+              <Zap className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-medium">MCP Protocol Status</p>
+              <p className="text-white/60 text-sm">Connected to registry.chitty.cc</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-400 text-sm font-medium">Active</span>
+          </div>
+        </div>
       </div>
     </div>
   );
