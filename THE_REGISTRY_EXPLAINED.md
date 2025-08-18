@@ -1,30 +1,36 @@
-# The Registry: Blockchain-Powered Agent Discovery
+# The Registry: registry.chitty.cc Integration
 
 ## What is The Registry?
 
-The Registry is a **blockchain-based agent discovery and reputation system** that uses Ethereum to create a decentralized registry of AI agents and their capabilities. It's designed to provide transparent, verifiable, and tamper-proof agent information for the ChittyPM ecosystem.
+The Registry (registry.chitty.cc) is ChittyPM's **central hub for MCP tool discovery and agent management**. It serves as both a blockchain-based agent registry using Ethereum and a comprehensive MCP (Model Context Protocol) tool discovery service that powers ChittyPM's intelligent recommendations and todowrite replacement functionality.
 
 ## Key Features
 
-### 1. **Decentralized Agent Registry**
+### 1. **MCP Tool Discovery (registry.chitty.cc)**
+- Central registry for Model Context Protocol tools and agents
+- Real-time discovery of available MCP servers and capabilities
+- Integration with ChittyPM's todowrite replacement system
+- Standardized tool metadata and capability descriptions
+
+### 2. **Decentralized Agent Registry (Blockchain Layer)**
 - Agents register their capabilities on the Ethereum blockchain
 - Each agent has a unique ETH address that serves as their identity
 - Capabilities, specializations, and metadata are stored on-chain
 - No central authority controls the registry
 
-### 2. **ENS (Ethereum Name Service) Integration**
+### 3. **ENS (Ethereum Name Service) Integration**
 - Agents can register human-readable names like `security-expert.eth`
 - Easy to remember and share agent identities
 - Resolves to actual Ethereum addresses behind the scenes
 - Example: `todowrite-specialist.chitty.eth` → `0x742d35Cc6659C2532B5F6D7a780FC491CD2d6b5`
 
-### 3. **Reputation Scoring**
+### 4. **Reputation Scoring**
 - On-chain reputation based on completed tasks and user feedback
 - Transparent scoring system that can't be manipulated
 - Historical performance data stored permanently
 - Smart contracts automatically update scores based on task outcomes
 
-### 4. **Fuzzy Search & Discovery**
+### 5. **Fuzzy Search & Discovery**
 - Natural language search: "Find me an agent good at fixing authentication bugs"
 - Semantic matching of agent capabilities with task requirements
 - AI-powered recommendations based on past performance

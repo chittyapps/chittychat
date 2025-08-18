@@ -2,7 +2,21 @@
 
 ## Overview
 
-This project is ChittyPM - an MCP-based todo and project management system designed to replace Claude's "todowrite" function seamlessly across various channels. The application serves as a comprehensive, self-organizing platform for managing tasks, projects, and AI agents with blockchain-powered reputation scoring and smart recommendations. It features a mobile-first React frontend with glass morphism design, an Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. The system integrates with ChittyID, ETH registry, and registry.chitty.cc for enhanced functionality and cross-platform compatibility.
+This project is ChittyPM - an MCP-based todo and project management system designed to replace Claude's "todowrite" function seamlessly across various channels. The application serves as a comprehensive, self-organizing platform for managing tasks, projects, and AI agents with blockchain-powered reputation scoring and smart recommendations. It features a mobile-first React frontend with glass morphism design, an Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. The system integrates with ChittyID, The Registry (blockchain layer), and registry.chitty.cc (MCP tool discovery) for enhanced functionality and cross-platform compatibility.
+
+## Recent Changes (January 2025)
+
+### ✓ Registry.chitty.cc Integration Complete
+- **Date**: January 18, 2025
+- **Changes**: Successfully integrated registry.chitty.cc as the central hub for MCP tool discovery and agent management
+- **Impact**: ChittyPM now discovers MCP tools and agents from registry.chitty.cc with real-time recommendations
+- **Status**: Fully operational with TodoWrite replacement working via MCP protocol
+
+### ✓ Naming Convention Updates
+- **Date**: January 18, 2025 
+- **Changes**: Corrected naming from "ETH Registry" to "The Registry" throughout all documentation and code
+- **Impact**: Clear distinction between The Registry (blockchain layer) and registry.chitty.cc (MCP discovery service)
+- **Files Updated**: All documentation, client code, and server services
 
 ## User Preferences
 

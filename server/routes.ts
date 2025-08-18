@@ -6,6 +6,7 @@ import { insertProjectSchema, insertTaskSchema, insertAgentSchema, insertActivit
 import { mcpServer } from "./services/mcp-server";
 import { chittyidClient } from "./services/chittyid-client";
 import { registryClient } from "./services/registry-client";
+import { registryChittyClient } from "./services/registry-chitty-client";
 import { backgroundJobs } from "./services/background-jobs";
 import { getChittyBeacon } from "./services/chitty-beacon";
 import { smartRecommendationsService } from "./services/smart-recommendations";
@@ -293,7 +294,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/mcp/discovery', async (req, res) => {
     try {
-      const tools = await registryClient.discoverTools();
+      const tools = await registryChittyClient.discoverMCPTools();
       res.json(tools);
     } catch (error) {
       res.status(500).json({ message: 'Tool discovery failed', error: error instanceof Error ? error.message : 'Unknown error' });
@@ -409,11 +410,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post('/api/registry/sync', async (req, res) => {
     try {
-      await smartRecommendationsService.syncEthRegistryData();
-      res.json({ message: 'ETH registry data synced successfully' });
+      const syncResult = await registryChittyClient.syncRegistryData();
+      res.json({ 
+        message: 'Registry data synced successfully from registry.chitty.cc',
+        ...syncResult
+      });
     } catch (error) {
       res.status(500).json({ 
-        message: 'Failed to sync ETH registry',
+        message: 'Failed to sync registry.chitty.cc data',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  // Agent recommendations from registry.chitty.cc
+  app.post('/api/registry/agents/recommend', async (req, res) => {
+    try {
+      const { taskDescription, category } = req.body;
+      const recommendations = await registryChittyClient.getAgentRecommendations(taskDescription, category);
+      res.json(recommendations);
+    } catch (error) {
+      res.status(500).json({
+        message: 'Failed to get agent recommendations',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
