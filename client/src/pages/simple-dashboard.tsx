@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Brain, BarChart3, Home, Activity } from "lucide-react";
 import ChittyInsight from "@/components/chitty-insight";
+import { useWebSocket } from "@/hooks/use-websocket";
 
 interface DashboardStats {
   totalProjects: number;
@@ -12,6 +13,9 @@ interface DashboardStats {
 
 export default function SimpleDashboard() {
   const [activeView, setActiveView] = useState("overview");
+
+  // Initialize WebSocket connection
+  useWebSocket();
 
   // Fetch dashboard stats
   const { data: stats, isLoading } = useQuery<DashboardStats>({

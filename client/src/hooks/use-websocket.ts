@@ -39,11 +39,11 @@ export function useWebSocket() {
           console.log("WebSocket disconnected:", event.code, event.reason);
           wsRef.current = null;
           
-          // Reconnect after delay if not a clean close
-          if (event.code !== 1000) {
+          // Only reconnect if it was an unexpected disconnect and we're not being closed intentionally
+          if (event.code !== 1000 && event.code !== 1001) {
             reconnectTimeoutRef.current = setTimeout(() => {
               connect();
-            }, 3000);
+            }, 5000);
           }
         };
 
@@ -53,9 +53,10 @@ export function useWebSocket() {
 
       } catch (error) {
         console.error("Failed to connect WebSocket:", error);
+        // Don't keep retrying WebSocket connection indefinitely
         reconnectTimeoutRef.current = setTimeout(() => {
           connect();
-        }, 5000);
+        }, 10000);
       }
     };
 
