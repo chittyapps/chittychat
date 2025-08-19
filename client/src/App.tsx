@@ -3,13 +3,13 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import SleekDashboard from "@/pages/sleek-dashboard";
+import SimpleDashboard from "@/pages/simple-dashboard";
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SleekDashboard} />
-      <Route path="/dashboard" component={SleekDashboard} />
+      <Route path="/" component={SimpleDashboard} />
+      <Route path="/dashboard" component={SimpleDashboard} />
       {/* Add more routes as needed */}
       <Route>
         {/* 404 fallback */}

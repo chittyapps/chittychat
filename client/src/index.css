@@ -56,10 +56,11 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-  color: white;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%) !important;
+  color: white !important;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
 /* Animated Background */
@@ -557,10 +558,11 @@ body::before {
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Geist', 'Inter', system-ui, sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%) !important;
+    color: white !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
