@@ -1,0 +1,53 @@
+name: Self-Hosted Runner Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-on-self-hosted:
+    runs-on: self-hosted
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+      
+    - name: Setup database
+      run: npm run db:push
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    
+    - name: Stop existing service
+      run: |
+        pm2 stop chittypm || true
+        pm2 delete chittypm || true
+    
+    - name: Start service with PM2
+      run: |
+        pm2 start dist/index.js --name chittypm --env production
+        pm2 save
+      env:
+        NODE_ENV: production
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        CHITTYID_API_URL: ${{ secrets.CHITTYID_API_URL }}
+        CHITTYID_API_KEY: ${{ secrets.CHITTYID_API_KEY }}
+        REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+        REGISTRY_API_KEY: ${{ secrets.REGISTRY_API_KEY }}
+        PORT: 5000
+    
+    - name: Health check
+      run: |
+        sleep 5
+        curl -f http://localhost:5000/api/health || exit 1

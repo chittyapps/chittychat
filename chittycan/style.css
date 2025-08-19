@@ -1,0 +1,53 @@
+/* Chitty UI General Brand Library */
+:root {
+  --color-bg: #0e0e0e;
+  --color-text: #ffffff;
+  --color-accent: #FFA500;
+  --color-accent-alt: #00FFD1;
+  --color-muted: #666;
+  --font-primary: 'Courier New', monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  text-align: center;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  color: var(--color-accent);
+}
+
+p, small {
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent-alt);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-accent-alt);
+  color: var(--color-bg);
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--color-accent-alt);
+  font-size: 1.2rem;
+}
+
+.btn:hover {
+  background-color: #00d0b0;
+}
+
+footer {
+  margin-top: 4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}

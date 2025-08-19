@@ -11,6 +11,7 @@ import { backgroundJobs } from "./services/background-jobs";
 import { getChittyBeacon } from "./services/chitty-beacon";
 import { smartRecommendationsService } from "./services/smart-recommendations";
 import { reputationSystem } from "./services/reputation-system";
+import connectorRoutes from "./routes/connector-routes";
 import { z } from "zod";
 
 interface WebSocketClient extends WebSocket {
@@ -99,6 +100,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // REST API Routes
+  
+  // Register connector routes
+  app.use('/api', connectorRoutes);
 
   // Projects
   app.get('/api/projects', async (req, res) => {

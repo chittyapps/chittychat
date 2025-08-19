@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(45, 29%, 97%);
+  --foreground: hsl(215, 25%, 27%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(215, 25%, 27%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(215, 25%, 27%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(158, 64%, 52%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(215, 25%, 27%);
+  --radius: 0.75rem;
+  
+  /* Custom ADHD-friendly colors */
+  --sage: hsl(158, 64%, 52%);
+  --mint: hsl(160, 84%, 39%);
+  --coral: hsl(43, 96%, 56%);
+  --warm-blue: hsl(217, 91%, 60%);
+  --warm-yellow: hsl(48, 100%, 67%);
+  --cream: hsl(45, 29%, 97%);
+  --charcoal: hsl(215, 25%, 27%);
+}
+
+.dark {
+  --background: hsl(224, 71%, 4%);
+  --foreground: hsl(213, 31%, 91%);
+  --muted: hsl(223, 47%, 11%);
+  --muted-foreground: hsl(215.4, 16.3%, 56.9%);
+  --popover: hsl(224, 71%, 4%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --card: hsl(224, 71%, 4%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --border: hsl(216, 34%, 17%);
+  --input: hsl(216, 34%, 17%);
+  --primary: hsl(158, 64%, 52%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(222.2, 84%, 4.9%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(216, 34%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(216, 34%, 17%);
+  --radius: 0.75rem;
+  
+  /* Dark mode custom colors */
+  --sage: hsl(158, 64%, 52%);
+  --mint: hsl(160, 84%, 39%);
+  --coral: hsl(43, 96%, 56%);
+  --warm-blue: hsl(217, 91%, 60%);
+  --warm-yellow: hsl(48, 100%, 67%);
+  --cream: hsl(224, 71%, 4%);
+  --charcoal: hsl(213, 31%, 91%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom utility classes for ADHD-friendly colors */
+@layer utilities {
+  .text-sage { color: hsl(158, 64%, 52%); }
+  .text-mint { color: hsl(160, 84%, 39%); }
+  .text-coral { color: hsl(43, 96%, 56%); }
+  .text-warmBlue { color: hsl(217, 91%, 60%); }
+  .text-cream { color: hsl(45, 29%, 97%); }
+  .text-charcoal { color: hsl(215, 25%, 27%); }
+  
+  .bg-sage { background-color: hsl(158, 64%, 52%); }
+  .bg-mint { background-color: hsl(160, 84%, 39%); }
+  .bg-coral { background-color: hsl(43, 96%, 56%); }
+  .bg-warmBlue { background-color: hsl(217, 91%, 60%); }
+  .bg-cream { background-color: hsl(45, 29%, 97%); }
+  .bg-charcoal { background-color: hsl(215, 25%, 27%); }
+  
+  .bg-sage\/5 { background-color: hsl(158, 64%, 52%, 0.05); }
+  .bg-sage\/10 { background-color: hsl(158, 64%, 52%, 0.1); }
+  .bg-sage\/20 { background-color: hsl(158, 64%, 52%, 0.2); }
+  
+  .bg-mint\/5 { background-color: hsl(160, 84%, 39%, 0.05); }
+  .bg-mint\/10 { background-color: hsl(160, 84%, 39%, 0.1); }
+  .bg-mint\/20 { background-color: hsl(160, 84%, 39%, 0.2); }
+  
+  .bg-coral\/5 { background-color: hsl(43, 96%, 56%, 0.05); }
+  .bg-coral\/10 { background-color: hsl(43, 96%, 56%, 0.1); }
+  .bg-coral\/20 { background-color: hsl(43, 96%, 56%, 0.2); }
+  
+  .bg-warmBlue\/5 { background-color: hsl(217, 91%, 60%, 0.05); }
+  .bg-warmBlue\/10 { background-color: hsl(217, 91%, 60%, 0.1); }
+  .bg-warmBlue\/20 { background-color: hsl(217, 91%, 60%, 0.2); }
+  
+  .border-sage { border-color: hsl(158, 64%, 52%); }
+  .border-mint { border-color: hsl(160, 84%, 39%); }
+  .border-coral { border-color: hsl(43, 96%, 56%); }
+  .border-warmBlue { border-color: hsl(217, 91%, 60%); }
+  
+  .border-sage\/10 { border-color: hsl(158, 64%, 52%, 0.1); }
+  .border-sage\/20 { border-color: hsl(158, 64%, 52%, 0.2); }
+  .border-mint\/10 { border-color: hsl(160, 84%, 39%, 0.1); }
+  .border-mint\/20 { border-color: hsl(160, 84%, 39%, 0.2); }
+  .border-coral\/10 { border-color: hsl(43, 96%, 56%, 0.1); }
+  .border-coral\/20 { border-color: hsl(43, 96%, 56%, 0.2); }
+  .border-warmBlue\/10 { border-color: hsl(217, 91%, 60%, 0.1); }
+  .border-warmBlue\/20 { border-color: hsl(217, 91%, 60%, 0.2); }
+  
+  .hover\:bg-sage\/90:hover { background-color: hsl(158, 64%, 47%); }
+  .hover\:text-sage\/80:hover { color: hsl(158, 64%, 42%); }
+}
+
+/* Gentle animations and transitions */
+@layer components {
+  .gentle-hover {
+    @apply transition-all duration-200 hover:scale-[1.02] hover:shadow-md;
+  }
+  
+  .celebration-bounce {
+    animation: celebration 0.6s ease-in-out;
+  }
+  
+  @keyframes celebration {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+}

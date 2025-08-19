@@ -1,0 +1,64 @@
+<!-- Chitty | Can™ — Location-Aware Access Tile -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chitty | Can™</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      background: #0e0e0e;
+      color: #00FFD1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #FFA500;
+    }
+    .ip {
+      font-size: 1rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔓 Chitty | Can™</h1>
+  <p id="status">Checking if you can unlock from here...</p>
+  <p class="ip" id="ip">IP: ...</p>
+
+  <script>
+    async function checkLocation() {
+      try {
+        const res = await fetch('https://ipapi.co/json');
+        const data = await res.json();
+        document.getElementById('ip').textContent = `IP: ${data.ip} • ${data.city}, ${data.region}`;
+
+        // Example logic: allow if city is Chicago
+        if (data.city.toLowerCase() === 'chicago') {
+          document.getElementById('status').textContent = '✅ Yes, you can unlock from here.';
+        } else {
+          document.getElementById('status').textContent = '🚫 Not the right location for access.';
+        }
+      } catch (err) {
+        document.getElementById('status').textContent = '⚠️ Could not determine location.';
+      }
+    }
+
+    checkLocation();
+  </script>
+
+</body>
+</html>

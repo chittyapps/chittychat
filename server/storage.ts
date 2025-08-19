@@ -74,6 +74,10 @@ export interface IStorage {
   getEthRegistryEntries(): Promise<EthRegistryEntry[]>;
   upsertEthRegistryEntry(entry: InsertEthRegistryEntry): Promise<EthRegistryEntry>;
   
+  // Universal PM Board methods
+  getTasksByProject(projectId: string): Promise<Task[]>;
+  getAgentsByProject(projectId: string): Promise<Agent[]>;
+  
   // Additional methods
   getUserProjects(userId: string): Promise<Project[]>;
 }
@@ -370,6 +374,35 @@ export class DatabaseStorage implements IStorage {
       const [result] = await db.insert(ethRegistryEntries).values(entry).returning();
       return result;
     }
+  }
+
+  // Universal PM Board methods
+  async getTasksByProject(projectId: string): Promise<Task[]> {
+    return await db.select().from(tasks)
+      .where(eq(tasks.projectId, projectId))
+      .orderBy(desc(tasks.createdAt));
+  }
+
+  async getAgentsByProject(projectId: string): Promise<Agent[]> {
+    // Get agents that have worked on tasks in this project
+    const projectAgents = await db
+      .select({
+        id: agents.id,
+        name: agents.name,
+        type: agents.type,
+        status: agents.status,
+        capabilities: agents.capabilities,
+        lastSeen: agents.lastSeen,
+        sessionId: agents.sessionId,
+        metadata: agents.metadata,
+        createdAt: agents.createdAt
+      })
+      .from(agents)
+      .innerJoin(tasks, eq(tasks.assignedAgent, agents.name))
+      .where(eq(tasks.projectId, projectId))
+      .groupBy(agents.id);
+    
+    return projectAgents;
   }
 
   // Additional methods

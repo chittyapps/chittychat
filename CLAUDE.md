@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ChittyPM is a **universal todowrite replacement** for all AI agents - providing a single, centralized project management board that replaces individual agent todo lists. Instead of each agent maintaining its own isolated todo list, ChittyPM enables all agents (Claude, GPT, custom agents) to collaborate on a unified PM board for each project.
 
+This is a multi-workspace monorepo containing several interconnected Chitty services, with ChittyPM as the main project in the root directory.
+
 ### Core Purpose
 - **Replaces todowrite**: This system supersedes individual agent todo tracking tools
 - **Universal PM Board**: One centralized board per project, accessible by all agents
@@ -32,7 +34,7 @@ npm run build
 # Start production server
 npm start
 
-# Type checking
+# Type checking (ALWAYS run before committing)
 npm run check
 
 # Push database schema changes
@@ -40,9 +42,43 @@ npm run db:push
 
 # Run QA test suite
 ./run-qa-tests.sh
+
+# Database migrations (when schema changes)
+npm run db:push
 ```
 
+### Testing
+Run the comprehensive QA test suite to validate all functionality:
+```bash
+./run-qa-tests.sh
+```
+
+This tests:
+- API endpoints
+- WebSocket connections  
+- MCP protocol operations
+- Project/task management
+- Integration status
+- Error handling
+
 ## Architecture
+
+### Monorepo Structure
+The repository contains multiple Chitty services that work together:
+- **chittypm** (root): Main project management system - primary development focus
+- **chittyid**: Provides authentication and unique ID generation for ChittyPM
+- **chittychain**: Blockchain integration for reputation and evidence tracking
+- **chittycan**: CDN and tunnel service for network infrastructure
+- **chittyflow**: Task automation and workflow capabilities
+- **chittyintel**: Analytics and intelligence dashboard
+- **chittybeacon**: Application monitoring and tracking used by ChittyPM
+- **chittyops**: DevOps and CI/CD configurations
+
+**Integration Notes**: 
+- ChittyPM actively connects to ChittyID for authentication and unique identifiers
+- ChittyBeacon tracks application usage and performance metrics
+- These services ensure compatibility with the larger Chitty ecosystem
+- Focus development on the root ChittyPM project, but understand the service dependencies
 
 ### Core Services
 - **MCP Server** (`server/services/mcp-server.ts`): Handles Model Context Protocol requests from AI agents
@@ -155,9 +191,29 @@ Test categories include:
 
 - The application runs on a single port (default 5000) serving both API and client
 - Vite development server is automatically configured in development mode
-- Database migrations use Drizzle Kit with PostgreSQL
+- Database migrations use Drizzle Kit with PostgreSQL (Neon serverless)
 - Real-time updates broadcast to all connected WebSocket clients
 - Background jobs run for ChittyID sync (30 min) and Registry sync (1 hour)
 - All file paths in the codebase should be absolute, not relative
 - TypeScript strict mode is enabled - ensure proper type annotations
 - The system uses Drizzle ORM for database operations - check `shared/schema.ts` for schema definitions
+- WebSocket server runs on the same port as HTTP server at `/ws` endpoint
+- MCP protocol WebSocket endpoint is available at `/mcp`
+
+## Code Quality Standards
+
+- **Type Safety**: Always provide proper TypeScript types, avoid `any`
+- **Error Handling**: Wrap async operations in try-catch blocks
+- **Database Operations**: Use Drizzle ORM methods, never raw SQL
+- **Real-time Updates**: Broadcast relevant events to WebSocket clients
+- **Agent Integration**: Follow MCP protocol standards for agent communication
+- **API Responses**: Use consistent response formats with proper status codes
+
+## Debugging Tips
+
+- Check server logs for MCP/WebSocket connection issues
+- Use `./run-qa-tests.sh` to validate all endpoints
+- Monitor background job logs for sync failures
+- Database issues: Check `DATABASE_URL` environment variable
+- WebSocket issues: Verify port 5000 is accessible
+- Integration failures: Check API keys in environment variables

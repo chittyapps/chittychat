@@ -1,0 +1,20 @@
+Internal Memo – Operating Agreement Validation
+Date: April 03, 2025
+To: Internal Review Team
+From: Legal & Diligence Analyst
+Subject: Validation of August 1, 2022 ARIBIA LLC Operating Agreement
+ Summary of Findings:
+Following a forensic review of multiple versions of the ARIBIA LLC Operating Agreement dated August 1, 2022, we confirm the following:
+1. There are at least two versions of the agreement—one listing only Nicholas Bianchi and Luisa Arias as members, and a second, fully executed version including Sharon Jones as a 5% equity member.
+2. The version including Sharon Jones contains all three signatures, specifies detailed initial contributions, and outlines the capital structure as follows: - Nicholas Bianchi: 85% - Luisa Arias: 10% - Sharon Jones: 5%
+3. The metadata indicates that the Sharon-included version was created earlier and reflects a complete record of execution. The other version appears to be a simplified or partial copy, likely used for administrative or drafting purposes.
+4. This is supported by downstream documentation including the May 2023 Unit Purchase Agreement (where Sharon sells her interest), and later 2024 Unanimous Consents where she is re-admitted to membership.
+ Conclusion:
+For internal and legal purposes, the controlling and enforceable Operating Agreement for ARIBIA LLC dated August 1, 2022 is the version signed by Nicholas Bianchi, Luisa Arias, and Sharon Jones. This version should be referenced in all diligence, filings, and disputes unless superseded by an officially executed amendment.
+
+Supplement – Tax Disclosure & Capitalization Integrity
+Date: April 03, 2025
+Subject: Clarification on IRS Tax Liability and Capitalization of Morada Mami
+It is confirmed from 2023 Form 1040 records that Nicholas Bianchi disclosed a total IRS tax liability of $28,300, with an associated estimated tax penalty of $389. This liability was reported transparently and is not tied to ARIBIA LLC operations or capital contributions.
+The Morada Mami acquisition was capitalized through clearly documented contributions made by Nicholas Bianchi from his individual retirement and brokerage accounts. These included $71,795.86 in direct funds and a calculated tax burden of $42,863.47, totaling a capital basis increase of $114,659.33. All funds used in the acquisition were traceable to personal sources, and Langon Colombia was explicitly advised that only Nicholas would be capitalizing the transaction.
+This outstanding tax liability does not affect the legality, transparency, or sufficiency of the company’s capitalization. It demonstrates consistency in financial disclosure and separation between personal and company finances.

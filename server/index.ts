@@ -3,6 +3,11 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { initializeChittyBeacon } from "./services/chitty-beacon";
 import { mcpServer } from "./services/mcp-server";
+import { ProjectLifecycleService } from "./services/project-lifecycle";
+import { WorkspaceIsolationService } from "./services/workspace-isolation";
+import { ConflictResolutionService } from "./services/conflict-resolution";
+import { EnhancedRegistryClient } from "./services/enhanced-registry-client";
+import { TaskPrioritizationService } from "./services/task-prioritization";
 
 const app = express();
 app.use(express.json());
@@ -70,11 +75,42 @@ app.use((req, res, next) => {
     port,
     host: "0.0.0.0",
     reusePort: true,
-  }, () => {
+  }, async () => {
     log(`serving on port ${port}`);
     
     // Initialize MCP server for todowrite replacement
     mcpServer.initialize(server);
     log(`MCP server initialized - todowrite replacement active`);
+    
+    // Initialize advanced collaboration features
+    try {
+      // Project Lifecycle Management
+      const lifecycleService = ProjectLifecycleService.getInstance();
+      await lifecycleService.initializeAutomation();
+      log(`Project lifecycle automation initialized`);
+      
+      // Workspace Isolation
+      const workspaceService = WorkspaceIsolationService.getInstance();
+      log(`Workspace isolation system active`);
+      
+      // Conflict Resolution & Self-Repair
+      const conflictService = ConflictResolutionService.getInstance();
+      await conflictService.initializeSelfRepair();
+      log(`Self-repair and conflict resolution initialized`);
+      
+      // Enhanced Registry & Tool Discovery
+      const registryClient = EnhancedRegistryClient.getInstance();
+      await registryClient.initializeDynamicDiscovery();
+      log(`Dynamic MCP tool discovery active`);
+      
+      // Task Prioritization & Smart Scheduling
+      const prioritizationService = TaskPrioritizationService.getInstance();
+      await prioritizationService.initializeSmartScheduling();
+      log(`Intelligent task prioritization and scheduling active`);
+      
+      log(`All advanced collaboration features initialized successfully`);
+    } catch (error) {
+      log(`Warning: Some advanced features failed to initialize: ${error}`);
+    }
   });
 })();
