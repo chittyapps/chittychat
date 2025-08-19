@@ -1,0 +1,56 @@
+name = "chittypm"
+main = "workers/index.ts"
+compatibility_date = "2024-01-01"
+node_compat = true
+
+[vars]
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "chittypm-db"
+database_id = "YOUR_D1_DATABASE_ID"
+
+[[durable_objects.bindings]]
+name = "WEBSOCKET_HANDLER"
+class_name = "WebSocketHandler"
+
+[[durable_objects.bindings]]
+name = "MCP_SERVER"
+class_name = "MCPServer"
+
+[site]
+bucket = "./dist/client"
+
+[build]
+command = "npm run build"
+
+[[routes]]
+pattern = "chittypm.yourdomain.com/*"
+
+[observability]
+enabled = true
+
+# R2 bucket for file storage
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "chittypm-storage"
+
+# KV namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "YOUR_KV_NAMESPACE_ID"
+
+# Analytics Engine
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# Queues for background jobs
+[[queues.producers]]
+binding = "TASK_QUEUE"
+queue = "chittypm-tasks"
+
+[[queues.consumers]]
+queue = "chittypm-tasks"
+max_batch_size = 10
+max_batch_timeout = 30

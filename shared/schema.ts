@@ -38,10 +38,10 @@ export const projects = pgTable("projects", {
   tags: json("tags").$type<string[]>().default([]),
   metadata: json("metadata").$type<Record<string, any>>().default({}),
   // lifecycleStage: text("lifecycle_stage").default("planning"), // planning, development, testing, review, maintenance
-  archivalScheduledAt: timestamp("archival_scheduled_at"),
-  archivedAt: timestamp("archived_at"),
-  lastActivityAt: timestamp("last_activity_at").defaultNow(),
-  collaborationScore: integer("collaboration_score").default(0), // 0-100
+  // archivalScheduledAt: timestamp("archival_scheduled_at"),
+  // archivedAt: timestamp("archived_at"),
+  // lastActivityAt: timestamp("last_activity_at").defaultNow(),
+  // collaborationScore: integer("collaboration_score").default(0), // 0-100
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -62,7 +62,7 @@ export const tasks = pgTable("tasks", {
   actualHours: integer("actual_hours"),
   tags: json("tags").$type<string[]>().default([]),
   metadata: json("metadata").$type<Record<string, any>>().default({}),
-  priorityScore: integer("priority_score").default(0), // AI-calculated priority score
+  // priorityScore: integer("priority_score").default(0), // AI-calculated priority score
   dependencies: json("dependencies").$type<string[]>().default([]), // Task IDs this depends on
   blockingTasks: json("blocking_tasks").$type<string[]>().default([]), // Task IDs blocked by this
   autoScheduled: boolean("auto_scheduled").default(false),
