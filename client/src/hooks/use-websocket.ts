@@ -39,12 +39,9 @@ export function useWebSocket() {
           console.log("WebSocket disconnected:", event.code, event.reason);
           wsRef.current = null;
           
-          // Only reconnect if it was an unexpected disconnect and we're not being closed intentionally
-          if (event.code !== 1000 && event.code !== 1001) {
-            reconnectTimeoutRef.current = setTimeout(() => {
-              connect();
-            }, 5000);
-          }
+          // Disable automatic reconnection for now to stop the spam
+          // TODO: Fix WebSocket server implementation
+          console.log("WebSocket auto-reconnect disabled due to server issues");
         };
 
         ws.onerror = (error) => {
@@ -53,10 +50,8 @@ export function useWebSocket() {
 
       } catch (error) {
         console.error("Failed to connect WebSocket:", error);
-        // Don't keep retrying WebSocket connection indefinitely
-        reconnectTimeoutRef.current = setTimeout(() => {
-          connect();
-        }, 10000);
+        // Disable reconnection to prevent spam
+        console.log("WebSocket reconnection disabled due to connection failures");
       }
     };
 

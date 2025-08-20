@@ -14,8 +14,8 @@ interface DashboardStats {
 export default function SimpleDashboard() {
   const [activeView, setActiveView] = useState("overview");
 
-  // Initialize WebSocket connection
-  useWebSocket();
+  // Initialize WebSocket connection - temporarily disabled due to server issues
+  // useWebSocket();
 
   // Fetch dashboard stats
   const { data: stats, isLoading } = useQuery<DashboardStats>({
@@ -26,7 +26,7 @@ export default function SimpleDashboard() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white text-xl">Loading ChittyPM...</div>
+        <div className="text-white text-xl">Loading ChittyChat...</div>
       </div>
     );
   }
@@ -42,8 +42,8 @@ export default function SimpleDashboard() {
     <div className="min-h-screen p-8">
       {/* Header */}
       <div className="glass-card p-6 mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">ChittyPM Dashboard</h1>
-        <p className="text-white/60">Universal Project Management System</p>
+        <h1 className="text-4xl font-bold text-white mb-2">ChittyChat Dashboard</h1>
+        <p className="text-white/60">The ultimate middleware platform for AI coordination</p>
         
         {/* Navigation */}
         <div className="flex flex-wrap gap-2 mt-4">

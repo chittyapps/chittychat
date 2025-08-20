@@ -2,9 +2,15 @@
 
 ## Overview
 
-This project is ChittyPM - an MCP-based todo and project management system designed to replace Claude's "todowrite" function seamlessly across various channels. The application serves as a comprehensive, self-organizing platform for managing tasks, projects, and AI agents with blockchain-powered reputation scoring and smart recommendations. It features a mobile-first React frontend with glass morphism design, an Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. The system integrates with ChittyID, The Registry (blockchain layer), and registry.chitty.cc (MCP tool discovery) for enhanced functionality and cross-platform compatibility.
+This project is ChittyChat - the ultimate middleware platform. Originally evolved from ChittyPM, it now serves as a comprehensive middleware solution for AI agent coordination, task management, and cross-platform integration. The system provides MCP-based communication protocols, blockchain-powered agent reputation scoring, and intelligent workflow orchestration. It features a premium glass morphism React frontend, Express.js backend with WebSocket support, and PostgreSQL database integration through Drizzle ORM. ChittyChat integrates with ChittyID, The Registry (blockchain layer), and registry.chitty.cc (MCP tool discovery) for universal middleware functionality and cross-platform compatibility.
 
 ## Recent Changes (January 2025)
+
+### ✓ Rebranding to ChittyChat - Ultimate Middleware Platform
+- **Date**: August 20, 2025
+- **Changes**: Rebranded from ChittyPM to ChittyChat as the ultimate middleware platform
+- **Impact**: Repositioned as comprehensive middleware solution for AI agent coordination
+- **Status**: Branding updated across all frontend components and documentation
 
 ### ✓ Complete Sleek UI Transformation
 - **Date**: January 18, 2025
