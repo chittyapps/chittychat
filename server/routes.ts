@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { insertProjectSchema, insertTaskSchema, insertAgentSchema, insertActivitySchema } from "@shared/schema";
+import { insertProjectSchema, insertTaskSchema, insertAgentSchema, insertActivitySchema, insertWorkflowSchema, insertWorkflowRunSchema } from "@shared/schema";
 import { mcpServer } from "./services/mcp-server";
 import { mcpNativeTools } from "./services/mcp-native-tools";
 import { chittyidClient } from "./services/chittyid-client";
@@ -301,6 +301,226 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(activities);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch activities', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Workflow Management APIs
+  app.get('/api/workflows', async (req, res) => {
+    try {
+      const workflows = await storage.getWorkflows();
+      res.json(workflows);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch workflows', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.get('/api/workflows/:id', async (req, res) => {
+    try {
+      const workflow = await storage.getWorkflow(req.params.id);
+      if (!workflow) {
+        return res.status(404).json({ message: 'Workflow not found' });
+      }
+      res.json(workflow);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.post('/api/workflows', async (req, res) => {
+    try {
+      const workflowData = insertWorkflowSchema.parse(req.body);
+      const workflow = await storage.createWorkflow(workflowData);
+      
+      // Log activity
+      await storage.createActivity({
+        type: 'workflow_created',
+        description: `Workflow "${workflow.name}" was created`,
+        metadata: { workflowId: workflow.id },
+      });
+      
+      broadcastToClients({
+        type: 'workflow_created',
+        workflow,
+      });
+      
+      res.status(201).json(workflow);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to create workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.put('/api/workflows/:id', async (req, res) => {
+    try {
+      const updates = insertWorkflowSchema.partial().parse(req.body);
+      const workflow = await storage.updateWorkflow(req.params.id, updates);
+      
+      broadcastToClients({
+        type: 'workflow_updated',
+        workflow,
+      });
+      
+      res.json(workflow);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.delete('/api/workflows/:id', async (req, res) => {
+    try {
+      await storage.deleteWorkflow(req.params.id);
+      
+      broadcastToClients({
+        type: 'workflow_deleted',
+        workflowId: req.params.id,
+      });
+      
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Workflow Execution APIs
+  app.post('/api/workflows/:id/run', async (req, res) => {
+    try {
+      const workflowId = req.params.id;
+      const workflow = await storage.getWorkflow(workflowId);
+      
+      if (!workflow) {
+        return res.status(404).json({ message: 'Workflow not found' });
+      }
+      
+      // Create workflow run
+      const workflowRun = await storage.createWorkflowRun({
+        workflowId,
+        status: 'running',
+      });
+      
+      // Log activity
+      await storage.createActivity({
+        type: 'workflow_started',
+        description: `Workflow "${workflow.name}" execution started`,
+        metadata: { workflowId, workflowRunId: workflowRun.id },
+      });
+      
+      // Broadcast execution started
+      broadcastToClients({
+        type: 'workflow_execution_started',
+        workflowId,
+        workflowRunId: workflowRun.id,
+      });
+      
+      res.status(201).json(workflowRun);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to start workflow execution', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.post('/api/workflows/:id/pause', async (req, res) => {
+    try {
+      const workflowId = req.params.id;
+      const workflow = await storage.getWorkflow(workflowId);
+      
+      if (!workflow) {
+        return res.status(404).json({ message: 'Workflow not found' });
+      }
+      
+      // Pause workflow execution using the proper storage method
+      const result = await storage.pauseWorkflow(workflowId);
+      
+      // Log activity
+      await storage.createActivity({
+        type: 'workflow_paused',
+        description: `Workflow "${workflow.name}" was paused`,
+        metadata: { workflowId },
+      });
+      
+      // Broadcast pause event
+      broadcastToClients({
+        type: 'workflow_paused',
+        workflowId,
+        workflow: result.workflow,
+        workflowRun: result.workflowRun,
+      });
+      
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to pause workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.post('/api/workflows/:id/resume', async (req, res) => {
+    try {
+      const workflowId = req.params.id;
+      const workflow = await storage.getWorkflow(workflowId);
+      
+      if (!workflow) {
+        return res.status(404).json({ message: 'Workflow not found' });
+      }
+      
+      // Resume workflow execution
+      const result = await storage.resumeWorkflow(workflowId);
+      
+      // Log activity
+      await storage.createActivity({
+        type: 'workflow_resumed',
+        description: `Workflow "${workflow.name}" was resumed`,
+        metadata: { workflowId },
+      });
+      
+      // Broadcast resume event
+      broadcastToClients({
+        type: 'workflow_resumed',
+        workflowId,
+        workflow: result.workflow,
+        workflowRun: result.workflowRun,
+      });
+      
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to resume workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.post('/api/workflows/:id/stop', async (req, res) => {
+    try {
+      const workflowId = req.params.id;
+      const workflow = await storage.getWorkflow(workflowId);
+      
+      if (!workflow) {
+        return res.status(404).json({ message: 'Workflow not found' });
+      }
+      
+      // Stop workflow execution
+      const result = await storage.stopWorkflow(workflowId);
+      
+      // Log activity
+      await storage.createActivity({
+        type: 'workflow_stopped',
+        description: `Workflow "${workflow.name}" was stopped`,
+        metadata: { workflowId },
+      });
+      
+      // Broadcast stop event
+      broadcastToClients({
+        type: 'workflow_stopped',
+        workflowId,
+        workflow: result.workflow,
+        workflowRun: result.workflowRun,
+      });
+      
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to stop workflow', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.get('/api/workflows/:id/runs', async (req, res) => {
+    try {
+      const workflowRuns = await storage.getWorkflowRuns(req.params.id);
+      res.json(workflowRuns);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch workflow runs', error: error instanceof Error ? error.message : 'Unknown error' });
     }
   });
 

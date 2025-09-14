@@ -146,8 +146,21 @@ export interface IStorage {
   getAgentTasks(agentId: string, limit: number): Promise<Task[]>;
   getIncidents(): Promise<Incident[]>;
   updateIncident(id: string, updates: Partial<Incident>): Promise<Incident>;
+  
+  // Workflow Management
+  getWorkflow(id: string): Promise<Workflow | undefined>;
   getWorkflows(): Promise<Workflow[]>;
+  createWorkflow(workflow: InsertWorkflow): Promise<Workflow>;
+  updateWorkflow(id: string, updates: Partial<Workflow>): Promise<Workflow>;
+  deleteWorkflow(id: string): Promise<void>;
+  
+  // Workflow Execution  
   getWorkflowRuns(workflowId: string): Promise<WorkflowRun[]>;
+  createWorkflowRun(workflowRun: InsertWorkflowRun): Promise<WorkflowRun>;
+  stopWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }>;
+  pauseWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }>;
+  resumeWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }>;
+  
   getPerformanceMetrics(timeRange: string): Promise<Metric[]>;
   getEvents(params: { page: number; limit: number; type?: string }): Promise<Event[]>;
   getMCPTrace(traceId: string): Promise<Event[]>;
@@ -707,8 +720,31 @@ export class DatabaseStorage implements IStorage {
     return updated;
   }
 
+  async getWorkflow(id: string): Promise<Workflow | undefined> {
+    const [workflow] = await db.select().from(workflows).where(eq(workflows.id, id));
+    return workflow;
+  }
+
   async getWorkflows(): Promise<Workflow[]> {
     return db.select().from(workflows).orderBy(desc(workflows.createdAt));
+  }
+
+  async createWorkflow(insertWorkflow: InsertWorkflow): Promise<Workflow> {
+    const [workflow] = await db.insert(workflows).values(insertWorkflow).returning();
+    return workflow;
+  }
+
+  async updateWorkflow(id: string, updates: Partial<Workflow>): Promise<Workflow> {
+    const [workflow] = await db
+      .update(workflows)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(workflows.id, id))
+      .returning();
+    return workflow;
+  }
+
+  async deleteWorkflow(id: string): Promise<void> {
+    await db.delete(workflows).where(eq(workflows.id, id));
   }
 
   async getWorkflowRuns(workflowId: string): Promise<WorkflowRun[]> {
@@ -716,6 +752,115 @@ export class DatabaseStorage implements IStorage {
       .from(workflowRuns)
       .where(eq(workflowRuns.workflowId, workflowId))
       .orderBy(desc(workflowRuns.startedAt));
+  }
+
+  async createWorkflowRun(insertWorkflowRun: InsertWorkflowRun): Promise<WorkflowRun> {
+    const [workflowRun] = await db.insert(workflowRuns).values(insertWorkflowRun).returning();
+    return workflowRun;
+  }
+
+  async stopWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }> {
+    // Update workflow status to archived (stopped)
+    const [workflow] = await db
+      .update(workflows)
+      .set({ status: 'archived', updatedAt: new Date() })
+      .where(eq(workflows.id, workflowId))
+      .returning();
+
+    // Find any running workflow runs and mark them as cancelled
+    const runningRuns = await db.select()
+      .from(workflowRuns)
+      .where(and(
+        eq(workflowRuns.workflowId, workflowId),
+        eq(workflowRuns.status, 'running')
+      ))
+      .orderBy(desc(workflowRuns.startedAt))
+      .limit(1);
+
+    let workflowRun: WorkflowRun | undefined;
+    if (runningRuns.length > 0) {
+      const [updatedRun] = await db
+        .update(workflowRuns)
+        .set({ 
+          status: 'cancelled', 
+          completedAt: new Date(),
+          duration: Math.floor((new Date().getTime() - runningRuns[0].startedAt.getTime()) / 1000)
+        })
+        .where(eq(workflowRuns.id, runningRuns[0].id))
+        .returning();
+      workflowRun = updatedRun;
+    }
+
+    return { workflow, workflowRun };
+  }
+
+  async pauseWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }> {
+    // Update workflow status to paused
+    const [workflow] = await db
+      .update(workflows)
+      .set({ status: 'paused', updatedAt: new Date() })
+      .where(eq(workflows.id, workflowId))
+      .returning();
+
+    // Find any running workflow runs and mark them as paused
+    const runningRuns = await db.select()
+      .from(workflowRuns)
+      .where(and(
+        eq(workflowRuns.workflowId, workflowId),
+        eq(workflowRuns.status, 'running')
+      ))
+      .orderBy(desc(workflowRuns.startedAt))
+      .limit(1);
+
+    let workflowRun: WorkflowRun | undefined;
+    if (runningRuns.length > 0) {
+      const [updatedRun] = await db
+        .update(workflowRuns)
+        .set({ 
+          status: 'paused',
+          // Don't set completedAt for paused runs, as they may resume
+          duration: Math.floor((new Date().getTime() - runningRuns[0].startedAt.getTime()) / 1000)
+        })
+        .where(eq(workflowRuns.id, runningRuns[0].id))
+        .returning();
+      workflowRun = updatedRun;
+    }
+
+    return { workflow, workflowRun };
+  }
+
+  async resumeWorkflow(workflowId: string): Promise<{ workflow: Workflow; workflowRun?: WorkflowRun }> {
+    // Update workflow status to active
+    const [workflow] = await db
+      .update(workflows)
+      .set({ status: 'active', updatedAt: new Date() })
+      .where(eq(workflows.id, workflowId))
+      .returning();
+
+    // Find any paused workflow runs and mark them as running
+    const pausedRuns = await db.select()
+      .from(workflowRuns)
+      .where(and(
+        eq(workflowRuns.workflowId, workflowId),
+        eq(workflowRuns.status, 'paused')
+      ))
+      .orderBy(desc(workflowRuns.startedAt))
+      .limit(1);
+
+    let workflowRun: WorkflowRun | undefined;
+    if (pausedRuns.length > 0) {
+      const [updatedRun] = await db
+        .update(workflowRuns)
+        .set({ 
+          status: 'running'
+          // Keep the original startedAt and current duration
+        })
+        .where(eq(workflowRuns.id, pausedRuns[0].id))
+        .returning();
+      workflowRun = updatedRun;
+    }
+
+    return { workflow, workflowRun };
   }
 
   async getPerformanceMetrics(timeRange: string): Promise<Metric[]> {

@@ -127,6 +127,59 @@ export function useWebSocket() {
           });
           break;
 
+        // Workflow Events
+        case 'workflow_created':
+        case 'workflow_updated':
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows'] });
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflow?.id] });
+          
+          toast({
+            title: "Workflow Updated",
+            description: `Workflow "${message.workflow?.name}" was ${message.type === 'workflow_created' ? 'created' : 'updated'}`,
+          });
+          break;
+
+        case 'workflow_deleted':
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows'] });
+          queryClient.removeQueries({ queryKey: ['/api/workflows', message.workflowId] });
+          
+          toast({
+            title: "Workflow Deleted",
+            description: "Workflow has been deleted",
+          });
+          break;
+
+        case 'workflow_execution_started':
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflowId] });
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflowId, 'runs'] });
+          
+          toast({
+            title: "Workflow Started",
+            description: "Workflow execution has begun",
+          });
+          break;
+
+        case 'workflow_paused':
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflowId] });
+          
+          toast({
+            title: "Workflow Paused",
+            description: "Workflow execution has been paused",
+            variant: "default",
+          });
+          break;
+
+        case 'workflow_stopped':
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflowId] });
+          queryClient.invalidateQueries({ queryKey: ['/api/workflows', message.workflowId, 'runs'] });
+          
+          toast({
+            title: "Workflow Stopped",
+            description: "Workflow execution has been stopped",
+            variant: "destructive",
+          });
+          break;
+
         case 'error':
           toast({
             title: "WebSocket Error",

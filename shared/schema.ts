@@ -521,3 +521,99 @@ export type Metric = typeof metrics.$inferSelect;
 export type InsertMetric = z.infer<typeof insertMetricSchema>;
 export type Event = typeof events.$inferSelect;
 export type InsertEvent = z.infer<typeof insertEventSchema>;
+
+// Workflow node definitions for Orchestration Canvas
+export interface WorkflowNode {
+  id: string;
+  type: 'agent' | 'tool' | 'decision' | 'integration' | 'start' | 'end' | 'webhook' | 'delay';
+  position: { x: number; y: number };
+  data: WorkflowNodeData;
+  style?: Record<string, any>;
+}
+
+export interface WorkflowNodeData {
+  label: string;
+  description?: string;
+  config?: Record<string, any>;
+  // Agent node specific
+  agentType?: string;
+  capabilities?: string[];
+  // Tool node specific
+  toolName?: string;
+  toolParams?: Record<string, any>;
+  // Decision node specific
+  condition?: string;
+  branches?: { true: string; false: string };
+  // Integration node specific
+  integrationName?: string;
+  endpoint?: string;
+  method?: string;
+  headers?: Record<string, string>;
+  payload?: Record<string, any>;
+  // Execution state
+  status?: 'idle' | 'running' | 'completed' | 'error' | 'skipped';
+  executionTime?: number;
+  output?: any;
+  error?: string;
+}
+
+export interface WorkflowEdge {
+  id: string;
+  source: string;
+  target: string;
+  type?: 'default' | 'conditional' | 'success' | 'error';
+  label?: string;
+  style?: Record<string, any>;
+  animated?: boolean;
+  data?: {
+    condition?: string;
+    label?: string;
+  };
+}
+
+export interface WorkflowDefinition {
+  nodes: WorkflowNode[];
+  edges: WorkflowEdge[];
+  viewport?: { x: number; y: number; zoom: number };
+  variables?: Record<string, any>;
+  settings?: {
+    autoSave?: boolean;
+    parallelExecution?: boolean;
+    retryPolicy?: {
+      maxRetries: number;
+      backoffStrategy: 'linear' | 'exponential';
+    };
+  };
+}
+
+export interface WorkflowExecutionState {
+  currentNodeId?: string;
+  completedNodes: string[];
+  failedNodes: string[];
+  nodeOutputs: Record<string, any>;
+  variables: Record<string, any>;
+  executionLog: WorkflowLogEntry[];
+  startTime?: Date;
+  endTime?: Date;
+  totalDuration?: number;
+}
+
+export interface WorkflowLogEntry {
+  id: string;
+  timestamp: Date;
+  nodeId?: string;
+  level: 'debug' | 'info' | 'warn' | 'error';
+  message: string;
+  data?: Record<string, any>;
+}
+
+export interface WorkflowTemplate {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  tags: string[];
+  definition: WorkflowDefinition;
+  thumbnail?: string;
+  featured?: boolean;
+}
