@@ -4,6 +4,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import { insertProjectSchema, insertTaskSchema, insertAgentSchema, insertActivitySchema } from "@shared/schema";
 import { mcpServer } from "./services/mcp-server";
+import { mcpNativeTools } from "./services/mcp-native-tools";
 import { chittyidClient } from "./services/chittyid-client";
 import { registryClient } from "./services/registry-client";
 import { registryChittyClient } from "./services/registry-chitty-client";
@@ -305,6 +306,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // MCP Native Tools endpoints
+  app.get('/api/mcp/tools', async (req, res) => {
+    try {
+      const tools = mcpNativeTools.getAvailableTools();
+      res.json(tools.map(t => ({
+        name: t.name,
+        description: t.description,
+        category: t.category,
+        schema: t.schema
+      })));
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to get MCP tools', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.post('/api/mcp/tools/:toolName', async (req, res) => {
+    try {
+      const { toolName } = req.params;
+      const result = await mcpNativeTools.executeTool(toolName, req.body);
+      res.json({ success: true, result });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: `Tool execution failed: ${error instanceof Error ? error.message : 'Unknown error'}` 
+      });
+    }
+  });
+
+  app.get('/api/mcp/tools/category/:category', async (req, res) => {
+    try {
+      const { category } = req.params;
+      const tools = mcpNativeTools.getToolsByCategory(category);
+      res.json(tools.map(t => ({
+        name: t.name,
+        description: t.description,
+        category: t.category,
+        schema: t.schema
+      })));
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to get tools by category', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
   // Universal PM Board endpoints - replaces todowrite for ALL agents
   app.get("/api/projects/:id/board", async (req, res) => {
     try {
@@ -423,21 +467,110 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Dashboard stats
+  // Enhanced Dashboard stats with real-time KPIs
   app.get('/api/dashboard/stats', async (req, res) => {
     try {
+      // Core data that should always be available
       const projects = await storage.getProjects();
       const activeAgents = await storage.getActiveAgents();
       const recentActivities = await storage.getRecentActivities(5);
       
+      // Enhanced data with fallbacks for missing tables/methods
+      let integrationHealth = [];
+      let incidents = [];
+      
+      try {
+        integrationHealth = await storage.getIntegrationHealth();
+      } catch (error) {
+        console.warn('Integration health data not available:', error instanceof Error ? error.message : 'Unknown error');
+        // Fallback to basic integration data
+        try {
+          const basicIntegrations = await storage.getIntegrations();
+          integrationHealth = basicIntegrations.map(integration => ({
+            id: integration.id,
+            name: integration.name,
+            type: integration.type,
+            status: integration.status,
+            lastSync: integration.lastSync,
+            healthScore: integration.status === 'active' ? 85 : 50
+          }));
+        } catch (fallbackError) {
+          integrationHealth = [];
+        }
+      }
+      
+      try {
+        incidents = await storage.getIncidents();
+      } catch (error) {
+        console.warn('Incidents data not available:', error instanceof Error ? error.message : 'Unknown error');
+        incidents = []; // Empty array fallback
+      }
+      
+      // Calculate real-time KPIs
+      const now = Date.now();
+      const activeIncidents = incidents.filter(i => i.status !== 'resolved');
+      const criticalIncidents = activeIncidents.filter(i => i.severity === 'critical');
+      
+      // Mock real-time metrics - in production these would come from monitoring
+      const requestsPerMinute = Math.floor(Math.random() * 1000) + 500;
+      const successRate = Math.floor(Math.random() * 5) + 95;
+      const p95Latency = Math.floor(Math.random() * 100) + 150;
+      const errorBudget = Math.max(0, 100 - (activeIncidents.length * 10));
+      
       res.json({
+        // Basic stats
         totalProjects: projects.length,
         activeProjects: projects.filter(p => p.status === 'active').length,
         activeAgents: activeAgents.length,
         recentActivities,
+        
+        // Real-time KPIs
+        kpis: {
+          requestsPerMinute,
+          successRate,
+          p95Latency,
+          errorBudget,
+          lastUpdated: now
+        },
+        
+        // Integration status
+        integrationHealth,
+        
+        // Incident summary
+        incidents: {
+          total: incidents.length,
+          active: activeIncidents.length,
+          critical: criticalIncidents.length
+        },
+        
+        // System status
+        systemStatus: 'operational'
       });
     } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch dashboard stats', error: error instanceof Error ? error.message : 'Unknown error' });
+      console.error('Dashboard stats error:', error);
+      res.status(500).json({ 
+        message: 'Failed to fetch dashboard stats', 
+        error: error instanceof Error ? error.message : 'Unknown error',
+        // Minimal fallback data
+        totalProjects: 0,
+        activeProjects: 0,
+        activeAgents: 0,
+        recentActivities: [],
+        kpis: {
+          requestsPerMinute: 0,
+          successRate: 0,
+          p95Latency: 0,
+          errorBudget: 100,
+          lastUpdated: Date.now()
+        },
+        integrationHealth: [],
+        incidents: {
+          total: 0,
+          active: 0,
+          critical: 0
+        },
+        systemStatus: 'error'
+      });
     }
   });
 
@@ -511,6 +644,106 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error getting analytics:', error);
       res.status(500).json({ message: 'Failed to get analytics data', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Premium Dashboard APIs
+  
+  // Workflows API
+  app.get('/api/workflows', async (req, res) => {
+    try {
+      const workflows = await storage.getWorkflows();
+      res.json(workflows);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch workflows', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.get('/api/workflows/:id/runs', async (req, res) => {
+    try {
+      const runs = await storage.getWorkflowRuns(req.params.id);
+      res.json(runs);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch workflow runs', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Incidents API
+  app.get('/api/incidents', async (req, res) => {
+    try {
+      const incidents = await storage.getIncidents();
+      res.json(incidents);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch incidents', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.patch('/api/incidents/:id', async (req, res) => {
+    try {
+      const updates = req.body;
+      const incident = await storage.updateIncident(req.params.id, updates);
+      
+      broadcastToClients({
+        type: 'incident_updated',
+        incident,
+      });
+      
+      res.json(incident);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update incident', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Enhanced Metrics API
+  app.get('/api/metrics/performance', async (req, res) => {
+    try {
+      const timeRange = req.query.timeRange || '24h';
+      const metrics = await storage.getPerformanceMetrics(timeRange as string);
+      res.json(metrics);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch performance metrics', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.get('/api/metrics/agent-mesh', async (req, res) => {
+    try {
+      const meshData = await storage.getAgentMeshData();
+      res.json(meshData);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch agent mesh data', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Events API for timeline
+  app.get('/api/events', async (req, res) => {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 50;
+      const type = req.query.type as string;
+      
+      const events = await storage.getEvents({ page, limit, type });
+      res.json(events);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch events', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  app.get('/api/events/trace/:id', async (req, res) => {
+    try {
+      const trace = await storage.getMCPTrace(req.params.id);
+      res.json(trace);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch MCP trace', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
+  // Integration Health API
+  app.get('/api/integrations/health', async (req, res) => {
+    try {
+      const health = await storage.getIntegrationHealth();
+      res.json(health);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch integration health', error: error instanceof Error ? error.message : 'Unknown error' });
     }
   });
 

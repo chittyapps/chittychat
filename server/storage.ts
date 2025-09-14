@@ -1,10 +1,14 @@
 import { 
   users, projects, tasks, agents, activities, integrations, mcpTools, smartRecommendations, ethRegistryEntries,
+  workflows, workflowRuns, incidents, metrics, events,
   type User, type InsertUser, type Project, type InsertProject,
   type Task, type InsertTask, type Agent, type InsertAgent,
   type Activity, type InsertActivity, type Integration, type InsertIntegration,
   type McpTool, type InsertMcpTool, type SmartRecommendation, type InsertSmartRecommendation,
-  type EthRegistryEntry, type InsertEthRegistryEntry
+  type EthRegistryEntry, type InsertEthRegistryEntry,
+  type Workflow, type InsertWorkflow, type WorkflowRun, type InsertWorkflowRun,
+  type Incident, type InsertIncident, type Metric, type InsertMetric,
+  type Event, type InsertEvent
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, sql, count, gt, inArray } from "drizzle-orm";
@@ -137,6 +141,16 @@ export interface IStorage {
     errorMessage?: string;
     healthScore: number;
   }>>;
+
+  // New methods for enhanced features
+  getAgentTasks(agentId: string, limit: number): Promise<Task[]>;
+  getIncidents(): Promise<Incident[]>;
+  updateIncident(id: string, updates: Partial<Incident>): Promise<Incident>;
+  getWorkflows(): Promise<Workflow[]>;
+  getWorkflowRuns(workflowId: string): Promise<WorkflowRun[]>;
+  getPerformanceMetrics(timeRange: string): Promise<Metric[]>;
+  getEvents(params: { page: number; limit: number; type?: string }): Promise<Event[]>;
+  getMCPTrace(traceId: string): Promise<Event[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -624,31 +638,134 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getIntegrationHealth() {
-    const integrationRows = await db.select().from(integrations);
-    
-    return integrationRows.map(integration => {
-      // Calculate health score based on status and last sync
-      const baseScore = integration.status === 'active' ? 80 : 
-                       integration.status === 'inactive' ? 50 : 20;
+    try {
+      const integrationRows = await db.select().from(integrations);
       
-      let recencyBonus = 0;
-      if (integration.lastSync) {
-        const hoursSinceSync = (Date.now() - integration.lastSync.getTime()) / (1000 * 60 * 60);
-        recencyBonus = Math.max(0, 20 - Math.min(20, Math.floor(hoursSinceSync)));
-      }
-      
-      const healthScore = Math.max(0, Math.min(100, baseScore + recencyBonus));
+      return integrationRows.map(integration => {
+        // Calculate health score based on status and last sync
+        const baseScore = integration.status === 'active' ? 80 : 
+                         integration.status === 'inactive' ? 50 : 20;
+        
+        let recencyBonus = 0;
+        if (integration.lastSync) {
+          const hoursSinceSync = (Date.now() - integration.lastSync.getTime()) / (1000 * 60 * 60);
+          recencyBonus = Math.max(0, 20 - Math.min(20, Math.floor(hoursSinceSync)));
+        }
+        
+        const healthScore = Math.max(0, Math.min(100, baseScore + recencyBonus));
 
-      return {
-        id: integration.id,
-        name: integration.name,
-        type: integration.type,
-        status: integration.status,
-        lastSync: integration.lastSync,
-        errorMessage: integration.errorMessage ?? undefined,
-        healthScore
-      };
-    });
+        return {
+          id: integration.id,
+          name: integration.name,
+          type: integration.type,
+          status: integration.status,
+          lastSync: integration.lastSync,
+          errorMessage: integration.errorMessage ?? undefined,
+          healthScore
+        };
+      });
+    } catch (error) {
+      // If integrations table doesn't exist, return empty array
+      if (error instanceof Error && error.message.includes('relation "integrations" does not exist')) {
+        console.warn('Integrations table does not exist, returning empty array');
+        return [];
+      }
+      throw error;
+    }
+  }
+
+  // New methods for enhanced features
+  async getAgentTasks(agentId: string, limit: number): Promise<Task[]> {
+    const agent = await this.getAgent(agentId);
+    if (!agent) return [];
+    
+    return db.select()
+      .from(tasks)
+      .where(eq(tasks.assignedAgent, agent.name))
+      .orderBy(desc(tasks.createdAt))
+      .limit(limit);
+  }
+
+  async getIncidents(): Promise<Incident[]> {
+    try {
+      return await db.select().from(incidents).orderBy(desc(incidents.createdAt));
+    } catch (error) {
+      // If incidents table doesn't exist, return empty array
+      if (error instanceof Error && error.message.includes('relation "incidents" does not exist')) {
+        console.warn('Incidents table does not exist, returning empty array');
+        return [];
+      }
+      throw error;
+    }
+  }
+
+  async updateIncident(id: string, updates: Partial<Incident>): Promise<Incident> {
+    const [updated] = await db.update(incidents)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(incidents.id, id))
+      .returning();
+    return updated;
+  }
+
+  async getWorkflows(): Promise<Workflow[]> {
+    return db.select().from(workflows).orderBy(desc(workflows.createdAt));
+  }
+
+  async getWorkflowRuns(workflowId: string): Promise<WorkflowRun[]> {
+    return db.select()
+      .from(workflowRuns)
+      .where(eq(workflowRuns.workflowId, workflowId))
+      .orderBy(desc(workflowRuns.startedAt));
+  }
+
+  async getPerformanceMetrics(timeRange: string): Promise<Metric[]> {
+    // Calculate time window based on timeRange
+    const now = new Date();
+    const startTime = new Date();
+    
+    switch(timeRange) {
+      case '1h':
+        startTime.setHours(now.getHours() - 1);
+        break;
+      case '24h':
+        startTime.setDate(now.getDate() - 1);
+        break;
+      case '7d':
+        startTime.setDate(now.getDate() - 7);
+        break;
+      case '30d':
+        startTime.setDate(now.getDate() - 30);
+        break;
+      default:
+        startTime.setDate(now.getDate() - 1);
+    }
+
+    return db.select()
+      .from(metrics)
+      .where(gt(metrics.timestamp, startTime))
+      .orderBy(desc(metrics.timestamp));
+  }
+
+  async getEvents(params: { page: number; limit: number; type?: string }): Promise<Event[]> {
+    const offset = (params.page - 1) * params.limit;
+    
+    let query = db.select().from(events);
+    
+    if (params.type) {
+      query = query.where(eq(events.type, params.type));
+    }
+    
+    return query
+      .orderBy(desc(events.timestamp))
+      .limit(params.limit)
+      .offset(offset);
+  }
+
+  async getMCPTrace(traceId: string): Promise<Event[]> {
+    return db.select()
+      .from(events)
+      .where(eq(events.traceId, traceId))
+      .orderBy(events.timestamp);
   }
 }
 
