@@ -558,12 +558,17 @@ body::before {
     @apply border-border;
   }
 
-  body {
+  html, body, #root {
     font-family: 'Geist', 'Inter', system-ui, sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%) !important;
     color: white !important;
+    min-height: 100vh !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
