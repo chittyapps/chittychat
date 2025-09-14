@@ -4,6 +4,7 @@ import { Brain, BarChart3, Home, Activity, Network } from "lucide-react";
 import ChittyInsight from "@/components/chitty-insight";
 import HeroOverview from "@/components/hero-overview";
 import AgentMesh from "@/components/agent-mesh";
+import { OrchestrationCanvasWrapper } from "@/components/orchestration-canvas";
 import { useWebSocket } from "@/hooks/use-websocket";
 
 interface DashboardStats {
@@ -35,6 +36,7 @@ export default function SimpleDashboard() {
 
   const navigation = [
     { id: "overview", label: "Overview", icon: Home },
+    { id: "orchestration", label: "Orchestration Canvas", icon: Network },
     { id: "mesh", label: "Agent Mesh", icon: Network },
     { id: "insights", label: "ChittyInsight", icon: Brain },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -91,6 +93,12 @@ export default function SimpleDashboard() {
               <p className="text-white/60">No recent activities</p>
             )}
           </div>
+        </div>
+      )}
+
+      {activeView === "orchestration" && (
+        <div className="h-full">
+          <OrchestrationCanvasWrapper />
         </div>
       )}
 
