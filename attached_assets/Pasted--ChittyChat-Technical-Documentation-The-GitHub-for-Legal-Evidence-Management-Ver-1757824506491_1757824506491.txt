@@ -1,0 +1,567 @@
+ # ChittyChat Technical Documentation
+     ## The GitHub for Legal Evidence Management
+
+     ### Version 3.0 | Enterprise Edition
+     ### Last Updated: September 2025
+
+     ---
+
+     ## Table of Contents
+     1. [System Architecture](#system-architecture)
+     2. [Core Components](#core-components)
+     3. [API Reference](#api-reference)
+     4. [Integration Guide](#integration-guide)
+     5. [Security Architecture](#security-architecture)
+     6. [Deployment Guide](#deployment-guide)
+     7. [Performance Specifications](#performance-specifications)
+     8. [Troubleshooting](#troubleshooting)
+
+     ---
+
+     ## System Architecture
+
+     ### Overview
+     ChittyChat is a distributed, blockchain-backed evidence management system that provides GitHub-like collaboration features for legal professionals. Built on a microservices
+     architecture with native Claude Code integration through MCP (Model Context Protocol).
+
+     ### Architecture Diagram
+     ```
+     ┌──────────────────────────────────────────────────────────────────┐
+     │                         CLIENT LAYER                              │
+     ├────────────────┬──────────────────┬──────────────────────────────┤
+     │  Web Interface │  Claude Code MCP │  API Clients                 │
+     └────────┬───────┴────────┬─────────┴────────┬─────────────────────┘
+              │                │                   │
+         ┌────▼────────────────▼───────────────────▼─────┐
+         │            API GATEWAY (Port 8080)            │
+         │         - Authentication/Authorization        │
+         │         - Rate Limiting                       │
+         │         - Request Routing                     │
+         └────────────────────┬───────────────────────────┘
+                              │
+         ┌────────────────────┼───────────────────────────┐
+         │                    │                           │
+     ┌───▼────────┐    ┌──────▼────────┐    ┌────────────▼───┐
+     │ ChittyChat │    │   ChittyOS    │    │   ChittyChain  │
+     │   Core     │◄──►│   Platform    │◄──►│   Blockchain   │
+     │ Port 3003  │    │  Port 3005    │    │   Port 3007    │
+     └───┬────────┘    └──────┬────────┘    └────────────┬───┘
+         │                    │                           │
+     ┌───▼────────────────────▼───────────────────────────▼───┐
+     │                   DATA LAYER                            │
+     ├──────────────┬────────────────┬───────────────────────┤
+     │  PostgreSQL  │  Redis Cache   │  S3 Object Storage    │
+     │  (Primary)   │  (Sessions)    │  (Documents)          │
+     └──────────────┴────────────────┴───────────────────────┘
+     ```
+
+     ### Technology Stack
+     - **Backend**: Node.js 18+, TypeScript 5.0+
+     - **Framework**: Express.js with SwiftNIO for high-performance IPC
+     - **Database**: PostgreSQL 15+ with pgvector extension
+     - **Cache**: Redis 7.0+ for session management and task queues
+     - **Blockchain**: Custom ChittyChain implementation (Proof-of-Work)
+     - **Identity**: P256 elliptic curve cryptography
+     - **Storage**: S3-compatible object storage
+     - **Container**: Docker 24+ with Kubernetes orchestration
+     - **CI/CD**: GitHub Actions with ChittyChain audit integration
+
+     ---
+
+     ## Core Components
+
+     ### 1. ChittyChat Core Service
+     **Purpose**: Primary evidence processing and management engine
+
+     **Key Features**:
+     - Document ingestion pipeline with OCR support
+     - Metadata extraction and indexing
+     - Version control with Git-like branching
+     - Real-time collaboration with WebSocket support
+
+     **Technical Specifications**:
+     ```javascript
+     // Service Configuration
+     {
+       "service": "chittychat-core",
+       "version": "3.0.0",
+       "port": 3003,
+       "workers": 4,
+       "maxConnections": 10000,
+       "memory": "4GB",
+       "cpu": "2 cores"
+     }
+     ```
+
+     ### 2. ChittyID Identity Service
+     **Purpose**: Cryptographic identity management and authentication
+
+     **Implementation**:
+     ```typescript
+     interface ChittyIdentity {
+       id: string;           // chitty_[hash]
+       publicKey: string;    // P256 public key
+       privateKey: string;   // Encrypted in keychain
+       trustScore: number;   // 0-100 reputation score
+       capabilities: string[]; // Granted permissions
+       metadata: {
+         created: Date;
+         lastAuth: Date;
+         organization: string;
+         role: string;
+       };
+     }
+     ```
+
+     **Key Operations**:
+     - Identity creation with hardware security module support
+     - JWT token generation with 15-minute expiry
+     - Multi-factor authentication integration
+     - Digital signature generation/verification
+
+     ### 3. ChittyChain Blockchain Service
+     **Purpose**: Immutable audit trail and evidence chain of custody
+
+     **Block Structure**:
+     ```typescript
+     interface Block {
+       index: number;
+       timestamp: number;
+       previousHash: string;
+       hash: string;
+       nonce: number;
+       difficulty: number;
+       data: {
+         type: 'evidence' | 'audit' | 'transaction';
+         payload: any;
+         signature: string;
+         chittyId: string;
+       };
+       merkleRoot: string;
+     }
+     ```
+
+     **Consensus Mechanism**: Proof-of-Work with adjustable difficulty
+     - Target block time: 30 seconds
+     - Difficulty adjustment: Every 10 blocks
+     - Maximum block size: 1MB
+
+     ### 4. Universal Intake System
+     **Purpose**: Automated document processing and classification
+
+     **Pipeline Stages**:
+     1. **Ingestion**: Multi-channel document intake
+     2. **Validation**: Format verification and virus scanning
+     3. **Processing**: OCR, metadata extraction, classification
+     4. **ChittyID Assignment**: Unique identifier generation
+     5. **Indexing**: Full-text search with Elasticsearch
+     6. **Notification**: Real-time updates via WebSocket
+
+     ### 5. Notion Integration Service
+     **Purpose**: Bidirectional synchronization with Notion databases
+
+     **Sync Configuration**:
+     ```javascript
+     {
+       "syncInterval": 300, // seconds
+       "batchSize": 100,
+       "retryAttempts": 3,
+       "webhookEndpoint": "/webhook/notion",
+       "supportedProperties": [
+         "Document Name",
+         "Case Relevance",
+         "Processing Status",
+         "ChittyID",
+         "Digital Signature",
+         "Chain of Custody"
+       ]
+     }
+     ```
+
+     ---
+
+     ## API Reference
+
+     ### Authentication
+     All API requests require JWT token authentication:
+
+     ```bash
+     curl -X POST https://api.chittychat.legal/auth/login \
+       -H "Content-Type: application/json" \
+       -d '{"email": "user@law.firm", "password": "secure_password"}'
+     ```
+
+     ### Core Endpoints
+
+     #### Document Management
+     ```http
+     POST   /api/v3/documents           # Upload document
+     GET    /api/v3/documents/:id       # Retrieve document
+     PUT    /api/v3/documents/:id       # Update metadata
+     DELETE /api/v3/documents/:id       # Soft delete
+     GET    /api/v3/documents/:id/versions  # Version history
+     POST   /api/v3/documents/:id/sign  # Digital signature
+     ```
+
+     #### Case Management
+     ```http
+     POST   /api/v3/cases               # Create case
+     GET    /api/v3/cases/:id          # Get case details
+     POST   /api/v3/cases/:id/documents # Add document to case
+     GET    /api/v3/cases/:id/chain    # Get chain of custody
+     POST   /api/v3/cases/:id/mint     # Mint to blockchain
+     ```
+
+     #### Search & Discovery
+     ```http
+     POST   /api/v3/search              # Full-text search
+     POST   /api/v3/search/semantic    # AI-powered search
+     GET    /api/v3/search/filters     # Available filters
+     POST   /api/v3/discovery/ediscovery # E-discovery request
+     ```
+
+     ### MCP Tool Interface
+     Tools available through Claude Code integration:
+
+     ```typescript
+     // Example: Add evidence to blockchain
+     const result = await mcp.callTool('blockchain_add_evidence', {
+       caseId: 'case_123',
+       documentId: 'doc_456',
+       hash: 'sha256:abcdef...',
+       metadata: {
+         uploadedBy: 'attorney@firm.com',
+         classification: 'privileged',
+         retentionPolicy: '7_years'
+       }
+     });
+     ```
+
+     ---
+
+     ## Integration Guide
+
+     ### Claude Code MCP Setup
+
+     1. **Install MCP Server**:
+     ```bash
+     npm install -g @chittychat/mcp-server
+     chittychat-mcp init
+     ```
+
+     2. **Configure Permissions** (`.claude/settings.local.json`):
+     ```json
+     {
+       "permissions": {
+         "allow": [
+           "Bash(/usr/local/bin/chittychat:*)",
+           "Read(//**)",
+           "Write(//**/cases/**)",
+           "Edit(//**/evidence/**)"
+         ]
+       }
+     }
+     ```
+
+     3. **Initialize Connection**:
+     ```javascript
+     const chittyChat = await ClaudeCode.connectMCP({
+       server: 'chittychat',
+       port: 3003,
+       credentials: process.env.CHITTYCHAT_API_KEY
+     });
+     ```
+
+     ### GitHub Integration
+     ```javascript
+     // Repository structure for legal cases
+     const caseRepo = {
+       name: 'arias-v-bianchi-2025',
+       structure: {
+         '/evidence': 'Original documents',
+         '/processed': 'OCR and analyzed docs',
+         '/chain-of-custody': 'Blockchain records',
+         '/notes': 'Attorney work product',
+         '/discovery': 'Discovery materials'
+       },
+       hooks: {
+         preCommit: 'chittychat verify --signatures',
+         postMerge: 'chittychat mint --to-blockchain'
+       }
+     };
+     ```
+
+     ### Notion Database Schema
+     ```javascript
+     const notionSchema = {
+       database: 'Legal Document Management',
+       properties: {
+         'ChittyID': { type: 'title', required: true },
+         'Document Name': { type: 'text' },
+         'Case Number': { type: 'select' },
+         'Status': {
+           type: 'select',
+           options: ['Intake', 'Processing', 'Review', 'Approved', 'Archived']
+         },
+         'Digital Signature': { type: 'text' },
+         'Blockchain Hash': { type: 'text' },
+         'Attorney Notes': { type: 'rich_text' },
+         'Privilege': { type: 'checkbox' },
+         'Retention Date': { type: 'date' }
+       }
+     };
+     ```
+
+     ---
+
+     ## Security Architecture
+
+     ### Encryption Standards
+     - **At Rest**: AES-256-GCM encryption
+     - **In Transit**: TLS 1.3 with perfect forward secrecy
+     - **Key Management**: Hardware Security Module (HSM) integration
+     - **Secrets**: 1Password Connect for credential management
+
+     ### Access Control
+     ```yaml
+     roles:
+       - name: senior_partner
+         permissions: ['*']
+       - name: attorney
+         permissions: ['read', 'write', 'sign']
+       - name: paralegal
+         permissions: ['read', 'write']
+       - name: client
+         permissions: ['read:own_case']
+     ```
+
+     ### Compliance Features
+     - **GDPR**: Right to erasure, data portability
+     - **HIPAA**: PHI encryption and access logging
+     - **SOC 2 Type II**: Continuous compliance monitoring
+     - **Legal Hold**: Automatic retention policy enforcement
+
+     ### Audit Logging
+     Every action generates an immutable audit log entry:
+     ```json
+     {
+       "timestamp": "2025-09-13T10:30:00Z",
+       "actor": "attorney@firm.com",
+       "action": "document.upload",
+       "resource": "doc_789",
+       "ipAddress": "192.168.1.100",
+       "signature": "P256:abc123...",
+       "blockchainTx": "0x742d35..."
+     }
+     ```
+
+     ---
+
+     ## Deployment Guide
+
+     ### Docker Deployment
+     ```yaml
+     version: '3.8'
+     services:
+       chittychat:
+         image: chittychat/enterprise:3.0
+         ports:
+           - "3003:3003"
+         environment:
+           - DATABASE_URL=postgresql://...
+           - REDIS_URL=redis://...
+           - CHITTYCHAIN_NODE=http://blockchain:3007
+         volumes:
+           - ./data:/app/data
+           - ./logs:/app/logs
+         deploy:
+           replicas: 3
+           resources:
+             limits:
+               cpus: '2'
+               memory: 4G
+     ```
+
+     ### Kubernetes Deployment
+     ```yaml
+     apiVersion: apps/v1
+     kind: Deployment
+     metadata:
+       name: chittychat
+     spec:
+       replicas: 3
+       selector:
+         matchLabels:
+           app: chittychat
+       template:
+         metadata:
+           labels:
+             app: chittychat
+         spec:
+           containers:
+           - name: chittychat
+             image: chittychat/enterprise:3.0
+             resources:
+               requests:
+                 memory: "2Gi"
+                 cpu: "1"
+               limits:
+                 memory: "4Gi"
+                 cpu: "2"
+     ```
+
+     ### Environment Variables
+     ```bash
+     # Core Configuration
+     NODE_ENV=production
+     PORT=3003
+     LOG_LEVEL=info
+
+     # Database
+     DATABASE_URL=postgresql://user:pass@localhost:5432/chittychat
+     DATABASE_POOL_SIZE=20
+
+     # Redis
+     REDIS_URL=redis://localhost:6379
+     REDIS_MAX_RETRIES=3
+
+     # Blockchain
+     CHITTYCHAIN_DIFFICULTY=4
+     CHITTYCHAIN_MINING_REWARD=10
+
+     # Security
+     JWT_SECRET=op://vault/chittychat/jwt_secret
+     ENCRYPTION_KEY=op://vault/chittychat/encryption_key
+
+     # Integrations
+     NOTION_API_KEY=op://vault/chittychat/notion_api
+     OPENAI_API_KEY=op://vault/chittychat/openai_api
+     ```
+
+     ---
+
+     ## Performance Specifications
+
+     ### Benchmarks
+     - **Document Processing**: 100 documents/minute
+     - **Search Latency**: <100ms for 10M documents
+     - **Blockchain Mining**: 30-second block time
+     - **API Response**: p95 < 200ms
+     - **Concurrent Users**: 10,000+
+     - **Storage Efficiency**: 10:1 compression ratio
+
+     ### Scaling Recommendations
+     ```yaml
+     Small Firm (< 50 users):
+       - 1 server, 4 cores, 8GB RAM
+       - PostgreSQL: 100GB SSD
+       - Single blockchain node
+
+     Medium Firm (50-500 users):
+       - 3 servers, 8 cores each, 16GB RAM
+       - PostgreSQL cluster: 1TB SSD
+       - 3 blockchain nodes
+
+     Enterprise (500+ users):
+       - Kubernetes cluster
+       - Auto-scaling 5-20 pods
+       - PostgreSQL with read replicas
+       - 5+ blockchain nodes
+       - CDN for document delivery
+     ```
+
+     ---
+
+     ## Troubleshooting
+
+     ### Common Issues
+
+     #### 1. Blockchain Sync Issues
+     ```bash
+     # Check blockchain status
+     chittychat blockchain status
+
+     # Force resync
+     chittychat blockchain resync --from-block 0
+
+     # Verify chain integrity
+     chittychat blockchain verify
+     ```
+
+     #### 2. Document Processing Failures
+     ```bash
+     # Check processing queue
+     chittychat queue status
+
+     # Retry failed documents
+     chittychat queue retry --failed
+
+     # Clear stuck jobs
+     chittychat queue clear --status=stuck
+     ```
+
+     #### 3. Authentication Problems
+     ```bash
+     # Regenerate JWT keys
+     chittychat auth regenerate-keys
+
+     # Clear session cache
+     redis-cli FLUSHDB
+
+     # Test authentication
+     curl -X POST localhost:3003/auth/test
+     ```
+
+     ### Performance Tuning
+     ```sql
+     -- Optimize PostgreSQL for ChittyChat
+     ALTER SYSTEM SET shared_buffers = '4GB';
+     ALTER SYSTEM SET effective_cache_size = '12GB';
+     ALTER SYSTEM SET maintenance_work_mem = '1GB';
+     ALTER SYSTEM SET work_mem = '32MB';
+     ALTER SYSTEM SET max_connections = 200;
+
+     -- Create indexes for common queries
+     CREATE INDEX idx_documents_chittyid ON documents(chitty_id);
+     CREATE INDEX idx_documents_case_id ON documents(case_id);
+     CREATE INDEX idx_audit_logs_timestamp ON audit_logs(timestamp DESC);
+     ```
+
+     ### Monitoring Commands
+     ```bash
+     # System health check
+     chittychat health --verbose
+
+     # Performance metrics
+     chittychat metrics --last-hour
+
+     # Active connections
+     chittychat connections list
+
+     # Storage usage
+     chittychat storage analyze
+     ```
+
+     ---
+
+     ## Support & Resources
+
+     ### Documentation
+     - Technical Docs: https://docs.chittychat.legal
+     - API Reference: https://api.chittychat.legal/docs
+     - Video Tutorials: https://learn.chittychat.legal
+
+     ### Community
+     - GitHub: https://github.com/ChittyFoundation/chittychat
+     - Discord: https://discord.gg/chittychat
+     - Stack Overflow: [chittychat] tag
+
+     ### Enterprise Support
+     - Email: enterprise@chittychat.legal
+     - Phone: 1-800-CHITTY-1
+     - SLA: 24/7 support with 1-hour response time
+
+     ---
+
+     *ChittyChat® is a registered trademark of ChittyChain Foundation. Patent pending.*
+
