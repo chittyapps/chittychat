@@ -390,6 +390,96 @@ export const insertProjectLifecycleSchema = createInsertSchema(projectLifecycle)
   exitedAt: true,
 });
 
+// Premium Dashboard Entities
+export const workflows = pgTable("workflows", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description"),
+  definition: json("definition").$type<Record<string, any>>().notNull(), // DAG structure
+  status: text("status").notNull().default("draft"), // draft, active, paused, archived
+  version: integer("version").notNull().default(1),
+  tags: json("tags").$type<string[]>().default([]),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const workflowRuns = pgTable("workflow_runs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  workflowId: varchar("workflow_id").references(() => workflows.id).notNull(),
+  status: text("status").notNull().default("running"), // running, completed, failed, cancelled
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  completedAt: timestamp("completed_at"),
+  duration: integer("duration"), // seconds
+  logs: json("logs").$type<Record<string, any>>().default({}),
+  metrics: json("metrics").$type<Record<string, any>>().default({}),
+  errorMessage: text("error_message"),
+});
+
+export const incidents = pgTable("incidents", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  description: text("description"),
+  severity: text("severity").notNull().default("medium"), // low, medium, high, critical
+  status: text("status").notNull().default("open"), // open, investigating, resolved, closed
+  assignedTo: varchar("assigned_to").references(() => users.id),
+  source: text("source"), // alert, manual, automated
+  entityType: text("entity_type"),
+  entityId: text("entity_id"),
+  resolvedAt: timestamp("resolved_at"),
+  slaTarget: timestamp("sla_target"),
+  metadata: json("metadata").$type<Record<string, any>>().default({}),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const metrics = pgTable("metrics", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  value: integer("value").notNull(),
+  unit: text("unit"), // requests/min, ms, percent, count
+  tags: json("tags").$type<Record<string, any>>().default({}), // {"agent": "gpt4", "project": "123"}
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+export const events = pgTable("events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type").notNull(), // workflow.started, agent.connected, mcp.tool.called
+  source: text("source").notNull(), // agent, workflow, integration
+  sourceId: text("source_id").notNull(),
+  payload: json("payload").$type<Record<string, any>>().notNull(),
+  traceId: text("trace_id"), // for distributed tracing
+  severity: text("severity").notNull().default("info"), // debug, info, warn, error
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+// Insert schemas for new entities
+export const insertWorkflowSchema = createInsertSchema(workflows).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertWorkflowRunSchema = createInsertSchema(workflowRuns).omit({
+  id: true,
+  startedAt: true,
+});
+
+export const insertIncidentSchema = createInsertSchema(incidents).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertMetricSchema = createInsertSchema(metrics).omit({
+  id: true,
+  timestamp: true,
+});
+
+export const insertEventSchema = createInsertSchema(events).omit({
+  id: true,
+  timestamp: true,
+});
+
 // Types
 export type Workspace = typeof workspaces.$inferSelect;
 export type InsertWorkspace = z.infer<typeof insertWorkspaceSchema>;
@@ -421,3 +511,13 @@ export type UiPattern = typeof uiPatterns.$inferSelect;
 export type InsertUiPattern = z.infer<typeof insertUiPatternSchema>;
 export type ProjectLifecycle = typeof projectLifecycle.$inferSelect;
 export type InsertProjectLifecycle = z.infer<typeof insertProjectLifecycleSchema>;
+export type Workflow = typeof workflows.$inferSelect;
+export type InsertWorkflow = z.infer<typeof insertWorkflowSchema>;
+export type WorkflowRun = typeof workflowRuns.$inferSelect;
+export type InsertWorkflowRun = z.infer<typeof insertWorkflowRunSchema>;
+export type Incident = typeof incidents.$inferSelect;
+export type InsertIncident = z.infer<typeof insertIncidentSchema>;
+export type Metric = typeof metrics.$inferSelect;
+export type InsertMetric = z.infer<typeof insertMetricSchema>;
+export type Event = typeof events.$inferSelect;
+export type InsertEvent = z.infer<typeof insertEventSchema>;
