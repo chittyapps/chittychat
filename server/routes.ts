@@ -260,6 +260,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Agent Mesh Visualization endpoint
+  app.get('/api/metrics/agent-mesh', async (req, res) => {
+    try {
+      const meshData = await storage.getAgentMeshData();
+      
+      // Calculate additional statistics
+      const stats = {
+        totalAgents: meshData.nodes.filter(n => n.type === 'agent').length,
+        activeAgents: meshData.nodes.filter(n => n.type === 'agent' && n.status === 'active').length,
+        totalTools: meshData.nodes.filter(n => n.type === 'tool').length,
+        activeTools: meshData.nodes.filter(n => n.type === 'tool' && n.status === 'active').length,
+        avgResponseTime: Math.floor(Math.random() * 200 + 50), // Mock for now
+        networkHealth: Math.min(100, Math.floor((meshData.nodes.filter(n => n.status === 'active').length / meshData.nodes.length) * 100))
+      };
+
+      res.json({
+        nodes: meshData.nodes,
+        edges: meshData.edges,
+        lastUpdated: new Date().toISOString(),
+        totalConnections: meshData.edges.length,
+        activeConnections: meshData.edges.filter(e => e.type === 'mcp').length,
+        statistics: stats
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch agent mesh data', error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
   // Activities
   app.get('/api/activities', async (req, res) => {
     try {
