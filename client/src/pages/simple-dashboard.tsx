@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Brain, BarChart3, Home, Activity } from "lucide-react";
 import ChittyInsight from "@/components/chitty-insight";
+import HeroOverview from "@/components/hero-overview";
 import { useWebSocket } from "@/hooks/use-websocket";
 
 interface DashboardStats {
@@ -66,25 +67,10 @@ export default function SimpleDashboard() {
 
       {/* Content based on active view */}
       {activeView === "overview" && (
-        <div>
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="glass-card p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Total Projects</h3>
-              <p className="text-3xl font-bold text-blue-400">{stats?.totalProjects || 0}</p>
-            </div>
-            
-            <div className="glass-card p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Active Projects</h3>
-              <p className="text-3xl font-bold text-green-400">{stats?.activeProjects || 0}</p>
-            </div>
-            
-            <div className="glass-card p-6">
-              <h3 className="text-lg font-semibold text-white mb-2">Active Agents</h3>
-              <p className="text-3xl font-bold text-purple-400">{stats?.activeAgents || 0}</p>
-            </div>
-          </div>
-
+        <div className="space-y-8">
+          {/* Premium Hero Overview */}
+          <HeroOverview />
+          
           {/* Recent Activities */}
           <div className="glass-card p-6">
             <h2 className="text-2xl font-bold text-white mb-4">Recent Activities</h2>
