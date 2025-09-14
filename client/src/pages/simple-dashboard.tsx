@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Brain, BarChart3, Home, Activity } from "lucide-react";
+import { Brain, BarChart3, Home, Activity, Network } from "lucide-react";
 import ChittyInsight from "@/components/chitty-insight";
 import HeroOverview from "@/components/hero-overview";
+import AgentMesh from "@/components/agent-mesh";
 import { useWebSocket } from "@/hooks/use-websocket";
 
 interface DashboardStats {
@@ -34,6 +35,7 @@ export default function SimpleDashboard() {
 
   const navigation = [
     { id: "overview", label: "Overview", icon: Home },
+    { id: "mesh", label: "Agent Mesh", icon: Network },
     { id: "insights", label: "ChittyInsight", icon: Brain },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "activity", label: "Activity", icon: Activity }
@@ -90,6 +92,10 @@ export default function SimpleDashboard() {
             )}
           </div>
         </div>
+      )}
+
+      {activeView === "mesh" && (
+        <AgentMesh height={600} className="w-full" />
       )}
 
       {activeView === "insights" && (
