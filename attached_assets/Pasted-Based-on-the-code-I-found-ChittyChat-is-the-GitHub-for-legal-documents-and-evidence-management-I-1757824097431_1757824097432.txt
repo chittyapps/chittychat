@@ -1,0 +1,98 @@
+Based on the code I found, ChittyChat is "the GitHub for legal documents and evidence management". It provides GitHub-like functionality specifically designed for:
+
+  Key GitHub-Like Features
+
+  1. Repository Management for Legal Cases
+    - Create/manage repositories for different legal cases
+    - Template-based scaffolding (contracts, documentation, SDK)
+    - Version control for legal documents
+  2. Migration & Organization
+    - Safe file migration to staging environments
+    - Organization setup with teams structure
+    - Automated workflows and templates
+  3. Advanced Features
+    - ChittyChain Integration: Mints decisions/actions to blockchain for immutable audit trail
+    - Security Templates: Built-in security policies and vulnerability reporting
+    - PR/Issue Templates: Structured templates for legal document reviews
+    - Automated Workflows: GitHub Actions integration for legal compliance
+  4. Project Management
+    - Inventory tracking of all Chitty-related files
+    - Migration status monitoring
+    - Team permissions (core-maintainers, docs-team, security-team)
+
+  The system essentially applies GitHub's collaborative development model to legal document management, adding cryptographic verification, chain of custody, and compliance features
+  specific to legal requirements. It's not just using GitHub's native features but creating a GitHub-like experience tailored for legal professionals managing evidence and case
+  documents.
+
+> an doprojecty managementy talk about ahow it usntilait hijacjs native cluade-code functions
+
+⏺ I'll search for how ChittyChat integrates with Claude Code's native functions for project management.
+
+⏺ Search(pattern: "claude|Claude|mcp|MCP|tool|slash|hook", path: "~/.claude/projects/system/chittychat")
+  ⎿  Found 5 files (ctrl+o to expand)
+
+⏺ Read(.claude/settings.local.json)
+  ⎿  Read 27 lines (ctrl+o to expand)
+
+⏺ Bash(find /Users/nb/configured/claude/mcp-servers/chittychat -type f -name "*.js" -o -name "*.json" -o -name "*.md" | head -20)
+  ⎿  /Users/nb/configured/claude/mcp-servers/chittychat/universal-intake-architecture.md
+     /Users/nb/configured/claude/mcp-servers/chittychat/README-CHITTYOS.md
+     /Users/nb/configured/claude/mcp-servers/chittychat/test-universal-intake.js
+     … +17 lines (ctrl+o to expand)
+
+⏺ Read(~/configured/claude/mcp-servers/chittychat/README-CHITTYOS.md)
+  ⎿  Read 299 lines (ctrl+o to expand)
+
+⏺ Kill Shell(Kill shell: 922ad0)
+  ⎿  Shell 922ad0 killed
+
+⏺ Bash(ls /Users/nb/configured/claude/mcp-servers/chittychat/bin/)
+  ⎿  chittychat       
+     chittychat-cmd
+     chittychat-simple
+
+⏺ How ChittyChat Hijacks Native Claude Code Functions for Project Management
+
+  ChittyChat cleverly integrates with Claude Code's native capabilities through several mechanisms:
+
+  1. MCP Server Integration
+
+  ChittyChat runs as an MCP (Model Context Protocol) server that Claude Code can directly interact with. The .claude/settings.local.json shows it has special permissions like:
+  - Bash(/Users/nb/configured/claude/mcp-servers/chittychat/bin/chittychat status:*) - Direct command execution
+  - Full read access to user directories
+  - Process management capabilities (pm2, launchctl, kill)
+
+  2. Enhanced Tool Suite
+
+  ChittyChat extends Claude Code with 20+ custom tools that appear native:
+  - Blockchain tools (blockchain_add_evidence, blockchain_get_audit_trail)
+  - Identity tools (identity_create, identity_sign, identity_verify)
+  - Finance tools (finance_create_transaction, finance_get_balance)
+  - Agent coordination (agent_submit_task, agent_get_status)
+
+  3. Project Management Features
+
+  - Agent Runtime: Distributed task management using Redis queues
+  - ChittyChain: Immutable project history and audit trails
+  - ChittyID: Cryptographic signing of all project actions
+  - Service Discovery: Auto-discovers and coordinates with other ChittyOS services
+
+  4. GitHub-Like Project Management
+
+  The system provides GitHub-style features but for legal/business documents:
+  - Repository creation with templates
+  - Migration workflows with staging environments
+  - Organization management with team structures
+  - Automated workflows and CI/CD-like pipelines
+  - Security policies and vulnerability reporting
+
+  5. Native Integration Points
+
+  - Direct MCP Communication: Tools appear as native Claude Code functions
+  - Filesystem Permissions: Full access to read/write project files
+  - Process Control: Can manage background services and daemons
+  - Network Services: Runs on ports 3003, 3005, 8080 for API access
+
+  The architecture essentially creates a parallel project management system that runs alongside Claude Code, intercepting and enhancing its capabilities with blockchain
+  verification, identity management, and distributed agent coordination - all while appearing as native Claude Code functionality to the user.
+

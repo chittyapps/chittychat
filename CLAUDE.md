@@ -4,23 +4,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ChittyPM is a **universal todowrite replacement** for all AI agents - providing a single, centralized project management board that replaces individual agent todo lists. Instead of each agent maintaining its own isolated todo list, ChittyPM enables all agents (Claude, GPT, custom agents) to collaborate on a unified PM board for each project.
+ChittyChat is the **ultimate middleware platform for AI coordination** - a GitHub-like project management system for AI agents that runs as an MCP (Model Context Protocol) server directly integrated with Claude Code. It replaces individual agent todo lists with a unified, blockchain-verified project management system that appears as native Claude Code functionality.
 
-This is a multi-workspace monorepo containing several interconnected Chitty services, with ChittyPM as the main project in the root directory.
+This is a multi-workspace monorepo containing several interconnected Chitty services, with ChittyChat as the main project providing comprehensive AI agent coordination and human collaboration features.
 
 ### Core Purpose
-- **Replaces todowrite**: This system supersedes individual agent todo tracking tools
-- **Universal PM Board**: One centralized board per project, accessible by all agents
-- **Cross-Agent Collaboration**: Multiple AI agents can work on the same project simultaneously
-- **Persistent State**: Tasks and projects persist across sessions and agent instances
+- **MCP Server Integration**: Runs as a native MCP server that Claude Code directly interacts with
+- **GitHub for AI**: Provides GitHub-style project management for AI agents and human collaboration
+- **Blockchain Verification**: All actions are cryptographically signed and audit-trailed via ChittyChain
+- **Universal Middleware**: Coordinates between multiple AI agents (Claude, GPT, custom) and services
+- **Native Tool Extension**: Adds 20+ custom tools that appear as native Claude Code functions
+
+### Enhanced Capabilities
+- **Direct Command Execution**: Special permissions for bash commands and process management
+- **Full Filesystem Access**: Read/write access to project files and user directories
+- **Process Control**: Manages background services, daemons (pm2, launchctl, kill)
+- **Network Services**: API access on ports 3003, 3005, 8080
+- **Distributed Task Management**: Redis-backed agent runtime for scalable task distribution
 
 ### Technology Stack
 - **Frontend**: React 18 with TypeScript, Vite, TanStack Query, Tailwind CSS, and shadcn/ui components
 - **Backend**: Express.js with TypeScript, WebSocket server, and Drizzle ORM
 - **Database**: PostgreSQL (Neon serverless) with Drizzle migrations
 - **Real-time**: WebSocket connections for agent communication and live updates
-- **Agent Integration**: Claude Code SDK (`@anthropic-ai/claude-code`)
-- **Blockchain**: Ethers.js for reputation scoring system
+- **MCP Integration**: Model Context Protocol server for native Claude Code integration
+- **Blockchain**: ChittyChain for immutable audit trails and evidence tracking
+- **Identity**: ChittyID for cryptographic signing of all project actions
+- **Queue System**: Redis for distributed task management
+- **Agent Coordination**: Multi-agent orchestration with service discovery
 
 ## Common Development Commands
 
@@ -64,21 +75,22 @@ This tests:
 ## Architecture
 
 ### Monorepo Structure
-The repository contains multiple Chitty services that work together:
-- **chittypm** (root): Main project management system - primary development focus
-- **chittyid**: Provides authentication and unique ID generation for ChittyPM
-- **chittychain**: Blockchain integration for reputation and evidence tracking
+The repository contains multiple Chitty services that create a comprehensive AI coordination ecosystem:
+- **chittychat** (root): Ultimate middleware platform for AI coordination and project management
+- **chittyid**: Cryptographic identity service for signing all project actions
+- **chittychain**: Blockchain service for immutable audit trails and evidence tracking
 - **chittycan**: CDN and tunnel service for network infrastructure
-- **chittyflow**: Task automation and workflow capabilities
-- **chittyintel**: Analytics and intelligence dashboard
-- **chittybeacon**: Application monitoring and tracking used by ChittyPM
-- **chittyops**: DevOps and CI/CD configurations
+- **chittyflow**: Task automation and workflow orchestration
+- **chittyintel**: Analytics dashboard (ChittyInsight) for performance metrics
+- **chittybeacon**: Application monitoring and tracking
+- **chittyops**: DevOps and CI/CD pipeline configurations
 
-**Integration Notes**: 
-- ChittyPM actively connects to ChittyID for authentication and unique identifiers
-- ChittyBeacon tracks application usage and performance metrics
-- These services ensure compatibility with the larger Chitty ecosystem
-- Focus development on the root ChittyPM project, but understand the service dependencies
+**Service Integration**: 
+- ChittyChat orchestrates all services as a unified middleware platform
+- ChittyID provides cryptographic signing for every action
+- ChittyChain maintains immutable project history
+- ChittyFlow enables GitHub-like workflows and automation
+- All services auto-discover and coordinate through service discovery
 
 ### Core Services
 - **MCP Server** (`server/services/mcp-server.ts`): Handles Model Context Protocol requests from AI agents
@@ -110,20 +122,63 @@ Located in `shared/schema.ts` using Drizzle ORM:
 - **MCP Client**: Frontend MCP integration in `client/src/lib/mcp-client.ts`
 - **API Client**: TanStack Query setup in `client/src/lib/api.ts`
 
+## MCP Server Native Tools
+
+### Enhanced Tool Suite
+ChittyChat extends Claude Code with 20+ custom tools that appear as native functions:
+
+#### Blockchain Tools
+- `blockchain_add_evidence`: Add immutable evidence to project history
+- `blockchain_get_audit_trail`: Retrieve complete audit trail for verification
+- `blockchain_verify_integrity`: Validate blockchain integrity
+
+#### Identity Tools  
+- `identity_create`: Create cryptographic identities for agents/users
+- `identity_sign`: Sign actions with cryptographic proof
+- `identity_verify`: Verify signatures and identity authenticity
+
+#### Finance Tools
+- `finance_create_transaction`: Create financial transactions
+- `finance_get_balance`: Query account balances
+- `finance_audit_ledger`: Audit financial records
+
+#### Agent Coordination
+- `agent_submit_task`: Submit tasks to distributed queue
+- `agent_get_status`: Get agent operational status
+- `agent_coordinate`: Orchestrate multi-agent workflows
+
+## GitHub-Like Project Management
+
+ChittyChat provides GitHub-style features for AI project management:
+
+### Repository Management
+- **Template Repositories**: Start projects from predefined templates
+- **Migration Workflows**: Staging environments for testing changes
+- **Organization Structure**: Team management with role-based access
+- **Automated Workflows**: CI/CD-like pipelines for document processing
+- **Security Policies**: Vulnerability reporting and compliance tracking
+
+### Native Integration Points
+- **Direct MCP Communication**: Tools appear as native Claude Code functions
+- **Filesystem Permissions**: Full read/write access to project files
+- **Process Control**: Manage background services and daemons (pm2, launchctl, kill)
+- **Network Services**: API access on ports 3003, 3005, 8080
+
 ## Key Integration Points
 
 ### Agent Task Management Workflow
-When AI agents need to manage tasks, they should:
-1. Connect to ChittyPM via WebSocket or MCP endpoints
-2. **Search for existing projects** before creating new ones:
+When AI agents need to manage tasks through ChittyChat:
+1. MCP server auto-connects when Claude Code launches
+2. **Native tool access** - Use ChittyChat tools as if they're built into Claude Code
+3. **Search for existing projects** before creating new ones:
    - Check if a similar project already exists (`GET /api/projects`)
    - Review project status (active/inactive) and last activity
    - Examine where previous work left off by checking task completion status
    - Continue existing projects when appropriate rather than creating duplicates
-3. If no suitable project exists, create a new one (global for team collaboration, local for isolated work)
-4. Add tasks to the centralized board instead of using local todowrite
-5. Update task status as work progresses
-6. All agents working on the same project see real-time updates
+4. If no suitable project exists, create a new one with blockchain verification
+5. All actions are cryptographically signed via ChittyID
+6. Tasks distributed through Redis queue for scalable execution
+7. All agents see real-time updates through service discovery
 
 ### Project Discovery Best Practices
 - **Always search first**: Use project name, description, and tags to find related work
@@ -156,13 +211,28 @@ Agents connect and register via WebSocket with:
 
 ## Environment Variables
 
-Optional integrations configured via environment:
-- `CHITTYID_API_URL`: ChittyID service endpoint
-- `CHITTYID_API_KEY`: ChittyID authentication
-- `REGISTRY_URL`: Registry service endpoint
-- `REGISTRY_API_KEY`: Registry authentication
-- `DATABASE_URL`: PostgreSQL connection string (auto-provisioned in Replit)
+Required and optional environment configurations:
+
+### Core Services
 - `PORT`: Server port (default: 5000)
+- `MCP_PORT`: MCP server port (default: 3003)
+- `API_PORT`: API server port (default: 8080)
+- `WS_PORT`: WebSocket port (default: 3005)
+- `DATABASE_URL`: PostgreSQL connection string (auto-provisioned in Replit)
+- `REDIS_URL`: Redis connection for distributed task queue
+
+### Service Integration
+- `CHITTYID_API_URL`: ChittyID service endpoint for cryptographic signing
+- `CHITTYID_API_KEY`: ChittyID authentication token
+- `CHITTYCHAIN_API_URL`: Blockchain service endpoint
+- `CHITTYCHAIN_API_KEY`: Blockchain authentication
+- `REGISTRY_URL`: Registry service endpoint (registry.chitty.cc)
+- `REGISTRY_API_KEY`: Registry authentication
+
+### MCP Configuration
+- `MCP_SERVER_PATH`: Path to ChittyChat MCP binary (/bin/chittychat)
+- `MCP_PERMISSIONS`: JSON permissions config for Claude Code integration
+- `CLAUDE_SETTINGS_PATH`: Path to .claude/settings.local.json
 
 ## Testing
 
@@ -189,7 +259,20 @@ Test categories include:
 
 ## Development Notes
 
-- The application runs on a single port (default 5000) serving both API and client
+### MCP Server Architecture
+- **Native Integration**: ChittyChat runs as an MCP server alongside Claude Code
+- **Tool Injection**: Custom tools appear as native Claude Code functions
+- **Permission Model**: Special bash permissions for status commands and process control
+- **Parallel System**: Creates a parallel project management system intercepting Claude Code operations
+
+### Service Ports & Endpoints
+- **Main Application**: Port 5000 - serves both API and client
+- **MCP Server**: Port 3003 - Model Context Protocol server
+- **WebSocket**: Port 3005 - Real-time communication
+- **API Gateway**: Port 8080 - External API access
+- **Redis Queue**: Port 6379 - Distributed task management
+
+### Technical Implementation
 - Vite development server is automatically configured in development mode
 - Database migrations use Drizzle Kit with PostgreSQL (Neon serverless)
 - Real-time updates broadcast to all connected WebSocket clients
@@ -197,8 +280,11 @@ Test categories include:
 - All file paths in the codebase should be absolute, not relative
 - TypeScript strict mode is enabled - ensure proper type annotations
 - The system uses Drizzle ORM for database operations - check `shared/schema.ts` for schema definitions
-- WebSocket server runs on the same port as HTTP server at `/ws` endpoint
+- WebSocket server provides real-time updates at `/ws` endpoint
 - MCP protocol WebSocket endpoint is available at `/mcp`
+- Redis queues handle distributed task execution across agents
+- ChittyChain provides immutable audit trails for all operations
+- ChittyID cryptographically signs every action for verification
 
 ## Code Quality Standards
 
