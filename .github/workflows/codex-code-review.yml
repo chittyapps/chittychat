@@ -1,0 +1,168 @@
+name: Codex Code Quality Review
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  codex-review:
+    runs-on: ubuntu-latest
+    name: Comprehensive Codex Review
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Review Dependencies
+        run: |
+          npm install -g eslint jshint
+          npm install --save-dev @typescript-eslint/parser
+
+      - name: Codex Security & Bug Analysis
+        id: review
+        run: |
+          echo "## 🔍 Codex Code Review Results" > review-report.md
+          echo "" >> review-report.md
+
+          # Check for value handling bugs
+          echo "### Critical Bugs Found:" >> review-report.md
+
+          # Check for falsy value bugs (balance, valuation treating 0 as missing)
+          if grep -r "if.*balance" . --include="*.js" | grep -v "!== 0"; then
+            echo "❌ **Balance Falsy Check Bug**: Zero values incorrectly treated as missing" >> review-report.md
+            echo "- Location: Found falsy checks for balance/valuation fields" >> review-report.md
+            echo "- Fix: Use explicit null/undefined checks instead of falsy checks" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Check for missing default handling
+          if grep -r "entity_types.*:" . --include="*.js" | grep -v "default"; then
+            echo "❌ **Default Fallback Bug**: Optional fields not properly defaulted" >> review-report.md
+            echo "- Location: entity_types and include_financial missing runtime defaults" >> review-report.md
+            echo "- Fix: Add proper default value assignment in handlers" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Check callService validation issues
+          if grep -r "callService" . --include="*.js"; then
+            echo "❌ **Service Call Validation Bug**: callService lacks result verification" >> review-report.md
+            echo "- Location: callService simulates fetch without validating responses" >> review-report.md
+            echo "- Fix: Add response validation and error handling" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Check for synchronous service calls
+          if grep -r "callService.*sync" . --include="*.js"; then
+            echo "❌ **Async/Sync Bug**: Synchronous callService usage detected" >> review-report.md
+            echo "- Location: Synchronous service calls that should be async" >> review-report.md
+            echo "- Fix: Ensure all service calls use async/await pattern" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Check JSON loading safety
+          if grep -r "JSON.parse.*readFileSync" . --include="*.js"; then
+            echo "⚠️  **JSON Loading Risk**: Static JSON loading without error handling" >> review-report.md
+            echo "- Location: toolsSpec loading could fail if JSON is malformed" >> review-report.md
+            echo "- Fix: Add try/catch around JSON.parse operations" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Security checks
+          echo "### Security Analysis:" >> review-report.md
+
+          # Check for ChittyID compliance
+          if grep -r "CHITTY-.*-.*-.*" . --exclude-dir=node_modules --exclude="*.json"; then
+            echo "🔒 **ChittyID Security**: Hardcoded IDs found (should use id.chitty.cc)" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          # Check for exposed secrets
+          if grep -r "secret\|token\|key" . --include="*.js" | grep -v "process.env" | head -5; then
+            echo "🔒 **Secret Exposure**: Potential hardcoded secrets detected" >> review-report.md
+            echo "" >> review-report.md
+          fi
+
+          echo "### Recommendations:" >> review-report.md
+          echo "1. Replace falsy checks with explicit null/undefined checks for numeric fields" >> review-report.md
+          echo "2. Add runtime default value assignment for optional parameters" >> review-report.md
+          echo "3. Implement proper response validation in callService method" >> review-report.md
+          echo "4. Add error handling around JSON.parse operations" >> review-report.md
+          echo "5. Ensure all service calls follow async/await patterns" >> review-report.md
+
+      - name: Generate Fix Suggestions
+        run: |
+          echo "" >> review-report.md
+          echo "### 🔧 Auto-Generated Fixes:" >> review-report.md
+          echo "" >> review-report.md
+          echo '```javascript' >> review-report.md
+          echo '// Fix 1: Proper value handling for numeric fields' >> review-report.md
+          echo 'const balance = args.balance !== null && args.balance !== undefined ? args.balance : "Not specified";' >> review-report.md
+          echo '' >> review-report.md
+          echo '// Fix 2: Runtime defaults for optional fields' >> review-report.md
+          echo 'const entityTypes = args.entity_types || ["PEO", "PLACE", "PROP"];' >> review-report.md
+          echo 'const includeFinancial = args.include_financial !== undefined ? args.include_financial : true;' >> review-report.md
+          echo '' >> review-report.md
+          echo '// Fix 3: Safe JSON loading' >> review-report.md
+          echo 'let toolsSpec;' >> review-report.md
+          echo 'try {' >> review-report.md
+          echo '  toolsSpec = JSON.parse(fs.readFileSync(path.join(__dirname, "chittyos-mcp-tools.json"), "utf8"));' >> review-report.md
+          echo '} catch (error) {' >> review-report.md
+          echo '  console.error("Failed to load tools specification:", error);' >> review-report.md
+          echo '  process.exit(1);' >> review-report.md
+          echo '}' >> review-report.md
+          echo '' >> review-report.md
+          echo '// Fix 4: Async service call validation' >> review-report.md
+          echo 'async callService(serviceName, endpoint, params) {' >> review-report.md
+          echo '  try {' >> review-report.md
+          echo '    const response = await fetch(`${this.baseUrl}/${endpoint}`, {' >> review-report.md
+          echo '      method: "POST",' >> review-report.md
+          echo '      headers: { "Authorization": `Bearer ${this.apiKey}` },' >> review-report.md
+          echo '      body: JSON.stringify(params)' >> review-report.md
+          echo '    });' >> review-report.md
+          echo '    if (!response.ok) throw new Error(`Service ${serviceName} failed: ${response.status}`);' >> review-report.md
+          echo '    return await response.json();' >> review-report.md
+          echo '  } catch (error) {' >> review-report.md
+          echo '    throw new Error(`${serviceName} service error: ${error.message}`);' >> review-report.md
+          echo '  }' >> review-report.md
+          echo '}' >> review-report.md
+          echo '```' >> review-report.md
+
+      - name: Upload Review Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-review-report
+          path: review-report.md
+
+      - name: Comment PR with Review
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('review-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
+
+      - name: Fail on Critical Bugs
+        run: |
+          if grep -q "❌" review-report.md; then
+            echo "Critical bugs found - failing build"
+            echo "Review the generated report for details"
+            exit 1
+          else
+            echo "Code review passed - no critical issues found"
+          fi

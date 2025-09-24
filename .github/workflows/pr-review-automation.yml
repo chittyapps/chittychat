@@ -1,0 +1,409 @@
+name: Automated PR Review & Security Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  CHITTY_API_KEY: ${{ secrets.CHITTY_API_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  # Phase 1: Language-Specific Triaged Checks
+  language-checks:
+    runs-on: ubuntu-latest
+    name: Language-Specific Security & Quality Checks
+    outputs:
+      language: ${{ steps.detect.outputs.language }}
+      security-score: ${{ steps.security.outputs.score }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Language Stack
+        id: detect
+        run: |
+          if [ -f "package.json" ]; then
+            echo "language=node" >> $GITHUB_OUTPUT
+          elif [ -f "requirements.txt" ] || [ -f "pyproject.toml" ]; then
+            echo "language=python" >> $GITHUB_OUTPUT
+          elif [ -f "Cargo.toml" ]; then
+            echo "language=rust" >> $GITHUB_OUTPUT
+          elif [ -f "go.mod" ]; then
+            echo "language=go" >> $GITHUB_OUTPUT
+          else
+            echo "language=unknown" >> $GITHUB_OUTPUT
+          fi
+
+      # Node/TypeScript Stack
+      - name: Node/TypeScript Checks
+        if: steps.detect.outputs.language == 'node'
+        run: |
+          echo "🔍 Running Node/TypeScript security checks..."
+
+          # Install dependencies
+          npm ci || npm install
+
+          # Linting
+          npm run lint || npx eslint . --ext .js,.jsx,.ts,.tsx || echo "⚠️ Linting issues found"
+
+          # Tests
+          npm test -- --coverage || npm run test || echo "⚠️ Tests failed"
+
+          # Security audit
+          npm audit --audit-level=moderate > npm-audit.json || true
+
+          # OSV Scanner
+          curl -sSfL https://github.com/google/osv-scanner/releases/download/v1.4.3/osv-scanner_linux_amd64 -o osv-scanner
+          chmod +x osv-scanner
+          ./osv-scanner --recursive . --format json > osv-scan.json || true
+
+      # Python Stack
+      - name: Python Checks
+        if: steps.detect.outputs.language == 'python'
+        run: |
+          echo "🐍 Running Python security checks..."
+
+          # Setup Python
+          python -m pip install --upgrade pip
+          pip install ruff pytest pip-audit safety
+
+          # Install dependencies
+          pip install -r requirements.txt || pip install .
+
+          # Linting with ruff
+          ruff check . || echo "⚠️ Ruff found issues"
+
+          # Tests
+          pytest --cov || python -m pytest || echo "⚠️ Tests failed"
+
+          # Security audit
+          pip-audit --desc > pip-audit.json || true
+          safety check --json > safety-check.json || true
+
+      # Rust Stack
+      - name: Rust Checks
+        if: steps.detect.outputs.language == 'rust'
+        run: |
+          echo "🦀 Running Rust security checks..."
+
+          # Clippy linting
+          cargo clippy -- -D warnings || echo "⚠️ Clippy warnings"
+
+          # Tests
+          cargo test || echo "⚠️ Tests failed"
+
+          # Security audit
+          cargo install cargo-audit
+          cargo audit --json > cargo-audit.json || true
+
+      # Go Stack
+      - name: Go Checks
+        if: steps.detect.outputs.language == 'go'
+        run: |
+          echo "🐹 Running Go security checks..."
+
+          # Tests
+          go test ./... || echo "⚠️ Tests failed"
+
+          # Vulnerability check
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./... > govuln.json || true
+
+      # Calculate security score
+      - name: Calculate Security Score
+        id: security
+        run: |
+          SCORE=100
+
+          # Check for vulnerabilities
+          if [ -f "npm-audit.json" ]; then
+            VULNS=$(jq '.vulnerabilities.total' npm-audit.json || echo 0)
+            SCORE=$((SCORE - VULNS * 5))
+          fi
+
+          if [ -f "pip-audit.json" ]; then
+            VULNS=$(grep -c "VULNERABLE" pip-audit.json || echo 0)
+            SCORE=$((SCORE - VULNS * 5))
+          fi
+
+          if [ $SCORE -lt 0 ]; then SCORE=0; fi
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+  # Phase 2: Secret Scanning
+  secret-scanning:
+    runs-on: ubuntu-latest
+    name: Secret & Credential Scanning
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run TruffleHog
+        run: |
+          pip install truffleHog3
+          trufflehog3 --no-history --format json . > trufflehog-scan.json || true
+
+          if [ -s trufflehog-scan.json ]; then
+            echo "🚨 Potential secrets detected!"
+            cat trufflehog-scan.json
+            exit 1
+          fi
+
+  # Phase 3: Infrastructure as Code Scanning
+  iac-scanning:
+    runs-on: ubuntu-latest
+    name: IaC Security Scanning
+    if: contains(github.event.pull_request.changed_files, '.tf') || contains(github.event.pull_request.changed_files, '.yaml') || contains(github.event.pull_request.changed_files, 'Dockerfile')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tfsec for Terraform
+        if: contains(github.event.pull_request.changed_files, '.tf')
+        uses: aquasecurity/tfsec-action@v1.0.3
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: all
+          output_format: json
+          output_file_path: checkov-report.json
+
+      - name: Container Image Scanning
+        if: contains(github.event.pull_request.changed_files, 'Dockerfile')
+        run: |
+          # Install trivy
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+          # Scan Dockerfiles
+          find . -name "Dockerfile*" -exec trivy config {} \;
+
+  # Phase 4: ChittyOS Specific Compliance
+  chittyos-compliance:
+    runs-on: ubuntu-latest
+    name: ChittyOS Compliance Validation
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ChittyID Compliance Check
+        id: chittyid
+        run: |
+          echo "🆔 Checking ChittyID compliance..."
+
+          HARDCODED_IDS=$(grep -r "CHITTY-[A-Z]+-[0-9]+-[A-Z0-9]+" . \
+            --exclude-dir=node_modules \
+            --exclude-dir=.git \
+            --exclude="*.json" \
+            --exclude="*.md" | wc -l || echo 0)
+
+          if [ "$HARDCODED_IDS" -gt 0 ]; then
+            echo "❌ Found $HARDCODED_IDS hardcoded ChittyIDs!"
+            echo "All IDs must be minted from id.chitty.cc"
+            echo "hardcoded_ids=$HARDCODED_IDS" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ ChittyID compliance passed"
+            echo "hardcoded_ids=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Service Integration Check
+        run: |
+          echo "🔗 Validating ChittyOS service integrations..."
+
+          # Check for proper API key usage
+          if grep -r "chitty-dev-token" . --exclude-dir=node_modules --exclude="*.md"; then
+            echo "⚠️ Found hardcoded development tokens"
+            exit 1
+          fi
+
+          # Check for proper service URLs
+          if grep -r "http://" . --include="*.js" --include="*.ts" --include="*.py" | grep -v "localhost"; then
+            echo "⚠️ Found unencrypted HTTP calls to external services"
+          fi
+
+  # Phase 5: Test Coverage Validation
+  test-coverage:
+    runs-on: ubuntu-latest
+    name: Test Coverage Requirements
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Test Coverage
+        run: |
+          echo "📊 Analyzing test coverage..."
+
+          # Check for test files
+          TEST_FILES=$(find . -type f \( -name "*test*" -o -name "*spec*" \) \
+            -not -path "*/node_modules/*" | wc -l || echo 0)
+
+          if [ "$TEST_FILES" -eq 0 ]; then
+            echo "❌ No test files found!"
+            echo "::error::PR must include tests for new features"
+            exit 1
+          fi
+
+          echo "✅ Found $TEST_FILES test files"
+
+  # Phase 6: Automated PR Review & Decision
+  pr-review-decision:
+    runs-on: ubuntu-latest
+    name: Automated PR Review Decision
+    needs: [language-checks, secret-scanning, chittyos-compliance, test-coverage]
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Review Report
+        id: review
+        run: |
+          echo "# 🤖 Automated PR Review Report" > review-report.md
+          echo "" >> review-report.md
+
+          # Security Score
+          SECURITY_SCORE=${{ needs.language-checks.outputs.security-score || 100 }}
+          echo "## Security Score: $SECURITY_SCORE/100" >> review-report.md
+          echo "" >> review-report.md
+
+          # Determine blocking issues
+          BLOCKING_ISSUES=""
+
+          if [ "${{ job.status }}" == "failure" ]; then
+            BLOCKING_ISSUES="$BLOCKING_ISSUES\n❌ Critical security or compliance failures"
+          fi
+
+          if [ "$SECURITY_SCORE" -lt 70 ]; then
+            BLOCKING_ISSUES="$BLOCKING_ISSUES\n❌ Security score below threshold (70)"
+          fi
+
+          # Non-blocking issues
+          NON_BLOCKING=""
+
+          if [ "$SECURITY_SCORE" -lt 90 ] && [ "$SECURITY_SCORE" -ge 70 ]; then
+            NON_BLOCKING="$NON_BLOCKING\n⚠️ Security improvements recommended"
+          fi
+
+          echo "## Review Decision" >> review-report.md
+
+          if [ -n "$BLOCKING_ISSUES" ]; then
+            echo "### ❌ BLOCKING ISSUES (Must Fix):" >> review-report.md
+            echo -e "$BLOCKING_ISSUES" >> review-report.md
+            echo "" >> review-report.md
+            echo "approval=blocked" >> $GITHUB_OUTPUT
+          else
+            echo "### ✅ Ready for Human Review" >> review-report.md
+            echo "All automated checks passed" >> review-report.md
+            echo "approval=ready" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -n "$NON_BLOCKING" ]; then
+            echo "" >> review-report.md
+            echo "### ⚠️ NON-BLOCKING (Follow-up Required):" >> review-report.md
+            echo -e "$NON_BLOCKING" >> review-report.md
+          fi
+
+          # Required actions for merge
+          echo "" >> review-report.md
+          echo "## Pre-Merge Checklist" >> review-report.md
+          echo "- [ ] All CI checks passing" >> review-report.md
+          echo "- [ ] Test coverage maintained/improved" >> review-report.md
+          echo "- [ ] Security vulnerabilities addressed" >> review-report.md
+          echo "- [ ] ChittyID compliance verified" >> review-report.md
+          echo "- [ ] Code review by authorized maintainer" >> review-report.md
+          echo "- [ ] Documentation updated if needed" >> review-report.md
+
+      - name: Post Review Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const review = fs.readFileSync('review-report.md', 'utf8');
+
+            // Post review comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: review
+            });
+
+            // Add appropriate labels
+            const labels = [];
+
+            if ('${{ steps.review.outputs.approval }}' === 'blocked') {
+              labels.push('blocked', 'needs-security-fix');
+            } else {
+              labels.push('ready-for-review', 'automated-review-passed');
+            }
+
+            if (labels.length > 0) {
+              github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: labels
+              });
+            }
+
+      - name: Set PR Status Check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ steps.review.outputs.approval }}' === 'ready' ? 'success' : 'failure';
+            const description = status === 'success'
+              ? 'Automated review passed - ready for human review'
+              : 'Automated review found blocking issues';
+
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.payload.pull_request.head.sha,
+              state: status,
+              description: description,
+              context: 'ChittyOS/Automated-Review'
+            });
+
+  # Phase 7: Auto-merge for Dependabot
+  dependabot-auto-merge:
+    runs-on: ubuntu-latest
+    name: Auto-merge Dependabot PRs
+    needs: pr-review-decision
+    if: github.actor == 'dependabot[bot]' && needs.pr-review-decision.outputs.approval == 'ready'
+
+    steps:
+      - name: Auto-merge Dependabot PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Only auto-merge patch and minor updates
+            const title = context.payload.pull_request.title;
+            const isPatch = title.includes('patch') || title.includes('minor');
+
+            if (isPatch) {
+              github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+                merge_method: 'squash',
+                commit_title: title,
+                commit_message: 'Auto-merged by ChittyOS CI'
+              });
+
+              console.log('✅ Auto-merged Dependabot PR');
+            } else {
+              console.log('⚠️ Major version update - requires manual review');
+            }

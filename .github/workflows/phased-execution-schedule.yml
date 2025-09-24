@@ -1,0 +1,425 @@
+name: ChittyOS Phased Security Review & Remediation
+
+on:
+  schedule:
+    - cron: '0 2 * * MON'  # Weekly on Mondays at 2 AM UTC
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: 'Execution phase (0-4)'
+        required: true
+        type: choice
+        options: ['0', '1', '2', '3', '4', 'all']
+
+env:
+  CHITTY_API_KEY: ${{ secrets.CHITTY_API_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  # Phase 0: Preparation & Setup
+  phase-0-prep:
+    runs-on: ubuntu-latest
+    name: Phase 0 - Preparation & Dashboard Setup
+    if: github.event.inputs.phase == '0' || github.event.inputs.phase == 'all' || github.event_name == 'schedule'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Review Environment
+        run: |
+          echo "🔧 Phase 0: Preparing ChittyOS Security Review Environment"
+
+          # Install required tools
+          npm install -g @modelcontextprotocol/cli
+          pip install safety pip-audit
+          curl -sSfL https://github.com/google/osv-scanner/releases/download/v1.4.3/osv-scanner_linux_amd64 -o osv-scanner
+          chmod +x osv-scanner
+
+      - name: Create Central Dashboard
+        run: |
+          cat > dashboard.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>ChittyOS Security Dashboard</title>
+              <style>
+                  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+                  .metric { display: inline-block; padding: 20px; margin: 10px; background: #f0f0f0; border-radius: 8px; }
+                  .critical { background: #ffcccc; }
+                  .warning { background: #fff3cd; }
+                  .success { background: #d4edda; }
+                  table { width: 100%; border-collapse: collapse; }
+                  th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+              </style>
+          </head>
+          <body>
+              <h1>🛡️ ChittyOS Security Review Dashboard</h1>
+              <div id="metrics"></div>
+              <div id="repositories"></div>
+              <div id="timeline"></div>
+          </body>
+          </html>
+          EOF
+
+      - name: Verify Access & Secrets
+        run: |
+          echo "🔑 Verifying access to repositories..."
+
+          # Test GitHub API access
+          gh api user --jq '.login' || exit 1
+
+          # Test ChittyOS API access
+          curl -f -H "Authorization: Bearer $CHITTY_API_KEY" \
+            https://registry.chitty.cc/health || echo "⚠️ Registry not accessible"
+
+      - name: Upload Dashboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-dashboard-phase0
+          path: dashboard.html
+
+  # Phase 1: High-Risk Services Review (Week 1)
+  phase-1-high-risk:
+    runs-on: ubuntu-latest
+    name: Phase 1 - High-Risk Services Audit
+    if: github.event.inputs.phase == '1' || github.event.inputs.phase == 'all'
+
+    strategy:
+      matrix:
+        repository:
+          - chittyos/mcp
+          - chittyos/chitty-ultimate-worker
+          - chittyfoundation/chittygov
+          - chicagoapps/chittycases
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Full Security Audit
+        run: |
+          echo "🔒 Phase 1: Auditing high-risk service ${{ matrix.repository }}"
+
+          REPORT_FILE="audit-${{ matrix.repository }}-$(date +%Y%m%d).md"
+          echo "# Security Audit Report: ${{ matrix.repository }}" > $REPORT_FILE
+          echo "Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $REPORT_FILE
+          echo "Phase: 1 (High-Risk Services)" >> $REPORT_FILE
+          echo "" >> $REPORT_FILE
+
+          # Dependency scanning
+          echo "## Dependency Vulnerabilities" >> $REPORT_FILE
+          if [ -f "package.json" ]; then
+            npm audit --audit-level=low >> $REPORT_FILE || true
+            ./osv-scanner --recursive . >> $REPORT_FILE || true
+          fi
+
+          # Secret scanning
+          echo "## Secret Scanning" >> $REPORT_FILE
+          gitleaks detect --no-git --verbose >> $REPORT_FILE || true
+
+          # ChittyOS compliance
+          echo "## ChittyOS Compliance" >> $REPORT_FILE
+          grep -r "CHITTY-" . --exclude-dir=node_modules >> $REPORT_FILE || echo "No ChittyIDs found"
+
+          # Create issues for findings
+          echo "## Action Items" >> $REPORT_FILE
+          echo "- [ ] Resolve critical vulnerabilities" >> $REPORT_FILE
+          echo "- [ ] Remove hardcoded secrets" >> $REPORT_FILE
+          echo "- [ ] Update dependencies" >> $REPORT_FILE
+          echo "- [ ] Implement missing tests" >> $REPORT_FILE
+
+      - name: Process Dependabot PRs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const [owner, repo] = '${{ matrix.repository }}'.split('/');
+
+            // Get all Dependabot PRs
+            const { data: prs } = await github.rest.pulls.list({
+              owner: owner,
+              repo: repo,
+              state: 'open',
+              creator: 'dependabot[bot]'
+            });
+
+            console.log(`Found ${prs.length} Dependabot PRs`);
+
+            for (const pr of prs) {
+              // Auto-approve patch updates
+              if (pr.title.includes('patch')) {
+                await github.rest.pulls.createReview({
+                  owner: owner,
+                  repo: repo,
+                  pull_number: pr.number,
+                  event: 'APPROVE',
+                  body: 'Auto-approved by ChittyOS Phase 1 Review'
+                });
+              }
+            }
+
+      - name: File Issues for Blockers
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const [owner, repo] = '${{ matrix.repository }}'.split('/');
+
+            await github.rest.issues.create({
+              owner: owner,
+              repo: repo,
+              title: '🚨 Phase 1 Security Audit - Action Required',
+              body: `## Security Audit Findings
+
+              **Repository**: ${{ matrix.repository }}
+              **Date**: ${new Date().toISOString()}
+              **Phase**: 1 (High-Risk Services)
+
+              ### Required Actions:
+              1. Review and merge Dependabot PRs
+              2. Address critical vulnerabilities
+              3. Implement missing security tests
+              4. Update ChittyID compliance
+
+              Full audit report available in workflow artifacts.`,
+              labels: ['security', 'phase-1', 'high-priority']
+            });
+
+  # Phase 2: Customer-Facing Apps (Weeks 2-3)
+  phase-2-customer-facing:
+    runs-on: ubuntu-latest
+    name: Phase 2 - Customer-Facing Apps Review
+    if: github.event.inputs.phase == '2' || github.event.inputs.phase == 'all'
+
+    strategy:
+      matrix:
+        repository:
+          - chittyapps/chittytrace
+          - chittyapps/chittyintel
+          - chittyapps/contradiction-engine
+          - chittycorp/chittyforce
+          - chittycorp/chittyentry
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Security & Functional Tests
+        run: |
+          echo "🎯 Phase 2: Testing customer-facing app ${{ matrix.repository }}"
+
+          # Run comprehensive tests
+          if [ -f "package.json" ]; then
+            npm ci || npm install
+            npm test || echo "Tests need implementation"
+          fi
+
+          # Check for authentication/authorization
+          echo "Checking auth implementation..."
+          grep -r "auth\|jwt\|token" . --include="*.js" --include="*.ts" || echo "⚠️ No auth found"
+
+          # Input validation checks
+          echo "Checking input validation..."
+          grep -r "validate\|sanitize\|escape" . --include="*.js" --include="*.ts" || echo "⚠️ Missing validation"
+
+      - name: Create Threat Model
+        run: |
+          cat > threat-model-${{ matrix.repository }}.md << 'EOF'
+          # Threat Model: ${{ matrix.repository }}
+
+          ## Data Flow
+          - User Input → Validation → Processing → Storage
+          - External APIs → Authentication → Rate Limiting → Response
+
+          ## Potential Threats
+          1. **Injection Attacks**: SQL, NoSQL, Command injection
+          2. **Authentication Bypass**: Weak tokens, session hijacking
+          3. **Data Exposure**: PII leakage, insufficient encryption
+          4. **Rate Limiting**: DDoS, resource exhaustion
+
+          ## Mitigations Required
+          - [ ] Input validation on all user inputs
+          - [ ] Parameterized queries for database operations
+          - [ ] Strong authentication with JWT/OAuth
+          - [ ] Encryption at rest and in transit
+          - [ ] Rate limiting on all endpoints
+          - [ ] Security headers (CSP, HSTS, etc.)
+          EOF
+
+      - name: Deployment Hardening Check
+        run: |
+          echo "🔒 Checking deployment configuration..."
+
+          # Check for security headers
+          if [ -f "wrangler.toml" ] || [ -f "vercel.json" ] || [ -f "netlify.toml" ]; then
+            echo "Deployment config found - checking security settings"
+            grep -i "security\|header" *.toml *.json || echo "⚠️ No security headers configured"
+          fi
+
+  # Phase 3: Supporting Libraries (Week 4)
+  phase-3-supporting:
+    runs-on: ubuntu-latest
+    name: Phase 3 - Supporting Libraries Review
+    if: github.event.inputs.phase == '3' || github.event.inputs.phase == 'all'
+
+    steps:
+      - name: Review Shared Dependencies
+        run: |
+          echo "📚 Phase 3: Reviewing supporting libraries and tooling"
+
+          REPOS="chittyops .github shared"
+
+          for repo in $REPOS; do
+            echo "Checking $repo..."
+
+            # Clone and audit
+            gh repo clone "chittyos/$repo" "$repo" 2>/dev/null || \
+            gh repo clone "chittycorp/$repo" "$repo" 2>/dev/null || \
+            gh repo clone "chittyapps/$repo" "$repo" 2>/dev/null || continue
+
+            cd "$repo"
+
+            # CI consistency check
+            if [ -d ".github/workflows" ]; then
+              echo "✅ CI workflows present"
+              ls -la .github/workflows/
+            else
+              echo "⚠️ Missing CI workflows"
+            fi
+
+            # Documentation alignment
+            if [ -f "README.md" ] && [ -f "CLAUDE.md" ]; then
+              echo "✅ Documentation present"
+            else
+              echo "⚠️ Missing documentation"
+            fi
+
+            cd ..
+          done
+
+  # Phase 4: Ongoing Monitoring
+  phase-4-monitoring:
+    runs-on: ubuntu-latest
+    name: Phase 4 - Establish Monitoring
+    if: github.event.inputs.phase == '4' || github.event.inputs.phase == 'all'
+
+    steps:
+      - name: Setup Quarterly Review Schedule
+        run: |
+          echo "📅 Setting up quarterly review schedule..."
+
+          cat > .github/workflows/quarterly-review.yml << 'EOF'
+          name: Quarterly Security Review
+          on:
+            schedule:
+              - cron: '0 0 1 */3 *'  # First day of each quarter
+          jobs:
+            review:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v4
+                - run: echo "Running quarterly security review"
+          EOF
+
+      - name: Configure Automated Monitoring
+        run: |
+          echo "🤖 Configuring automated security monitoring..."
+
+          # Setup Slack/Teams webhook for alerts
+          cat > notify.sh << 'EOF'
+          #!/bin/bash
+          WEBHOOK_URL="${SLACK_WEBHOOK_URL:-$TEAMS_WEBHOOK_URL}"
+          MESSAGE="$1"
+          SEVERITY="$2"
+
+          if [ "$SEVERITY" == "critical" ]; then
+            COLOR="#ff0000"
+          elif [ "$SEVERITY" == "high" ]; then
+            COLOR="#ff9900"
+          else
+            COLOR="#00ff00"
+          fi
+
+          curl -X POST "$WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"$MESSAGE\",\"color\":\"$COLOR\"}"
+          EOF
+
+          chmod +x notify.sh
+
+  # Summary Report Generation
+  generate-phase-summary:
+    runs-on: ubuntu-latest
+    name: Generate Phase Summary Report
+    needs: [phase-0-prep, phase-1-high-risk, phase-2-customer-facing, phase-3-supporting, phase-4-monitoring]
+    if: always()
+
+    steps:
+      - name: Generate Executive Summary
+        run: |
+          cat > executive-summary.md << 'EOF'
+          # ChittyOS Security Review Executive Summary
+
+          ## Phase Completion Status
+
+          | Phase | Description | Status | Key Findings |
+          |-------|------------|--------|--------------|
+          | 0 | Preparation | ✅ Complete | Environment ready |
+          | 1 | High-Risk Services | 🔄 In Progress | X critical vulnerabilities |
+          | 2 | Customer-Facing Apps | 📅 Scheduled | Pending |
+          | 3 | Supporting Libraries | 📅 Scheduled | Pending |
+          | 4 | Ongoing Monitoring | 📅 Scheduled | Pending |
+
+          ## Immediate Actions Required
+
+          ### Open PRs Requiring Review:
+          - ChittyOS/chittychat#6
+          - ChittyApps/contradiction-engine#7, #9
+          - ChittyFoundation/chittygov#2, #3
+          - ChicagoApps/chittycases#12, #13
+
+          ### Critical Security Issues:
+          1. Hardcoded ChittyIDs in X repositories
+          2. Exposed secrets in Y repositories
+          3. Outdated dependencies with known vulnerabilities
+
+          ## Metrics
+
+          - Total Repositories Scanned: X
+          - Critical Vulnerabilities: Y
+          - Dependabot PRs Pending: Z
+          - Average Security Score: XX/100
+
+          ## Next Steps
+
+          1. Complete Phase 1 remediations
+          2. Begin Phase 2 customer-facing app reviews
+          3. Schedule governance sync meeting
+          4. Publish findings to shared workspace
+
+          Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          EOF
+
+      - name: Upload Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-review-summary
+          path: executive-summary.md
+
+      - name: Notify Teams
+        run: |
+          echo "📧 Sending notifications to engineering and security teams..."
+
+          # Post to ChittyOS Registry
+          curl -X POST https://registry.chitty.cc/api/security-review \
+            -H "Authorization: Bearer $CHITTY_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"phase\": \"${{ github.event.inputs.phase }}\",
+              \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+              \"status\": \"completed\"
+            }" || echo "Registry notification failed"

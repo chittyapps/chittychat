@@ -1,0 +1,374 @@
+name: ChittyOS Ecosystem-Wide Codex Review
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Daily at 3 AM UTC
+  workflow_dispatch:
+    inputs:
+      repositories:
+        description: 'Comma-separated list of repos to review (leave empty for all)'
+        required: false
+        type: string
+
+env:
+  CHITTY_API_KEY: ${{ secrets.CHITTY_API_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  discover-repositories:
+    runs-on: ubuntu-latest
+    name: Discover ChittyOS Repositories
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Discover All ChittyOS Repositories
+        id: set-matrix
+        run: |
+          echo "🔍 Discovering ChittyOS repositories..."
+
+          # Define all ChittyOS organizations and repositories
+          CHITTYOS_ORGS="chittyos chittycorp chittyapps chittyfoundation"
+          CHITCOMMIT_REPOS="ChittyOS-Data chittyguardian chittychat-data"
+
+          # Get all repos from ChittyOS organizations
+          ALL_REPOS=""
+          for org in $CHITTYOS_ORGS; do
+            echo "Checking organization: $org"
+            REPOS=$(gh repo list $org --json name -q '.[].name' 2>/dev/null || true)
+            if [ -n "$REPOS" ]; then
+              for repo in $REPOS; do
+                ALL_REPOS="$ALL_REPOS $org/$repo"
+              done
+            fi
+          done
+
+          # Add chitcommit repos
+          for repo in $CHITCOMMIT_REPOS; do
+            ALL_REPOS="$ALL_REPOS chitcommit/$repo"
+          done
+
+          # Check for local ChittyOS projects
+          LOCAL_PROJECTS="chittychat chittymcp chittyrouter chittyschema chittycheck chittyid"
+          LOCAL_PROJECTS="$LOCAL_PROJECTS chittybrand chittycases chittycleaner chittygov"
+          LOCAL_PROJECTS="$LOCAL_PROJECTS chittyassets chittyauth chittybooks chittyfinance"
+          LOCAL_PROJECTS="$LOCAL_PROJECTS chittydashboard chittyregistry chittygateway"
+
+          for project in $LOCAL_PROJECTS; do
+            if [ -d "/Users/nb/.claude/projects/-/$project" ]; then
+              # Check if it has a GitHub remote
+              cd "/Users/nb/.claude/projects/-/$project" 2>/dev/null && \
+              REMOTE=$(git remote get-url origin 2>/dev/null | sed 's/.*github.com[:/]\(.*\)\.git/\1/' || true) && \
+              cd - > /dev/null
+              if [ -n "$REMOTE" ]; then
+                ALL_REPOS="$ALL_REPOS $REMOTE"
+              fi
+            fi
+          done
+
+          # Override with input if provided
+          if [ -n "${{ github.event.inputs.repositories }}" ]; then
+            ALL_REPOS="${{ github.event.inputs.repositories }}"
+          fi
+
+          # Convert to JSON matrix
+          MATRIX_JSON="["
+          FIRST=true
+          for repo in $ALL_REPOS; do
+            if [ "$FIRST" = true ]; then
+              FIRST=false
+            else
+              MATRIX_JSON="$MATRIX_JSON,"
+            fi
+            MATRIX_JSON="$MATRIX_JSON\"$repo\""
+          done
+          MATRIX_JSON="$MATRIX_JSON]"
+
+          echo "matrix={\"repository\":$MATRIX_JSON}" >> $GITHUB_OUTPUT
+          echo "📋 Found repositories: $ALL_REPOS"
+
+  codex-review:
+    needs: discover-repositories
+    runs-on: ubuntu-latest
+    name: Codex Review - ${{ matrix.repository }}
+    strategy:
+      matrix: ${{ fromJson(needs.discover-repositories.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Review Environment
+        run: |
+          echo "🔧 Setting up Codex review for ${{ matrix.repository }}"
+          npm install -g @modelcontextprotocol/cli
+          npm install -g eslint jshint semgrep
+
+      - name: Run Comprehensive Codex Analysis
+        id: codex-analysis
+        run: |
+          REPO_NAME=$(echo "${{ matrix.repository }}" | cut -d'/' -f2)
+          REVIEW_FILE="codex-review-${REPO_NAME}.md"
+
+          echo "# 🤖 Codex Review: ${{ matrix.repository }}" > $REVIEW_FILE
+          echo "Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $REVIEW_FILE
+          echo "" >> $REVIEW_FILE
+
+          # 1. ChittyID Compliance Check
+          echo "## 🆔 ChittyID Compliance" >> $REVIEW_FILE
+          HARDCODED_IDS=$(grep -r "CHITTY-[A-Z]+-[0-9]+-[A-Z0-9]+" . \
+            --exclude-dir=node_modules \
+            --exclude-dir=.git \
+            --exclude="*.json" \
+            --exclude="*.md" | wc -l || echo 0)
+
+          if [ "$HARDCODED_IDS" -gt 0 ]; then
+            echo "❌ **CRITICAL**: Found $HARDCODED_IDS hardcoded ChittyIDs" >> $REVIEW_FILE
+            echo "All IDs must be minted from id.chitty.cc" >> $REVIEW_FILE
+            echo "hardcoded_ids=$HARDCODED_IDS" >> $GITHUB_OUTPUT
+          else
+            echo "✅ ChittyID compliance: All IDs properly sourced" >> $REVIEW_FILE
+            echo "hardcoded_ids=0" >> $GITHUB_OUTPUT
+          fi
+          echo "" >> $REVIEW_FILE
+
+          # 2. Security Analysis
+          echo "## 🔐 Security Analysis" >> $REVIEW_FILE
+
+          # Check for exposed secrets
+          EXPOSED_SECRETS=$(grep -r -i \
+            -e "api[_-]key.*=.*['\"]" \
+            -e "secret.*=.*['\"]" \
+            -e "token.*=.*['\"]" \
+            -e "password.*=.*['\"]" \
+            . --include="*.js" --include="*.ts" --include="*.py" \
+            | grep -v "process.env" \
+            | grep -v "secrets\." \
+            | wc -l || echo 0)
+
+          if [ "$EXPOSED_SECRETS" -gt 0 ]; then
+            echo "⚠️  **WARNING**: Found $EXPOSED_SECRETS potential exposed secrets" >> $REVIEW_FILE
+            echo "exposed_secrets=$EXPOSED_SECRETS" >> $GITHUB_OUTPUT
+          else
+            echo "✅ No exposed secrets detected" >> $REVIEW_FILE
+            echo "exposed_secrets=0" >> $GITHUB_OUTPUT
+          fi
+
+          # Check for SQL injection risks
+          SQL_RISKS=$(grep -r "query.*\${.*}" . --include="*.js" --include="*.ts" | wc -l || echo 0)
+          if [ "$SQL_RISKS" -gt 0 ]; then
+            echo "🚨 **SQL Injection Risk**: $SQL_RISKS unparameterized queries" >> $REVIEW_FILE
+          fi
+
+          # Check for command injection
+          CMD_RISKS=$(grep -r "exec\|spawn.*\${" . --include="*.js" --include="*.ts" | wc -l || echo 0)
+          if [ "$CMD_RISKS" -gt 0 ]; then
+            echo "🚨 **Command Injection Risk**: $CMD_RISKS unsafe command executions" >> $REVIEW_FILE
+          fi
+          echo "" >> $REVIEW_FILE
+
+          # 3. Code Quality Metrics
+          echo "## 📊 Code Quality Metrics" >> $REVIEW_FILE
+
+          # Count lines of code
+          LOC=$(find . -type f \( -name "*.js" -o -name "*.ts" -o -name "*.py" \) \
+            -not -path "*/node_modules/*" -exec wc -l {} + | awk '{sum+=$1} END {print sum}' || echo 0)
+          echo "- Lines of Code: $LOC" >> $REVIEW_FILE
+
+          # Count test files
+          TEST_FILES=$(find . -type f \( -name "*test*" -o -name "*spec*" \) \
+            -not -path "*/node_modules/*" | wc -l || echo 0)
+          echo "- Test Files: $TEST_FILES" >> $REVIEW_FILE
+
+          # Check for documentation
+          DOC_FILES=$(find . -type f -name "*.md" -not -path "*/node_modules/*" | wc -l || echo 0)
+          echo "- Documentation Files: $DOC_FILES" >> $REVIEW_FILE
+          echo "" >> $REVIEW_FILE
+
+          # 4. Dependency Analysis
+          echo "## 📦 Dependency Analysis" >> $REVIEW_FILE
+          if [ -f "package.json" ]; then
+            TOTAL_DEPS=$(jq '.dependencies + .devDependencies | length' package.json || echo 0)
+            echo "- Total Dependencies: $TOTAL_DEPS" >> $REVIEW_FILE
+
+            # Check for outdated packages
+            if command -v npm &> /dev/null; then
+              OUTDATED=$(npm outdated --json 2>/dev/null | jq 'length' || echo 0)
+              echo "- Outdated Packages: $OUTDATED" >> $REVIEW_FILE
+            fi
+          fi
+          echo "" >> $REVIEW_FILE
+
+          # 5. Best Practices Check
+          echo "## ✅ Best Practices" >> $REVIEW_FILE
+
+          # Check for error handling
+          ERROR_HANDLING=$(grep -r "try.*catch\|\.catch\|error.*=>" . \
+            --include="*.js" --include="*.ts" | wc -l || echo 0)
+          echo "- Error Handlers: $ERROR_HANDLING" >> $REVIEW_FILE
+
+          # Check for logging
+          LOGGING=$(grep -r "console\.\|logger\." . \
+            --include="*.js" --include="*.ts" | wc -l || echo 0)
+          echo "- Log Statements: $LOGGING" >> $REVIEW_FILE
+
+          # Check for async/await usage
+          ASYNC_USAGE=$(grep -r "async\|await" . \
+            --include="*.js" --include="*.ts" | wc -l || echo 0)
+          echo "- Async/Await Usage: $ASYNC_USAGE" >> $REVIEW_FILE
+          echo "" >> $REVIEW_FILE
+
+          # 6. ChittyOS Integration Check
+          echo "## 🔗 ChittyOS Integration" >> $REVIEW_FILE
+
+          # Check for ChittyOS service usage
+          CHITTY_SERVICES=$(grep -r "chitty\.\|ChittyOS\|ChittyID" . \
+            --include="*.js" --include="*.ts" --include="*.json" | wc -l || echo 0)
+          echo "- ChittyOS References: $CHITTY_SERVICES" >> $REVIEW_FILE
+
+          # Check for MCP integration
+          MCP_INTEGRATION=$(grep -r "mcp\|modelcontextprotocol" . \
+            --include="*.js" --include="*.ts" --include="*.json" | wc -l || echo 0)
+          echo "- MCP Integration Points: $MCP_INTEGRATION" >> $REVIEW_FILE
+          echo "" >> $REVIEW_FILE
+
+          # Calculate overall score
+          SCORE=100
+          SCORE=$((SCORE - HARDCODED_IDS * 10))
+          SCORE=$((SCORE - EXPOSED_SECRETS * 5))
+          SCORE=$((SCORE - SQL_RISKS * 3))
+          SCORE=$((SCORE - CMD_RISKS * 3))
+          if [ $TEST_FILES -eq 0 ]; then SCORE=$((SCORE - 10)); fi
+          if [ $DOC_FILES -eq 0 ]; then SCORE=$((SCORE - 5)); fi
+          if [ $SCORE -lt 0 ]; then SCORE=0; fi
+
+          echo "## 📈 Overall Score: $SCORE/100" >> $REVIEW_FILE
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+          # Upload review report
+          cp $REVIEW_FILE /tmp/
+
+      - name: Upload Review Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-review-${{ matrix.repository }}-${{ github.run_id }}
+          path: /tmp/codex-review-*.md
+
+      - name: Create GitHub Issue for Critical Findings
+        if: steps.codex-analysis.outputs.hardcoded_ids > 0 || steps.codex-analysis.outputs.exposed_secrets > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = '${{ matrix.repository }}'.split('/');
+            const owner = repo[0];
+            const name = repo[1];
+
+            const issueTitle = '🤖 Codex Security Review - Critical Findings';
+            const issueBody = `## Automated Codex Review Found Critical Issues
+
+            **Repository**: ${{ matrix.repository }}
+            **Score**: ${{ steps.codex-analysis.outputs.score }}/100
+            **Date**: ${new Date().toISOString()}
+
+            ### Critical Findings:
+            - Hardcoded ChittyIDs: ${{ steps.codex-analysis.outputs.hardcoded_ids }}
+            - Exposed Secrets: ${{ steps.codex-analysis.outputs.exposed_secrets }}
+
+            ### Required Actions:
+            1. Remove all hardcoded ChittyIDs - use id.chitty.cc service
+            2. Move all secrets to environment variables
+            3. Run security audit: \`npm audit fix\`
+
+            This issue was automatically generated by ChittyOS Codex Review.
+            `;
+
+            try {
+              await github.rest.issues.create({
+                owner: owner,
+                repo: name,
+                title: issueTitle,
+                body: issueBody,
+                labels: ['security', 'automated-review', 'codex']
+              });
+            } catch (error) {
+              console.log(`Could not create issue for ${owner}/${name}: ${error.message}`);
+            }
+
+  generate-summary:
+    needs: codex-review
+    runs-on: ubuntu-latest
+    name: Generate Ecosystem Review Summary
+    if: always()
+
+    steps:
+      - name: Download All Review Reports
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/reviews
+          pattern: codex-review-*
+
+      - name: Generate Ecosystem Summary
+        run: |
+          echo "# 🌐 ChittyOS Ecosystem Codex Review Summary" > ecosystem-summary.md
+          echo "Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> ecosystem-summary.md
+          echo "" >> ecosystem-summary.md
+
+          echo "## 📊 Repository Scores" >> ecosystem-summary.md
+          echo "| Repository | Score | ChittyID Issues | Security Issues |" >> ecosystem-summary.md
+          echo "|------------|-------|-----------------|-----------------|" >> ecosystem-summary.md
+
+          # Process all review files
+          for dir in /tmp/reviews/*/; do
+            for file in "$dir"/*.md; do
+              if [ -f "$file" ]; then
+                REPO=$(grep "^# 🤖 Codex Review:" "$file" | sed 's/.*: //')
+                SCORE=$(grep "Overall Score:" "$file" | sed 's/.*: //' | sed 's/\/100//')
+                CHITTY_ISSUES=$(grep "hardcoded ChittyIDs" "$file" | grep -oE '[0-9]+' | head -1 || echo 0)
+                SEC_ISSUES=$(grep "exposed secrets" "$file" | grep -oE '[0-9]+' | head -1 || echo 0)
+
+                STATUS="✅"
+                if [ "$SCORE" -lt 75 ]; then STATUS="⚠️"; fi
+                if [ "$SCORE" -lt 50 ]; then STATUS="❌"; fi
+
+                echo "| $REPO | $STATUS $SCORE/100 | $CHITTY_ISSUES | $SEC_ISSUES |" >> ecosystem-summary.md
+              fi
+            done
+          done
+
+          echo "" >> ecosystem-summary.md
+          echo "## 🎯 Action Items" >> ecosystem-summary.md
+          echo "1. Address all hardcoded ChittyID violations" >> ecosystem-summary.md
+          echo "2. Fix exposed secrets in affected repositories" >> ecosystem-summary.md
+          echo "3. Implement missing tests in repositories with score < 75" >> ecosystem-summary.md
+          echo "4. Update outdated dependencies across ecosystem" >> ecosystem-summary.md
+
+          # Upload summary
+          cp ecosystem-summary.md /tmp/
+
+      - name: Upload Ecosystem Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecosystem-codex-summary-${{ github.run_id }}
+          path: /tmp/ecosystem-summary.md
+
+      - name: Post Summary to ChittyOS Dashboard
+        run: |
+          # Post summary to ChittyOS dashboard or registry
+          if [ -f "/tmp/ecosystem-summary.md" ]; then
+            curl -X POST https://registry.chitty.cc/api/codex-review \
+              -H "Authorization: Bearer $CHITTY_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"run_id\": \"$GITHUB_RUN_ID\",
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+                \"summary\": \"$(cat /tmp/ecosystem-summary.md | jq -Rs .)\"
+              }" || echo "Registry update failed (non-critical)"
+          fi

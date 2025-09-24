@@ -1,0 +1,264 @@
+name: ChittyOS Security Review
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly security scans
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Comprehensive Security Analysis
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Security Tools
+        run: |
+          npm install -g eslint-plugin-security
+          npm install -g audit-ci
+          npm install -g semgrep
+
+      - name: ChittyID Security Compliance
+        id: chittyid-check
+        run: |
+          echo "## 🔐 ChittyID Security Analysis" > security-report.md
+          echo "" >> security-report.md
+
+          # Check for hardcoded ChittyIDs (critical security violation)
+          HARDCODED_IDS=$(grep -r "CHITTY-[A-Z]\+-[0-9]\+-[A-Z0-9]\+" . \
+            --exclude-dir=node_modules \
+            --exclude-dir=.git \
+            --exclude="*.json" \
+            --exclude="*.md" || true)
+
+          if [ -n "$HARDCODED_IDS" ]; then
+            echo "❌ **CRITICAL**: Hardcoded ChittyIDs detected!" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "$HARDCODED_IDS" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "**Risk**: Hardcoded IDs bypass canonical authority (id.chitty.cc)" >> security-report.md
+            echo "" >> security-report.md
+            exit 1
+          else
+            echo "✅ ChittyID Compliance: All IDs properly sourced from id.chitty.cc" >> security-report.md
+          fi
+
+      - name: Secrets and Credentials Scan
+        run: |
+          echo "### 🔑 Secrets Analysis" >> security-report.md
+
+          # Check for exposed secrets
+          EXPOSED_SECRETS=$(grep -r -i \
+            -e "api[_-]key.*=" \
+            -e "secret.*=" \
+            -e "token.*=" \
+            -e "password.*=" \
+            -e "auth.*=" \
+            . --include="*.js" --include="*.ts" --include="*.json" \
+            | grep -v "process.env" \
+            | grep -v "secrets\." \
+            | head -10 || true)
+
+          if [ -n "$EXPOSED_SECRETS" ]; then
+            echo "⚠️  **Potential Secrets Exposure**:" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "$EXPOSED_SECRETS" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "" >> security-report.md
+          else
+            echo "✅ No exposed secrets detected" >> security-report.md
+          fi
+
+      - name: MCP Server Security Analysis
+        run: |
+          echo "### 🔌 MCP Server Security" >> security-report.md
+
+          # Check for input validation in MCP handlers
+          MCP_HANDLERS=$(find . -name "*.js" -exec grep -l "CallToolRequestSchema\|request.params" {} \;)
+
+          for handler in $MCP_HANDLERS; do
+            # Check for missing input validation
+            if ! grep -q "validate\|sanitize\|escape" "$handler"; then
+              echo "⚠️  **Missing Input Validation**: $handler" >> security-report.md
+            fi
+
+            # Check for SQL injection risks
+            if grep -q "query.*args\|sql.*request" "$handler"; then
+              echo "🚨 **SQL Injection Risk**: $handler" >> security-report.md
+            fi
+
+            # Check for command injection risks
+            if grep -q "exec\|spawn.*args" "$handler"; then
+              echo "🚨 **Command Injection Risk**: $handler" >> security-report.md
+            fi
+          done
+
+      - name: Service Communication Security
+        run: |
+          echo "### 🌐 Service Communication Security" >> security-report.md
+
+          # Check for unencrypted HTTP calls
+          HTTP_CALLS=$(grep -r "http://" . --include="*.js" --include="*.ts" || true)
+          if [ -n "$HTTP_CALLS" ]; then
+            echo "⚠️  **Unencrypted HTTP calls detected**:" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "$HTTP_CALLS" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "**Recommendation**: Use HTTPS for all service calls" >> security-report.md
+            echo "" >> security-report.md
+          fi
+
+          # Check for missing certificate validation
+          FETCH_CALLS=$(grep -r "fetch.*rejectUnauthorized.*false" . --include="*.js" || true)
+          if [ -n "$FETCH_CALLS" ]; then
+            echo "🚨 **Certificate validation disabled**:" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "$FETCH_CALLS" >> security-report.md
+            echo "\`\`\`" >> security-report.md
+            echo "" >> security-report.md
+          fi
+
+      - name: Access Control & Authorization
+        run: |
+          echo "### 🔐 Access Control Analysis" >> security-report.md
+
+          # Check for missing authorization headers
+          SERVICE_CALLS=$(grep -r "fetch\|axios\|request" . --include="*.js" | grep -v "Authorization\|Bearer" || true)
+          if [ -n "$SERVICE_CALLS" ]; then
+            echo "⚠️  **Potential missing authorization in service calls**" >> security-report.md
+            echo "Services should use Bearer tokens for authentication" >> security-report.md
+          fi
+
+          # Check for role-based access patterns
+          if ! grep -r "role\|permission\|authorize" . --include="*.js" >/dev/null 2>&1; then
+            echo "⚠️  **Missing Role-Based Access Control**" >> security-report.md
+            echo "Consider implementing RBAC for sensitive operations" >> security-report.md
+          fi
+
+      - name: Data Validation Security
+        run: |
+          echo "### ✅ Data Validation Security" >> security-report.md
+
+          # Check for proper argument validation in MCP handlers
+          MCP_FILES=$(find . -name "*mcp*.js" -o -name "*server*.js")
+
+          for file in $MCP_FILES; do
+            if [ -f "$file" ]; then
+              echo "Analyzing: $file" >> security-report.md
+
+              # Check for falsy value bugs (security issue for financial data)
+              if grep -q "if.*balance\|if.*amount\|if.*value" "$file" && ! grep -q "!== null\|!== undefined" "$file"; then
+                echo "🚨 **Financial Data Validation Bug**: $file" >> security-report.md
+                echo "   - Zero values may be incorrectly treated as missing" >> security-report.md
+                echo "   - Could lead to incorrect financial calculations" >> security-report.md
+              fi
+
+              # Check for missing default handling (security via availability)
+              if grep -q "args\." "$file" && ! grep -q "default\|fallback\|\|\|??" "$file"; then
+                echo "⚠️  **Missing Input Defaults**: $file" >> security-report.md
+                echo "   - Missing defaults could cause service failures" >> security-report.md
+              fi
+            fi
+          done
+
+      - name: Generate Security Score
+        id: security-score
+        run: |
+          # Calculate security score based on findings
+          CRITICAL_COUNT=$(grep -c "🚨" security-report.md || echo 0)
+          WARNING_COUNT=$(grep -c "⚠️" security-report.md || echo 0)
+          PASSED_COUNT=$(grep -c "✅" security-report.md || echo 0)
+
+          # Score calculation: Start at 100, deduct points for issues
+          SCORE=$((100 - (CRITICAL_COUNT * 25) - (WARNING_COUNT * 5)))
+          if [ $SCORE -lt 0 ]; then SCORE=0; fi
+
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+          echo "" >> security-report.md
+          echo "## 📊 Security Score: $SCORE/100" >> security-report.md
+          echo "- Critical Issues: $CRITICAL_COUNT (-25 each)" >> security-report.md
+          echo "- Warnings: $WARNING_COUNT (-5 each)" >> security-report.md
+          echo "- Passed Checks: $PASSED_COUNT" >> security-report.md
+
+          if [ $SCORE -lt 75 ]; then
+            echo "❌ Security score below threshold (75)" >> security-report.md
+            exit 1
+          else
+            echo "✅ Security score meets requirements" >> security-report.md
+          fi
+
+      - name: Upload Security Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-analysis-report
+          path: security-report.md
+
+      - name: Comment Security Results on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('security-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔐 ChittyOS Security Review\n\n${report}`
+            });
+
+      - name: Security Notification
+        if: steps.security-score.outputs.score < 75
+        run: |
+          echo "🚨 SECURITY ALERT: Score ${{ steps.security-score.outputs.score }}/100"
+          echo "Critical security issues detected in ChittyOS ecosystem"
+          echo "Review security-report.md for detailed findings"
+
+          # In production, this would trigger alerts to security team
+          # curl -X POST $SECURITY_WEBHOOK_URL -d "Security score: ${{ steps.security-score.outputs.score }}"
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    name: Dependency Security Audit
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run npm audit
+        run: |
+          find . -name "package.json" -not -path "*/node_modules/*" | while read package; do
+            echo "Auditing $(dirname $package)"
+            cd "$(dirname $package)"
+            npm audit --audit-level=moderate || true
+            cd - > /dev/null
+          done
+
+      - name: Check for known vulnerable packages
+        run: |
+          # Check for common vulnerable packages
+          VULNERABLE_PACKAGES="lodash@<4.17.21 express@<4.17.3 axios@<0.21.2"
+
+          for pkg in $VULNERABLE_PACKAGES; do
+            if find . -name "package.json" -exec grep -l "${pkg%%@*}" {} \;; then
+              echo "⚠️  Found potentially vulnerable package: $pkg"
+            fi
+          done
