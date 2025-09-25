@@ -1,0 +1,22 @@
+{
+  "name": "chittychat-platform",
+  "version": "1.0.0",
+  "description": "ChittyOS unified platform",
+  "main": "src/platform-worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "echo 'Tests pending'",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "wrangler": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
