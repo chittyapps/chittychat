@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+"""
+ChittyLedger Sync Command
+Usage: /chittyledger-sync [case_id]
+"""
+
+import sys
+import os
+import asyncio
+from pathlib import Path
+
+# Add current directory to path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from chittylegder_integration import ChittyLedgerBridge
+
+async def main():
+    case_id = sys.argv[1] if len(sys.argv) > 1 else "2024D007847"
+
+    print(f"🔄 Syncing ChittyLedger for case {case_id}")
+    print("=" * 50)
+
+    bridge = ChittyLedgerBridge(case_id)
+
+    try:
+        # Sync pending evidence
+        synced_count = await bridge.sync_pending_evidence()
+        print(f"✅ Synced {synced_count} new evidence entries")
+
+        # Generate chain of custody report
+        report = await bridge.generate_chain_of_custody_report()
+
+        print(f"\n📊 Chain of Custody Summary:")
+        print(f"   Total Evidence: {report['total_evidence']}")
+        print(f"   Minted: {report['minted_evidence']}")
+        print(f"   Pending: {report['pending_evidence']}")
+        print(f"   Rejected: {report['rejected_evidence']}")
+
+        print(f"\n📄 Report saved to: chain_of_custody.json")
+
+    except Exception as e:
+        print(f"💥 Sync error: {e}")
+        return 1
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(asyncio.run(main()))

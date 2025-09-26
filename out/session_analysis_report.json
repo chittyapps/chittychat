@@ -1,0 +1,3330 @@
+{
+  "analysis_date": "2025-09-22T09:07:45.421316",
+  "summary": {
+    "total_projects": 76,
+    "total_conflicts": 0,
+    "active_topics": []
+  },
+  "project_activities": {
+    "-Users-nb--claude-projects---legal-docs": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-docs/1f1df6f7-ef57-4a86-bca5-2d340e0f0446.jsonl",
+          "size_kb": 200,
+          "modified": "2025-09-15 01:54:24.487661",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-15 01:54:24.487661",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittychat-sync": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/2bdd94cd-521c-4b9b-b5cd-5f22e4674058.jsonl",
+          "size_kb": 575,
+          "modified": "2025-09-15 01:58:29.655984",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/cc1dcc9b-fcc4-4427-853a-495770f66624.jsonl",
+          "size_kb": 24,
+          "modified": "2025-09-16 23:59:16.189797",
+          "topics": [],
+          "content_preview": "             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/dbaf61e6-e8b1-4e4e-b04e-69dcee7f4fbc.jsonl",
+          "size_kb": 427,
+          "modified": "2025-09-15 02:08:52.383780",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/21cfbc3d-de55-4613-900c-a3310c9dc10b.jsonl",
+          "size_kb": 342,
+          "modified": "2025-09-14 23:53:18.360825",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/44e1e2d4-6485-4e6e-b342-4f2dabc6bfe6.jsonl",
+          "size_kb": 168,
+          "modified": "2025-09-17 14:42:30.456767",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-sync/e839db4e-8dba-442f-b4f5-d866aa9f560e.jsonl",
+          "size_kb": 1862,
+          "modified": "2025-09-16 15:55:16.320294",
+          "topics": [],
+          "content_preview": "                                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 14:42:30.456767",
+      "total_sessions": 6
+    },
+    "-Users-nb--claude-projects---brand": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---brand/5c347746-49a1-40b8-a181-4f650597e0e7.jsonl",
+          "size_kb": 47,
+          "modified": "2025-09-19 04:28:25.190302",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---brand/e80f5c89-2891-4ef1-8bd9-a013a1fc766a.jsonl",
+          "size_kb": 593,
+          "modified": "2025-09-18 15:31:23.841098",
+          "topics": [],
+          "content_preview": "                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 04:28:25.190302",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects-system-openphone-migration": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-openphone-migration/180ca688-68d3-4ff1-8ae1-485dafd445a7.jsonl",
+          "size_kb": 672,
+          "modified": "2025-09-14 12:32:10.743059",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-openphone-migration/6d61696a-1399-4534-8982-5a4952d01af4.jsonl",
+          "size_kb": 673,
+          "modified": "2025-09-13 04:35:04.104927",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 12:32:10.743059",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---chittyid": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/f7a84518-eefe-4ed9-9b18-16225d45cee3.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-17 12:31:14.262278",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/cc3ff826-6d6a-4b96-b24b-3f9fe1587a56.jsonl",
+          "size_kb": 210,
+          "modified": "2025-09-17 00:06:50.960043",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/45c91aa9-2d57-42cd-a6c1-983f2e57190b.jsonl",
+          "size_kb": 4966,
+          "modified": "2025-09-22 08:57:02.395049",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/61c11596-4f08-4bb4-b3ed-30012f19a652.jsonl",
+          "size_kb": 451,
+          "modified": "2025-09-16 15:58:47.288635",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/ee6ce567-e6c5-40b4-b44f-066a0fb55f06.jsonl",
+          "size_kb": 850,
+          "modified": "2025-09-17 19:30:42.438123",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/47a1e946-fce8-4d17-8875-489db2cfbc14.jsonl",
+          "size_kb": 5404,
+          "modified": "2025-09-15 01:56:29.815848",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/fb258f4a-f2ab-4416-a19c-df473a546d0d.jsonl",
+          "size_kb": 675,
+          "modified": "2025-09-15 01:59:18.383329",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/77b00e1a-1dc5-4191-bc61-2353a6ab4ad1.jsonl",
+          "size_kb": 3675,
+          "modified": "2025-09-15 01:58:48.216887",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/9aebd758-1f67-4939-be6f-d8001214b6ef.jsonl",
+          "size_kb": 40,
+          "modified": "2025-09-16 23:55:13.562387",
+          "topics": [],
+          "content_preview": "                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/65cba79e-7ba9-49f8-94f6-90af52c58a10.jsonl",
+          "size_kb": 356,
+          "modified": "2025-09-15 03:38:59.353217",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/f1fdbb57-4a6a-4616-b1f8-11564d83dd4e.jsonl",
+          "size_kb": 417,
+          "modified": "2025-09-17 14:53:32.856795",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/2e3f69c2-b469-49ad-9045-76eb29a68b24.jsonl",
+          "size_kb": 214,
+          "modified": "2025-09-17 12:04:54.796720",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/2bb60a18-f142-41d6-8f72-4c1139f9b11b.jsonl",
+          "size_kb": 346,
+          "modified": "2025-09-17 14:40:14.528895",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/601188a7-8eb2-4fe5-a1f7-6a2d61a8e990.jsonl",
+          "size_kb": 3113,
+          "modified": "2025-09-19 09:03:52.157550",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/ae79a8a0-3c3f-4863-8b0d-510baf057c14.jsonl",
+          "size_kb": 250,
+          "modified": "2025-09-16 23:42:38.079040",
+          "topics": [],
+          "content_preview": "                                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/8645b330-056d-4ad4-aefd-778ac8d510c4.jsonl",
+          "size_kb": 76,
+          "modified": "2025-09-17 00:01:16.051476",
+          "topics": [],
+          "content_preview": "                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/67e0045c-56e6-4180-939e-af6bd8a216d0.jsonl",
+          "size_kb": 303,
+          "modified": "2025-09-17 12:22:00.504957",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/a3253855-3a0e-4a2e-8550-2eee728791aa.jsonl",
+          "size_kb": 334,
+          "modified": "2025-09-16 15:58:31.586722",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/39d8c4de-a435-403a-83a5-2566b95b1790.jsonl",
+          "size_kb": 211,
+          "modified": "2025-09-16 17:58:41.734395",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/b52bb9e1-3b46-4900-855e-c92120477b41.jsonl",
+          "size_kb": 413,
+          "modified": "2025-09-16 11:29:11.752725",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/3ad3b9ac-827f-48ac-bdf3-fe418cb979d5.jsonl",
+          "size_kb": 2285,
+          "modified": "2025-09-18 19:42:47.106208",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/cde08d54-d75d-4139-b6d5-702cb0658b19.jsonl",
+          "size_kb": 415,
+          "modified": "2025-09-22 09:07:13.131190",
+          "topics": [],
+          "content_preview": "                                    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/0594bcf6-476b-4b55-a6b6-d87e034cfb57.jsonl",
+          "size_kb": 1183,
+          "modified": "2025-09-17 19:13:16.299987",
+          "topics": [],
+          "content_preview": "                   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/2a35804f-8bce-4b47-a1aa-c6da50a74124.jsonl",
+          "size_kb": 61,
+          "modified": "2025-09-20 10:50:01.406335",
+          "topics": [],
+          "content_preview": "               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/9457b0e1-31c4-49d7-b01f-44621d57691d.jsonl",
+          "size_kb": 140,
+          "modified": "2025-09-15 01:56:26.852134",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/cd46a658-3bf7-4427-aa60-95b28171e3a4.jsonl",
+          "size_kb": 495,
+          "modified": "2025-09-17 15:48:13.659581",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/af00c764-babd-4949-8b41-8462d40068bf.jsonl",
+          "size_kb": 44,
+          "modified": "2025-09-16 11:23:36.871435",
+          "topics": [],
+          "content_preview": "                   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyid/4085e902-2f63-4ef9-bb33-e843b780ff6e.jsonl",
+          "size_kb": 43,
+          "modified": "2025-09-17 12:17:12.415951",
+          "topics": [],
+          "content_preview": "                  "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:13.131190",
+      "total_sessions": 28
+    },
+    "-Users-nb--claude-projects---chittyos": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos/a458ba0e-9116-4ad8-ae7e-9f79844c644e.jsonl",
+          "size_kb": 1943,
+          "modified": "2025-09-19 09:09:42.259879",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos/c0d88fa3-af37-49ea-8598-f7e2b343f57e.jsonl",
+          "size_kb": 329,
+          "modified": "2025-09-15 00:24:40.991317",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos/162d5b3c-7794-438a-84ec-f5c06a47335c.jsonl",
+          "size_kb": 330,
+          "modified": "2025-09-18 20:40:35.096832",
+          "topics": [],
+          "content_preview": "                                   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos/005d0ba9-739e-4ec5-8364-d272757f11ff.jsonl",
+          "size_kb": 188,
+          "modified": "2025-09-19 23:50:16.989307",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos/dc253c92-2e9b-4d59-a875-e33141263585.jsonl",
+          "size_kb": 214,
+          "modified": "2025-09-19 23:25:20.714752",
+          "topics": [],
+          "content_preview": "                            "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 23:50:16.989307",
+      "total_sessions": 5
+    },
+    "-Users-nb--claude-projects-brand": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-brand/7ae46e19-38f1-4325-920f-c9424d805342.jsonl",
+          "size_kb": 336,
+          "modified": "2025-09-14 20:32:22.727180",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 20:32:22.727180",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-legal-vangaurd-onboarding": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/ae993d6f-d525-489b-bd17-b52059fdd80d.jsonl",
+          "size_kb": 226,
+          "modified": "2025-09-14 12:37:31.611238",
+          "topics": [],
+          "content_preview": "                                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/bf9c33fa-8c73-4a3f-a941-93978c83affd.jsonl",
+          "size_kb": 86,
+          "modified": "2025-09-16 23:59:12.739667",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/b6321b89-9222-4628-8948-a4a40012cfef.jsonl",
+          "size_kb": 117,
+          "modified": "2025-09-16 09:51:49.450871",
+          "topics": [],
+          "content_preview": "                                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/e6bec297-6352-4735-87dc-fae3c219f4e0.jsonl",
+          "size_kb": 598,
+          "modified": "2025-09-16 12:44:03.013794",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/26b5029e-61c6-4b6a-93ae-2d138111813b.jsonl",
+          "size_kb": 725,
+          "modified": "2025-09-15 01:54:58.876452",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/5ae8c912-c526-4f6b-a785-ac80e90d704c.jsonl",
+          "size_kb": 102,
+          "modified": "2025-09-17 14:41:16.348676",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/e170805a-cacd-4474-9ec0-2bb3975e6929.jsonl",
+          "size_kb": 2023,
+          "modified": "2025-09-13 10:21:55.758805",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/e886695d-e328-4dbf-8f21-28467aeac73a.jsonl",
+          "size_kb": 1997,
+          "modified": "2025-09-13 04:34:06.816757",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-vangaurd-onboarding/3c880775-db06-43b4-ab79-ccd29a3889b3.jsonl",
+          "size_kb": 4459,
+          "modified": "2025-09-22 08:26:37.365433",
+          "topics": [],
+          "content_preview": "                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:26:37.365433",
+      "total_sessions": 9
+    },
+    "-Users-nb--claude-projects---chittybrand": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/3e7840fa-fc68-406e-ac56-8cf824350811.jsonl",
+          "size_kb": 6,
+          "modified": "2025-09-20 12:05:45.119104",
+          "topics": [],
+          "content_preview": "    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/ff4c364a-eb48-4275-8796-4a36c26cd956.jsonl",
+          "size_kb": 384,
+          "modified": "2025-09-20 12:05:22.423985",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/91013fce-2509-4d1e-9220-bfeb506e99cb.jsonl",
+          "size_kb": 545,
+          "modified": "2025-09-22 08:53:12.443568",
+          "topics": [],
+          "content_preview": "                                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/aadcd37e-5c38-4da0-8210-cc587d0ff4ea.jsonl",
+          "size_kb": 754,
+          "modified": "2025-09-19 09:07:51.413304",
+          "topics": [],
+          "content_preview": "                                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/8e874632-6f2e-48b1-adf9-ebd2db1e0fcc.jsonl",
+          "size_kb": 2570,
+          "modified": "2025-09-22 08:59:43.161216",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittybrand/682c1b30-af57-4f25-8ecf-2da821f7f7f4.jsonl",
+          "size_kb": 177,
+          "modified": "2025-09-21 02:40:05.249529",
+          "topics": [],
+          "content_preview": "                                    "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:59:43.161216",
+      "total_sessions": 6
+    },
+    "-Users-nb--claude-projects---tmp": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---tmp/bf9402af-0edd-4ec4-92c3-e1a1c2528609.jsonl",
+          "size_kb": 29,
+          "modified": "2025-09-17 15:47:30.351276",
+          "topics": [],
+          "content_preview": "                   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 15:47:30.351276",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---connectors": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/cee2a3a7-f7ae-4eb3-af5b-71471ad456e1.jsonl",
+          "size_kb": 989,
+          "modified": "2025-09-17 14:56:33.656649",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/f4a3aa00-32c0-405c-a898-41d104f5bde2.jsonl",
+          "size_kb": 57,
+          "modified": "2025-09-16 17:27:23.513757",
+          "topics": [],
+          "content_preview": "                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/c606fa7f-30da-4683-bd6d-183453541025.jsonl",
+          "size_kb": 1062,
+          "modified": "2025-09-17 18:43:51.845659",
+          "topics": [],
+          "content_preview": "                                  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/df57f923-9a7b-4c2c-8102-ea3031a04042.jsonl",
+          "size_kb": 94,
+          "modified": "2025-09-15 01:54:56.739325",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/2855e75f-c3b2-41f5-af28-5f0b30f0f061.jsonl",
+          "size_kb": 210,
+          "modified": "2025-09-15 01:55:37.843918",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/c51355bf-ece5-4990-8f69-574fd3184daa.jsonl",
+          "size_kb": 103,
+          "modified": "2025-09-15 01:55:01.698916",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/71637307-d50a-4390-9cec-5a4dfe35d499.jsonl",
+          "size_kb": 281,
+          "modified": "2025-09-16 23:53:17.844121",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---connectors/fd81f26d-8b7b-4647-96fc-0a12e3850e25.jsonl",
+          "size_kb": 6739,
+          "modified": "2025-09-22 08:57:04.463857",
+          "topics": [],
+          "content_preview": "                                     "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:57:04.463857",
+      "total_sessions": 8
+    },
+    "-Users-nb--claude-projects---chittyrouter": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/e1e468a6-f412-483e-8e70-1ae77490c747.jsonl",
+          "size_kb": 4028,
+          "modified": "2025-09-19 06:11:28.951831",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/e71414f7-57f3-401c-afde-d78583424dc1.jsonl",
+          "size_kb": 460,
+          "modified": "2025-09-22 09:07:14.086942",
+          "topics": [],
+          "content_preview": "                                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/46f49ce7-3c7e-442c-bc1a-c222c6ed3fbd.jsonl",
+          "size_kb": 492,
+          "modified": "2025-09-17 14:41:14.288107",
+          "topics": [],
+          "content_preview": "                                       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/275a3cc4-a745-421d-b947-78f21f79a53f.jsonl",
+          "size_kb": 2557,
+          "modified": "2025-09-16 13:47:08.525135",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/7c9a26c0-c725-4423-ba9e-88851a86ee20.jsonl",
+          "size_kb": 154,
+          "modified": "2025-09-16 23:58:46.400050",
+          "topics": [],
+          "content_preview": "                                           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/4898d1af-9ca3-4e03-af95-58f9e406be84.jsonl",
+          "size_kb": 224,
+          "modified": "2025-09-19 08:39:51.462009",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyrouter/ab5bf1ad-323f-4293-8819-db08288b3eb1.jsonl",
+          "size_kb": 9925,
+          "modified": "2025-09-22 09:00:51.782772",
+          "topics": [],
+          "content_preview": "                                   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:14.086942",
+      "total_sessions": 7
+    },
+    "-Users-nb--claude-projects---chittycases": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycases/006e85a5-6cd1-4a91-b40d-9954e245a178.jsonl",
+          "size_kb": 629,
+          "modified": "2025-09-15 01:57:59.501064",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycases/139be935-2358-4995-8168-0254f724cf5b.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-17 03:24:50.985667",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycases/19b83d02-7e6f-4d01-8bf3-8d0ee3cebffe.jsonl",
+          "size_kb": 698,
+          "modified": "2025-09-16 15:55:27.262603",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycases/aa4d03a6-cc91-4c84-9848-19b62a41b399.jsonl",
+          "size_kb": 117,
+          "modified": "2025-09-17 00:01:29.093573",
+          "topics": [],
+          "content_preview": "                         "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 03:24:50.985667",
+      "total_sessions": 4
+    },
+    "-Users-nb": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/bde8e893-e98a-4352-8e88-942882d8eefb.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-14 13:00:22.031832",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/d8dfe9c2-d957-4629-ad07-6c4e7dfd8ce9.jsonl",
+          "size_kb": 51,
+          "modified": "2025-09-09 12:55:25.859649",
+          "topics": [],
+          "content_preview": "                                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/812ec23f-d039-48f9-91f6-0ed7c3a2fcf2.jsonl",
+          "size_kb": 75,
+          "modified": "2025-09-08 00:14:58.751383",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6ef424ff-28e3-42b5-8e6e-7d5bc332f552.jsonl",
+          "size_kb": 340,
+          "modified": "2025-09-10 09:09:36.804294",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/f014b9d4-4bf7-499e-a557-79b2c8de9613.jsonl",
+          "size_kb": 68,
+          "modified": "2025-09-09 16:02:13.555600",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/765e930d-52fa-4ea6-aae3-ca0549b7aff7.jsonl",
+          "size_kb": 2,
+          "modified": "2025-09-05 14:56:05.752447",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/a384fa47-2397-4319-a32a-647b742addf7.jsonl",
+          "size_kb": 906,
+          "modified": "2025-09-13 05:12:20.686918",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/09e1f566-acdc-4c7b-bee3-160f51f7f09f.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-14 12:23:22.564913",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6c6e0016-e87c-4045-ba5d-b07a7d81f702.jsonl",
+          "size_kb": 256,
+          "modified": "2025-09-09 17:32:57.641973",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/4b8e26b4-6bad-416d-ae67-f8944149aad6.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-11 04:42:17.727087",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/9a3cf7a5-c3f8-42f6-9bd5-4e75cf058cf9.jsonl",
+          "size_kb": 60,
+          "modified": "2025-09-08 11:37:10.581013",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/12ca3f8f-00ec-4b48-ac7e-9130c750c7be.jsonl",
+          "size_kb": 275,
+          "modified": "2025-09-08 15:01:59.453197",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/5ef1456c-56dc-4578-b3c2-8725ec50d3e2.jsonl",
+          "size_kb": 23,
+          "modified": "2025-09-09 11:34:03.493132",
+          "topics": [],
+          "content_preview": "         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/9f53e1f3-aa2a-4b0a-bc07-a4485590a102.jsonl",
+          "size_kb": 179,
+          "modified": "2025-09-09 11:01:24.443266",
+          "topics": [],
+          "content_preview": "           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/30c4b033-a7f1-4fcf-aeb2-b3252b87257d.jsonl",
+          "size_kb": 2135,
+          "modified": "2025-09-19 04:35:34.891449",
+          "topics": [],
+          "content_preview": "                                  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/a7a83315-0bef-4562-b820-f9c0ab430e7e.jsonl",
+          "size_kb": 1815,
+          "modified": "2025-09-09 15:40:28.917768",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/683d72f0-6965-47dc-886b-47c3364d7440.jsonl",
+          "size_kb": 276,
+          "modified": "2025-09-05 14:58:14.370161",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/756d909b-a33a-49e7-ac0f-74bf8185c073.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-18 09:16:06.355105",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/707f981d-2a87-4330-8ef5-ea5e4bf7e583.jsonl",
+          "size_kb": 513,
+          "modified": "2025-09-13 10:21:03.441454",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/784482cb-b4d1-4fed-94ef-1e050db08d6a.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-10 02:43:02.902320",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/f345b97b-fa7f-45a3-b07d-b207a3071c3d.jsonl",
+          "size_kb": 164,
+          "modified": "2025-09-09 17:32:45.056212",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/d9e4bb53-5e67-4f5d-9837-98d0ffc80d0d.jsonl",
+          "size_kb": 780,
+          "modified": "2025-09-08 04:33:57.827373",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/ff3aaacd-8dff-468e-ab69-c5132a779471.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-09 13:41:35.550951",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/3c045c2f-5ab1-44c2-b9f7-06437dd93b57.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-09 15:17:06.133137",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/5366c1cb-2d76-48d7-ae06-7ad864531544.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-08 14:29:04.703211",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/ed25e226-fd4e-4ecd-8f88-4c4e66f2f3de.jsonl",
+          "size_kb": 66,
+          "modified": "2025-09-09 17:33:32.163278",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6a0f96a6-70f8-4028-9ca1-a529d8ab8028.jsonl",
+          "size_kb": 872,
+          "modified": "2025-09-09 15:17:28.163971",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/b0cb4b3a-702d-495e-a0a9-79712bebdea4.jsonl",
+          "size_kb": 199,
+          "modified": "2025-09-08 16:16:54.656631",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/f9a7721c-4282-4b6e-99a8-0e3dac30e35c.jsonl",
+          "size_kb": 672,
+          "modified": "2025-09-08 15:22:17.059201",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/21723b60-8303-44e5-9291-a9494883e083.jsonl",
+          "size_kb": 210,
+          "modified": "2025-09-15 01:54:11.637259",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/24049210-a55b-4af0-8fd5-cf242d1894cd.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-10 09:04:38.951286",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/c0df525e-bd45-4cba-a607-8dd5a3199120.jsonl",
+          "size_kb": 141,
+          "modified": "2025-09-09 15:23:19.764040",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/f2be89f6-9210-45ff-8d4e-84bc19cd9c7e.jsonl",
+          "size_kb": 99,
+          "modified": "2025-09-05 15:40:33.835789",
+          "topics": [],
+          "content_preview": "                                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/9fff63e3-2d03-4354-bbb5-0847450bd117.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-10 02:30:58.525482",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/3c530288-1892-458f-9705-5b9c3b9f72d7.jsonl",
+          "size_kb": 25413,
+          "modified": "2025-09-13 04:40:30.415771",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/1b379b84-e95a-42e1-ac1a-af6866a2357f.jsonl",
+          "size_kb": 89,
+          "modified": "2025-09-08 15:10:06.095478",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/e8e5c8bb-074a-4e46-9948-c8179cdbac28.jsonl",
+          "size_kb": 5,
+          "modified": "2025-09-09 15:23:32.200839",
+          "topics": [],
+          "content_preview": "   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/7413881c-e324-46c9-b24d-8dc0e73a6449.jsonl",
+          "size_kb": 15,
+          "modified": "2025-09-09 15:40:55.744941",
+          "topics": [],
+          "content_preview": "           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/4e8b8731-847e-4806-b15f-a3f60c3869b7.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-08 14:28:38.455649",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/f85adb4d-945a-49dd-b130-46c9b30d9930.jsonl",
+          "size_kb": 73,
+          "modified": "2025-09-08 03:46:40.677772",
+          "topics": [],
+          "content_preview": "              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/7f882430-b5ff-4978-a901-9f13a2b00b32.jsonl",
+          "size_kb": 26815,
+          "modified": "2025-09-13 03:24:49.424827",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/586d6b97-db7c-475f-b71e-d646a6202622.jsonl",
+          "size_kb": 147,
+          "modified": "2025-09-10 02:42:43.246960",
+          "topics": [],
+          "content_preview": "                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/62c60fec-c26d-4976-99ce-cddd4176998a.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-09 15:23:11.410680",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/cc91bd1c-976b-451f-848a-e0f2859d9c73.jsonl",
+          "size_kb": 1353,
+          "modified": "2025-09-13 04:41:59.321555",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/c3998f2e-7456-4c44-8c83-e17eef7c607b.jsonl",
+          "size_kb": 189,
+          "modified": "2025-09-09 12:55:58.206125",
+          "topics": [],
+          "content_preview": "                                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/56d7aa1e-f500-4f7d-95ef-eda1523079f4.jsonl",
+          "size_kb": 3,
+          "modified": "2025-09-09 11:34:10.521849",
+          "topics": [],
+          "content_preview": "  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/b528e2c5-cb27-4ab3-889c-2b794c5b3967.jsonl",
+          "size_kb": 8,
+          "modified": "2025-09-05 14:56:39.691762",
+          "topics": [],
+          "content_preview": "       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6cb65f68-891b-4040-b46f-0cacaab086d4.jsonl",
+          "size_kb": 30,
+          "modified": "2025-09-08 15:15:01.181006",
+          "topics": [],
+          "content_preview": "                    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/b486e7a1-4f31-4f06-af8c-7cbb9fc0413a.jsonl",
+          "size_kb": 121,
+          "modified": "2025-09-13 04:39:06.064348",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/4c2f1e83-9157-455a-8fc3-b3f087969c66.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-10 11:08:31.506037",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6ac985e1-a519-4a45-90f3-68ca91bd9490.jsonl",
+          "size_kb": 39,
+          "modified": "2025-09-14 23:48:43.757941",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/0631303e-85ca-401f-be4a-3ab91b5d910a.jsonl",
+          "size_kb": 197,
+          "modified": "2025-09-15 01:57:04.184164",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/7e1fabfa-b702-4991-8225-6c973148df9c.jsonl",
+          "size_kb": 20,
+          "modified": "2025-09-10 09:06:49.512423",
+          "topics": [],
+          "content_preview": "                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/91fac40c-9996-4566-b1ba-242089705a9d.jsonl",
+          "size_kb": 526,
+          "modified": "2025-09-08 03:47:20.623280",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/d602710a-1e2c-4f93-be9d-20ce0f2b011c.jsonl",
+          "size_kb": 1108,
+          "modified": "2025-09-13 05:10:39.957643",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/cc7742c7-c3cb-4601-8bc2-8d025db99980.jsonl",
+          "size_kb": 48,
+          "modified": "2025-09-05 14:57:55.431234",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/7e8b9eff-2a42-4977-a4c4-bd596869f50b.jsonl",
+          "size_kb": 792,
+          "modified": "2025-09-08 16:21:15.069963",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/9609450a-6466-4999-bf0d-3e09e49f0bd3.jsonl",
+          "size_kb": 11,
+          "modified": "2025-09-18 18:58:19.394366",
+          "topics": [],
+          "content_preview": "          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/e7a31774-37c8-4c41-baa0-4289f6eb7dd3.jsonl",
+          "size_kb": 42,
+          "modified": "2025-09-09 13:45:14.347250",
+          "topics": [],
+          "content_preview": "                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/19e64d3a-76b5-4fc0-9889-f0e7822a40f7.jsonl",
+          "size_kb": 7,
+          "modified": "2025-09-16 10:46:19.264753",
+          "topics": [],
+          "content_preview": "    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/3a5234d1-4bcc-4a80-9773-ca45ca257d84.jsonl",
+          "size_kb": 505,
+          "modified": "2025-09-08 16:17:53.953079",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/fcf7b5cd-b68d-41ca-aca6-e4d8da3cf370.jsonl",
+          "size_kb": 23,
+          "modified": "2025-09-08 11:50:07.630114",
+          "topics": [],
+          "content_preview": "         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/e76a66ce-71f9-4b15-bc67-b7b11a515457.jsonl",
+          "size_kb": 175,
+          "modified": "2025-09-08 15:10:07.867527",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/12563aa2-5592-40c8-ad41-776b36079f82.jsonl",
+          "size_kb": 1202,
+          "modified": "2025-09-16 12:46:59.777235",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/cd90eae5-a5f6-43f6-b0de-0c0b2de43ccb.jsonl",
+          "size_kb": 307,
+          "modified": "2025-09-08 04:23:44.312326",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/2e9f698f-d44c-462f-997a-efb71ac6acdb.jsonl",
+          "size_kb": 5,
+          "modified": "2025-09-05 14:56:22.963144",
+          "topics": [],
+          "content_preview": "      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/fcdc6193-fc3a-4b74-8261-b22052d69915.jsonl",
+          "size_kb": 281,
+          "modified": "2025-09-07 23:27:23.172294",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/4b39fd00-ee41-4b22-a31d-83a9cb2db097.jsonl",
+          "size_kb": 1266,
+          "modified": "2025-09-16 18:16:30.719937",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/d3f2f87c-a4f9-49df-af9f-f0bc988dd263.jsonl",
+          "size_kb": 713,
+          "modified": "2025-09-08 14:45:15.076791",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/bb6e5e23-9423-41c1-bbbf-26a325a32088.jsonl",
+          "size_kb": 30,
+          "modified": "2025-09-10 09:11:23.100961",
+          "topics": [],
+          "content_preview": "                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/bb4718a3-b2ad-44c9-a5ac-9dead03df575.jsonl",
+          "size_kb": 2848,
+          "modified": "2025-09-08 04:26:10.805068",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/079ad99d-5ab5-4dc3-87f7-7a3bc5dbdd13.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-16 08:37:01.199276",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/84450c05-4ed1-436f-857e-1975728d7453.jsonl",
+          "size_kb": 208,
+          "modified": "2025-09-09 17:35:59.741307",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/668b2351-d5f4-445a-ab61-0d54eedff929.jsonl",
+          "size_kb": 1474,
+          "modified": "2025-09-13 04:39:27.647508",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/96f7cfd3-c9af-4937-86f9-aad15ce6b439.jsonl",
+          "size_kb": 7,
+          "modified": "2025-09-09 11:33:52.668227",
+          "topics": [],
+          "content_preview": "     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/6b94ef4b-68ea-482e-8bd6-0180e91f9a48.jsonl",
+          "size_kb": 191,
+          "modified": "2025-09-08 16:17:11.545572",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb/dccf3c9a-deaf-454b-b284-734d1b70a86b.jsonl",
+          "size_kb": 11619,
+          "modified": "2025-09-08 15:00:13.673691",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 04:35:34.891449",
+      "total_sessions": 77
+    },
+    "-Users-nb--claude-projects---launch-chitty": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---launch-chitty/22b6b540-130f-4626-a6ff-18c4c24c1664.jsonl",
+          "size_kb": 333,
+          "modified": "2025-09-16 23:58:49.343344",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---launch-chitty/a11a5bf0-332f-44f9-98e9-403cfc7c74d2.jsonl",
+          "size_kb": 28,
+          "modified": "2025-09-17 19:13:51.594353",
+          "topics": [],
+          "content_preview": "                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---launch-chitty/325db78b-c8ac-4b6f-9285-904571c744d8.jsonl",
+          "size_kb": 550,
+          "modified": "2025-09-17 14:45:49.638703",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---launch-chitty/442fbf81-ed99-42da-92ce-e457d8503a71.jsonl",
+          "size_kb": 141,
+          "modified": "2025-09-16 12:45:32.373462",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 19:13:51.594353",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects---chittychain": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychain/9d5d5265-9ae8-4cc8-90fc-b5a6f850e64d.jsonl",
+          "size_kb": 58,
+          "modified": "2025-09-16 13:42:21.857642",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychain/60e5abc0-01f7-4900-b210-6a5741bb8285.jsonl",
+          "size_kb": 79,
+          "modified": "2025-09-17 14:42:24.738287",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychain/3fdb757f-0c52-4bf8-8731-baef3bc630c0.jsonl",
+          "size_kb": 84,
+          "modified": "2025-09-17 19:14:54.856390",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychain/4da01f45-a392-4612-97b9-c93fc1331046.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-16 23:57:48.141352",
+          "topics": [],
+          "content_preview": ""
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 19:14:54.856390",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects-system-chittyos-data": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos-data/392aeebc-d478-4bc6-9811-b634f29e4ac8.jsonl",
+          "size_kb": 24,
+          "modified": "2025-09-13 03:23:29.851979",
+          "topics": [],
+          "content_preview": "                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos-data/7a3cab08-65a0-4231-b1af-f6077c2f33cb.jsonl",
+          "size_kb": 567,
+          "modified": "2025-09-13 10:22:46.590995",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos-data/5ab203ce-e8e7-476b-bcc7-fd547da16dc4.jsonl",
+          "size_kb": 566,
+          "modified": "2025-09-14 11:37:58.898315",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos-data/703ffe4d-5fc4-4a72-a9ca-c1a4bfddb0ba.jsonl",
+          "size_kb": 568,
+          "modified": "2025-09-14 11:35:55.884234",
+          "topics": [],
+          "content_preview": "                                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 11:37:58.898315",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects-system-chittychat-sync": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat-sync/ceec7df5-9efa-4e53-aa36-aae57a2d0ed6.jsonl",
+          "size_kb": 1385,
+          "modified": "2025-09-13 04:39:44.953914",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 04:39:44.953914",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---domains": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---domains/75602561-0f55-4673-b628-d569f39136cf.jsonl",
+          "size_kb": 43,
+          "modified": "2025-09-16 23:50:14.315760",
+          "topics": [],
+          "content_preview": "                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---domains/6dbf4c03-6285-4dbf-a62f-0883e12be481.jsonl",
+          "size_kb": 58,
+          "modified": "2025-09-17 12:34:43.325826",
+          "topics": [],
+          "content_preview": "                         "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 12:34:43.325826",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-hooks": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-hooks/af77f8a3-f7b7-4a0c-8b72-698fe5b25aea.jsonl",
+          "size_kb": 205,
+          "modified": "2025-09-20 12:04:16.534030",
+          "topics": [],
+          "content_preview": "                       "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 12:04:16.534030",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittyassets": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyassets/1ed8bc64-a6ce-4792-a85f-c28999cb534a.jsonl",
+          "size_kb": 652,
+          "modified": "2025-09-17 18:40:10.198889",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyassets/fa244ca8-089f-4f44-a7b1-1edc9c047bf8.jsonl",
+          "size_kb": 979,
+          "modified": "2025-09-17 15:47:47.708113",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyassets/a9e8f22d-78dc-490a-9f15-d5ec357de76f.jsonl",
+          "size_kb": 1984,
+          "modified": "2025-09-17 02:38:37.468035",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 18:40:10.198889",
+      "total_sessions": 3
+    },
+    "-Users-nb--claude-projects---1111": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1111/8f10c21e-3995-4fdf-befc-229c72122165.jsonl",
+          "size_kb": 94,
+          "modified": "2025-09-17 15:33:45.358784",
+          "topics": [],
+          "content_preview": "                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1111/d429d948-27e2-4648-a620-8fc053bd6435.jsonl",
+          "size_kb": 961,
+          "modified": "2025-09-22 08:52:12.854438",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1111/54cc1ea5-e07e-4343-9361-f37d4baf9253.jsonl",
+          "size_kb": 714,
+          "modified": "2025-09-19 08:38:33.683887",
+          "topics": [],
+          "content_preview": "                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:52:12.854438",
+      "total_sessions": 3
+    },
+    "-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/c9a5f8b3-0a6e-43dc-acd4-b3a68824d68c.jsonl",
+          "size_kb": 571,
+          "modified": "2025-09-15 00:19:43.102576",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/6b1d69a3-4320-4612-9fb9-928d7d077aec.jsonl",
+          "size_kb": 63,
+          "modified": "2025-09-17 02:40:28.603074",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/a66db4c7-b826-4ada-98cb-4b220ded75db.jsonl",
+          "size_kb": 33,
+          "modified": "2025-09-16 11:23:08.967298",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/3f9b3355-e868-4696-b6be-5974198fbbe7.jsonl",
+          "size_kb": 7,
+          "modified": "2025-09-15 03:20:05.324214",
+          "topics": [],
+          "content_preview": "         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/521a3130-183b-4c13-bf08-763fd3400a77.jsonl",
+          "size_kb": 261,
+          "modified": "2025-09-22 09:03:26.489486",
+          "topics": [],
+          "content_preview": "                                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/92efbe92-0515-43be-ab79-cc6c5d55e46b.jsonl",
+          "size_kb": 67,
+          "modified": "2025-09-12 21:05:47.024602",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/c9de84ba-4097-45ba-aa88-7706afbac805.jsonl",
+          "size_kb": 631,
+          "modified": "2025-09-17 15:43:20.442729",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-Library-CloudStorage-GoogleDrive-nick-aribia-llc-Shared-drives-ChittyOS-Data/e4520fd2-00bf-4b0f-9e48-f132b92e5862.jsonl",
+          "size_kb": 813,
+          "modified": "2025-09-17 19:25:30.639111",
+          "topics": [],
+          "content_preview": "                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:03:26.489486",
+      "total_sessions": 8
+    },
+    "-Users-nb--claude-projects---legal-guzman-onboarding": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-guzman-onboarding/52ef508f-ef6e-46ce-b59d-bed868d0877f.jsonl",
+          "size_kb": 195,
+          "modified": "2025-09-17 15:52:32.078039",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-guzman-onboarding/d23cdafd-3d3c-4d21-be6d-17f9d136e52d.jsonl",
+          "size_kb": 223,
+          "modified": "2025-09-16 18:23:03.349088",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-guzman-onboarding/7743899e-346e-4622-8235-afc9ee81e794.jsonl",
+          "size_kb": 809,
+          "modified": "2025-09-15 01:55:31.806295",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-guzman-onboarding/0680a596-dd0f-4022-9f57-990633191340.jsonl",
+          "size_kb": 125,
+          "modified": "2025-09-17 02:23:41.984993",
+          "topics": [],
+          "content_preview": "                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 15:52:32.078039",
+      "total_sessions": 4
+    },
+    "-Users-nb-jumpoff": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/12216be9-91bf-4548-920c-7c8a788eb8df.jsonl",
+          "size_kb": 383,
+          "modified": "2025-09-08 11:40:42.685461",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/087721d3-ed68-4e90-b645-77c155aa9c52.jsonl",
+          "size_kb": 87,
+          "modified": "2025-09-09 13:46:09.674893",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/5978668d-7309-4580-8b5c-c518cd3f45fd.jsonl",
+          "size_kb": 985,
+          "modified": "2025-09-15 00:16:36.433151",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/5c2c6019-f283-4310-90eb-54783497075e.jsonl",
+          "size_kb": 57,
+          "modified": "2025-09-09 15:41:21.396513",
+          "topics": [],
+          "content_preview": "                                   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/e79b1701-9d1e-451e-be99-822e68a78c10.jsonl",
+          "size_kb": 218,
+          "modified": "2025-09-08 16:16:58.749357",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/dfe997d1-9c7a-4311-bcfc-3d600747e648.jsonl",
+          "size_kb": 604,
+          "modified": "2025-09-17 15:37:34.853126",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/c8b3f30f-db67-4bb1-becd-2aad32fced05.jsonl",
+          "size_kb": 834,
+          "modified": "2025-09-08 14:43:16.630118",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/59dd51af-2053-4f03-8078-ed1dfee1358d.jsonl",
+          "size_kb": 108,
+          "modified": "2025-09-05 18:44:11.132202",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/1898807c-1f57-4860-9dd3-dbf0b0c070fc.jsonl",
+          "size_kb": 208,
+          "modified": "2025-09-17 00:00:18.669522",
+          "topics": [],
+          "content_preview": "                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/b001b5f4-abfd-4aa4-a0ef-2b661b9a0a1e.jsonl",
+          "size_kb": 380,
+          "modified": "2025-09-08 15:02:08.312444",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/e8586046-8cfb-4d27-908f-044ea9bea171.jsonl",
+          "size_kb": 318,
+          "modified": "2025-09-22 08:51:44.415959",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/c2b0c1a0-03fe-49d0-bd68-e4fbe90d8e64.jsonl",
+          "size_kb": 405,
+          "modified": "2025-09-05 18:43:59.661848",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/c4dfd7c0-0256-4de0-b1fc-38fca2d635ea.jsonl",
+          "size_kb": 28,
+          "modified": "2025-09-17 19:12:52.582549",
+          "topics": [],
+          "content_preview": "              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/4d2b03d2-926a-465d-9db5-817c6d175c5b.jsonl",
+          "size_kb": 2,
+          "modified": "2025-09-05 14:16:39.211739",
+          "topics": [],
+          "content_preview": "    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/f67b1f98-0adf-42d3-8c69-510e4f388f45.jsonl",
+          "size_kb": 320,
+          "modified": "2025-09-08 04:56:36.518479",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/d0ce2c48-87fe-4aca-8b18-52d01f9de00d.jsonl",
+          "size_kb": 103,
+          "modified": "2025-09-09 11:34:01.788599",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/5b870060-9639-4d66-a276-c47bb2ef82df.jsonl",
+          "size_kb": 277,
+          "modified": "2025-09-17 15:00:11.305637",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/c3fe98a0-d614-4038-b756-8c6a49933528.jsonl",
+          "size_kb": 133,
+          "modified": "2025-09-17 00:01:11.666101",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/0a826f8e-52da-4a38-90dd-66268eccdb47.jsonl",
+          "size_kb": 1195,
+          "modified": "2025-09-15 00:16:55.213351",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/29d93a01-da50-4cb9-a7c4-51a563165bba.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-10 02:16:07.677950",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/ef9711bd-06ba-42bc-8957-10f9161a8bf2.jsonl",
+          "size_kb": 1134,
+          "modified": "2025-09-08 04:35:35.882825",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/310abc88-a7ba-4601-ba2e-7f69237a60c1.jsonl",
+          "size_kb": 520,
+          "modified": "2025-09-08 03:56:56.243136",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/d64a673c-81c9-44c8-94e4-d902c615ffaa.jsonl",
+          "size_kb": 86,
+          "modified": "2025-09-09 13:45:58.810811",
+          "topics": [],
+          "content_preview": "                                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/b6a8b586-ed23-4b09-8672-fbbfa37fb239.jsonl",
+          "size_kb": 79,
+          "modified": "2025-09-09 17:33:00.577024",
+          "topics": [],
+          "content_preview": "                                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/7131cd90-ed61-45f4-8d6d-5b30de27b15a.jsonl",
+          "size_kb": 986,
+          "modified": "2025-09-15 01:57:10.326687",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/be650b62-533f-4987-9383-579b98345cfe.jsonl",
+          "size_kb": 554,
+          "modified": "2025-09-16 12:44:48.069808",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/d3e38d06-0339-4123-90b8-51837fadbd81.jsonl",
+          "size_kb": 2074,
+          "modified": "2025-09-13 04:34:37.089999",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/ee96ea8b-72da-4847-a4dd-bb640c9c3859.jsonl",
+          "size_kb": 360,
+          "modified": "2025-09-15 03:24:02.093138",
+          "topics": [],
+          "content_preview": "                                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/5963af50-6f42-4eb0-a0ea-1a105e5e678f.jsonl",
+          "size_kb": 1109,
+          "modified": "2025-09-15 01:56:42.854356",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/3bc658a6-5852-45f6-98e9-48b2107d9945.jsonl",
+          "size_kb": 731,
+          "modified": "2025-09-16 17:55:24.848770",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/5e7b1176-b1d4-4b79-b78e-9e6abc3a3c43.jsonl",
+          "size_kb": 1347,
+          "modified": "2025-09-13 03:29:54.487051",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/c6626418-1368-43f2-8079-66fec87bacc6.jsonl",
+          "size_kb": 706,
+          "modified": "2025-09-05 14:58:32.062058",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/cd6ceb20-b2dc-41aa-bc95-ae8fd76b33f3.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-09 15:21:10.449303",
+          "topics": [],
+          "content_preview": " "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/cb1ac10c-c833-465e-8416-738120b6a29a.jsonl",
+          "size_kb": 579,
+          "modified": "2025-09-08 04:31:21.051467",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/556dbc3e-f7ef-4d3a-8206-c02e971ad784.jsonl",
+          "size_kb": 19,
+          "modified": "2025-09-15 01:21:19.088368",
+          "topics": [],
+          "content_preview": "       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/915e90c7-58d8-4beb-8012-3226c5bd016c.jsonl",
+          "size_kb": 845,
+          "modified": "2025-09-13 05:12:09.941360",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/f5e20981-6676-4479-b55a-f67df9a0af4d.jsonl",
+          "size_kb": 2,
+          "modified": "2025-09-05 14:52:57.308570",
+          "topics": [],
+          "content_preview": "    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/888180b5-3d4a-4d70-a716-9a893f783db3.jsonl",
+          "size_kb": 315,
+          "modified": "2025-09-05 19:50:30.593094",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff/149f7f83-0b1f-4d0d-b8e2-e733744588ba.jsonl",
+          "size_kb": 107,
+          "modified": "2025-09-09 17:33:21.379638",
+          "topics": [],
+          "content_preview": "                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:51:44.415959",
+      "total_sessions": 39
+    },
+    "-Volumes-thumb-nb-isolation-chamber-messaging-analysis": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb-nb-isolation-chamber-messaging-analysis/00949de9-b367-4361-9d25-d333077cad9c.jsonl",
+          "size_kb": 526,
+          "modified": "2025-09-08 00:04:49.725473",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb-nb-isolation-chamber-messaging-analysis/e3a03683-440c-4354-9f0f-6a6740b4a046.jsonl",
+          "size_kb": 2503,
+          "modified": "2025-09-08 00:27:52.241919",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-08 00:27:52.241919",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---chittyschema": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/324a6955-c1c4-4e11-adb5-d50a70b9f834.jsonl",
+          "size_kb": 6013,
+          "modified": "2025-09-19 09:32:10.767055",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/1612567a-9c85-4a36-8e32-0743c963bc7d.jsonl",
+          "size_kb": 1013,
+          "modified": "2025-09-19 09:11:57.339960",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/e8d3c439-4508-4597-a8d9-7bf3c5bf3ec8.jsonl",
+          "size_kb": 1502,
+          "modified": "2025-09-22 08:57:33.186729",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/99b32059-266b-4269-b641-1f3d3171406d.jsonl",
+          "size_kb": 281,
+          "modified": "2025-09-16 17:24:37.033165",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/5813d217-665f-4066-9347-89ef49580f32.jsonl",
+          "size_kb": 1214,
+          "modified": "2025-09-17 15:42:59.451529",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/7273daad-6f17-4c34-8127-216be31d8a56.jsonl",
+          "size_kb": 983,
+          "modified": "2025-09-16 23:57:42.499440",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/c3cdf294-d22f-457e-ab30-901e0168b0d1.jsonl",
+          "size_kb": 6302,
+          "modified": "2025-09-22 09:01:33.214391",
+          "topics": [],
+          "content_preview": "                                  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyschema/022885d4-6605-41bc-85e6-24e6995e2108.jsonl",
+          "size_kb": 420,
+          "modified": "2025-09-22 09:07:16.571626",
+          "topics": [],
+          "content_preview": "                                       "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:16.571626",
+      "total_sessions": 8
+    },
+    "-Users-nb--claude-projects---chittygov": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/e2cd6738-bcb8-434c-b194-7e6e66d596d5.jsonl",
+          "size_kb": 9,
+          "modified": "2025-09-16 23:59:45.433909",
+          "topics": [],
+          "content_preview": "      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/52d01642-8c2e-4db0-9f51-ae17b0e891ea.jsonl",
+          "size_kb": 172,
+          "modified": "2025-09-16 15:56:46.369624",
+          "topics": [],
+          "content_preview": "                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/96670d6a-c0f0-42c3-9ab5-518aed02b9ca.jsonl",
+          "size_kb": 264,
+          "modified": "2025-09-17 14:43:44.923236",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/6c8e1cf5-2c36-47f8-b4ad-29eb6f17ee95.jsonl",
+          "size_kb": 19,
+          "modified": "2025-09-16 23:59:34.555425",
+          "topics": [],
+          "content_preview": "           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/c783eeef-b258-42ee-a5ea-542fd8180c53.jsonl",
+          "size_kb": 490,
+          "modified": "2025-09-17 19:21:20.276107",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/437dc2ac-b5b4-4a66-8e00-1c93b6357ef3.jsonl",
+          "size_kb": 502,
+          "modified": "2025-09-16 15:58:31.935749",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittygov/60b791a5-e888-4f02-94b7-f7f5c63aa193.jsonl",
+          "size_kb": 149,
+          "modified": "2025-09-17 12:31:11.631387",
+          "topics": [],
+          "content_preview": "                                    "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 19:21:20.276107",
+      "total_sessions": 7
+    },
+    "-Users-nb--claude-projects-legal-schatz-ardc-complaint": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-schatz-ardc-complaint/b300d7bd-5ea0-401b-b0a3-b25abb08e036.jsonl",
+          "size_kb": 255,
+          "modified": "2025-09-13 03:23:50.342196",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-schatz-ardc-complaint/3bfd69f4-9295-4d07-93c7-ce6e06f8f30b.jsonl",
+          "size_kb": 263,
+          "modified": "2025-09-14 11:44:24.320009",
+          "topics": [],
+          "content_preview": "                                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 11:44:24.320009",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---extensions-ChittyExtension": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions-ChittyExtension/03d3f5a1-eba7-4789-a43e-34ab4d3c781f.jsonl",
+          "size_kb": 1512,
+          "modified": "2025-09-17 14:56:27.290891",
+          "topics": [],
+          "content_preview": "                                    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions-ChittyExtension/fb9e8e8a-7741-4843-9c7a-fd683833195c.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-17 10:05:21.392750",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions-ChittyExtension/93443190-fd4e-482d-a63e-563fb2e6c39a.jsonl",
+          "size_kb": 4,
+          "modified": "2025-09-17 18:42:44.148638",
+          "topics": [],
+          "content_preview": "   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 18:42:44.148638",
+      "total_sessions": 3
+    },
+    "-Users-nb--claude-projects---chicagoapps-credit-rep-cc": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chicagoapps-credit-rep-cc/0cf0808d-bc39-4c1d-b0bb-033352423ad3.jsonl",
+          "size_kb": 153,
+          "modified": "2025-09-15 02:00:40.758617",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-15 02:00:40.758617",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-temp": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-temp/df04dc2d-47d1-4379-a159-b9d7ebd7f09e.jsonl",
+          "size_kb": 115,
+          "modified": "2025-09-13 05:11:49.436396",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 05:11:49.436396",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-system-chittyid": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyid/c10a4919-5605-4f0c-9952-c36c57cf5703.jsonl",
+          "size_kb": 43,
+          "modified": "2025-09-13 03:44:37.336666",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyid/8f1b9f21-46e3-4001-bcb4-6e3cacd3019a.jsonl",
+          "size_kb": 45,
+          "modified": "2025-09-14 12:22:11.322706",
+          "topics": [],
+          "content_preview": "                                   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 12:22:11.322706",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---google": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---google/63a8a05b-ed17-4f3f-bfdd-adf86c67f68b.jsonl",
+          "size_kb": 792,
+          "modified": "2025-09-15 02:31:40.150466",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-15 02:31:40.150466",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-system-chittyos": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos/757c8c76-af60-477e-b32d-b79ca2e15856.jsonl",
+          "size_kb": 362,
+          "modified": "2025-09-14 12:06:42.187878",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos/3f9b9e62-fa7d-4308-8c45-3620758501d1.jsonl",
+          "size_kb": 14359,
+          "modified": "2025-09-13 03:29:31.997351",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittyos/05189dd7-f385-404e-afb6-a6ae749a3c0a.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-12 18:34:15.517984",
+          "topics": [],
+          "content_preview": ""
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 12:06:42.187878",
+      "total_sessions": 3
+    },
+    "-Users-nb--claude-projects-notion-sync": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-notion-sync/0eae848a-7ded-435c-9a05-aeac5bc9b788.jsonl",
+          "size_kb": 73,
+          "modified": "2025-09-17 15:33:47.667892",
+          "topics": [],
+          "content_preview": "                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-notion-sync/7477d0d8-26be-41b4-93a2-743f4309beb2.jsonl",
+          "size_kb": 18,
+          "modified": "2025-09-16 23:23:52.723649",
+          "topics": [],
+          "content_preview": "                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-notion-sync/4acf872a-b7b4-4066-981c-c7d28b548f61.jsonl",
+          "size_kb": 2588,
+          "modified": "2025-09-22 08:55:42.591901",
+          "topics": [],
+          "content_preview": "                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-notion-sync/8e92def5-6362-40f3-8081-491447621a02.jsonl",
+          "size_kb": 1062,
+          "modified": "2025-09-19 05:55:29.368509",
+          "topics": [],
+          "content_preview": "                        "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:55:42.591901",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects---legal-vangaurd-onboarding": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-vangaurd-onboarding/51b03a0e-43d1-4432-802a-4e84d25004f0.jsonl",
+          "size_kb": 166,
+          "modified": "2025-09-15 01:56:46.985530",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-15 01:56:46.985530",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-chitcommit": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-chitcommit/64373f16-6528-4bb5-ad39-920f9ee5ad9e.jsonl",
+          "size_kb": 18,
+          "modified": "2025-09-12 18:42:29.870321",
+          "topics": [],
+          "content_preview": "        "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-12 18:42:29.870321",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-legal-docs": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-docs/bbb8942a-a9be-4fc2-98c6-8c7dc694f45d.jsonl",
+          "size_kb": 631,
+          "modified": "2025-09-13 10:20:24.768672",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 10:20:24.768672",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittycleaner": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/b4ad300c-684a-46e3-be16-bf25755970b0.jsonl",
+          "size_kb": 204,
+          "modified": "2025-09-16 13:43:53.619033",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/95b52ea4-bcd7-4052-afa0-9b6178bfcc73.jsonl",
+          "size_kb": 356,
+          "modified": "2025-09-15 01:57:10.603523",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/304dc1b1-0ef0-44a2-b3d9-35b36729f088.jsonl",
+          "size_kb": 24,
+          "modified": "2025-09-16 23:59:01.983111",
+          "topics": [],
+          "content_preview": "               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/f7605828-d2ce-4907-a3f2-f3e45528feaa.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-17 16:15:31.552198",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/fe3da932-2880-4b01-9a12-8812c180f779.jsonl",
+          "size_kb": 58,
+          "modified": "2025-09-17 14:41:55.228426",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycleaner/5541a47a-eb0f-4a52-ade2-9e3f3813d20c.jsonl",
+          "size_kb": 47,
+          "modified": "2025-09-17 11:56:40.081248",
+          "topics": [],
+          "content_preview": "                            "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 16:15:31.552198",
+      "total_sessions": 6
+    },
+    "-Users-nb--claude-projects---tools-connectors-mcp": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---tools-connectors-mcp/4bd7e27d-4ee2-4481-8694-05dce1b7084f.jsonl",
+          "size_kb": 6,
+          "modified": "2025-09-20 10:42:06.037082",
+          "topics": [],
+          "content_preview": "    "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 10:42:06.037082",
+      "total_sessions": 1
+    },
+    "-Volumes-thumb-Projects-chittyos": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb-Projects-chittyos/d8afb0c3-1f5f-4e60-938f-510c85cbfa30.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-05 14:55:22.865938",
+          "topics": [],
+          "content_preview": " "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-05 14:55:22.865938",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittychat-migration": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-migration/87d6af30-b824-42f0-b3f2-155b50b98c7d.jsonl",
+          "size_kb": 195,
+          "modified": "2025-09-17 14:44:58.528686",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-migration/475bee31-f78d-496b-b8f5-97ca8bd2ae7a.jsonl",
+          "size_kb": 233,
+          "modified": "2025-09-17 19:15:32.584935",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-migration/a0d822f5-1256-4533-ae50-370f1bcd7135.jsonl",
+          "size_kb": 20,
+          "modified": "2025-09-16 23:59:30.173012",
+          "topics": [],
+          "content_preview": "          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-migration/a7e0c13d-f417-4b66-b54f-1863a000dd41.jsonl",
+          "size_kb": 166,
+          "modified": "2025-09-16 12:45:52.202740",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat-migration/3280d84c-47eb-4969-96d1-3f5c3c892df5.jsonl",
+          "size_kb": 312,
+          "modified": "2025-09-15 01:57:30.400036",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 19:15:32.584935",
+      "total_sessions": 5
+    },
+    "-Users-nb-jumpoff-chittyassets-repo": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff-chittyassets-repo/d31ef5f8-10e7-4d0e-b118-67aec00f6922.jsonl",
+          "size_kb": 688,
+          "modified": "2025-09-20 01:43:35.500642",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff-chittyassets-repo/add62a61-2387-47d8-b6af-357b3585269f.jsonl",
+          "size_kb": 97,
+          "modified": "2025-09-16 23:57:26.875586",
+          "topics": [],
+          "content_preview": "                                         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff-chittyassets-repo/5bcdccda-755a-42b9-8dc1-e162a6814bb6.jsonl",
+          "size_kb": 1820,
+          "modified": "2025-09-19 09:10:47.241175",
+          "topics": [],
+          "content_preview": "                                         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb-jumpoff-chittyassets-repo/13f58124-6024-4f53-8209-231ba9636f13.jsonl",
+          "size_kb": 243,
+          "modified": "2025-09-17 15:42:24.330474",
+          "topics": [],
+          "content_preview": "                                         "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 01:43:35.500642",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects---openphone-migration": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---openphone-migration/0c2a88aa-8cbb-440d-b496-6cd6f3d05993.jsonl",
+          "size_kb": 523,
+          "modified": "2025-09-15 01:56:41.081897",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-15 01:56:41.081897",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/9c136faf-1337-4b58-9c24-c00e9da8046a.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-10 02:46:15.373054",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/49751e8c-c661-461c-a4d9-f0026f21e7f0.jsonl",
+          "size_kb": 118,
+          "modified": "2025-09-09 17:32:39.922885",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/e776105f-3baf-4d82-9eff-d788757ae36e.jsonl",
+          "size_kb": 8,
+          "modified": "2025-09-05 14:59:24.884309",
+          "topics": [],
+          "content_preview": "        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/384e5878-80e3-42da-9ec2-e3b828d53bc0.jsonl",
+          "size_kb": 985,
+          "modified": "2025-09-08 04:29:41.825415",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/0711978b-3252-4174-a5ec-4cdcf6c4078d.jsonl",
+          "size_kb": 440,
+          "modified": "2025-09-05 19:27:44.494170",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/1d52eb04-3413-4741-8791-67bbfbbd904d.jsonl",
+          "size_kb": 129,
+          "modified": "2025-09-22 08:57:20.241825",
+          "topics": [],
+          "content_preview": "                                  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/0d06709f-3194-40d8-bf67-aba458a150f2.jsonl",
+          "size_kb": 206,
+          "modified": "2025-09-08 16:17:45.298078",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/7020bf66-981e-4c7f-a162-3f579ddc9d8f.jsonl",
+          "size_kb": 386,
+          "modified": "2025-09-22 08:57:13.287828",
+          "topics": [],
+          "content_preview": "                          "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude/253982d7-0b58-4093-92af-550813c6c2b6.jsonl",
+          "size_kb": 4647,
+          "modified": "2025-09-13 10:33:48.809387",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 08:57:20.241825",
+      "total_sessions": 9
+    },
+    "-Users-nb--claude-projects---temp": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---temp/1202414a-48ff-4c35-a7c8-d81117fabb17.jsonl",
+          "size_kb": 2950,
+          "modified": "2025-09-19 06:18:11.500381",
+          "topics": [],
+          "content_preview": "                                  "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 06:18:11.500381",
+      "total_sessions": 1
+    },
+    "-Users-nb--codex-projects-chittyguardian": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--codex-projects-chittyguardian/e16af151-c800-4ae2-90c8-398f1e6771ea.jsonl",
+          "size_kb": 259,
+          "modified": "2025-09-14 22:49:03.140887",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 22:49:03.140887",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-commands": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-commands/e230e923-90c2-4398-a127-dca893dde5d7.jsonl",
+          "size_kb": 4,
+          "modified": "2025-09-20 06:46:27.069911",
+          "topics": [],
+          "content_preview": "   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-commands/5421ca44-c340-4deb-b449-07740c2b582f.jsonl",
+          "size_kb": 12,
+          "modified": "2025-09-20 13:23:05.635330",
+          "topics": [],
+          "content_preview": "             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-commands/6a54aea4-df29-4d35-bc97-57feb11f7d19.jsonl",
+          "size_kb": 538,
+          "modified": "2025-09-22 09:03:34.286974",
+          "topics": [],
+          "content_preview": "                              "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:03:34.286974",
+      "total_sessions": 3
+    },
+    "-Users-nb--claude-projects--": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects--/eedda477-1c8d-4b59-9ccb-ecd8e7249c39.jsonl",
+          "size_kb": 3,
+          "modified": "2025-09-14 11:47:58.170446",
+          "topics": [],
+          "content_preview": "    "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 11:47:58.170446",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-1password": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/5ee68865-4b4e-43af-a6a0-a18af33599b1.jsonl",
+          "size_kb": 564,
+          "modified": "2025-09-08 15:18:38.358600",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/d562dde8-ff86-4f12-81d5-d86901be7147.jsonl",
+          "size_kb": 203,
+          "modified": "2025-09-09 17:33:56.110688",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/cfd78226-4284-4966-a146-1a52f56c8f40.jsonl",
+          "size_kb": 25,
+          "modified": "2025-09-05 14:59:19.360012",
+          "topics": [],
+          "content_preview": "                    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/988aa87f-2f46-45f7-8bde-69cd112631e5.jsonl",
+          "size_kb": 59,
+          "modified": "2025-09-10 09:01:56.710013",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/1d6ddaea-e496-4b04-bdde-4e7b5a222a0e.jsonl",
+          "size_kb": 18,
+          "modified": "2025-09-10 11:05:28.414526",
+          "topics": [],
+          "content_preview": "           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-1password/a2c9d83e-b1d4-4d4d-8576-cfa17660f0c4.jsonl",
+          "size_kb": 1777,
+          "modified": "2025-09-08 04:40:44.413742",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-10 11:05:28.414526",
+      "total_sessions": 6
+    },
+    "-Users-nb--claude-projects---chittycheck": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycheck/99b060c5-2903-4d1f-b4c1-08ddf2c69fc7.jsonl",
+          "size_kb": 4,
+          "modified": "2025-09-20 13:22:45.369516",
+          "topics": [],
+          "content_preview": "   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 13:22:45.369516",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-chittyos": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-chittyos/650785e9-3862-4d26-b3a5-ca3e384ef495.jsonl",
+          "size_kb": 1300,
+          "modified": "2025-09-13 04:39:09.220438",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 04:39:09.220438",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---schema": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---schema/51602384-7349-4e18-81d8-03fc67e464be.jsonl",
+          "size_kb": 3208,
+          "modified": "2025-09-19 08:41:15.804951",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---schema/ce70b07c-4720-4b0f-881f-1fa77b550128.jsonl",
+          "size_kb": 717,
+          "modified": "2025-09-20 02:56:02.281116",
+          "topics": [],
+          "content_preview": "                             "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 02:56:02.281116",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---extensions": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions/31bd6850-0367-459b-9426-fa9fd73f730e.jsonl",
+          "size_kb": 177,
+          "modified": "2025-09-15 01:55:27.059907",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions/7a1b1dcc-581f-40b2-9885-f2c5098d69d9.jsonl",
+          "size_kb": 1,
+          "modified": "2025-09-16 17:27:00.284385",
+          "topics": [],
+          "content_preview": " "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-16 17:27:00.284385",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---notion": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---notion/1cb15dde-afdd-448f-94ae-5cc957f6724c.jsonl",
+          "size_kb": 2616,
+          "modified": "2025-09-22 09:05:53.596564",
+          "topics": [],
+          "content_preview": "                                      "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:05:53.596564",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittychat": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/271b3270-3ad2-4b19-824f-3d576f690665.jsonl",
+          "size_kb": 799,
+          "modified": "2025-09-17 02:31:42.393824",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/f2826331-e808-4a79-bfe4-d398d4337ba8.jsonl",
+          "size_kb": 1539,
+          "modified": "2025-09-17 14:45:44.524963",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/3f5bb76b-9118-4ad4-bbe5-97e018266a55.jsonl",
+          "size_kb": 1689,
+          "modified": "2025-09-15 01:55:04.203885",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/156f3238-f6fe-4cd1-8d41-f5350de33b79.jsonl",
+          "size_kb": 1954,
+          "modified": "2025-09-15 04:35:52.370882",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/d1fcf772-4baa-4a5b-a46f-70de36ae1375.jsonl",
+          "size_kb": 185,
+          "modified": "2025-09-17 00:00:44.289003",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/167b32a9-55c0-42b6-bbb1-fc342446a80e.jsonl",
+          "size_kb": 538,
+          "modified": "2025-09-15 00:19:49.027539",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/5efd1c9c-9ede-4455-b5a9-4ecaa37020a7.jsonl",
+          "size_kb": 799,
+          "modified": "2025-09-15 03:38:01.263192",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/20fbf16b-cef8-46d7-a1f5-ab7234a438e7.jsonl",
+          "size_kb": 641,
+          "modified": "2025-09-15 01:56:18.580218",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/6da26aae-6c23-4ec4-a7d9-990dabe5af22.jsonl",
+          "size_kb": 759,
+          "modified": "2025-09-15 01:58:31.143165",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/f24cdea7-be7b-4813-b03e-d677f3227d88.jsonl",
+          "size_kb": 33,
+          "modified": "2025-09-16 14:18:24.261784",
+          "topics": [],
+          "content_preview": "                        "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/2e3b5c87-48d9-4565-9e4b-cca787ca1983.jsonl",
+          "size_kb": 3216,
+          "modified": "2025-09-19 06:10:39.592451",
+          "topics": [],
+          "content_preview": "                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/5ca875fb-592c-4c56-b859-21ff196d1290.jsonl",
+          "size_kb": 946,
+          "modified": "2025-09-17 15:43:12.315032",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/6d3884f3-96be-4f0f-995d-364fb15797fb.jsonl",
+          "size_kb": 1060,
+          "modified": "2025-09-17 19:29:35.717474",
+          "topics": [],
+          "content_preview": "                                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/f8966ce0-c64a-48f8-96b3-ddb45325440d.jsonl",
+          "size_kb": 2088,
+          "modified": "2025-09-22 09:07:05.177360",
+          "topics": [],
+          "content_preview": "                                   "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/b86f49d8-fad3-4a9a-89e9-a220c2db1bca.jsonl",
+          "size_kb": 3594,
+          "modified": "2025-09-22 08:53:08.328532",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/89730219-fdc7-42ee-b674-f477dc3c7082.jsonl",
+          "size_kb": 1870,
+          "modified": "2025-09-15 01:54:51.586386",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/803a3baa-6f7b-4ba0-8b16-5c1fb06ac6df.jsonl",
+          "size_kb": 18027,
+          "modified": "2025-09-20 01:41:14.495713",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/ef43aa13-a2a3-4844-a9ea-9561e9bc964d.jsonl",
+          "size_kb": 1163,
+          "modified": "2025-09-16 18:05:29.518121",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittychat/a50d2cc2-3bbf-4d41-a954-ee9e780935fb.jsonl",
+          "size_kb": 868,
+          "modified": "2025-09-17 14:44:58.600550",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:05.177360",
+      "total_sessions": 19
+    },
+    "-Users-nb--claude-projects---legal-schatz-ardc-complaint": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/b601cc39-76f0-4ab7-bd22-f1148877d1b8.jsonl",
+          "size_kb": 316,
+          "modified": "2025-09-17 15:32:54.545762",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/f700a850-e9b0-4bc1-b54a-94ac1d0cf1d0.jsonl",
+          "size_kb": 552,
+          "modified": "2025-09-20 13:46:48.167322",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/9569a796-39a7-4e39-be8f-1c948761a26a.jsonl",
+          "size_kb": 203,
+          "modified": "2025-09-17 15:36:38.459798",
+          "topics": [],
+          "content_preview": "                                     "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/49d58c46-7d2e-4620-aa8e-3e9bb66d06e2.jsonl",
+          "size_kb": 94,
+          "modified": "2025-09-14 19:27:39.457841",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/944bcb83-aa26-4579-94c2-7b5a8e18149e.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-16 08:36:55.940541",
+          "topics": [],
+          "content_preview": ""
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-schatz-ardc-complaint/5422b93e-dd1a-4972-95fb-8ee74b7654fc.jsonl",
+          "size_kb": 134,
+          "modified": "2025-09-17 02:32:35.971133",
+          "topics": [],
+          "content_preview": "                                      "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 13:46:48.167322",
+      "total_sessions": 6
+    },
+    "-Volumes-thumb-nb-janitor": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb-nb-janitor/55b81be7-c852-4bbf-9abd-2708f274718d.jsonl",
+          "size_kb": 72,
+          "modified": "2025-09-08 03:45:55.860605",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb-nb-janitor/669a14e8-642b-4819-8072-ae9f466662ae.jsonl",
+          "size_kb": 13,
+          "modified": "2025-09-05 14:55:14.761074",
+          "topics": [],
+          "content_preview": "          "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-08 03:45:55.860605",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects-legal-guzman-onboarding": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-guzman-onboarding/768a26ec-b3cc-4717-8e52-152e410dbeef.jsonl",
+          "size_kb": 3316,
+          "modified": "2025-09-13 10:22:34.580738",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-legal-guzman-onboarding/ced48e70-6478-4829-b9d8-ca87ae6d0f54.jsonl",
+          "size_kb": 276,
+          "modified": "2025-09-14 19:08:15.819427",
+          "topics": [],
+          "content_preview": "                                              "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 19:08:15.819427",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---legal-case": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/1465cd8d-e37c-42dd-9099-ba8b98a76f6a.jsonl",
+          "size_kb": 12791,
+          "modified": "2025-09-19 09:06:36.691701",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/3242a192-42da-4ec8-bca6-5367507df75f.jsonl",
+          "size_kb": 221,
+          "modified": "2025-09-19 09:01:25.761084",
+          "topics": [],
+          "content_preview": "                                  "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/c196cea6-dbf2-42bb-8578-0c6cce9f46fe.jsonl",
+          "size_kb": 38,
+          "modified": "2025-09-20 11:07:33.102213",
+          "topics": [],
+          "content_preview": "                                       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/7c8683ab-abc4-44fb-b618-dd81467e00b5.jsonl",
+          "size_kb": 129,
+          "modified": "2025-09-19 09:11:10.777092",
+          "topics": [],
+          "content_preview": "                       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/58e76620-e56b-46c2-a766-4b471bf8c42e.jsonl",
+          "size_kb": 9413,
+          "modified": "2025-09-19 09:16:57.900754",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/8819c9be-db7f-4a12-98e5-48a46fdb9578.jsonl",
+          "size_kb": 6162,
+          "modified": "2025-09-22 09:01:31.462523",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/24db7da6-a82e-4d36-bdd5-a68df1c0218f.jsonl",
+          "size_kb": 451,
+          "modified": "2025-09-19 09:09:12.127479",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/7d042ffc-1584-4313-9bb1-f4af230cac4d.jsonl",
+          "size_kb": 580,
+          "modified": "2025-09-20 11:21:24.018179",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/ae0b6f43-1ab0-4f61-9ad8-9d9278bd139a.jsonl",
+          "size_kb": 1017,
+          "modified": "2025-09-22 09:06:20.164809",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/34e42dd6-504a-4d93-8eba-c2697bb8498f.jsonl",
+          "size_kb": 2765,
+          "modified": "2025-09-19 09:08:07.118680",
+          "topics": [],
+          "content_preview": "                                    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/157d4e47-2212-49e3-a5f6-03d3da8787b3.jsonl",
+          "size_kb": 600,
+          "modified": "2025-09-22 09:04:26.045923",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/43dcb8ab-10ef-4be9-8847-f4de53ef2b6b.jsonl",
+          "size_kb": 481,
+          "modified": "2025-09-20 00:17:21.189843",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/4e44cd96-6189-4988-a63b-e35a6951cbb7.jsonl",
+          "size_kb": 327,
+          "modified": "2025-09-22 09:07:31.325706",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/97e5cbed-b035-49d3-8519-9c2685a900f4.jsonl",
+          "size_kb": 1429,
+          "modified": "2025-09-22 09:04:18.764868",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/bc7db7f2-94e6-4b4e-bd6f-30320757e820.jsonl",
+          "size_kb": 90,
+          "modified": "2025-09-22 09:07:14.000416",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---legal-case/4ecdf638-0539-4573-8632-301ef12bb289.jsonl",
+          "size_kb": 0,
+          "modified": "2025-09-20 11:25:22.483499",
+          "topics": [],
+          "content_preview": ""
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:31.325706",
+      "total_sessions": 16
+    },
+    "-Users-nb--claude-projects-system-chittychat-migration": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat-migration/ff2144ca-dc97-4fb5-85a3-f0035fc1a4c2.jsonl",
+          "size_kb": 3734,
+          "modified": "2025-09-13 03:25:51.372651",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat-migration/9ba7cf4c-c88b-4506-a455-1ba597e79e04.jsonl",
+          "size_kb": 1001,
+          "modified": "2025-09-13 04:37:56.415406",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 04:37:56.415406",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---chittyos-data": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/f3087f2e-854b-497f-990a-3fcb14e7fd39.jsonl",
+          "size_kb": 515,
+          "modified": "2025-09-17 15:42:29.108581",
+          "topics": [],
+          "content_preview": "                                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/83b13e44-1546-4e5e-b84e-0743f12ac54e.jsonl",
+          "size_kb": 6344,
+          "modified": "2025-09-22 09:01:24.264019",
+          "topics": [],
+          "content_preview": "                             "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/42f76d1d-b9cb-40a5-a564-f50db8efc6c8.jsonl",
+          "size_kb": 519,
+          "modified": "2025-09-17 02:43:33.581936",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/a7a6a6a1-351f-4c39-8121-d74aed30f60f.jsonl",
+          "size_kb": 412,
+          "modified": "2025-09-20 02:13:05.324255",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/d4fc314a-809d-4bfa-b5c9-115cfc040ba4.jsonl",
+          "size_kb": 549,
+          "modified": "2025-09-17 18:38:06.547340",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/60c789c9-a9f0-4133-bf70-71d0e4e2a77c.jsonl",
+          "size_kb": 51,
+          "modified": "2025-09-15 01:55:48.339072",
+          "topics": [],
+          "content_preview": "                              "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyos-data/5a9cc0c4-48c1-4242-b243-4a5cebbc9fc4.jsonl",
+          "size_kb": 656,
+          "modified": "2025-09-15 01:56:00.660370",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:01:24.264019",
+      "total_sessions": 7
+    },
+    "-Users-nb--claude-projects-chittychat": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-chittychat/21f395f4-5fe3-491d-9df5-fb8c4af95355.jsonl",
+          "size_kb": 288,
+          "modified": "2025-09-13 04:42:08.088428",
+          "topics": [],
+          "content_preview": "                                                 "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-13 04:42:08.088428",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---registry": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---registry/dfe0c284-b676-45f6-9515-1a27b1ddfedd.jsonl",
+          "size_kb": 159,
+          "modified": "2025-09-19 19:51:42.509360",
+          "topics": [],
+          "content_preview": "                            "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---registry/2c1558dc-933a-4f90-aa49-a5954a6ba380.jsonl",
+          "size_kb": 2411,
+          "modified": "2025-09-19 09:09:40.618291",
+          "topics": [],
+          "content_preview": "                                       "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 19:51:42.509360",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---system-domains": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---system-domains/85255b24-c6b2-442e-905c-c74e2f496c6a.jsonl",
+          "size_kb": 564,
+          "modified": "2025-09-22 09:01:22.448126",
+          "topics": [],
+          "content_preview": "                                  "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:01:22.448126",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects-system-chittychat": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat/8e17c1ce-7759-453b-bbbd-50a8860cf23e.jsonl",
+          "size_kb": 289,
+          "modified": "2025-09-14 19:02:08.098899",
+          "topics": [],
+          "content_preview": "                                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat/38c7536f-8e5b-4003-a188-926045b08236.jsonl",
+          "size_kb": 2376,
+          "modified": "2025-09-13 10:22:21.385574",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects-system-chittychat/808d53fd-8474-424f-a842-f7b02d7ef6de.jsonl",
+          "size_kb": 113,
+          "modified": "2025-09-14 19:05:07.042753",
+          "topics": [],
+          "content_preview": "                  "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-14 19:05:07.042753",
+      "total_sessions": 3
+    },
+    "-Users-nb--Trash-schema": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--Trash-schema/7add5f87-98ec-4047-8763-233389fffd95.jsonl",
+          "size_kb": 5619,
+          "modified": "2025-09-22 07:41:41.265420",
+          "topics": [],
+          "content_preview": "                              "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 07:41:41.265420",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---1password": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1password/b95f1f5d-d1e7-4159-a071-424d35e1239c.jsonl",
+          "size_kb": 20,
+          "modified": "2025-09-16 14:18:40.711607",
+          "topics": [],
+          "content_preview": "         "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1password/f8ca98a4-9750-4bcd-a9a9-8f8f9ab6b4dc.jsonl",
+          "size_kb": 192,
+          "modified": "2025-09-15 03:38:14.558705",
+          "topics": [],
+          "content_preview": "                                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1password/4ad0e362-c92d-4bb5-bb34-e6b621d22857.jsonl",
+          "size_kb": 296,
+          "modified": "2025-09-17 14:51:03.084980",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---1password/5304dc83-c49c-4813-86f2-58c541e84510.jsonl",
+          "size_kb": 7,
+          "modified": "2025-09-17 00:00:14.629727",
+          "topics": [],
+          "content_preview": "      "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-17 14:51:03.084980",
+      "total_sessions": 4
+    },
+    "-Users-nb--claude-projects---extensions-mac": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions-mac/7c24b946-a64d-4e14-bb09-4e4cff9db1cc.jsonl",
+          "size_kb": 2993,
+          "modified": "2025-09-17 15:38:19.312141",
+          "topics": [],
+          "content_preview": "                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---extensions-mac/0a1781f6-6298-426a-bc39-b4c5f9477e06.jsonl",
+          "size_kb": 2706,
+          "modified": "2025-09-18 21:34:28.497756",
+          "topics": [],
+          "content_preview": "                               "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-18 21:34:28.497756",
+      "total_sessions": 2
+    },
+    "-Users-nb--claude-projects---chittydashboard": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/ce455677-3cc0-4178-a7ef-05d0044cd0cb.jsonl",
+          "size_kb": 5,
+          "modified": "2025-09-20 08:35:43.274165",
+          "topics": [],
+          "content_preview": "    "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/30fa1cc1-615d-4b14-814f-599f3d7041aa.jsonl",
+          "size_kb": 462,
+          "modified": "2025-09-17 14:55:05.022698",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/100a3bcb-0578-4028-89a5-a4013d98afd0.jsonl",
+          "size_kb": 103,
+          "modified": "2025-09-17 00:00:58.034545",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/de97e5a4-8f78-4a74-8039-d6e73765bf8d.jsonl",
+          "size_kb": 1280,
+          "modified": "2025-09-18 19:54:11.043021",
+          "topics": [],
+          "content_preview": "                                 "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/35e10241-2fe4-41b0-9445-0a52fe3281a3.jsonl",
+          "size_kb": 3577,
+          "modified": "2025-09-20 02:11:51.943159",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/875a4882-0884-4a81-ac1e-e50cb737dfdb.jsonl",
+          "size_kb": 313,
+          "modified": "2025-09-17 11:30:50.437351",
+          "topics": [],
+          "content_preview": "                               "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/410711c0-2b5a-4558-8408-ea88cb8d124a.jsonl",
+          "size_kb": 280,
+          "modified": "2025-09-16 18:05:39.424805",
+          "topics": [],
+          "content_preview": "                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard/d7884f06-4753-4ca2-bab0-7919799cc6a2.jsonl",
+          "size_kb": 1459,
+          "modified": "2025-09-20 02:08:53.325973",
+          "topics": [],
+          "content_preview": "                                   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-20 08:35:43.274165",
+      "total_sessions": 8
+    },
+    "-Users-nb--claude-projects---email-migration": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---email-migration/bef0e5b1-e444-4ebe-8131-0f53c8116bc1.jsonl",
+          "size_kb": 263,
+          "modified": "2025-09-17 13:53:49.275746",
+          "topics": [],
+          "content_preview": "                                      "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---email-migration/f5ff611e-935b-458f-9fb7-8ed342f31fe3.jsonl",
+          "size_kb": 35,
+          "modified": "2025-09-17 02:44:08.919170",
+          "topics": [],
+          "content_preview": "                           "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---email-migration/43f0dd79-84ee-48b5-8bb8-daa75757e157.jsonl",
+          "size_kb": 822,
+          "modified": "2025-09-19 07:12:45.700786",
+          "topics": [],
+          "content_preview": "                                       "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---email-migration/99038e71-c50c-47ae-a0bc-2187ffcb435e.jsonl",
+          "size_kb": 446,
+          "modified": "2025-09-15 01:55:23.202480",
+          "topics": [],
+          "content_preview": "                                                "
+        },
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---email-migration/68b7e9b2-511d-483e-b1b9-6a216986a523.jsonl",
+          "size_kb": 45,
+          "modified": "2025-09-16 18:16:30.580124",
+          "topics": [],
+          "content_preview": "                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-19 07:12:45.700786",
+      "total_sessions": 5
+    },
+    "-Users-nb--claude-projects---chittycli": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittycli/1dc7ede2-2ffd-439f-b445-958f477abc07.jsonl",
+          "size_kb": 777,
+          "modified": "2025-09-22 09:07:14.232935",
+          "topics": [],
+          "content_preview": "                                   "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-22 09:07:14.232935",
+      "total_sessions": 1
+    },
+    "-Volumes-thumb": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Volumes-thumb/aba4c940-710e-42c4-a9f3-171c2e0cfd66.jsonl",
+          "size_kb": 72,
+          "modified": "2025-09-08 00:05:58.240297",
+          "topics": [],
+          "content_preview": "                                                "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-08 00:05:58.240297",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittyverify": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittyverify/acd37925-f3b9-49b9-8da5-f37c9fd2e1ce.jsonl",
+          "size_kb": 9,
+          "modified": "2025-09-16 15:58:37.123380",
+          "topics": [],
+          "content_preview": "         "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-16 15:58:37.123380",
+      "total_sessions": 1
+    },
+    "-Users-nb--claude-projects---chittydashboard-chittyos-command-center": {
+      "sessions": [
+        {
+          "file_path": "/Users/nb/.claude/projects/-Users-nb--claude-projects---chittydashboard-chittyos-command-center/41b60c07-e3da-465d-9c3d-4a7a557de9cf.jsonl",
+          "size_kb": 317,
+          "modified": "2025-09-18 19:37:29.061204",
+          "topics": [],
+          "content_preview": "                                     "
+        }
+      ],
+      "topics": [],
+      "last_activity": "2025-09-18 19:37:29.061204",
+      "total_sessions": 1
+    }
+  },
+  "conflicts": [],
+  "recommendations": []
+}

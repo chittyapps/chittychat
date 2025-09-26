@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+"""
+AI Metadata Enhancement Command
+Usage: /ai-enhance <file_path> [case_id]
+"""
+
+import sys
+import os
+import asyncio
+import json
+from pathlib import Path
+
+# Add current directory to path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from ai_metadata_bridge import AIMetadataBridge
+
+async def main():
+    if len(sys.argv) < 2:
+        print("Usage: /ai-enhance <file_path> [case_id]")
+        return 1
+
+    file_path = Path(sys.argv[1])
+    case_id = sys.argv[2] if len(sys.argv) > 2 else "2024D007847"
+
+    if not file_path.exists():
+        print(f"❌ File not found: {file_path}")
+        return 1
+
+    print(f"🧠 AI Enhancement for {file_path.name}")
+    print("=" * 50)
+
+    bridge = AIMetadataBridge(case_id)
+
+    try:
+        # Base metadata
+        base_metadata = {
+            "file_name": file_path.name,
+            "file_size": file_path.stat().st_size,
+            "file_type": file_path.suffix[1:].upper() if file_path.suffix else "UNKNOWN"
+        }
+
+        # Enhance with AI
+        enhanced = await bridge.enhance_evidence_metadata(file_path, base_metadata)
+
+        ai_analysis = enhanced.get('ai_analysis', {})
+
+        print(f"✨ Analysis Results:")
+        print(f"   Confidence Score: {ai_analysis.get('confidence_score', 0):.2f}")
+        print(f"   Legal Significance: {ai_analysis.get('legal_significance', 'unknown')}")
+        print(f"   Relevance Score: {ai_analysis.get('relevance_score', 0):.2f}")
+        print(f"   Quality Score: {ai_analysis.get('quality_score', 0):.2f}")
+
+        print(f"\n📝 Content Analysis:")
+        print(f"   Content Type: {ai_analysis.get('content_type', 'unknown')}")
+        print(f"   Evidence Types: {', '.join(ai_analysis.get('potential_evidence_types', []))}")
+
+        if ai_analysis.get('entity_mentions'):
+            print(f"   Entity Mentions: {', '.join(ai_analysis['entity_mentions'][:5])}")
+
+        if ai_analysis.get('key_dates'):
+            print(f"   Key Dates: {', '.join(ai_analysis['key_dates'][:3])}")
+
+        print(f"\n🔗 ChittyLedger Integration:")
+        print(f"   Ready for Minting: {'✅' if enhanced.get('chittyledger_ready') else '❌'}")
+        print(f"   ChittyLedger Confidence: {enhanced.get('chittyledger_confidence', 0):.2f}")
+
+        classification = enhanced.get('evidence_classification', {})
+        if classification:
+            print(f"   Category: {classification.get('category', 'Unknown')}")
+            print(f"   Priority: {classification.get('priority', 'Low')}")
+            print(f"   Admissibility: {classification.get('admissibility_likelihood', 'Unknown')}")
+
+        print(f"\n📄 Enhanced metadata ready for ChittyOS-Data integration")
+
+    except Exception as e:
+        print(f"💥 AI enhancement error: {e}")
+        return 1
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(asyncio.run(main()))

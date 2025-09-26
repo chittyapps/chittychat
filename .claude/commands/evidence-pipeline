@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+"""
+ChittyLedger Evidence Pipeline Command
+Usage: /evidence-pipeline [case_id] [mode]
+"""
+
+import sys
+import os
+import asyncio
+from pathlib import Path
+
+# Add current directory to path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from chain_status_workflow import EvidenceChainWorkflow
+
+async def main():
+    case_id = sys.argv[1] if len(sys.argv) > 1 else "2024D007847"
+    mode = sys.argv[2] if len(sys.argv) > 2 else "full"
+
+    print(f"🚀 Starting ChittyLedger Evidence Pipeline for {case_id}")
+    print("=" * 60)
+
+    workflow = EvidenceChainWorkflow(case_id)
+
+    try:
+        # Run complete evidence pipeline
+        results = await workflow.process_evidence_pipeline()
+
+        if results["success"]:
+            print("✅ Pipeline completed successfully!")
+            print(f"📊 Files processed: {results['stages']['chittyos_storage']['files_processed']}")
+            print(f"🧠 Metadata enhanced: {results['stages']['ai_processing']['metadata_enhanced']}")
+            print(f"🔗 Evidence minted: {results['stages']['chittyledger_minting']['evidence_minted']}")
+            print(f"✓ Chain verified: {results['stages']['chain_verification']['verified_count']}")
+
+            # Generate integrity report
+            integrity = await workflow.generate_integrity_report()
+            print(f"\n🔐 Integrity Status: {integrity['integrity_status']}")
+            print(f"📈 Synchronized Files: {integrity['synchronized_count']}")
+
+        else:
+            print("❌ Pipeline failed!")
+            for error in results["errors"]:
+                print(f"   Error: {error}")
+
+    except Exception as e:
+        print(f"💥 Pipeline error: {e}")
+        return 1
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(asyncio.run(main()))

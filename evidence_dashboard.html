@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Analysis Dashboard - Arias v. Bianchi</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 30px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #1e3c72;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .case-info {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-title {
+            font-size: 20px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .filter-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 0 30px 30px 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1e3c72;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .exhibit-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .confidence-high {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .confidence-medium {
+            color: #f57c00;
+            font-weight: bold;
+        }
+
+        .confidence-low {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2a5298;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>Loading evidence data...</div>
+    </div>
+
+    <div class="header">
+        <h1>Evidence Analysis Dashboard</h1>
+        <div class="case-info">
+            Case #2024D007847 | Arias v. Bianchi | Last Updated: <span id="lastUpdated"></span>
+        </div>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-value" id="totalEvidence">0</div>
+            <div class="stat-label">Total Evidence Items</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="documentCount">0</div>
+            <div class="stat-label">Source Documents</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="exhibitCount">0</div>
+            <div class="stat-label">Discovery Exhibits</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="timelineSpan">0</div>
+            <div class="stat-label">Timeline Days</div>
+        </div>
+    </div>
+
+    <div class="filter-container">
+        <div class="filter-group">
+            <label class="filter-label">Start Date</label>
+            <input type="date" id="startDate" value="2023-01-01">
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">End Date</label>
+            <input type="date" id="endDate" value="2024-12-31">
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">Event Type</label>
+            <select id="eventType">
+                <option value="all">All Types</option>
+                <option value="message">Messages</option>
+                <option value="document">Documents</option>
+                <option value="financial">Financial</option>
+                <option value="operational">Operational</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">Source</label>
+            <select id="sourceFilter">
+                <option value="all">All Sources</option>
+                <option value="iMessage">iMessage</option>
+                <option value="OpenPhone">OpenPhone</option>
+                <option value="Document">Documents</option>
+            </select>
+        </div>
+        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="resetFilters()">Reset</button>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Evidence Timeline</h2>
+        <div id="timelineChart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Evidence Distribution by Type</h2>
+        <div id="distributionChart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Monthly Evidence Volume</h2>
+        <div id="volumeChart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Recent Evidence Items</h2>
+        <table class="data-table" id="evidenceTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Source</th>
+                    <th>Confidence</th>
+                    <th>Exhibit</th>
+                </tr>
+            </thead>
+            <tbody id="evidenceTableBody">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let timelineData = [];
+        let exhibitData = [];
+
+        // Load data from API or CSV files
+        async function loadData() {
+            try {
+                // First try API endpoint (if server is running)
+                try {
+                    const apiResponse = await fetch('http://localhost:8080/api/timeline');
+                    if (apiResponse.ok) {
+                        timelineData = await apiResponse.json();
+
+                        // Load exhibit data from API
+                        const exhibitResponse = await fetch('http://localhost:8080/api/exhibits');
+                        if (exhibitResponse.ok) {
+                            exhibitData = await exhibitResponse.json();
+                        }
+
+                        console.log('Loaded data from API server');
+                        updateDashboard();
+                        document.getElementById('loading').style.display = 'none';
+                        return;
+                    }
+                } catch (e) {
+                    console.log('API server not available, falling back to CSV files');
+                }
+
+                // Fallback to direct CSV loading
+                const timelineResponse = await fetch('out/timeline_master.csv');
+                const timelineText = await timelineResponse.text();
+                const parsed = Papa.parse(timelineText, {
+                    header: true,
+                    dynamicTyping: true,
+                    skipEmptyLines: true
+                });
+                timelineData = parsed.data;
+
+                // Load exhibit data
+                try {
+                    const exhibitResponse = await fetch('out/exhibit_index.csv');
+                    const exhibitText = await exhibitResponse.text();
+                    const parsedExhibits = Papa.parse(exhibitText, {
+                        header: true,
+                        dynamicTyping: true,
+                        skipEmptyLines: true
+                    });
+                    exhibitData = parsedExhibits.data;
+                } catch (e) {
+                    console.log('Exhibit data not available');
+                    exhibitData = [];
+                }
+
+                // Update UI
+                updateDashboard();
+                document.getElementById('loading').style.display = 'none';
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML =
+                    '<div style="color: red;">Error loading data. Start the server with: python3 dashboard_server.py</div>';
+            }
+        }
+
+        function updateDashboard() {
+            // Update statistics
+            updateStatistics();
+
+            // Create charts
+            createTimelineChart();
+            createDistributionChart();
+            createVolumeChart();
+
+            // Populate table
+            populateEvidenceTable();
+
+            // Update last updated time
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+        }
+
+        function updateStatistics() {
+            document.getElementById('totalEvidence').textContent = timelineData.length;
+
+            // Count unique documents
+            const uniqueSources = new Set(timelineData.map(d => d.source_file || d.source));
+            document.getElementById('documentCount').textContent = uniqueSources.size;
+
+            // Count exhibits
+            document.getElementById('exhibitCount').textContent = exhibitData.length;
+
+            // Calculate timeline span
+            const dates = timelineData.map(d => new Date(d.timestamp || d.date)).filter(d => !isNaN(d));
+            if (dates.length > 0) {
+                const minDate = new Date(Math.min(...dates));
+                const maxDate = new Date(Math.max(...dates));
+                const days = Math.ceil((maxDate - minDate) / (1000 * 60 * 60 * 24));
+                document.getElementById('timelineSpan').textContent = days;
+            }
+        }
+
+        function createTimelineChart() {
+            const dates = timelineData.map(d => d.timestamp || d.date);
+            const descriptions = timelineData.map(d => d.description || d.content || 'Evidence Item');
+            const types = timelineData.map(d => d.type || 'other');
+
+            const trace = {
+                x: dates,
+                y: types,
+                mode: 'markers',
+                type: 'scatter',
+                text: descriptions,
+                marker: {
+                    size: 10,
+                    color: types.map(t => {
+                        switch(t) {
+                            case 'message': return '#2196F3';
+                            case 'document': return '#4CAF50';
+                            case 'financial': return '#FF9800';
+                            case 'operational': return '#9C27B0';
+                            default: return '#607D8B';
+                        }
+                    }),
+                    opacity: 0.7
+                },
+                hovertemplate: '<b>%{text}</b><br>Date: %{x}<br>Type: %{y}<extra></extra>'
+            };
+
+            const layout = {
+                height: 400,
+                xaxis: {
+                    title: 'Date',
+                    type: 'date'
+                },
+                yaxis: {
+                    title: 'Event Type'
+                },
+                showlegend: false,
+                hovermode: 'closest'
+            };
+
+            Plotly.newPlot('timelineChart', [trace], layout, {responsive: true});
+        }
+
+        function createDistributionChart() {
+            const typeCounts = {};
+            timelineData.forEach(d => {
+                const type = d.type || 'other';
+                typeCounts[type] = (typeCounts[type] || 0) + 1;
+            });
+
+            const data = [{
+                values: Object.values(typeCounts),
+                labels: Object.keys(typeCounts),
+                type: 'pie',
+                marker: {
+                    colors: ['#2196F3', '#4CAF50', '#FF9800', '#9C27B0', '#607D8B']
+                }
+            }];
+
+            const layout = {
+                height: 400
+            };
+
+            Plotly.newPlot('distributionChart', data, layout, {responsive: true});
+        }
+
+        function createVolumeChart() {
+            // Group by month
+            const monthlyData = {};
+
+            timelineData.forEach(d => {
+                const date = new Date(d.timestamp || d.date);
+                if (!isNaN(date)) {
+                    const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                    monthlyData[monthKey] = (monthlyData[monthKey] || 0) + 1;
+                }
+            });
+
+            const months = Object.keys(monthlyData).sort();
+            const counts = months.map(m => monthlyData[m]);
+
+            const trace = {
+                x: months,
+                y: counts,
+                type: 'bar',
+                marker: {
+                    color: '#2a5298'
+                }
+            };
+
+            const layout = {
+                height: 400,
+                xaxis: {
+                    title: 'Month'
+                },
+                yaxis: {
+                    title: 'Evidence Count'
+                }
+            };
+
+            Plotly.newPlot('volumeChart', [trace], layout, {responsive: true});
+        }
+
+        function populateEvidenceTable() {
+            const tbody = document.getElementById('evidenceTableBody');
+            tbody.innerHTML = '';
+
+            // Get recent items
+            const sortedData = [...timelineData]
+                .sort((a, b) => new Date(b.timestamp || b.date) - new Date(a.timestamp || a.date))
+                .slice(0, 20);
+
+            sortedData.forEach(item => {
+                const row = tbody.insertRow();
+
+                // Date
+                const dateCell = row.insertCell();
+                const date = new Date(item.timestamp || item.date);
+                dateCell.textContent = date.toLocaleDateString();
+
+                // Type
+                const typeCell = row.insertCell();
+                typeCell.textContent = item.type || 'other';
+
+                // Description
+                const descCell = row.insertCell();
+                descCell.textContent = (item.description || item.content || 'Evidence Item').substring(0, 100);
+
+                // Source
+                const sourceCell = row.insertCell();
+                sourceCell.textContent = item.source_file || item.source || 'Unknown';
+
+                // Confidence
+                const confCell = row.insertCell();
+                const confidence = item.confidence || 'medium';
+                confCell.innerHTML = `<span class="confidence-${confidence}">${confidence}</span>`;
+
+                // Exhibit
+                const exhibitCell = row.insertCell();
+                if (item.exhibit_id) {
+                    exhibitCell.innerHTML = `<span class="exhibit-tag">${item.exhibit_id}</span>`;
+                } else {
+                    exhibitCell.textContent = '-';
+                }
+            });
+        }
+
+        function applyFilters() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const eventType = document.getElementById('eventType').value;
+            const sourceFilter = document.getElementById('sourceFilter').value;
+
+            let filteredData = timelineData;
+
+            // Apply date filters
+            if (startDate) {
+                filteredData = filteredData.filter(d =>
+                    new Date(d.timestamp || d.date) >= new Date(startDate)
+                );
+            }
+
+            if (endDate) {
+                filteredData = filteredData.filter(d =>
+                    new Date(d.timestamp || d.date) <= new Date(endDate)
+                );
+            }
+
+            // Apply type filter
+            if (eventType !== 'all') {
+                filteredData = filteredData.filter(d => d.type === eventType);
+            }
+
+            // Apply source filter
+            if (sourceFilter !== 'all') {
+                filteredData = filteredData.filter(d =>
+                    (d.source_file || d.source || '').includes(sourceFilter)
+                );
+            }
+
+            // Update charts with filtered data
+            // (Implementation would update charts with filtered data)
+            alert(`Filters applied. Showing ${filteredData.length} items.`);
+        }
+
+        function resetFilters() {
+            document.getElementById('startDate').value = '2023-01-01';
+            document.getElementById('endDate').value = '2024-12-31';
+            document.getElementById('eventType').value = 'all';
+            document.getElementById('sourceFilter').value = 'all';
+            updateDashboard();
+        }
+
+        // Initialize dashboard on page load
+        window.addEventListener('load', loadData);
+    </script>
+</body>
+</html>
