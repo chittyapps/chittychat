@@ -53,12 +53,12 @@ class AIMetadataBridge:
         self.ai_processing_version = "1.2.0"
 
         # AI service endpoints (configurable)
-        self.openai_endpoint = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")
-        self.openai_key = os.getenv("OPENAI_API_KEY")
+        self.chittyrouter_endpoint = os.getenv("CHITTYROUTER_ENDPOINT", "https://router.chitty.cc/v1")
+        self.chittyrouter_key = os.getenv("CHITTYROUTER_API_KEY", os.getenv("OPENAI_API_KEY"))
 
         # Local analysis capabilities
         self.enable_local_analysis = True
-        self.enable_cloud_analysis = bool(self.openai_key)
+        self.enable_cloud_analysis = bool(self.chittyrouter_key)
 
     async def enhance_evidence_metadata(self, file_path: Union[str, Path],
                                       base_metadata: Dict[str, Any]) -> Dict[str, Any]:
@@ -259,7 +259,7 @@ class AIMetadataBridge:
     async def _cloud_content_analysis(self, content: str, file_path: Path) -> AIAnalysisResult:
         """Cloud-based AI analysis using OpenAI or similar"""
 
-        if not self.openai_key:
+        if not self.chittyrouter_key:
             raise ValueError("OpenAI API key not available")
 
         prompt = f"""
@@ -285,7 +285,7 @@ class AIMetadataBridge:
         try:
             async with aiohttp.ClientSession() as session:
                 headers = {
-                    "Authorization": f"Bearer {self.openai_key}",
+                    "Authorization": f"Bearer {self.chittyrouter_key}",
                     "Content-Type": "application/json"
                 }
 
@@ -296,7 +296,7 @@ class AIMetadataBridge:
                     "temperature": 0.3
                 }
 
-                async with session.post(f"{self.openai_endpoint}/chat/completions",
+                async with session.post(f"{self.chittyrouter_endpoint}/chat/completions",
                                       headers=headers, json=payload) as response:
 
                     if response.status == 200:
