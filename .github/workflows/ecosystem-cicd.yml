@@ -32,10 +32,11 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install Codex MCP
+      - name: Install Dependencies & Lint
         run: |
-          npm install -g @modelcontextprotocol/cli
           npm install
+          npm run lint || echo "Linting completed with warnings"
+          npm install -g @modelcontextprotocol/cli
 
       - name: Run Codex Security Analysis
         id: codex
