@@ -1,0 +1,26 @@
+{
+  "name": "@chittycorp/app-beacon",
+  "version": "1.0.0",
+  "description": "Dead simple app tracker - just require and forget",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "tracking",
+    "beacon",
+    "monitoring",
+    "replit",
+    "github",
+    "cloudeto"
+  ],
+  "author": "ChittyCorp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChittyOS/chittybeacon"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

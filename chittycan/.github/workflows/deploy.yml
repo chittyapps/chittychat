@@ -1,0 +1,37 @@
+name: Deploy to Replit
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Deploy to Replit
+      run: |
+        echo "Deployment to Replit happens automatically via Replit's autoscale feature"
+        echo "Ensure the following secrets are configured in your Replit environment:"
+        echo "- DATABASE_URL"
+        echo "- SESSION_SECRET"
+        echo "- REPL_ID"
+        echo "- REPLIT_DOMAINS"
+      env:
+        DEPLOY_ENV: production

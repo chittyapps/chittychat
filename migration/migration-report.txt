@@ -1,0 +1,37 @@
+ChittyChat Session Migration Report
+====================================
+Timestamp: 20250917_144240
+Date: Wed Sep 17 14:42:40 CDT 2025
+
+Summary:
+--------
+Total Files: 14
+Total Directories: 6
+Sessions Directory: /Users/nb/.claude/projects/-/chittychat/migration/sessions
+Backup Location: /Users/nb/.claude/projects/-/chittychat/migration/backups/20250917_144240
+
+Source Locations Processed:
+---------------------------
+- /Users/nb/.claude/projects/-/chittyos-data/chittychat/cross-session-sync/.ai-coordination/sessions
+- /Users/nb/.claude/projects/-/chittychat/chittychat/cross-session-sync/.ai-coordination/sessions
+- /Users/nb/.claude/projects/-/chittychat/sync
+
+Directory Structure:
+-------------------
+/Users/nb/.claude/projects/-/chittychat/migration/sessions
+├── -
+│   ├── CURRENT_STATUS.json
+│   ├── INTEGRATION_DISCOVERY.md
+│   └── SESSION_SYNC.md
+├── cross-session-sync
+│   ├── 30d2f0c5.json
+│   ├── 81b8fe1f867d47ec29b95b9bd7ab18fc.json
+│   └── af28c41b270de088ef61a469f5a89960.json
+└── main-sync
+    ├── connect-repos.sh
+    ├── CURRENT_STATUS.json
+    ├── github-branch-manager.js
+    ├── INTEGRATION_DISCOVERY.md
+    └── SESSION_SYNC.md
+
+4 directories, 11 files

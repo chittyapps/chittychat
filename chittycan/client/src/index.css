@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 24 100% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 221 83% 53%;
+  --radius: 0.5rem;
+  --chart-1: 221 83% 53%;
+  --chart-2: 24 100% 50%;
+  --chart-3: 142 71% 45%;
+  --chart-4: 262 83% 58%;
+  --chart-5: 345 82% 61%;
+  --sidebar-background: 222 47% 11%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 221 83% 53%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 24 100% 50%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 215 27.9% 16.9%;
+  --sidebar-ring: 221 83% 53%;
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  --error: 0 84% 60%;
+  --error-foreground: 0 0% 100%;
+}
+
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 0 0% 100%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 0 0% 100%;
+  --card: 222 47% 11%;
+  --card-foreground: 0 0% 100%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 24 100% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 217.2 32.6% 17.5%;
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  --error: 0 84% 60%;
+  --error-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-slate-100 text-foreground dark:bg-dark;
+  }
+}
+
+.dark-bg {
+  @apply bg-dark text-light;
+}
+
+@layer components {
+  .primary-btn {
+    @apply bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded-lg transition-colors;
+  }
+  
+  .secondary-btn {
+    @apply bg-dark border-2 border-secondary text-secondary hover:bg-secondary/10 font-bold py-2 px-4 rounded-lg transition-colors;
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "workflow": {
+    "name": "OpenAI Codex Integration Workflow",
+    "chittyId": "CHITTY-WORKFLOW-CODEX-001",
+    "version": "1.0.0",
+    "description": "Automated code generation, review, and optimization workflow using OpenAI Codex CLI",
+    "category": "AI_DEVELOPMENT",
+    "triggers": [
+      "code_generation_request",
+      "code_review_needed",
+      "documentation_generation",
+      "automated_testing",
+      "performance_optimization"
+    ],
+    "steps": [
+      {
+        "name": "initialize_codex_session",
+        "type": "service_call",
+        "service": "codex",
+        "command": "codex --sandbox workspace-write",
+        "description": "Initialize Codex CLI session with workspace write permissions"
+      },
+      {
+        "name": "analyze_code_context",
+        "type": "ai_analysis",
+        "service": "codex",
+        "command": "codex exec 'analyze current codebase structure and dependencies'",
+        "inputs": ["project_root", "file_patterns", "dependencies"],
+        "outputs": ["context_analysis", "suggestions"]
+      },
+      {
+        "name": "generate_code",
+        "type": "code_generation",
+        "service": "codex",
+        "command": "codex exec",
+        "parameters": {
+          "model": "gpt-4",
+          "sandbox": "workspace-write",
+          "approval_policy": "on-request"
+        },
+        "inputs": ["user_requirements", "context_analysis"],
+        "outputs": ["generated_code", "implementation_plan"]
+      },
+      {
+        "name": "code_review",
+        "type": "quality_assurance",
+        "service": "codex",
+        "command": "codex exec 'review the following code for best practices, security, and performance'",
+        "inputs": ["generated_code", "coding_standards"],
+        "outputs": ["review_results", "improvement_suggestions"]
+      },
+      {
+        "name": "apply_changes",
+        "type": "git_integration",
+        "service": "codex",
+        "command": "codex apply",
+        "description": "Apply Codex-generated diffs to git working tree",
+        "inputs": ["approved_changes"],
+        "outputs": ["applied_changes", "git_status"]
+      },
+      {
+        "name": "validate_implementation",
+        "type": "testing",
+        "service": "chittyos",
+        "command": "/chittycheck",
+        "description": "Run ChittyOS compliance validation on generated code",
+        "inputs": ["applied_changes"],
+        "outputs": ["compliance_status", "validation_report"]
+      }
+    ],
+    "integration": {
+      "chittyos_services": [
+        "registry.chitty.cc",
+        "id.chitty.cc",
+        "schema.chitty.cc"
+      ],
+      "mcp_integration": {
+        "server": "codex-mcp",
+        "protocol": "stdio",
+        "capabilities": [
+          "code_generation",
+          "code_review",
+          "git_integration",
+          "documentation_generation"
+        ]
+      },
+      "cloud_environments": [
+        {
+          "name": "codex_cloud",
+          "url": "https://developers.openai.com/codex/cloud",
+          "features": ["code_review", "internet_access", "environments"],
+          "prompting_guide": "https://developers.openai.com/codex/prompting"
+        }
+      ]
+    },
+    "configuration": {
+      "default_model": "gpt-4",
+      "sandbox_mode": "workspace-write",
+      "approval_policy": "on-request",
+      "enterprise_features": "https://developers.openai.com/codex/enterprise",
+      "agent_integration": "https://agents.md"
+    },
+    "outputs": {
+      "generated_artifacts": [
+        "source_code",
+        "documentation",
+        "test_files",
+        "configuration_files"
+      ],
+      "evidence_collection": {
+        "chittyid_generation": true,
+        "audit_trail": true,
+        "compliance_verification": true
+      },
+      "notification_targets": [
+        "chittyos_registry",
+        "notion_workspace",
+        "developer_team"
+      ]
+    },
+    "metadata": {
+      "created": "2025-09-24T22:15:00Z",
+      "owner": "ChittyOS Framework",
+      "maintainer": "OpenAI Codex Integration",
+      "documentation": [
+        "https://developers.openai.com/codex/cli",
+        "https://developers.openai.com/codex/cloud",
+        "https://developers.openai.com/codex/prompting"
+      ],
+      "compliance_requirements": [
+        "chittyid_generation",
+        "evidence_tracking",
+        "audit_logging",
+        "security_review"
+      ]
+    }
+  }
+}

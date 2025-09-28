@@ -1,0 +1,178 @@
+flowchart TB
+    %% Styling
+    classDef userStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef routerStyle fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    classDef serviceStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef githubStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:3px
+    classDef flowStyle fill:#fce4ec,stroke:#880e4f,stroke-width:1px
+    classDef dataStyle fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+
+    %% User Layer
+    subgraph USER["👥 User Layer"]
+        U1[Claude Users]:::userStyle
+        U2[ChatGPT Users]:::userStyle
+        U3[Slack Teams]:::userStyle
+        U4[Web Interface]:::userStyle
+        U5[CLI Developers]:::userStyle
+    end
+
+    %% ChittyChat Central Router
+    subgraph ROUTER["🚦 ChittyChat Central Router"]
+        direction TB
+        MAIN[Central Router]:::routerStyle
+
+        subgraph ENGINES["Routing Engines"]
+            SM[Session Manager]
+            BS[Branch Strategy]
+            AM[Auto-merge Logic]
+            DM[Divergence Monitor]
+        end
+
+        subgraph ROUTERS["Service Routers"]
+            AR[AI Router]
+            SR[Storage Router]
+            DR[Docs Router]
+            TR[Tasks Router]
+            ER[Edge Router]
+            DBR[Data Router]
+        end
+    end
+
+    %% Primary Services (7)
+    subgraph SERVICES["🔧 Primary Services (7)"]
+        direction TB
+
+        subgraph S1["1️⃣ Anthropic"]
+            CLAUDE[Claude API<br/>Sessions]:::serviceStyle
+        end
+
+        subgraph S2["2️⃣ OpenAI"]
+            GPT[GPT-4 API<br/>Sessions]:::serviceStyle
+        end
+
+        subgraph S3["3️⃣ Google"]
+            GOOGLE[Workspace<br/>Drive/Gmail]:::serviceStyle
+        end
+
+        subgraph S4["4️⃣ GitHub Hub"]
+            GITHUB[Repos/Actions<br/>Projects/Pages]:::githubStyle
+        end
+
+        subgraph S5["5️⃣ Neon"]
+            NEON[PostgreSQL<br/>Drizzle ORM]:::serviceStyle
+        end
+
+        subgraph S6["6️⃣ Cloudflare"]
+            CF[Workers/Pages<br/>R2 Storage]:::serviceStyle
+        end
+
+        subgraph S7["7️⃣ Notion"]
+            NOTION[Databases<br/>Pages/Blocks]:::serviceStyle
+        end
+    end
+
+    %% GitHub Persistence Layer
+    subgraph PERSIST["🗄️ GitHub Central Persistence"]
+        direction TB
+
+        subgraph REPO["chittyos/chittychat"]
+            MAIN_BRANCH[main branch]:::githubStyle
+            SESSION_BRANCHES[session-* branches]:::githubStyle
+            PROJECT_STRUCTURE[projects/<br/>sessions/<br/>workflows/<br/>integrations/]:::githubStyle
+        end
+
+        subgraph FEATURES["GitHub Features"]
+            ACTIONS[GitHub Actions<br/>Cron Jobs]:::githubStyle
+            PROJECTS[GitHub Projects<br/>Task Boards]:::githubStyle
+            ISSUES[Issues & PRs<br/>Auto-merge]:::githubStyle
+        end
+    end
+
+    %% Core Services
+    subgraph CORE["⚙️ ChittyChat Core Services"]
+        API[API Gateway<br/>Express.js<br/>Port 3003]:::dataStyle
+        WS[WebSocket Server<br/>Real-time sync]:::dataStyle
+        INTAKE[Universal Intake<br/>Port 3005]:::dataStyle
+        CHITTYID[ChittyID Server<br/>Port 8082]:::dataStyle
+    end
+
+    %% Data Layer
+    subgraph DATA["💾 Data Layer"]
+        DB[(Neon PostgreSQL)]:::dataStyle
+        REDIS[(Redis Cache)]:::dataStyle
+        GH_API[GitHub API]:::dataStyle
+    end
+
+    %% Main Flow Connections
+    U1 --> MAIN
+    U2 --> MAIN
+    U3 --> MAIN
+    U4 --> MAIN
+    U5 --> MAIN
+
+    MAIN --> ENGINES
+    ENGINES --> ROUTERS
+
+    AR --> CLAUDE
+    AR --> GPT
+    SR --> GITHUB
+    SR --> CF
+    DR --> NOTION
+    DR --> GOOGLE
+    TR --> ISSUES
+    ER --> CF
+    DBR --> NEON
+
+    CLAUDE --> SESSION_BRANCHES
+    GPT --> SESSION_BRANCHES
+    GOOGLE --> PROJECT_STRUCTURE
+    NOTION --> PROJECTS
+    NEON --> DB
+    CF --> API
+
+    GITHUB --> REPO
+    ISSUES --> ACTIONS
+    PROJECTS --> PROJECT_STRUCTURE
+
+    API --> DB
+    API --> REDIS
+    API --> GH_API
+    WS --> REDIS
+    INTAKE --> CHITTYID
+    CHITTYID --> DB
+
+    %% Key Flows
+    subgraph FLOWS["📊 Key Workflows"]
+        direction LR
+
+        subgraph F1["AI Session Flow"]
+            F1A[Input] -->|Create Branch| F1B[session-xxx]
+            F1B -->|Store| F1C[GitHub]
+            F1C -->|PR| F1D[Auto-merge]
+        end
+
+        subgraph F2["Document Flow"]
+            F2A[Upload] -->|Process| F2B[AI Analysis]
+            F2B -->|Store| F2C[GitHub LFS]
+            F2C -->|Sync| F2D[Notion]
+        end
+
+        subgraph F3["Divergence Flow"]
+            F3A[Cron 30m] -->|Check| F3B[Branches]
+            F3B -->|>50 behind| F3C[Alert]
+            F3B -->|No conflicts| F3D[Auto-merge]
+        end
+    end
+
+    %% Annotations
+    MAIN_BRANCH -.->|"Every 30 min"| ACTIONS
+    ACTIONS -.->|"Check divergence"| SESSION_BRANCHES
+    SESSION_BRANCHES -.->|">3 days + safe"| MAIN_BRANCH
+
+    %% Service Connections Matrix
+    GITHUB <-->|"Central Hub"| CLAUDE
+    GITHUB <-->|"Central Hub"| GPT
+    GITHUB <-->|"Central Hub"| GOOGLE
+    GITHUB <-->|"Central Hub"| NOTION
+    GITHUB <-->|"Central Hub"| NEON
+    GITHUB <-->|"Central Hub"| CF

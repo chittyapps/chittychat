@@ -1,0 +1,26 @@
+name = "chittyos-ai-coordination-agent"
+main = "ai-enhanced-coordinator.js"
+compatibility_date = "2024-09-15"
+compatibility_flags = ["nodejs_compat"]
+
+# AI Workers binding for intelligence features
+[ai]
+binding = "AI"
+
+[durable_objects]
+bindings = [
+  { name = "CHITTYOS_COORDINATOR", class_name = "AIEnhancedCoordinator" }
+]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["AIEnhancedCoordinator"]
+
+[vars]
+ENVIRONMENT = "production"
+AI_ENABLED = "true"
+
+# Production secrets (add with wrangler secret put)
+# NEON_DATABASE_URL - for external state backup
+# NOTION_TOKEN - for dashboard integration
+# GITHUB_TOKEN - for repository coordination

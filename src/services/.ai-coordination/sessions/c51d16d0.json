@@ -1,0 +1,11 @@
+{
+  "id": "c51d16d0",
+  "model": "claude",
+  "pid": 5036,
+  "startTime": 1758544596000,
+  "lastHeartbeat": 1758602141000,
+  "status": "active",
+  "tasks": [],
+  "locks": [],
+  "branch": "session-c51d16d0"
+}

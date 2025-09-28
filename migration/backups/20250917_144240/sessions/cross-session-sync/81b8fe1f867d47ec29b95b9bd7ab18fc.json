@@ -1,0 +1,16 @@
+{
+  "id": "81b8fe1f867d47ec29b95b9bd7ab18fc",
+  "name": "project-sync-mfkhuqyf",
+  "pid": 47785,
+  "hostname": "chitty.local",
+  "startTime": 1757902656761,
+  "lastHeartbeat": 1757907322780,
+  "status": "active",
+  "metadata": {
+    "model": "claude",
+    "type": "project-sync"
+  },
+  "tasks": [],
+  "locks": [],
+  "lastUpdate": 1757907322781
+}

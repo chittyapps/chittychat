@@ -1,0 +1,53 @@
+{
+  "commands": [
+    {
+      "name": "health",
+      "description": "Run comprehensive project health check (10-point inspection)",
+      "command": "/Users/nb/.claude/projects/-/chittychat/project-health-check.sh",
+      "aliases": ["check", "audit", "validate"],
+      "output": "formatted"
+    },
+    {
+      "name": "fix",
+      "description": "Run health check with auto-fixes enabled",
+      "command": "/Users/nb/.claude/projects/-/chittychat/project-health-check.sh --fix",
+      "output": "formatted"
+    },
+    {
+      "name": "project",
+      "description": "Interactive project orchestrator with architectural alignment",
+      "command": "source /Users/nb/.claude/projects/-/chittychat/project-orchestrator.sh && project",
+      "output": "interactive"
+    },
+    {
+      "name": "worktree",
+      "description": "Create git worktree for current session",
+      "command": "git worktree add ../$(basename $(pwd))-worktrees/session-$(date +%Y%m%d-%H%M%S) -b session-$(date +%Y%m%d-%H%M%S)",
+      "output": "simple"
+    },
+    {
+      "name": "chittyid",
+      "description": "Test ChittyID service connectivity",
+      "command": "curl -s https://id.chitty.cc/health | jq '.' || echo 'ChittyID service unreachable'",
+      "output": "json"
+    },
+    {
+      "name": "sync-start",
+      "description": "Start cross-session sync",
+      "command": "nohup node /Users/nb/jumpoff/chittychat-repo/cross-session-sync/start-project-sync.mjs &>/dev/null & echo 'Cross-session sync started'",
+      "output": "simple"
+    },
+    {
+      "name": "quick-fix",
+      "description": "Quick fixes: gitignore, CLAUDE.md, env.example",
+      "command": "bash -c '[[ ! -f .gitignore ]] && echo \"node_modules/\\n.env\\n.wrangler/\\ndist/\\n*.log\\n.DS_Store\" > .gitignore && echo \"Created .gitignore\"; [[ ! -f CLAUDE.md ]] && echo \"# CLAUDE.md\\n\\nProject: $(basename $(pwd))\\nChittyOS Integrated\\n\" > CLAUDE.md && echo \"Created CLAUDE.md\"; [[ ! -f .env.example ]] && echo \"CHITTY_ID_TOKEN=your_token_here\" > .env.example && echo \"Created .env.example\"'",
+      "output": "simple"
+    },
+    {
+      "name": "deps",
+      "description": "Install dependencies and check for vulnerabilities",
+      "command": "npm install && npm audit",
+      "output": "stream"
+    }
+  ]
+}

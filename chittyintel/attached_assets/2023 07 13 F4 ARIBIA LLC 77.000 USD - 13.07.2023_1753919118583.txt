@@ -1,0 +1,193 @@
+Formulario 4
+USO EXCLUSIVO DEL BANCO DE LA REPUBLICA
+
+Datos Básicos por Inversiones Internacionales
+
+El registro de las inversiones internacionales se realiza con la presentación de la declaración de cambio, (Formulario No. 4) , ante
+los intermediarios del mercado cambiario. En el caso de canalización a través de cuentas de compensación, con el abono o carg o
+en la cuenta y la elaboración de la respectiva declaración de cambio.
+
+I. TIPO DE OPERACIÓN
+1. Número:
+
+1
+
+2. Operación de:
+
+I
+
+II. IDENTIFICACIÓN DE LA DECLARACIÓN
+3. Ciudad
+
+4. Nit del I.M.C. o código cuenta de compensación
+
+MEDELLÍN
+
+5. Fecha AAAA-MM-DD
+
+6. Número
+
+8. Fecha AAAA-MM-DD
+
+9. Número
+
+860.000.185-4
+
+III. IDENTIFICACIÓN DE LA DECLARACIÓN DE CAMBIO ANTERIOR
+7. Nit del I.M.C. O código cuenta de compensación
+
+.
+IV. DESTINO DE LA INVERSIÓN
+INVERSIÓN EXTRANJERA EN COLOMBIA
+
+INVERSIÓN COLOMBIANA EN EL EXTERIOR
+
+1
+
+Sociedades colombianas, empresas y/o inversiones en
+fondos de capital privado. Art 3, a, vi Decreto 2080/00.
+
+7
+
+2
+
+Capital asignado; sucursal régimen especial
+
+8
+
+Entidades sin ánimo de lucro
+
+3
+
+Capital asignado; sucursal régimen general
+
+9
+
+Boceas
+
+4
+
+Inv. Suplementaria suc. régimen general y especial
+
+10
+
+Actos o contratos sin participación en el capital
+
+5
+
+Negocios Fiduciarios
+
+11
+
+Inversión de portafolio
+
+X
+
+6
+
+Cooperativas
+
+Sociedades extranjeras
+
+51
+Inv. Financieras y en activos radicados en el exterior
+
+52
+
+Inmuebles
+
+V. IDENTIFICACIÓN DE LA EMPRESA RECEPTORA O ADMINISTRADOR (PORTAFOLIO)
+(Las empresas por constituir deben indicar el código EC en la casilla 10)
+
+10. Tipo
+
+11. Número de identificación
+
+13. Código país
+
+DV
+
+12. Nombre
+
+14. Código ciudad
+
+15. Teléfono
+
+16. Código CIIU
+
+VI. IDENTIFICACIÓN DEL INVERSIONISTA (NACIONAL O EXTRANJERO )
+17. Tipo
+
+18. Número de identificación
+
+DV
+
+19. Nombre
+
+ARIBIA LLC
+20. Código país
+
+21. Código CIIU
+
+US
+VII. DESCRIPCION DE LA OPERACIÓN
+22. Numeral
+
+23. Código moneda
+
+4035
+26. Valor en USD
+
+27. Tipo de cambio a pesos
+
+77.000,00
+
+24.Valor moneda
+
+USD
+4.073,41
+
+25. Tipo de cambio a USD
+
+77.000,00
+
+28. Valor en pesos
+
+29. Acciones o cuotas
+
+1
+30. Inversión a plazos
+
+313.652.570,00
+
+.
+Para los fines previstos en el articulo 83 de la constitución política de Colombia, declaro bajo la gravedad de juramento que los conceptos, cantidades y demás datos consignados en el presente formulario son
+correctos y la fiel expresión de la verdad.
+
+VIII. IDENTIFICACION DEL DECLARANTE
+31. Nombre
+
+32. Tipo 33. Número de identificación
+
+NICHOLAS ANTHONY JONES BIANCHI PB
+35. Teléfono
+
+3145397082
+
+36. Dirección
+
+Carrera 39 No. 13 sur - 55. Interior 1701
+
+Para uso exclusivo del Banco de la República
+
+34. Firma
+
+561.843.976
+37. Código ciudad
+
+5001
+
+38. Correo electrónico
+management@aribia.llc
+
+

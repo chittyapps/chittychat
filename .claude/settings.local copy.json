@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/nb/**)",
+      "Bash(readlink:*)",
+      "Bash(curl:*)",
+      "Bash(nslookup:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

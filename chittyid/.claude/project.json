@@ -1,0 +1,101 @@
+{
+  "name": "ChittyID Universal Identity System",
+  "description": "Universal identity backbone for ChittyOS - Everything gets a ChittyID",
+  "version": "2.0.0",
+  "context": {
+    "CRITICAL_RULE": "NO ChittyIDs are EVER generated locally - ALL ChittyIDs MUST come from the mothership at id.chitty.cc",
+    "core_principle": "EVERYTHING gets a ChittyID - people, documents, evidence, payments, claims, actions, and every byte of data",
+    "generation_policy": {
+      "sole_authority": "ONLY the mothership at id.chitty.cc generates ChittyIDs",
+      "mothership_capability": "Mothership generates IDs deterministically even when offline",
+      "no_local_generation": "Local systems act ONLY as pipelines/proxies - they NEVER generate IDs",
+      "no_fallback": "NO fallback generation exists anywhere - mothership is the sole authority"
+    },
+    "id_format": {
+      "current": "VV-G-LLL-SSSS-T-YM-C-X",
+      "components": {
+        "VV": "Vertical (CP=Person, CL=Location, CT=Thing/Evidence, CE=Event, CC=Claim)",
+        "G": "Generation (time-based epoch)",
+        "LLL": "Location/Node identifier (3 chars)",
+        "SSSS": "Sequence (to be replaced with drand randomness)",
+        "T": "Type modifier",
+        "YM": "Year-Month encoding",
+        "C": "Category",
+        "X": "Mod-97 checksum digit"
+      },
+      "future": "TTTTTTTTT-NN-VVV-SSSS-CC (Time-First Mod-97 Base32)"
+    },
+    "evidence_handling": {
+      "principle": "All evidence documents are ChittyThings (CT- prefix)",
+      "workflow": [
+        "Evidence upload triggers ChittyID generation",
+        "ChittyID uses drand for verifiable randomness in sequence",
+        "Soft mint (Stage-1 freeze) for off-chain verification",
+        "Hard mint (Stage-2 mint) for on-chain permanence"
+      ]
+    },
+    "dual_immutability": {
+      "stage_1": "Off-chain freeze (soft mint) - DB snapshot with integrity hash, 7-day aging",
+      "stage_2": "On-chain mint (hard mint) - ChittyChain anchor, requires trust≥0.9"
+    },
+    "drand_integration": {
+      "purpose": "Replace Math.random() with verifiable, unpredictable randomness",
+      "implementation": "Use drand beacon for SSSS sequence component",
+      "benefits": [
+        "Verifiable randomness that can't be manipulated",
+        "Temporal anchoring to specific drand rounds",
+        "Cryptographic proof of fair selection"
+      ]
+    },
+    "trust_levels": {
+      "L1": "Magic Link (basic)",
+      "L2": "Biometric verified",
+      "L3": "Financial APIs access",
+      "L4": "Executive MCP access",
+      "L5": "Emergency protocols"
+    },
+    "key_invariants": [
+      "IDs are immutable post-freeze",
+      "Sensitive data never leaves the DB",
+      "Every action creates an audit trail",
+      "All IDs have cryptographic checksums"
+    ]
+  },
+  "technical_specifications": {
+    "performance_targets": {
+      "resolution_accuracy": "95%",
+      "prediction_precision": "80%",
+      "query_rtt": "<50ms",
+      "throughput": "3,500 TPS"
+    },
+    "storage": {
+      "off_chain": "PostgreSQL with pgvector",
+      "on_chain": "ChittyChain (after eligibility)",
+      "ipfs": "For large evidence files"
+    },
+    "api_endpoints": {
+      "create": "POST /api/identity/create",
+      "verify": "POST /api/identity/verify",
+      "freeze": "POST /api/identity/freeze",
+      "mint": "POST /api/identity/mint",
+      "resolve": "GET /api/identity/resolve/{chittyId}"
+    }
+  },
+  "implementation_priorities": {
+    "immediate": [
+      "Integrate drand for randomness beacon",
+      "Implement ChittyIDs for all evidence documents",
+      "Create soft/hard minting workflow"
+    ],
+    "next_phase": [
+      "Migrate to time-first Mod-97 Base32 format",
+      "Implement claim composition system",
+      "Build fractal intelligence patterns"
+    ]
+  },
+  "references": [
+    "ChittyID Deep Dive & Workflows.pdf",
+    "THE_REVELATION.md",
+    "SOFT_HARD_MINTING_GUIDE.md"
+  ]
+}

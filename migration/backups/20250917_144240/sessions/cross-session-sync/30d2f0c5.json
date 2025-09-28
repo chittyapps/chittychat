@@ -1,0 +1,11 @@
+{
+  "id": "30d2f0c5",
+  "model": "claude",
+  "pid": 61471,
+  "startTime": 1757891403000,
+  "lastHeartbeat": 1757891403000,
+  "status": "terminated",
+  "tasks": [],
+  "locks": [],
+  "branch": "session-30d2f0c5"
+}

@@ -1,0 +1,306 @@
+name = "chittychat-sync"
+main = "src/worker.js"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "chittychat-sync-production"
+routes = [
+  { pattern = "sync.chitty.cc/*", zone_name = "chitty.cc" },
+  { pattern = "viewer.chitty.cc/*", zone_name = "chitty.cc" },
+  { pattern = "api.chitty.cc/sync/*", zone_name = "chitty.cc" }
+]
+
+[env.production.vars]
+SYNC_MODE = "bidirectional"
+SYNC_TARGET = "notion"
+READ_ONLY_MODE = "true"
+ENABLE_AUDIT_LOG = "true"
+
+[[env.production.kv_namespaces]]
+binding = "SYNC_CACHE"
+id = "37fb332b2f73498895502a8ac4c0321a"
+
+[[env.production.r2_buckets]]
+binding = "AUDIT_LOGS"
+bucket_name = "chittychat-audit-logs"
+
+[[env.production.durable_objects.bindings]]
+name = "SYNC_STATE"
+class_name = "SyncState"
+
+[env.staging]
+name = "chittychat-sync-staging"
+routes = [
+  { pattern = "staging-sync.chitty.cc/*", zone_name = "chitty.cc" }
+]
+
+[[kv_namespaces]]
+binding = "SYNC_CACHE"
+id = "a3109d9d59fa4e93a12da697a47dacd8"
+preview_id = "sync_cache_preview"
+
+[[r2_buckets]]
+binding = "AUDIT_LOGS"
+bucket_name = "chittychat-audit-logs"
+
+[[durable_objects.bindings]]
+name = "SYNC_STATE"
+class_name = "SyncState"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["WebSocketHandler", "MCPServer", "SyncState"]
+
+[[r2_buckets]]
+binding = "PROCESSED_DOCS"
+bucket_name = "chitty-processed-docs"
+
+[[r2_buckets]]
+binding = "EMAIL_INTAKE"
+bucket_name = "chitty-email-intake"
+
+# Workers AI binding
+[ai]
+binding = "AI"
+
+# Hyperdrive database connections
+[[hyperdrive]]
+binding = "CHITTYCASES_DB"
+id = "to-be-configured"  # Will be set after creating Hyperdrive service
+
+[[hyperdrive]]
+binding = "MEMORY_CLOUDE_DB"
+id = "to-be-configured"  # Will be set after creating Hyperdrive service
+
+# Production Hyperdrive bindings
+[[env.production.hyperdrive]]
+binding = "CHITTYCASES_DB"
+id = "to-be-configured"
+
+[[env.production.hyperdrive]]
+binding = "MEMORY_CLOUDE_DB"
+id = "to-be-configured"
+
+# AI Agent Provisioning Environment
+[env.ai-agents]
+name = "chittychat-ai-agents"
+main = "src/workers/ai-agent-provisioning-worker.js"
+
+[[env.ai-agents.routes]]
+pattern = "agents.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# AI-specific bindings
+[env.ai-agents.ai]
+binding = "AI"
+
+[[env.ai-agents.hyperdrive]]
+binding = "CHITTYCHAT_DB"
+id = "to-be-configured"
+
+[[env.ai-agents.hyperdrive]]
+binding = "CHITTYCASES_DB"
+id = "to-be-configured"
+
+[[env.ai-agents.kv_namespaces]]
+binding = "AI_CACHE"
+id = "ai-cache-namespace"
+
+# AI Agent environment variables
+[env.ai-agents.vars]
+NEON_PROJECT_ID = "chittychat-main"
+JWT_SECRET = "ai-agents-secret"
+MAX_AGENTS_PER_TENANT = "100"
+AUTO_CLEANUP_HOURS = "168"  # 7 days
+
+# Scheduled cleanup for AI agents
+[[env.ai-agents.triggers]]
+crons = ["0 2 * * *"]  # Daily at 2 AM
+
+# Unified AI + Notion Environment
+[env.unified]
+name = "chittychat-unified-ai-notion"
+main = "src/workers/unified-ai-notion-worker.js"
+
+[[env.unified.routes]]
+pattern = "unified.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# Unified service bindings
+[env.unified.ai]
+binding = "AI"
+
+[[env.unified.hyperdrive]]
+binding = "CHITTYCHAT_DB"
+id = "to-be-configured"
+
+[[env.unified.hyperdrive]]
+binding = "CHITTYCASES_DB"
+id = "to-be-configured"
+
+[[env.unified.kv_namespaces]]
+binding = "UNIFIED_CACHE"
+id = "unified-cache-namespace"
+
+# Unified environment variables
+[env.unified.vars]
+NEON_PROJECT_ID = "chittychat-main"
+JWT_SECRET = "unified-secret"
+MAX_AGENTS_PER_TENANT = "100"
+NOTION_ENTITIES_DB = "to-be-configured"
+NOTION_INFORMATION_DB = "to-be-configured"
+NOTION_FACTS_DB = "to-be-configured"
+NOTION_CONNECTIONS_DB = "to-be-configured"
+NOTION_EVIDENCE_DB = "to-be-configured"
+
+# Scheduled sync for insights
+[[env.unified.triggers]]
+crons = ["*/10 * * * *"]  # Every 10 minutes
+
+# AI Gateway Environment
+[env.ai-gateway]
+name = "chittychat-ai-gateway"
+main = "src/workers/ai-gateway-worker.js"
+
+[[env.ai-gateway.routes]]
+pattern = "ai.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# AI Gateway bindings
+[env.ai-gateway.ai]
+binding = "AI"
+
+[[env.ai-gateway.kv_namespaces]]
+binding = "METRICS_KV"
+id = "metrics-kv-namespace"
+
+[[env.ai-gateway.kv_namespaces]]
+binding = "GATEWAY_CACHE"
+id = "gateway-cache-namespace"
+
+# AI Gateway configuration
+[env.ai-gateway.vars]
+CLOUDFLARE_ACCOUNT_ID = "84f0f32886f1d6196380fe6cbe9656a8"
+AI_GATEWAY_SLUG = "chittychat-ai"
+CACHE_TTL = "3600"
+RATE_LIMIT = "100"
+FALLBACK_MODEL = "@cf/mistral/mistral-7b-instruct-v0.1"
+MAX_RETRIES = "3"
+
+# LangChain Agent Environment
+[env.langchain]
+name = "chittychat-langchain-agent"
+main = "src/workers/langchain-agent-worker.js"
+
+[[env.langchain.routes]]
+pattern = "langchain.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# LangChain bindings
+[env.langchain.ai]
+binding = "AI"
+
+[[env.langchain.vectorize_indexes]]
+binding = "VECTORIZE"
+index_name = "chittychat-vectors"
+
+[[env.langchain.hyperdrive]]
+binding = "NEON_DB"
+id = "to-be-configured"
+
+[[env.langchain.kv_namespaces]]
+binding = "AGENT_MEMORY"
+id = "agent-memory-namespace"
+
+# LangChain configuration
+[env.langchain.vars]
+CLOUDFLARE_ACCOUNT_ID = "84f0f32886f1d6196380fe6cbe9656a8"
+DEFAULT_LLM_MODEL = "@cf/meta/llama-2-7b-chat-fp16"
+EMBEDDINGS_MODEL = "@cf/baai/bge-base-en-v1.5"
+MAX_AGENT_ITERATIONS = "5"
+VECTOR_DIMENSIONS = "768"
+
+# MCP Agent Environment
+[env.mcp-agent]
+name = "chittychat-mcp-agent"
+main = "src/agents/chittychat-mcp-agent.js"
+
+[[env.mcp-agent.routes]]
+pattern = "mcp.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# MCP Agent bindings
+[env.mcp-agent.ai]
+binding = "AI"
+
+[[env.mcp-agent.vectorize_indexes]]
+binding = "VECTORIZE"
+index_name = "mcp-vectors"
+
+[[env.mcp-agent.hyperdrive]]
+binding = "NEON_DB"
+id = "to-be-configured"
+
+[[env.mcp-agent.kv_namespaces]]
+binding = "MCP_STATE"
+id = "mcp-state-namespace"
+
+[[env.mcp-agent.durable_objects.bindings]]
+name = "AGENT_STATE"
+class_name = "ChittyChatMCPAgent"
+
+# MCP configuration
+[env.mcp-agent.vars]
+MCP_SERVER_NAME = "ChittyChat-MCP"
+MCP_VERSION = "1.0.0"
+MAX_WORKERS = "5"
+ORCHESTRATOR_MODEL = "@cf/meta/llama-2-7b-chat-fp16"
+EMBEDDING_MODEL = "@cf/baai/bge-base-en-v1.5"
+TARGET_QUALITY = "0.8"
+MAX_ITERATIONS = "3"
+
+# MCP scheduled tasks
+[[env.mcp-agent.triggers]]
+crons = ["*/5 * * * *"]  # Every 5 minutes for agent coordination
+
+# Vectorize configuration for all environments
+[[vectorize_indexes]]
+binding = "VECTORIZE"
+index_name = "chittychat-main"
+
+[[vectorize_indexes]]
+binding = "VECTORIZE_AGENTS"
+index_name = "chittychat-agents"
+
+[[vectorize_indexes]]
+binding = "VECTORIZE_MCP"
+index_name = "chittychat-mcp"
+
+# Workflows configuration (for orchestration)
+[[workflows]]
+binding = "WORKFLOWS"
+name = "chittychat-orchestration"
+class_name = "ChittyChatWorkflow"
+
+# AI Gateway integration for production
+[env.production.ai_gateway]
+account_id = "84f0f32886f1d6196380fe6cbe9656a8"
+gateway_id = "chittychat-ai"
+
+# Secrets Store bindings
+[[env.production.secrets]]
+binding = "SECRETS"
+type = "secret_store"
+
+# CloudForce One integration (security)
+[env.production.cloudforce_one]
+enabled = true
+threat_intelligence = true
+dns_filtering = true
+
+# Schema Validation
+[env.production.schema_validation]
+enabled = true
+strict_mode = true
+validation_errors = "reject"
