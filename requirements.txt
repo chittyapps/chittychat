@@ -7,3 +7,4 @@ pyarrow>=12.0.0
 aiohttp>=3.8.0
 click>=8.0.0
 notion-client>=2.2.1
+psycopg2-binary>=2.9.0
