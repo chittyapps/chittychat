@@ -1,0 +1,197 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to review'
+        required: true
+        type: number
+
+jobs:
+  claude-review:
+    name: Claude Code Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Get PR details
+      id: pr
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          PR_NUMBER="${{ github.event.inputs.pr_number }}"
+        else
+          PR_NUMBER="${{ github.event.number }}"
+        fi
+        echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+    - name: Generate review checklist
+      run: |
+        cat > claude_review_checklist.md << 'EOF'
+        # Claude Code Review Checklist for PR #${{ steps.pr.outputs.pr_number }}
+
+        ## Architecture Review
+        - [ ] ChittyID service integration properly implemented
+        - [ ] No direct AI provider calls (ChittyRouter enforced)
+        - [ ] Storage architecture follows R2 + Neon + Notion pattern
+        - [ ] Event sourcing schema alignment with ChittySchema
+        - [ ] Proper error handling and fallback mechanisms
+
+        ## Security Review
+        - [ ] No hardcoded secrets or API keys
+        - [ ] Environment variable usage for credentials
+        - [ ] Content addressing for evidence integrity
+        - [ ] Bearer token authentication patterns
+        - [ ] Input validation and sanitization
+
+        ## Code Quality
+        - [ ] Python type hints and docstrings
+        - [ ] Consistent error handling patterns
+        - [ ] Proper async/await usage
+        - [ ] File permissions on shell scripts
+        - [ ] CI/CD pipeline completeness
+
+        ## Legal Evidence Compliance
+        - [ ] Chain of custody tracking
+        - [ ] Evidence classification accuracy
+        - [ ] Cryptographic verification methods
+        - [ ] Audit trail maintenance
+        - [ ] Cross-session state management
+
+        ## Documentation
+        - [ ] CLAUDE.md completeness and accuracy
+        - [ ] GitHub Copilot instructions clarity
+        - [ ] Command reference validation
+        - [ ] Environment setup instructions
+
+        ## Testing
+        - [ ] CI validation passes all checks
+        - [ ] ChittyID service connectivity tests
+        - [ ] Database schema validation
+        - [ ] Evidence processing pipeline tests
+
+        ## Integration
+        - [ ] Notion synchronization functionality
+        - [ ] R2 storage operations
+        - [ ] Neon database operations
+        - [ ] ChittyOS data flow compliance
+        EOF
+
+    - name: Analyze changed files
+      run: |
+        echo "## Changed Files Analysis" >> claude_review_checklist.md
+        echo "" >> claude_review_checklist.md
+        git diff --name-only origin/main..HEAD | while read file; do
+          echo "### $file" >> claude_review_checklist.md
+          if [[ "$file" == *.py ]]; then
+            echo "- Python file: Check for ChittyRouter usage, proper error handling" >> claude_review_checklist.md
+          elif [[ "$file" == *.js ]]; then
+            echo "- JavaScript file: Validate ChittyID service calls, environment variables" >> claude_review_checklist.md
+          elif [[ "$file" == *.sh ]]; then
+            echo "- Shell script: Verify executable permissions, error handling" >> claude_review_checklist.md
+          elif [[ "$file" == *.yml ]] || [[ "$file" == *.yaml ]]; then
+            echo "- Workflow file: Check job dependencies, secret usage" >> claude_review_checklist.md
+          fi
+          echo "" >> claude_review_checklist.md
+        done
+
+    - name: Security scan with GitHub tools
+      run: |
+        echo "## Security Scan Results" >> claude_review_checklist.md
+        echo "" >> claude_review_checklist.md
+
+        # Check for potential secrets
+        if grep -r "sk-" . --include="*.py" --include="*.js" --include="*.yml" | grep -v "example\|test\|claude_review"; then
+          echo "⚠️ Potential API keys found" >> claude_review_checklist.md
+        else
+          echo "✅ No obvious API keys detected" >> claude_review_checklist.md
+        fi
+
+        # Check for hardcoded URLs
+        if grep -r "https://api\." . --include="*.py" --include="*.js" | grep -v "chitty.cc\|example\|test\|claude_review"; then
+          echo "⚠️ Direct API URLs found" >> claude_review_checklist.md
+        else
+          echo "✅ No direct API URLs detected" >> claude_review_checklist.md
+        fi
+
+    - name: Upload review checklist
+      uses: actions/upload-artifact@v3
+      with:
+        name: claude-review-checklist-pr-${{ steps.pr.outputs.pr_number }}
+        path: claude_review_checklist.md
+
+    - name: Comment on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const checklist = fs.readFileSync('claude_review_checklist.md', 'utf8');
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Claude Code Review (Codex Backup)\n\n${checklist}`
+          });
+
+  copilot-review:
+    name: GitHub Copilot Analysis
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Copilot code analysis
+      run: |
+        # Create Copilot-focused review
+        cat > copilot_analysis.md << 'EOF'
+        # GitHub Copilot Code Analysis
+
+        ## Instructions for Copilot Review
+        @github/copilot Please review this PR for:
+
+        1. **ChittyOS Integration Compliance**
+           - Verify all ChittyID calls use service endpoints
+           - Check ChittyRouter usage instead of direct AI providers
+           - Validate environment variable patterns
+
+        2. **Legal Evidence System Architecture**
+           - Review evidence processing pipeline logic
+           - Check chain of custody implementation
+           - Validate cryptographic integrity methods
+
+        3. **Security Best Practices**
+           - Scan for credential exposure
+           - Review authentication patterns
+           - Check input validation
+
+        ## Key Files to Focus On
+        EOF
+
+        git diff --name-only origin/main..HEAD | grep -E "\.(py|js|yml)$" | head -10 | while read file; do
+          echo "- \`$file\`" >> copilot_analysis.md
+        done
+
+    - name: Comment Copilot analysis request
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const analysis = fs.readFileSync('copilot_analysis.md', 'utf8');
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: analysis
+          });

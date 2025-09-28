@@ -1,0 +1,40 @@
+version: 2
+updates:
+  # Enable Dependabot for Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "chittyos/developers"
+    assignees:
+      - "chittyos/developers"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+
+  # Enable Dependabot for Node.js dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "chittyos/developers"
+    assignees:
+      - "chittyos/developers"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+
+  # Enable Dependabot for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "chittyos/developers"
+    assignees:
+      - "chittyos/developers"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
