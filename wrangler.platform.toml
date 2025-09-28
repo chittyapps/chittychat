@@ -1,0 +1,84 @@
+name = "chittychat-platform"
+main = "src/platform-worker.js"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+PLATFORM_VERSION = "1.0.0"
+JWT_SECRET = "chittypass-secret-2025"
+ENCRYPTION_KEY = "chittypass-encryption-key"
+SERVICES_COUNT = "35"
+CHITTYPASS_ENABLED = "true"
+PLATFORM_MODE = "production"
+
+# Account settings
+account_id = "84f0f32886f1d6196380fe6cbe9656a8"
+
+# KV Namespaces for platform services (shared with prefixes)
+[[kv_namespaces]]
+binding = "PLATFORM_CACHE"
+id = "platform-cache-production"
+preview_id = "platform-cache-preview"
+
+[[kv_namespaces]]
+binding = "PLATFORM_STORAGE"
+id = "platform-storage-production"
+preview_id = "platform-storage-preview"
+
+[[kv_namespaces]]
+binding = "KV_NAMESPACE"
+id = "platform-kv-production"
+preview_id = "platform-kv-preview"
+
+# R2 Storage
+[[r2_buckets]]
+binding = "PLATFORM_DATA"
+bucket_name = "chittychat-platform-data"
+
+# AI binding
+[ai]
+binding = "AI"
+
+# Routes for the unified platform
+[[routes]]
+pattern = "gateway.chitty.cc/*"
+zone_name = "chitty.cc"
+
+[[routes]]
+pattern = "api.chitty.cc/*"
+zone_name = "chitty.cc"
+
+[[routes]]
+pattern = "pass.chitty.cc/*"
+zone_name = "chitty.cc"
+
+# Durable Objects (if needed)
+[[durable_objects.bindings]]
+name = "PLATFORM_STATE"
+class_name = "PlatformState"
+
+[[durable_objects.bindings]]
+name = "CHAT_SESSIONS"
+class_name = "ChatSessions"
+
+[[durable_objects.bindings]]
+name = "MCP_AGENTS"
+class_name = "MCPAgents"
+
+# Migrations for Durable Objects
+[[migrations]]
+tag = "v1"
+new_classes = ["PlatformState", "ChatSessions", "MCPAgents"]
+
+# Variables already defined above
+
+# D1 Database (future)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "chittychat-platform"
+# database_id = "xxx"
+
+# Analytics
+[[analytics_engine_datasets]]
+binding = "AE"
+dataset = "chittychat-analytics"
