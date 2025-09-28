@@ -19,6 +19,7 @@ from collections import defaultdict
 
 from evidence_analyzer_v2 import EvidenceAnalyzerV2
 from evidence_versioning import EvidenceVersioningSystem
+from chittyos_service_client import ChittyOSServiceClient
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -48,13 +49,16 @@ class ChittyOSEvidenceAnalyzer(EvidenceAnalyzerV2):
         # Initialize parent class with ChittyOS output directory
         super().__init__(input_dir, str(self.chittyos_output_dir))
 
+        # Initialize §36 compliant ChittyOS service client
+        self.chittyos_client = ChittyOSServiceClient()
+
         # Override versioning database location
         self.versioner = EvidenceVersioningSystem(
             input_dir,
             str(self.chittyos_metadata_dir / "evidence_versions.db")
         )
 
-        logger.info(f"ChittyOS Evidence Analyzer initialized for case {case_id}")
+        logger.info(f"ChittyOS Evidence Analyzer initialized for case {case_id} (§36 compliant)")
         logger.info(f"Output directory: {self.chittyos_output_dir}")
 
     def setup_chittyos_paths(self):
@@ -78,24 +82,59 @@ class ChittyOSEvidenceAnalyzer(EvidenceAnalyzerV2):
         (self.chittyos_output_dir / "timelines").mkdir(exist_ok=True)
 
     async def request_chitty_id(self, content_hash: str, metadata: Dict[str, Any]) -> str:
-        """Request ChittyID from the ChittyID service - no fallbacks"""
-        import aiohttp
+        """
+        Request ChittyID via §36 compliant service orchestration
+        Uses ChittyOS service registry resolution (no hardcoded URLs per §31)
+        """
+        filename = metadata.get("filename", "unknown")
+        return await self.chittyos_client.mint_chitty_id(
+            entity="THING",
+            name=f"evidence-{filename}",
+            metadata={
+                "namespace": "EVID",
+                "payload_sha256": content_hash,
+                "case_id": self.case_id,
+                **metadata
+            }
+        )
 
-        ID_BASE = "https://id.chitty.cc"
-        ID_TOKEN = os.getenv("CHITTY_ID_TOKEN")
 
-        if not ID_TOKEN:
-            raise ValueError("CHITTY_ID_TOKEN environment variable required")
+    async def process_evidence_with_orchestration(self, file_path: Path, auto_mint: bool = True) -> Dict[str, Any]:
+        """
+        Process evidence using complete §36 orchestration pattern:
+        REQUEST → REGISTER/RESOLVE → VALIDATE → VERIFY → COMPLY → STORE
 
-        async with aiohttp.ClientSession() as session:
-            async with session.post(f"{ID_BASE}/v1/mint",
-                                  json={"domain": "legal", "subtype": "evidence"},
-                                  headers={"authorization": f"Bearer {ID_TOKEN}"}) as r:
-                r.raise_for_status()
-                result = await r.json()
-                logger.info(f"Received ChittyID from service: {result['chitty_id']}")
-                return result["chitty_id"]
+        Args:
+            file_path: Path to evidence file
+            auto_mint: Whether to mint ChittyID automatically
 
+        Returns:
+            Complete orchestration result
+        """
+        if not file_path.exists():
+            raise FileNotFoundError(f"Evidence file not found: {file_path}")
+
+        # Calculate file hash for integrity
+        with open(file_path, 'rb') as f:
+            content = f.read()
+            sha256 = hashlib.sha256(content).hexdigest()
+
+        # Prepare raw data
+        raw_data = {
+            "file_size": len(content),
+            "file_type": file_path.suffix,
+            "processed_timestamp": datetime.now(timezone.utc).isoformat(),
+            "case_id": self.case_id
+        }
+
+        # Use §36 compliant evidence ingestion
+        return await self.chittyos_client.ingest_evidence(
+            filename=file_path.name,
+            sha256=sha256,
+            raw_data=raw_data,
+            places=None,  # Extract from content analysis
+            properties=None  # Extract from content analysis
+        )
 
     async def archive_source_document(self, file_path: Path, auto_mint: bool = True) -> Dict[str, str]:
         """

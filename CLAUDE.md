@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a **Legal Evidence Analysis System** for case 2024D007847 (Arias v. Bianchi) built within the ChittyOS Framework. The system processes legal documents, maintains chain of custody, and performs automated contradiction detection for litigation support.
+This is a **§36 Compliant Legal Evidence Analysis System** for case 2024D007847 (Arias v. Bianchi) built as a **ChittyOS client** per the Critical Architecture Principle. The system orchestrates evidence workflows through ChittyOS services, maintaining chain of custody and performing automated contradiction detection for litigation support.
+
+**§36 Critical Architecture Principle**: The litigation system is a ChittyOS client, never standalone. All features must REQUEST, REGISTER, VALIDATE, RESOLVE, STORE, and AUTHENTICATE through ChittyOS services.
 
 ### System Components
 
@@ -90,18 +92,27 @@ pip3 install -r requirements.txt
 
 ## Environment Variables
 
+### §36 Required ChittyOS Service Integration
 ```bash
-# ChittyID Service (REQUIRED)
-CHITTY_ID_TOKEN=<service_token>
+# ChittyOS Registry (§31 - Service Discovery)
+CHITTY_REGISTRY_URL=https://registry.chitty.cc
+CHITTY_REGISTRY_TOKEN=<registry_token>
+
+# ChittyOS Service Tokens (§36 - Service Authentication)
+CHITTY_ID_TOKEN=<foundation_token>          # ChittyID Foundation service
+CHITTY_CANON_TOKEN=<canon_token>           # ChittyCanon entity resolution
+CHITTY_VERIFY_TOKEN=<verify_token>         # ChittyVerify trust validation
+CHITTY_CHECK_TOKEN=<check_token>           # ChittyCheck compliance validation
+
+# Unified ChittySchema Database (Current Working Connection)
+ARIAS_DB_URL=postgresql://neondb_owner:npg_WC8DvuRU1PQs@ep-solitary-darkness-aem5a1yw-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
+PGPASSWORD=npg_WC8DvuRU1PQs
 
 # Cloudflare R2 Storage
 R2_ENDPOINT=<r2_endpoint>
 R2_ACCESS_KEY=<access_key>
 R2_SECRET_KEY=<secret_key>
 R2_BUCKET=chittyos-evidence
-
-# Neon Database
-NEON_CONNECTION_STRING=postgresql://user:pass@host/dbname?sslmode=require
 
 # Notion Integration (optional)
 NOTION_TOKEN=<notion_integration_token>
@@ -110,24 +121,38 @@ CHITTYLEGDER_DATABASE_ID=<notion_database_id>
 
 ## Key Architectural Patterns
 
-### ChittyID Service Integration
-- **Service URL**: `https://id.chitty.cc/v1/mint`
+### §36 Service Orchestration Pattern
+```
+REQUEST → REGISTER/RESOLVE → VALIDATE → VERIFY → COMPLY → STORE
+```
+
+**Implementation**: All services resolved via ChittyRegistry (§31), no hardcoded URLs allowed.
+
+### ChittyID Service Integration (§30)
+- **Service Resolution**: Dynamic via `ChittyRegistry.resolve('foundation-id')`
 - **Format**: `CT-01-1-CHI-XXXX-3-YYMM-L-CC` (Mod-97 checksum)
 - **Authentication**: Bearer token via `CHITTY_ID_TOKEN`
-- **Failure Mode**: System fails fast if service unavailable
+- **Failure Mode**: System fails fast if service unavailable (no local generation)
 
 ### Content Addressing System
 - **CID Generation**: `bafk{sha256[:52]}` (IPFS-compatible)
 - **R2 Keys**: `evidence/{case_id}/{hash[:16]}_{type}_{timestamp}.ext`
 - **Deduplication**: Same content = same CID = single storage
 
-### Database Schema (Neon)
-Primary tables:
-- `artifacts` - Content-addressed file storage (CID → R2 mapping)
-- `evidence_items` - ChittyID indexed evidence with metadata
-- `ai_processing` - Entity extraction and relevance scoring
-- `evidence_relationships` - Document relationships (CONTRADICTS, SUPPORTS)
+### Database Schema (ChittySchema Centralized)
+Managed by: `/CHITTYOS/chittyos-services/chittyschema/`
+
+**Event-Sourced Architecture:**
+- `event_store` - Immutable event log with ChittyID and cryptographic chain
+- `schema_versions` - Safe migration management
+- `entities` - Core entity management with temporal tracking
+- `entity_relationships` - Relationship tracking between entities
 - `processing_sessions` - Analysis session tracking
+
+**Evidence Integration:**
+- Evidence stored as events in `event_store` with `aggregate_type: 'evidence'`
+- ChittyID integration for each evidence event
+- Cryptographic integrity via `event_hash` and `previous_hash`
 
 ### Evidence Classification
 - `COMPREHENSIVE_ANALYSIS` - Complete discovery reports
