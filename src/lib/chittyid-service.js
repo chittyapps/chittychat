@@ -1,17 +1,20 @@
 /**
  * ChittyID Service Helper
  * Official ChittyID generation following the ChittyOS standard
- * NEVER generates locally - always uses id.chitty.cc service
+ * PIPELINE ONLY - NEVER generates locally - ALWAYS uses id.chitty.cc service
+ * Format: VV-G-LLL-SSSS-T-YM-C-X ONLY - NEVER any other format
  */
 
 const CHITTYID_SERVICE_URL = "https://id.chitty.cc/v1/mint";
+
+// STRICT: No local generation allowed - service or fail
 
 /**
  * Generate a ChittyID from the official service
  * @param {string} entityType - Entity type (PEO, PLACE, PROP, EVNT, AUTH, INFO, FACT, CONTEXT, ACTOR)
  * @param {object} metadata - Optional metadata
  * @param {string} apiKey - ChittyID API key
- * @returns {Promise<string>} - ChittyID in format CHITTY-ENTITY-SEQUENCE-CHECKSUM
+ * @returns {Promise<string>} - ChittyID in format VV-G-LLL-SSSS-T-YM-C-X
  */
 export async function generateChittyID(
   entityType,
@@ -66,8 +69,8 @@ export function validateChittyIDFormat(chittyId) {
     return false;
   }
 
-  // ChittyID format: CHITTY-{ENTITY}-{SEQUENCE}-{CHECKSUM}
-  const pattern = /^CHITTY-[A-Z]+-\d+-[A-Z0-9]+$/;
+  // ChittyID format: VV-G-LLL-SSSS-T-YM-C-X
+  const pattern = /^\d{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{4}-\d-[0-9A-Z]$/;
   return pattern.test(chittyId);
 }
 
@@ -82,7 +85,7 @@ export function extractEntityType(chittyId) {
   }
 
   const parts = chittyId.split("-");
-  return parts[1]; // Entity type is second part
+  return parts[4]; // Type is the 5th part (T in VV-G-LLL-SSSS-T-YM-C-X);
 }
 
 /**

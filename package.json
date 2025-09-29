@@ -28,7 +28,11 @@
   "dependencies": {
     "@chittyos/core": "^2.1.0",
     "@octokit/rest": "^22.0.0",
-    "itty-router": "^4.2.2"
+    "itty-router": "^4.2.2",
+    "@langchain/openai": "^0.3.12",
+    "@langchain/anthropic": "^0.3.7",
+    "@langchain/core": "^0.3.15",
+    "langchain": "^0.3.28"
   },
   "devDependencies": {
     "wrangler": "^4.38.0"
@@ -71,7 +75,8 @@
     "auth": "JWT tokens and authentication",
     "id": "ChittyID generation (pipeline-only)",
     "beacon": "Monitoring and analytics",
-    "langchain": "ReAct agents and RAG queries",
+    "langchain": "LangChain AI with legal/financial analysis",
+    "cases": "ChittyCases legal case management",
     "mcp": "Stateful agent orchestration",
     "agents": "Agent provisioning and management",
     "unified": "AI-Notion workflow integration",
@@ -88,7 +93,9 @@
         "sync.chitty.cc",
         "chat.chitty.cc",
         "auth.chitty.cc",
-        "beacon.chitty.cc"
+        "beacon.chitty.cc",
+        "langchain.chitty.cc",
+        "cases.chitty.cc"
       ]
     },
     "staging": {

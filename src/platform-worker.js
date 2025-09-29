@@ -35,6 +35,10 @@ import {
 // Import ChittyPass - Service #35
 import { handleChittyPass } from "./services/chittypass.js";
 
+// Import LangChain AI and ChittyCases Integration
+import { handleLangChainAI } from "./services/langchain-handler.js";
+import { handleChittyCases } from "./services/chittycases-handler.js";
+
 /**
  * Build context object for service handlers
  */
@@ -77,7 +81,8 @@ function wrapHandler(handler) {
 let SERVICE_ROUTES = {
   // AI Infrastructure - LIVE
   "ai.chitty.cc": handleAIGateway, // Uses direct params, no wrapper needed
-  "langchain.chitty.cc": wrapHandler(handleLangChain),
+  "langchain.chitty.cc": wrapHandler(handleLangChainAI),
+  "cases.chitty.cc": wrapHandler(handleChittyCases),
   "mcp.chitty.cc": wrapHandler(handleMCP),
   "agents.chitty.cc": wrapHandler(handleAgents),
   "unified.chitty.cc": wrapHandler(handleUnified),
@@ -392,7 +397,7 @@ export default {
 };
 
 /**
- * Durable Object exports
+ * Durable Object exports - Names must match wrangler.toml
  */
 
 // Basic Durable Object implementations
@@ -445,6 +450,44 @@ export class SyncState {
       JSON.stringify({
         state: "active",
         service: "Sync State",
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+}
+
+export class ChatSessions {
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    return new Response(
+      JSON.stringify({
+        state: "active",
+        service: "Chat Sessions State",
+      }),
+      {
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+}
+
+export class MCPAgents {
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    return new Response(
+      JSON.stringify({
+        state: "active",
+        service: "MCP Agents State",
       }),
       {
         headers: { "Content-Type": "application/json" },
