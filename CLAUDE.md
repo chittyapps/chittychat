@@ -105,8 +105,7 @@ CHITTY_VERIFY_TOKEN=<verify_token>         # ChittyVerify trust validation
 CHITTY_CHECK_TOKEN=<check_token>           # ChittyCheck compliance validation
 
 # Unified ChittySchema Database (Current Working Connection)
-ARIAS_DB_URL=postgresql://neondb_owner:npg_WC8DvuRU1PQs@ep-solitary-darkness-aem5a1yw-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
-PGPASSWORD=npg_WC8DvuRU1PQs
+ARIAS_DB_URL=postgresql://neondb_owner:${PGPASSWORD}@ep-solitary-darkness-aem5a1yw-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
 
 # Cloudflare R2 Storage
 R2_ENDPOINT=<r2_endpoint>

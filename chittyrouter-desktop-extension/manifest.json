@@ -1,0 +1,101 @@
+{
+  "name": "ChittyRouter MCP Extension",
+  "version": "1.0.0",
+  "description": "Desktop extension providing seamless access to ChittyRouter's 23 MCP tools including file operations, git, web, databases, and AI services",
+  "author": "ChittyCorp LLC",
+  "homepage": "https://chitty.cc",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "node_version": ">=18.0.0"
+  },
+  "user_config": {
+    "chitty_id_token": {
+      "type": "string",
+      "sensitive": true,
+      "required": true,
+      "description": "Your ChittyID authentication token from https://id.chitty.cc",
+      "placeholder": "CHITTY-TOKEN-..."
+    },
+    "mcp_endpoint": {
+      "type": "string",
+      "default": "https://mcp.chitty.cc",
+      "description": "ChittyRouter MCP server endpoint",
+      "validation": "^https://.*"
+    },
+    "enable_local_cache": {
+      "type": "boolean",
+      "default": true,
+      "description": "Cache frequently used tool responses locally for better performance"
+    },
+    "timeout_seconds": {
+      "type": "number",
+      "default": 30,
+      "min": 5,
+      "max": 120,
+      "description": "Request timeout in seconds"
+    }
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "file_operations",
+        "category": "File System",
+        "description": "Read, write, search, and manage files",
+        "tools": ["read_file", "write_file", "list_directory", "create_directory", "delete_file", "copy_file", "move_file"]
+      },
+      {
+        "name": "git_operations",
+        "category": "Version Control",
+        "description": "Git repository management and operations",
+        "tools": ["git_status", "git_commit", "git_push", "git_pull", "git_branch", "git_log", "git_diff"]
+      },
+      {
+        "name": "web_operations",
+        "category": "Web & Network",
+        "description": "Web scraping, API calls, and network utilities",
+        "tools": ["fetch_url", "web_search", "api_request", "download_file"]
+      },
+      {
+        "name": "database_operations",
+        "category": "Data Management",
+        "description": "Database queries and data processing",
+        "tools": ["sql_query", "csv_analyze", "json_process", "data_transform"]
+      },
+      {
+        "name": "ai_services",
+        "category": "AI & Analysis",
+        "description": "AI-powered analysis and content generation",
+        "tools": ["text_analyze", "code_review", "document_summarize", "translation"]
+      },
+      {
+        "name": "chittycases_legal",
+        "category": "Legal & Court",
+        "description": "Cook County court case management and verification",
+        "tools": ["verify_case_number", "search_cases", "get_court_calendar", "check_filing_compliance", "lookup_property_pin"]
+      }
+    ],
+    "prompts": [
+      {
+        "name": "chittyos_workflow",
+        "description": "Execute multi-step workflows using ChittyOS service orchestration"
+      },
+      {
+        "name": "evidence_analysis",
+        "description": "Legal evidence analysis following §36 compliance patterns"
+      }
+    ]
+  },
+  "permissions": [
+    "network.outbound",
+    "cache.read_write"
+  ],
+  "metadata": {
+    "tags": ["productivity", "development", "ai", "legal", "chittyos"],
+    "category": "Development Tools",
+    "license": "MIT",
+    "minimum_claude_version": "3.5",
+    "last_updated": "2024-09-28"
+  }
+}

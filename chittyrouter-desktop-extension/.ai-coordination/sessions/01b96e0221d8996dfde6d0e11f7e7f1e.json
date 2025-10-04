@@ -1,0 +1,16 @@
+{
+  "id": "01b96e0221d8996dfde6d0e11f7e7f1e",
+  "name": "project-sync-mg49yrna",
+  "pid": 4604,
+  "hostname": "chitty.local",
+  "startTime": 1759098730871,
+  "lastHeartbeat": 1759098730871,
+  "status": "terminated",
+  "metadata": {
+    "model": "claude",
+    "type": "project-sync"
+  },
+  "tasks": [],
+  "locks": [],
+  "endTime": 1759098730958
+}

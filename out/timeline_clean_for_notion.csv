@@ -1,0 +1,1092 @@
+id,chitty_id,name,event_type,sub_type,description,start_time,end_time,duration,location_id,primary_person_id,secondary_person_id,related_thing_id,parent_event_id,amount,currency,status,outcome,witness_ids,evidence_ids,authority_ids,is_confidential,metadata,verification_status,last_verified,created_at,updated_at,source_file,source_hash,tz_original,confidence,start_time_parsed,evidence_type,contradiction_flag,participants_extracted,file_link,amounts_mentioned,legal_significance,notion_ready
+72c8d924-26ee-47c7-bc3e-bd6d5f0a1712,md_document_index_0,# Legal Case Document Index,other,,,2025-09-20T18:27:29.215115+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215126+00:00,2025-09-20T18:27:29.215128+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215115+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+badabe50-3ff6-4158-b701-6e150f0c7028,md_document_index_1,Summary Statistics,other,,"- **Total Files**: 237
+- **File Types**: PDF (165), PNG (36), DOCX (7), JPG/JPEG (9), TXT (1), XLSX (1), CSV (1), ZIP (2)
+- **Categories**:
+  - PETITION: 18 files
+  - GOV (Governance/LLC): 42 files
+  - COMM (Communications): 77 files
+  - TITLE (Property): 19 files
+  - LOSS (Financial): 44 files
+  - REMOVAL: 7 files
+  - ADR: 1 file
+",2025-09-20T18:27:29.215174+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Total Files', 'File Types'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215176+00:00,2025-09-20T18:27:29.215177+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215174+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,HIGH,YES
+3a6e655d-4e34-4fe3-9147-02bf0bfd7883,md_document_index_2,Documents by Category,other,,,2025-09-20T18:27:29.215190+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215192+00:00,2025-09-20T18:27:29.215193+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215190+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+52c30c01-bc5b-45bc-9870-2375481b460e,md_document_index_3,PETITIONS & COURT FILINGS (18 files),other,,"| Date | Document | Type |
+|------|----------|------|
+| 2024-10-22 | PDOM | PDF |
+| 2024-10-22 | Summons | PDF |
+| 2024-10-23 | PT Memo w/ Exhibits | PDF |
+| 2024-10-30 | Emergency Petition for TRO w/ Exhibits | PDF |
+| 2024-10-30 | ER Notice of Motion | PDF |
+| 2024-10-30 | Procedural Gap In Notification Re ER NOM | PDF |
+| 2024-10-31 | Order re Emergency Petition for TRO | PDF |
+| 2024-12-05 | Luisa FA signed | DOCX |
+| 2024-12-23 | Verified Petition for Rule with Exhibits A-D | PDF |
+| 2024-1",2025-09-20T18:27:29.215258+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Emergency Petition', 'Procedural Gap', 'In Notification', 'Emergency Petition', 'Verified Petition', 'Prospective Attorneys', 'Judge Robert', 'Emergency Motion'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215259+00:00,2025-09-20T18:27:29.215260+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215258+00:00,TRO_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/document_index.md,,MEDIUM,NO
+34675724-3958-4361-ab8e-5b24cb6f111e,md_document_index_4,GOVERNANCE & LLC DOCUMENTS (42 files),other,,"| Date | Document | Type |
+|------|----------|------|
+| 2022-07-15 | ARIBIA LLC Articles of Organization | PDF |
+| 2022-07-15 | ARIBIA LLC EIN | PDF |
+| 2022-08-01 | Aribia LLC Operating Agreement | PDF |
+| 2023-04-22 | ARIBIA LLC Operating Agreement | PDF |
+| 2023-05-09 | Unit Purchase Agreement Jones | PDF |
+| 2023-06-01 | Property Management Agreement for Personal Properties | PDF |
+| 2023-07-06 | Morada Mami Purchase Written Consent | PDF |
+| 2024-03-01 | ARIBIA LLC Amendment to Operating Ag",2025-09-20T18:27:29.215376+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Operating Agreement', 'Operating Agreement', 'Unit Purchase', 'Agreement Jones', 'Property Management', 'Personal Properties', 'Morada Mami', 'Purchase Written', 'Operating Agreement', 'Unanimous Consent', 'Equity Grant', 'Unanimous Consent', 'Membership List', 'Operating Agreement', 'Unanimous Consent', 'New Member', 'Chicago Furnished', 'Condos Assumed', 'Name Status', 'Inter Series', 'Board Resolution', 'Jones Loan', 'Loan Agreement', 'Promissory Note', 'Valuation Statement', 'Unanimous Consent', 'Luisa Arias', 'Sale Unanimous', 'Written Consent', 'Operating Agreement', 'Initial Resolutions', 'Series Terminations', 'Member Resolution', 'Sharon Jones'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215377+00:00,2025-09-20T18:27:29.215378+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215376+00:00,PROPERTY_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+5000d4ce-2e55-4146-a706-2c77e03ea67b,md_document_index_5,COMMUNICATIONS (77 files),other,,,2025-09-20T18:27:29.215390+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215391+00:00,2025-09-20T18:27:29.215392+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215390+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+f088a44d-246d-4988-bff7-4006c9050824,md_document_index_6,Email Communications,other,,"| Date | Subject | Type |
+|------|---------|------|
+| 2023-03-28 | Langon Law Group Estimate | PDF |
+| 2023-07-13 | ARIBIA LLC 77,000 USD Transfer | PDF |
+| 2024-08-08 | Proposal | PDF |
+| 2024-08-23 | Formalizing Your Role and Next Steps for Aribia LLC | PDF |
+| 2024-08-30 | Re: Formalizing Your Role and Next Steps | PDF |
+| 2024-09-04 | Formal Review of Morada Mami | PDF |
+| 2024-09-04 | Formal Memorandum - Medellin Property | PDF |
+| 2024-09-05 | Re: Final Notice Phone Payment Due | PDF |
+| 2",2025-09-20T18:27:29.215476+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Langon Law', 'Group Estimate', 'Formalizing Your', 'Next Steps', 'Formalizing Your', 'Next Steps', 'Formal Review', 'Morada Mami', 'Formal Memorandum', 'Medellin Property', 'Final Notice', 'Phone Payment', 'Formal Review', 'Medellin Property', 'Valuation Statement', 'Valuation Statement', 'Final Demand', 'Final Notice', 'Phone Payment', 'Dispute Regarding', 'Financial Obligations', 'Important Discussion', 'Formal Notice', 'Removal Luisa', 'Formal Notice', 'Removal Luisa', 'Final Notice', 'Delinquent Payments', 'Luisa Arias', 'Morada Mami', 'Resolution Needed', 'Final Offer'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215478+00:00,2025-09-20T18:27:29.215479+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215476+00:00,FINANCIAL_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+a7928882-8a5b-4b75-9690-07db060c0b71,md_document_index_7,WhatsApp/Text Messages,other,,"| Date | Description | Type |
+|------|-------------|------|
+| 2024-10-22 | Coordination Morada Mami Group Chat with Pilar & Camilo | TXT |
+| 2024-10-00 | WhatsApp Messages to Pilar and Camilo | PDF |
+| 2024-10-31 | Nick on the pressure of ale | PNG |
+| 2024-11-19 | Screenshot conversation | PNG |
+| Various | MLP Texts with Pilar & Camilo | JPEG |
+| Various | Nick telling Luisa he has no more money | PNG |
+| Various | Text ""that's why the houses are yours not mine"" | PNG |
+",2025-09-20T18:27:29.215518+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Coordination Morada', 'Mami Group'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215519+00:00,2025-09-20T18:27:29.215520+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215518+00:00,MESSAGE_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/document_index.md,,MEDIUM,NO
+fd39a75c-a0ab-4d0d-a8d3-b204745556ee,md_document_index_8,PROPERTY/TITLE DOCUMENTS (19 files),other,,"| Date | Property | Type |
+|------|----------|------|
+| 2008-02-13 | Escritura publica 1524 (Colombia) | PDF |
+| 2019-09-01 | 541 W Addison Appraisal | PDF |
+| 2019-11-21 | Wire for Closing Costs 541 W Addison | PDF |
+| 2019-11-22 | 541 W Addison Deed | PDF |
+| 2022-03-19 | 550 W Surf #504 Illinois Purchase Contract | PDF |
+| 2022-04-22 | 550 W Surf #504 Deed | PDF |
+| 2022-04-22 | Master Mortgage Statement | PDF |
+| 2022-06-03 | 550 W Surf Apt 504 Deed | PDF |
+| 2022-07-26 | 550 W Surf Apt 211 ",2025-09-20T18:27:29.215587+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Addison Appraisal', 'Closing Costs', 'Addison Deed', 'Illinois Purchase', 'Master Mortgage', 'Surf Apt', 'Surf Apt', 'Clarendon Ave', 'Mortgage Statement', 'Mr Cooper', 'Addison Mortgage', 'Loss Mitigation', 'Mr Cooper', 'Addison Mortgage', 'Payment Deferral', 'Nicholas Bianchi', 'Purchase Promise'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215588+00:00,2025-09-20T18:27:29.215589+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215587+00:00,PROPERTY_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+68f1f07e-c347-4d39-a6ac-10c3ca842396,md_document_index_9,FINANCIAL RECORDS & LOSSES (44 files),other,,"| Date | Document | Type |
+|------|----------|------|
+| 2019-09-01 | USAA Checking Statement | PDF |
+| 2022-03-05 | Bianchi Premarital Funds Bank Statement | PDF |
+| 2022-03-19 | Earnest Money First Payment Proof | PDF |
+| 2022-04-26 | 550 W Surf #504 USAA Wire Receipt $20,000 | PDF |
+| 2022-05-05 | Bianchi Down Payment Cozy Castle Statement | PDF |
+| 2022-07-05 | Wire for City Studio Earnest Money | PDF |
+| 2022-07-12 | Premarital Personal Funds Bank Statement | PDF |
+| 2023-03-01 | Bianchi USA",2025-09-20T18:27:29.215669+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Checking Statement', 'Bianchi Premarital', 'Funds Bank', 'Earnest Money', 'First Payment', 'Wire Receipt', 'Bianchi Down', 'Payment Cozy', 'Castle Statement', 'City Studio', 'Earnest Money', 'Premarital Personal', 'Funds Bank', 'Checking Statements', 'Medellin Purchase', 'Personal Worksheet', 'Fidelity Account', 'Huntington Bank', 'Transaction Report', 'Washing Machine', 'Fidelity Year', 'End Statement', 'Credit Memo', 'Loan Adjustment', 'Payment Due', 'Final Demand', 'Cozy Castle', 'Billing Memo', 'Colombian Account', 'Invoice Apostille', 'Pros Inc', '$20,000', '$17,820'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215671+00:00,2025-09-20T18:27:29.215671+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215669+00:00,FINANCIAL_EVIDENCE,NO,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/document_index.md,"$20,000",LOW,NO
+b236b05d-bc20-4de9-8a0c-06b469fde385,md_document_index_10,REMOVAL NOTICES (7 files),other,,"| Date | Document | Type |
+|------|----------|------|
+| 2024-10-07 | Final Demand for Payment | PDF |
+| 2024-10-14 | Unanimous Consent Removal of Luisa Arias | PDF |
+| 2024-10-14 | Formal Notice of Removal Luisa Arias | PDF |
+| 2024-10-21 | Formal Notice - Luisa Arias | PDF |
+| 2024-10-24 | Final Notice of Delinquent Payments | PDF |
+| 2024-08-10 | Re: Payment Due Final Demand | PDF |
+",2025-09-20T18:27:29.215705+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Final Demand', 'Unanimous Consent', 'Luisa Arias', 'Formal Notice', 'Removal Luisa', 'Formal Notice', 'Luisa Arias', 'Final Notice', 'Delinquent Payments', 'Payment Due', 'Final Demand'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215706+00:00,2025-09-20T18:27:29.215707+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215705+00:00,FINANCIAL_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+6592458c-85ea-48b2-b2b8-4ece2d5de3b7,md_document_index_11,ALTERNATIVE DISPUTE RESOLUTION (1 file),other,,"| Date | Document | Type |
+|------|----------|------|
+| 2025-03-15 | RapidRuling Arbitration Demand | PDF |
+",2025-09-20T18:27:29.215724+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Arbitration Demand'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215725+00:00,2025-09-20T18:27:29.215726+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215724+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+45eb5448-4183-4dc1-a55e-1516401d554e,md_document_index_12,MEDELLIN/COLOMBIA DOCUMENTATION,other,,"- Invoice 3075449
+- Letter of engagement 2 - Nicholas Jones
+- PODER ESPECIAL NICHOLAS JONES ARIBIA LLC
+- Proof Verification Instructions
+- MLP Texts with Pilar & Camilo (multiple)
+",2025-09-20T18:27:29.215746+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Nicholas Jones', 'Proof Verification'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215748+00:00,2025-09-20T18:27:29.215749+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215746+00:00,GENERAL_EVIDENCE,NO,"Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,YES
+9a932282-71ea-41a0-bcfb-1e8022df4c9b,md_document_index_13,XFINITY STATEMENTS (34 Screenshots),other,,"- All dated 2024-10-07
+- Screenshots of account statements and communications
+",2025-09-20T18:27:29.215763+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215765+00:00,2025-09-20T18:27:29.215766+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215763+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,MEDIUM,YES
+ac4edca8-006e-403f-add5-9d04cc59b0f2,md_document_index_14,Key Document Relationships,other,,,2025-09-20T18:27:29.215776+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215777+00:00,2025-09-20T18:27:29.215778+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215776+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+60b458cb-9f59-404f-bf4a-e9cdfb581656,md_document_index_15,Core LLC Formation & Governance Chain,other,,"1. ARIBIA LLC formed 2022-07-15
+2. Operating Agreement executed 2022-08-01
+3. Multiple amendments through 2024
+4. Series formation for properties 2024-03
+5. Sharon Jones admitted as member 2024-03-15
+6. Luisa Arias removal proceedings 2024-10
+",2025-09-20T18:27:29.215803+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Operating Agreement', 'Sharon Jones', 'Luisa Arias'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215804+00:00,2025-09-20T18:27:29.215805+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215803+00:00,GENERAL_EVIDENCE,NO,"Luisa Arias, Sharon Jones, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,YES
+f17d97ab-5db7-4064-b346-20f079bf53e6,md_document_index_16,Property Acquisition Timeline,other,,"1. 541 W Addison acquired 2019-11
+2. 550 W Surf units acquired 2022
+3. 4343 N Clarendon acquired 2024-06
+4. Morada Mami (Colombia) purchase 2023-07
+",2025-09-20T18:27:29.215825+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Morada Mami'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215826+00:00,2025-09-20T18:27:29.215827+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215825+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,YES
+7f8d63e7-0a40-448d-8cea-06263d45cac4,md_document_index_17,Legal Proceedings Timeline,other,,"1. Initial filing 2024-10-22
+2. Emergency TRO proceedings 2024-10-30
+3. Verified Petition filed 2024-12-23
+4. Fee petition filed 2025-01-09
+5. Arbitration demand 2025-03-15
+",2025-09-20T18:27:29.215849+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Verified Petition'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215850+00:00,2025-09-20T18:27:29.215851+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215849+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,MEDIUM,YES
+f972404a-4048-45a4-b97a-8e05217bde55,md_document_index_18,Search Index by Topic,other,,,2025-09-20T18:27:29.215862+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215863+00:00,2025-09-20T18:27:29.215864+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215862+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,NO
+e8baf2c1-6c9b-4a8d-b9e5-7d9db012e530,md_document_index_19,Financial Disputes,other,,"- Payment demands
+- Valuation statements
+- Loan agreements
+- Credit memos
+- Bank statements
+",2025-09-20T18:27:29.215880+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215881+00:00,2025-09-20T18:27:29.215882+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215880+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,YES
+9a942a3b-d39f-4218-a858-81a22ad866d9,md_document_index_20,Property Management,other,,"- Operating agreements
+- Management agreements
+- Purchase contracts
+- Deeds
+- Mortgage statements
+",2025-09-20T18:27:29.215897+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215899+00:00,2025-09-20T18:27:29.215900+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215897+00:00,PROPERTY_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,LOW,YES
+25138c60-caa8-4276-bc02-f26a2dd4304a,md_document_index_21,Member Disputes,other,,"- Removal notices
+- Unanimous consents
+- Communications regarding disputes
+- Response documents
+",2025-09-20T18:27:29.215915+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215917+00:00,2025-09-20T18:27:29.215918+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215915+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,HIGH,YES
+ee414959-d33e-4046-b6ff-f0aff93fd6f2,md_document_index_22,Colombian Property (Morada Mami),other,,"- Purchase consent
+- Power of attorney
+- Legal documentation
+- Communications with Pilar & Camilo
+- Property sale proceedings",2025-09-20T18:27:29.215936+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.215937+00:00,2025-09-20T18:27:29.215938+00:00,document_index.md,9c12064ee7f36d778e5319437798aacb37043eefb3218e11bded6b1fa286eb51,UTC,medium,2025-09-20 18:27:29.215936+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/document_index.md,,MEDIUM,YES
+507bd787-7b0d-4223-bf8f-a11eb891e0d5,md_FINAL_EVIDENCE_PACKAGE_0,# FINAL EVIDENCE PACKAGE - Case 2024D007847,other,,"
+**Generated:** 2025-09-19T19:21:00Z
+**Case:** Luisa Arias vs. Nicholas Bianchi
+**Status:** READY FOR LEGAL PROCEEDINGS
+",2025-09-20T18:27:29.216221+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Luisa Arias', 'Nicholas Bianchi'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216223+00:00,2025-09-20T18:27:29.216225+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216221+00:00,GENERAL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,YES
+e2fd5f55-3f01-4c6b-ab4e-f2f4802ab86a,md_FINAL_EVIDENCE_PACKAGE_1,🎯 EXECUTIVE SUMMARY,other,,"
+**OVERWHELMING EVIDENCE PACKAGE** - Multi-platform authentication with 7 direct contradictions to TRO claims.
+",2025-09-20T18:27:29.216244+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216245+00:00,2025-09-20T18:27:29.216246+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216244+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+75be0703-cc23-4c7c-b9a7-8269dcd06f24,md_FINAL_EVIDENCE_PACKAGE_2,Evidence Strength: UNASSAILABLE,other,,"- **237 total documents** processed and indexed
+- **269 evidence events** in master timeline
+- **7 iMessage contradiction exhibits** (MSG-001 through MSG-007)
+- **OpenPhone business communications** available (2MB+ dataset)
+- **Cross-platform authentication** prevents fabrication claims
+",2025-09-20T18:27:29.216272+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216273+00:00,2025-09-20T18:27:29.216274+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216272+00:00,MESSAGE_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+9725fa47-7fc7-4d17-be5a-97d8a3ac85df,md_FINAL_EVIDENCE_PACKAGE_3,📊 EVIDENCE BREAKDOWN,other,,,2025-09-20T18:27:29.216285+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216286+00:00,2025-09-20T18:27:29.216287+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216285+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+8f6ed0e5-47ce-47cc-92f4-b144d6071aa3,md_FINAL_EVIDENCE_PACKAGE_4,Court Documents (18 files),other,,"- Emergency TRO Petition (Oct 30, 2024)
+- Verified Petition for Rule (Dec 23, 2024)
+- Attorney fees petition (Jan 9, 2025)
+- Complete court filing timeline
+",2025-09-20T18:27:29.216309+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Verified Petition'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216310+00:00,2025-09-20T18:27:29.216311+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216309+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+3122773d-3a4e-4cc8-8c3c-4f1b0c559ecc,md_FINAL_EVIDENCE_PACKAGE_6,✅ iMessage Personal Communications,other,,"- **7 direct contradictions** to TRO claims identified
+- **Mutual device access** - unassailable authentication
+- **Self-authenticating** metadata and timestamps
+",2025-09-20T18:27:29.216344+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216345+00:00,2025-09-20T18:27:29.216346+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216344+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+68ebf9b2-6bbd-41e0-bb62-5eac7bb42fad,md_FINAL_EVIDENCE_PACKAGE_7,🔄 OpenPhone Business Communications,other,,"- **2MB messages dataset** available
+- **Third-party service provider** records (unalterable)
+- **Business context** complements personal communications
+",2025-09-20T18:27:29.216364+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216366+00:00,2025-09-20T18:27:29.216367+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216364+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+37430cff-157b-4284-8999-d55de7c3d496,md_FINAL_EVIDENCE_PACKAGE_8,Financial Evidence (44 files),other,,"- Bank statements showing premarital funds
+- Colombian account documentation (19 files)
+- Payment demands and final notices
+- Financial dispute timeline Aug-Oct 2024
+",2025-09-20T18:27:29.216386+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216387+00:00,2025-09-20T18:27:29.216388+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216386+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,YES
+c9fdb8f2-c767-4e99-bb2f-ba44725dc9a4,md_FINAL_EVIDENCE_PACKAGE_9,LLC Governance (42 files),other,,"- Operating agreement amendments
+- Unanimous member consents
+- Series LLC documentation
+- Member removal proceedings
+",2025-09-20T18:27:29.216404+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216405+00:00,2025-09-20T18:27:29.216406+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216404+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,YES
+48fb2f61-340e-4484-8a2c-8c7559829845,md_FINAL_EVIDENCE_PACKAGE_10,🎯 DIRECT CONTRADICTIONS TO TRO CLAIMS,other,,,2025-09-20T18:27:29.216416+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216418+00:00,2025-09-20T18:27:29.216419+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216416+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+e77bca2f-eda1-4b70-8f62-e1195b9f1b29,md_FINAL_EVIDENCE_PACKAGE_11,MSG-001: Management Authority Contradiction,other,,"**Date:** 2023-06-15
+**Evidence:** Luisa delegates rent collection authority to Nicholas
+**Contradicts:** ""Nicholas had no management authority""
+",2025-09-20T18:27:29.216437+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216438+00:00,2025-09-20T18:27:29.216439+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216437+00:00,GENERAL_EVIDENCE,YES,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+054d67cf-6258-4808-8b85-cffdde228332,md_FINAL_EVIDENCE_PACKAGE_12,MSG-002 & MSG-004: Business Operations Contradictions,other,,"**Dates:** 2023-06-15, 2023-07-10
+**Evidence:** Active involvement in rent collection and maintenance
+**Contradicts:** ""Nicholas was excluded from business operations""
+",2025-09-20T18:27:29.216459+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216460+00:00,2025-09-20T18:27:29.216461+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216459+00:00,GENERAL_EVIDENCE,YES,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+a966aab3-8e2e-4928-aead-9aeff00cd4d3,md_FINAL_EVIDENCE_PACKAGE_13,MSG-003 & MSG-007: Tenant Relations Contradictions,other,,"**Dates:** 2023-07-10, 2023-09-05
+**Evidence:** Managing maintenance requests and tenant screening
+**Contradicts:** ""Nicholas was not involved in tenant relations""
+",2025-09-20T18:27:29.216481+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216482+00:00,2025-09-20T18:27:29.216483+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216481+00:00,GENERAL_EVIDENCE,YES,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+4f226b10-7b5f-47fe-9668-bf013c984240,md_FINAL_EVIDENCE_PACKAGE_14,MSG-005 & MSG-006: Financial Involvement Contradictions,other,,"**Date:** 2023-08-22
+**Evidence:** Luisa reviews Nicholas's financial reports
+**Contradicts:** ""Nicholas did not handle financial matters""
+",2025-09-20T18:27:29.216501+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216502+00:00,2025-09-20T18:27:29.216503+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216501+00:00,FINANCIAL_EVIDENCE,YES,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+d7f67d44-da37-4950-a4fd-cd28e51f633e,md_FINAL_EVIDENCE_PACKAGE_15,🔒 AUTHENTICATION STRENGTH,other,,,2025-09-20T18:27:29.216514+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216515+00:00,2025-09-20T18:27:29.216518+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216514+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+e108024f-e626-40ed-b0f2-ec5bee74e5d9,md_FINAL_EVIDENCE_PACKAGE_16,Triple-Layer Authentication,other,,"1. **Personal Communications** - Both parties have identical iMessage records
+2. **Business Communications** - Third-party OpenPhone service provider
+3. **Official Documentation** - Timestamped legal and property records
+",2025-09-20T18:27:29.216540+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Personal Communications', 'Business Communications', 'Official Documentation'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216542+00:00,2025-09-20T18:27:29.216543+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216540+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+3e1e1ac5-77a4-431b-8705-2e1d9a6deea7,md_FINAL_EVIDENCE_PACKAGE_17,Unassailable Evidence Chain,other,,"- **Cannot be fabricated** - Multiple independent sources
+- **Cannot be selectively produced** - Interconnected evidence
+- **Cannot be disputed** - Mutual access and third-party verification
+",2025-09-20T18:27:29.216564+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216565+00:00,2025-09-20T18:27:29.216566+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216564+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,YES
+3fa6e237-9481-4526-a4d6-35d65b2a2171,md_FINAL_EVIDENCE_PACKAGE_18,📈 STRATEGIC ADVANTAGES,other,,,2025-09-20T18:27:29.216577+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216578+00:00,2025-09-20T18:27:29.216579+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216577+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+2b33c10b-e273-4bfd-a4ec-84023f278992,md_FINAL_EVIDENCE_PACKAGE_19,For Nicholas (Plaintiff),other,,"- **Overwhelming contradiction evidence** across all TRO claims
+- **Multi-platform verification** prevents fabrication claims
+- **Complete timeline coverage** of business involvement
+- **Third-party authentication** through service providers
+",2025-09-20T18:27:29.216601+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216603+00:00,2025-09-20T18:27:29.216604+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216601+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+c8bfe691-6ac0-4799-a078-5d51e7f12925,md_FINAL_EVIDENCE_PACKAGE_20,Against Luisa (Defendant),other,,"- **Own communications contradict** sworn TRO statements
+- **Discovery scope expansion** - all platforms now relevant
+- **Selective production risk** - cannot cherry-pick evidence
+- **Perjury exposure** - contradictions to sworn testimony
+",2025-09-20T18:27:29.216626+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216627+00:00,2025-09-20T18:27:29.216628+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216626+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+3d1e3c29-7ee5-4d61-8458-07912f7243bc,md_FINAL_EVIDENCE_PACKAGE_21,🏛️ LEGAL SIGNIFICANCE,other,,,2025-09-20T18:27:29.216638+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216640+00:00,2025-09-20T18:27:29.216640+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216638+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+f06d60e3-eb44-46ca-87e7-7d0ec855e3a4,md_FINAL_EVIDENCE_PACKAGE_22,TRO Dissolution Grounds,other,,"- **Direct contradiction evidence** to every exclusion claim
+- **Continuous business involvement** demonstrated across timeline
+- **Operational authority** proven through multiple sources
+- **Financial management role** verified through communications
+",2025-09-20T18:27:29.216662+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216664+00:00,2025-09-20T18:27:29.216665+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216662+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+4a47fdf4-b6d9-4342-98c3-db2f4a9ee136,md_FINAL_EVIDENCE_PACKAGE_23,Discovery Impact,other,,"- **Complete evidence package** ready for proceedings
+- **Cross-platform consistency** proves continuous involvement
+- **Authentication diversity** eliminates dispute vectors
+- **Timeline completeness** covers critical dispute period
+",2025-09-20T18:27:29.216686+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216687+00:00,2025-09-20T18:27:29.216688+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216686+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,YES
+ce362756-5657-4c66-bb32-7fe20322d856,md_FINAL_EVIDENCE_PACKAGE_24,📋 READY DELIVERABLES,other,,,2025-09-20T18:27:29.216699+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216700+00:00,2025-09-20T18:27:29.216701+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216699+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,LOW,NO
+9e0a4f3e-4548-449a-8852-9a70cb135ea9,md_FINAL_EVIDENCE_PACKAGE_25,Immediate Discovery Exhibits,other,,"1. **MSG-001 through MSG-007** - iMessage contradiction exhibits
+2. **Timeline Master CSV** - 269 evidence events
+3. **Document Index** - 237 files cataloged
+4. **Contradiction Report** - Direct TRO claim contradictions
+",2025-09-20T18:27:29.216723+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Timeline Master', 'Document Index', 'Contradiction Report'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216724+00:00,2025-09-20T18:27:29.216725+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216723+00:00,MESSAGE_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+dd7efedd-02c5-478a-a6a1-72952db73fdf,md_FINAL_EVIDENCE_PACKAGE_26,Integration Ready,other,,"1. **OpenPhone Business Data** - Requires processing for specific contradictions
+2. **Financial Timeline** - Payment disputes Aug-Oct 2024
+3. **Property Management Evidence** - Continuous operational involvement
+4. **Cross-Platform Timeline** - Integrated evidence framework
+",2025-09-20T18:27:29.216752+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Business Data', 'Financial Timeline', 'Property Management', 'Platform Timeline'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216753+00:00,2025-09-20T18:27:29.216754+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216752+00:00,FINANCIAL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,MEDIUM,YES
+65b45f35-e79f-4fa5-aec5-ecfa50289389,md_FINAL_EVIDENCE_PACKAGE_27,⚖️ CONCLUSION,other,,"
+**CASE STATUS: OVERWHELMING EVIDENCE ADVANTAGE**
+
+The multi-platform evidence package creates an unassailable foundation demonstrating Nicholas's continuous business involvement across personal communications, business platforms, and official documentation.
+
+**Evidence Strength:** OVERWHELMING
+**Authentication:** MULTIPLE INDEPENDENT SOURCES
+**Contradiction Coverage:** COMPLETE
+**Strategic Advantage:** DECISIVE
+
+This evidence package provides overwhelming support for TRO dissolution and contrad",2025-09-20T18:27:29.216792+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Evidence Strength', 'Contradiction Coverage', 'Strategic Advantage', 'Luisa Arias'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.216793+00:00,2025-09-20T18:27:29.216794+00:00,FINAL_EVIDENCE_PACKAGE.md,02a3e8c80c49bf860cf398a28c8799c630060a0692cf8ef9e05a50180f006373,UTC,medium,2025-09-20 18:27:29.216792+00:00,EMAIL_EVIDENCE,YES,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/FINAL_EVIDENCE_PACKAGE.md,,HIGH,YES
+dd72d70b-cf97-4a02-8b9a-3081d135a40a,md_chittyrouter_session_insights_0,# ChittyRouter Session Insights - ChittyID Architecture Integration,other,,"
+**Source Session**: `ab5bf1ad-323f-4293-8819-db08288b3eb1` (ChittyRouter project)
+**Applied To**: Legal Case Evidence Analysis System
+**Date**: 2025-09-19
+",2025-09-20T18:27:29.217215+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Source Session', 'Applied To', 'Legal Case', 'Evidence Analysis'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217220+00:00,2025-09-20T18:27:29.217222+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217215+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+1805babd-4ab5-4f18-a6c5-65c358f07333,md_chittyrouter_session_insights_1,🔑 Key Architectural Insights,other,,,2025-09-20T18:27:29.217239+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217241+00:00,2025-09-20T18:27:29.217242+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217239+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,NO
+964259ec-f11a-40e0-b8db-0c0d2f326b0a,md_chittyrouter_session_insights_2,**ChittyID Service Architecture**,other,,"- **Endpoint**: `https://id.chitty.cc`
+- **Protocol**: Request-based, not locally generated
+- **Authority Validation**: Via `https://verify.chitty.cc`
+- **Service Discovery**: Through ChittyOS registry
+",2025-09-20T18:27:29.217267+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Authority Validation', 'Service Discovery'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217269+00:00,2025-09-20T18:27:29.217270+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217267+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+e2b16b3f-02a8-4e4b-a027-10117ab69e92,md_chittyrouter_session_insights_3,**Multi-Repository Data Flow**,other,,"From ChittyRouter session analysis:
+
+```
+Evidence Input → Classification → Multi-Destination Storage:
+     ↓              ↓               ↓
+Legal Docs → Analysis → ├── Atomic Facts (chittyos-data)
+                       ├── Evidence Files (evidence-vault)
+                       ├── Session State (chittychat-data)
+                       └── Metadata (local + sync)
+```
+",2025-09-20T18:27:29.217305+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Evidence Input', 'Destination Storage', 'Legal Docs', 'Atomic Facts', 'Evidence Files', 'Session State'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217306+00:00,2025-09-20T18:27:29.217307+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217305+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+293fbb58-c541-4da5-8f63-0cd1ff45b9d5,md_chittyrouter_session_insights_4,**Storage Tier Architecture**,other,,"- **Hot**: Cloudflare R2 (active processing)
+- **Warm**: Google Drive (regular access)
+- **Cold**: GitHub repos (archive/backup)
+- **Archive**: GitHub long-term storage
+",2025-09-20T18:27:29.217329+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Google Drive'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217330+00:00,2025-09-20T18:27:29.217331+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217329+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+68a63d71-eb10-4c61-bb77-9f586854e57e,md_chittyrouter_session_insights_5,🔧 Implementation Changes Made,other,,,2025-09-20T18:27:29.217342+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217344+00:00,2025-09-20T18:27:29.217344+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217342+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,NO
+107788e5-4a55-465e-9c21-54d647b2cd61,md_chittyrouter_session_insights_6,**1. ChittyID Request Client**,other,,"- Replaced `compute_chitty_id()` with `request_chitty_id()`
+- Added async HTTP client for service requests
+- Implemented fallback for service unavailability
+- Added proper metadata payload structure
+",2025-09-20T18:27:29.217368+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217369+00:00,2025-09-20T18:27:29.217370+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217368+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+7c7dc193-def3-433c-8cd2-93430b7a90ee,md_chittyrouter_session_insights_7,**2. Evidence Archival Updates**,other,,"- Made `archive_source_document()` async
+- Integrated ChittyID service requests
+- Enhanced metadata with service-provided IDs
+- Added proper error handling and logging
+",2025-09-20T18:27:29.217390+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217392+00:00,2025-09-20T18:27:29.217393+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217390+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+5445652d-818f-4557-92b8-7ec7faa23701,md_chittyrouter_session_insights_8,**3. Service Integration**,other,,"- Added `aiohttp` dependency for async requests
+- Implemented proper payload structure for ChittyID service
+- Added authority validation framework
+- Created fallback mechanisms for offline operation
+",2025-09-20T18:27:29.217413+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217414+00:00,2025-09-20T18:27:29.217415+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217413+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,MEDIUM,YES
+35b454e4-97b3-4772-9a1a-305db0323fc6,md_chittyrouter_session_insights_9,📊 Data Classification Framework,other,,,2025-09-20T18:27:29.217427+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217428+00:00,2025-09-20T18:27:29.217429+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217427+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,NO
+70433f3e-cfe4-4288-b1db-ac1a4baf2cb9,md_chittyrouter_session_insights_10,**Atomic Facts** (→ chittyos-data),other,,"- Legal assertions and admissions
+- Key dates, amounts, deadlines
+- Party relationships and conflicts
+- Contradictions and evidence conflicts
+",2025-09-20T18:27:29.217447+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217448+00:00,2025-09-20T18:27:29.217449+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217447+00:00,GENERAL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,MEDIUM,YES
+060997b4-9cd6-4bd1-bc4b-6685847b8ca6,md_chittyrouter_session_insights_11,**Evidence Storage** (→ evidence-vault),other,,"- Original court documents (PDFs)
+- Email communications and threads
+- Financial records and bank statements
+- WhatsApp/text message screenshots
+",2025-09-20T18:27:29.217468+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217469+00:00,2025-09-20T18:27:29.217470+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217468+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,MEDIUM,YES
+20fc2ec2-79a2-4e2c-abd8-870cd3b7c40b,md_chittyrouter_session_insights_12,**Session State** (→ chittychat-data),other,,"- Analysis workflow context
+- AI processing state and results
+- Case management metadata
+- Cross-service coordination state
+",2025-09-20T18:27:29.217487+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217488+00:00,2025-09-20T18:27:29.217489+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217487+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+cc94cd55-755d-4ca8-ab4e-314bc0ea7a51,md_chittyrouter_session_insights_13,🌐 Multi-Cloud Sync Architecture,other,,,2025-09-20T18:27:29.217500+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217501+00:00,2025-09-20T18:27:29.217502+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217500+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,NO
+08368e03-a7b7-4aba-9b1a-edb3a69cf5ac,md_chittyrouter_session_insights_14,**Repository Mapping**,other,,"```
+chittyos-data/     # Immutable atomic facts
+├── data/
+│   ├── legal/2024D007847/
+│   │   ├── facts/
+│   │   ├── assertions/
+│   │   └── contradictions/
+
+evidence-vault/    # Original evidence files
+├── evidence/
+│   ├── documents/
+│   ├── communications/
+│   └── financial/
+
+chittychat-data/   # Session and project management
+├── projects/legal/2024D007847/
+│   ├── sessions/
+│   ├── analysis/
+│   └── metadata/
+```
+",2025-09-20T18:27:29.217539+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217540+00:00,2025-09-20T18:27:29.217541+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217539+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,HIGH,YES
+a12f6768-cac9-4fca-b0b4-d857e94eb488,md_chittyrouter_session_insights_15,**Authority Integration**,other,,"- **Schema Validation**: `https://schema.chitty.cc`
+- **Trust Verification**: `https://trust.chitty.cc`
+- **Identity Management**: `https://id.chitty.cc`
+- **Registry Discovery**: `https://registry.chitty.cc`
+- **Integrity Verification**: `https://verify.chitty.cc`
+",2025-09-20T18:27:29.217566+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Schema Validation', 'Trust Verification', 'Identity Management', 'Registry Discovery', 'Integrity Verification'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217568+00:00,2025-09-20T18:27:29.217568+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217566+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+c52ce0a0-d60d-4065-9f33-043b1bc24133,md_chittyrouter_session_insights_16,🔄 Cross-Project Synchronization,other,,,2025-09-20T18:27:29.217579+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217580+00:00,2025-09-20T18:27:29.217581+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217579+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,NO
+579fe2e3-85cc-44ec-ae3d-fc67a0c63f0d,md_chittyrouter_session_insights_17,**Shared Components**,other,,"- ChittyID request protocols
+- Multi-repository sync patterns
+- Authority validation frameworks
+- Storage tier optimization
+- Cross-service coordination
+",2025-09-20T18:27:29.217599+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217601+00:00,2025-09-20T18:27:29.217602+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217599+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,LOW,YES
+45843702-fcf3-47be-ad57-121fb2e95962,md_chittyrouter_session_insights_18,**Legal Case Specific Extensions**,other,,"- Evidence chain of custody tracking
+- Legal fact extraction and validation
+- Case timeline generation and analysis
+- Contradiction detection and reporting
+- Multi-jurisdictional compliance
+",2025-09-20T18:27:29.217676+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217681+00:00,2025-09-20T18:27:29.217682+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217676+00:00,GENERAL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,MEDIUM,YES
+c9d1076c-310a-4d86-9995-bd54d663f028,md_chittyrouter_session_insights_19,🎯 Next Steps,other,,"
+1. **Test ChittyID Service Integration**
+   - Validate service requests with legal evidence
+   - Test fallback mechanisms
+   - Verify authority validation
+
+2. **Implement Multi-Repo Sync**
+   - Configure automatic sync to all three repositories
+   - Implement storage tier optimization
+   - Add cross-reference linking
+
+3. **Enhance Authority Integration**
+   - Add schema validation for legal documents
+   - Implement trust scoring for evidence
+   - Create integrity verification workflows
+
+This in",2025-09-20T18:27:29.217748+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Service Integration', 'Implement Multi', 'Repo Sync', 'Enhance Authority'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.217750+00:00,2025-09-20T18:27:29.217751+00:00,chittyrouter_session_insights.md,03165d1cbbe6a65f53bfd143a833d27950ab48439f3ec9c5d3d9e38a43dbf3c9,UTC,medium,2025-09-20 18:27:29.217748+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/chittyrouter_session_insights.md,,MEDIUM,YES
+3375c266-79cf-436e-84d4-990404786586,md_INTEGRATED_DISCOVERY_REPORT_0,# INTEGRATED DISCOVERY REPORT,other,,,2025-09-20T18:27:29.218120+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218123+00:00,2025-09-20T18:27:29.218124+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218120+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+0ba76b52-0a75-452a-a87c-450d7ce05b0c,md_INTEGRATED_DISCOVERY_REPORT_1,Case 2024D007847: Luisa Arias vs. Nicholas Bianchi,other,,"
+**Generated:** 2025-09-19T19:54:00Z
+**Analysis Status:** COMPLETE
+**Evidence Status:** READY FOR DISCOVERY
+
+---
+",2025-09-20T18:27:29.218144+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Analysis Status', 'Evidence Status'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218145+00:00,2025-09-20T18:27:29.218146+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218144+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+a6519903-4c55-41e8-8b3b-59f033089fa3,md_INTEGRATED_DISCOVERY_REPORT_2,🎯 DISCOVERY READINESS SUMMARY,other,,,2025-09-20T18:27:29.218157+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218158+00:00,2025-09-20T18:27:29.218159+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218157+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+1643cd39-8293-44e1-88d5-ed62c0de6690,md_INTEGRATED_DISCOVERY_REPORT_3,Evidence Package Status: **COMPLETE**,other,,"- **Total Evidence Items:** 269 events across 237 documents
+- **Timeline Coverage:** Complete operational history
+- **Authentication Status:** Multi-platform verification established
+- **Change Tracking:** All document versions monitored and preserved
+",2025-09-20T18:27:29.218183+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Total Evidence', 'Timeline Coverage', 'Authentication Status', 'Change Tracking'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218184+00:00,2025-09-20T18:27:29.218185+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218183+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+7db55402-c491-480f-9fc9-db5455637c71,md_INTEGRATED_DISCOVERY_REPORT_4,Key Discovery Deliverables: **READY**,other,,"1. **Master Timeline** - 269 evidence events (CSV/Parquet formats)
+2. **Document Index** - 237 files cataloged by category
+3. **Evidence Versioning** - Complete change history preserved
+4. **iMessage Analysis** - Communication patterns documented
+5. **OpenPhone Data** - Business communications identified and available
+
+---
+",2025-09-20T18:27:29.218216+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Master Timeline', 'Document Index', 'Evidence Versioning'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218217+00:00,2025-09-20T18:27:29.218218+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218216+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+8370f60f-bfa3-428c-b2a5-4bba61c197e6,md_INTEGRATED_DISCOVERY_REPORT_5,📊 EVIDENCE ANALYSIS RESULTS,other,,,2025-09-20T18:27:29.218229+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218230+00:00,2025-09-20T18:27:29.218231+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218229+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+20c2a3c4-1eb9-44d3-8aa7-8a6ec8ea6e63,md_INTEGRATED_DISCOVERY_REPORT_6,Document Categories Processed,other,,"| Category | Files | Strategic Value |
+|----------|-------|----------------|
+| **Court Filings** | 18 | Complete legal timeline |
+| **Communications** | 77 | Business relationship evidence |
+| **Financial Records** | 44 | Payment disputes & premarital funds |
+| **LLC Governance** | 42 | Operational authority documentation |
+| **Property Documents** | 19 | Asset management evidence |
+| **Removal Proceedings** | 7 | Member dispute timeline |
+",2025-09-20T18:27:29.218265+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Strategic Value', 'Court Filings', 'Financial Records', 'Property Documents', 'Removal Proceedings'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218267+00:00,2025-09-20T18:27:29.218268+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218265+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,HIGH,NO
+edf695e8-1b25-4665-ab3b-12a46d377baa,md_INTEGRATED_DISCOVERY_REPORT_7,Timeline Analysis,other,,"- **269 evidence events** chronologically organized
+- **Critical periods identified:** August-October 2024 escalation
+- **Business operations continuity** documented throughout dispute
+- **Cross-platform evidence integration** framework established
+
+---
+",2025-09-20T18:27:29.218291+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218292+00:00,2025-09-20T18:27:29.218293+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218291+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+342ed51e-6423-48d9-8563-0cf6850ffb26,md_INTEGRATED_DISCOVERY_REPORT_8,🔒 AUTHENTICATION FRAMEWORK,other,,,2025-09-20T18:27:29.218352+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218353+00:00,2025-09-20T18:27:29.218355+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218352+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+3d0c4215-6a15-4ff8-a388-3503c32c0b01,md_INTEGRATED_DISCOVERY_REPORT_9,Multi-Platform Evidence Strategy,other,,"1. **Personal Communications (iMessage)**
+   - Mutual device access ensures identical records
+   - Self-authenticating metadata and timestamps
+   - Cannot be disputed or claimed as fabricated
+
+2. **Business Communications (OpenPhone)**
+   - Third-party service provider records (2MB+ dataset)
+   - Unalterable external service maintenance
+   - Professional context complements personal evidence
+
+3. **Official Documentation**
+   - Timestamped legal and property records
+   - Government and institutio",2025-09-20T18:27:29.218395+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Personal Communications', 'Business Communications', 'Official Documentation'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218397+00:00,2025-09-20T18:27:29.218397+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218395+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+cb766cc4-b9d0-4e04-8140-1c413eaf6d75,md_INTEGRATED_DISCOVERY_REPORT_10,Evidence Integrity,other,,"- **Version control system** tracks all document changes
+- **Hash-based verification** ensures content integrity
+- **Complete audit trail** of analysis activities
+- **No evidence gaps** - comprehensive coverage maintained
+
+---
+",2025-09-20T18:27:29.218421+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218423+00:00,2025-09-20T18:27:29.218424+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218421+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+7abf109e-8180-493a-aee5-a59e7df80049,md_INTEGRATED_DISCOVERY_REPORT_12,For Nicholas (Plaintiff),other,,"- **Comprehensive evidence base** across multiple platforms
+- **Continuous operational involvement** demonstrated
+- **Multi-source authentication** prevents fabrication claims
+- **Complete timeline coverage** including critical dispute periods
+",2025-09-20T18:27:29.218458+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218459+00:00,2025-09-20T18:27:29.218460+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218458+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+ad9878e4-8793-4565-8d75-42eb23f0e417,md_INTEGRATED_DISCOVERY_REPORT_13,Discovery Scope Expansion,other,,"- **Cross-platform consistency** requires comprehensive production
+- **Interconnected evidence** prevents selective disclosure
+- **Business context integration** broadens relevant communication scope
+- **Timeline completeness** establishes ongoing involvement patterns
+
+---
+",2025-09-20T18:27:29.218483+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218484+00:00,2025-09-20T18:27:29.218485+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218483+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+e31ea932-c478-4551-96ab-ef89b05db56d,md_INTEGRATED_DISCOVERY_REPORT_14,🏛️ LEGAL PROCEEDINGS READINESS,other,,,2025-09-20T18:27:29.218495+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218496+00:00,2025-09-20T18:27:29.218497+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218495+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+08676048-dcfa-493a-9a58-931d5d347bfa,md_INTEGRATED_DISCOVERY_REPORT_15,Immediate Discovery Assets,other,,"1. **Exhibit-Ready Documents**
+   - Master timeline with 269 evidence events
+   - Comprehensive document index (237 files)
+   - Change tracking reports with version history
+
+2. **Communication Evidence**
+   - iMessage analysis framework established
+   - OpenPhone business data identified and accessible
+   - Cross-platform integration strategy documented
+
+3. **Authentication Packages**
+   - Multi-platform verification protocols
+   - Hash-based integrity verification
+   - Complete audit trail docu",2025-09-20T18:27:29.218534+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Ready Documents', 'Communication Evidence', 'Authentication Packages'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218535+00:00,2025-09-20T18:27:29.218536+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218534+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+74f92bd5-e931-48a2-9c2c-b978fd0901ee,md_INTEGRATED_DISCOVERY_REPORT_16,Next Phase Requirements,other,,"1. **OpenPhone Data Processing**
+   - Extract specific business communications for critical period
+   - Identify operational control evidence
+   - Cross-reference with existing timeline
+
+2. **Contradiction Analysis**
+   - Process business communications for TRO claim contradictions
+   - Generate specific exhibit packages
+   - Integrate with personal communication evidence
+
+---
+",2025-09-20T18:27:29.218565+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Data Processing', 'Contradiction Analysis'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218566+00:00,2025-09-20T18:27:29.218567+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218565+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,HIGH,YES
+53317df2-624d-41e4-b457-fdcf3d069219,md_INTEGRATED_DISCOVERY_REPORT_17,📋 TECHNICAL INFRASTRUCTURE,other,,,2025-09-20T18:27:29.218578+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218580+00:00,2025-09-20T18:27:29.218581+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218578+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+349e227e-8ece-4afe-9bf7-5be993e37a3a,md_INTEGRATED_DISCOVERY_REPORT_18,Data Management,other,,"- **Evidence versioning system** operational
+- **Change detection algorithms** monitoring document modifications
+- **Master timeline** maintained in multiple formats (CSV, Parquet)
+- **Metadata preservation** ensuring forensic integrity
+",2025-09-20T18:27:29.218603+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218604+00:00,2025-09-20T18:27:29.218605+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218603+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+b9bcdcd4-9d68-4538-9156-1dc11f7b8fdc,md_INTEGRATED_DISCOVERY_REPORT_19,Analysis Capabilities,other,,"- **Automated contradiction detection** across communication platforms
+- **Timeline correlation analysis** for operational continuity
+- **Document categorization** and indexing systems
+- **Cross-platform evidence integration** frameworks
+
+---
+",2025-09-20T18:27:29.218626+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218628+00:00,2025-09-20T18:27:29.218628+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218626+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,HIGH,YES
+4db5da85-69e7-47ad-8ed9-5b3d022c9523,md_INTEGRATED_DISCOVERY_REPORT_20,⚖️ CONCLUSION,other,,,2025-09-20T18:27:29.218639+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218640+00:00,2025-09-20T18:27:29.218641+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218639+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,NO
+4fbf7e44-ef5f-417f-9acf-523659e7202a,md_INTEGRATED_DISCOVERY_REPORT_21,Discovery Position: **OVERWHELMING ADVANTAGE**,other,,"
+The integrated evidence analysis has established a comprehensive foundation for legal proceedings with:
+
+- **Complete evidence coverage** across all relevant categories
+- **Multi-platform authentication** preventing dispute vectors
+- **Continuous timeline documentation** of operational involvement
+- **Ready discovery deliverables** for immediate legal use
+",2025-09-20T18:27:29.218669+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218671+00:00,2025-09-20T18:27:29.218672+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218669+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,LOW,YES
+360bd736-de18-430c-aca2-d81ac09ae266,md_INTEGRATED_DISCOVERY_REPORT_22,Evidence Strength Assessment,other,,"- **Volume:** 269 evidence events across 237 documents
+- **Quality:** Multi-source authentication with version control
+- **Coverage:** Complete operational timeline with critical period focus
+- **Integrity:** Hash-based verification and audit trail maintenance
+
+**DISCOVERY READINESS STATUS: COMPLETE**
+**STRATEGIC ADVANTAGE: DECISIVE**
+**EVIDENCE STRENGTH: OVERWHELMING**
+
+This integrated discovery package provides comprehensive support for legal proceedings with unassailable evidence authenticati",2025-09-20T18:27:29.218709+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.218710+00:00,2025-09-20T18:27:29.218711+00:00,INTEGRATED_DISCOVERY_REPORT.md,62fd16a53236230704385b29c5a6a2d1e8333cc5d138e1f3428eb7be989dbcdc,UTC,medium,2025-09-20 18:27:29.218709+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/INTEGRATED_DISCOVERY_REPORT.md,,MEDIUM,YES
+77c920e0-b487-4c69-a4f3-920933fe9b3d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_0,# TRO DISSOLUTION/MODIFICATION MOTION MATERIALS,other,,,2025-09-20T18:27:29.219376+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219378+00:00,2025-09-20T18:27:29.219380+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219376+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+8b2dc38c-a63d-449d-890f-4dd3587ceb80,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_1,Consolidated Evidence Package for Vanguard Advocates,other,,,2025-09-20T18:27:29.219392+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219393+00:00,2025-09-20T18:27:29.219394+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219392+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+b8bbfb33-ffe7-4e94-a3f4-ebbff7ae0a3f,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_2,"Case: Arias v. Bianchi, No. 2024D007847",other,,,2025-09-20T18:27:29.219407+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219408+00:00,2025-09-20T18:27:29.219409+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219407+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+1d018709-fbd4-4efd-92e2-31c52c201ff4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_3,"Date: September 19, 2025",other,,"
+---
+",2025-09-20T18:27:29.219421+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219422+00:00,2025-09-20T18:27:29.219423+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219421+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+63cf8223-fdb8-4201-9833-35d541709f81,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_4,TABLE OF CONTENTS,other,,,2025-09-20T18:27:29.219434+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219435+00:00,2025-09-20T18:27:29.219436+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219434+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+d780f2a9-b073-41de-ae80-84adbe08e674,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_5,EXECUTIVE SUMMARY,other,,"- **Case Overview**
+- **Timeline of Events**
+- **Analysis of Emergency Petition**
+",2025-09-20T18:27:29.219452+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Case Overview', 'Emergency Petition'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219453+00:00,2025-09-20T18:27:29.219454+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219452+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+337f9bc9-3ffe-4ade-9ee0-477532411c62,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_6,SECTION 1: THE PRE-TRO GOOD FAITH OFFERS,other,,"- Timeline of Rejected Settlement Offers
+- Critical Finding
+",2025-09-20T18:27:29.219467+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Rejected Settlement', 'Critical Finding'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219469+00:00,2025-09-20T18:27:29.219469+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219467+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+7d503139-8db1-4ff3-bcc3-ac8f9149369d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_7,"SECTION 2: THE OCTOBER 21 REMOVAL - BUSINESS, NOT ABUSE",other,,"- Legitimate Business Reasons Documented
+- What This Was NOT
+",2025-09-20T18:27:29.219483+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Legitimate Business', 'Reasons Documented', 'What This'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219484+00:00,2025-09-20T18:27:29.219485+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219483+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+50092002-87b9-4dbb-8e3d-5e4d20078189,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_8,SECTION 3: THE NINE-DAY GAP - WHERE'S THE EMERGENCY?,other,,"- October 21-30, 2024: Luisa's Actions vs. ""Emergency"" Claims
+- The Rocket Lawyer Smoking Gun
+",2025-09-20T18:27:29.219502+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['The Rocket', 'Lawyer Smoking'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219503+00:00,2025-09-20T18:27:29.219504+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219502+00:00,TRO_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+e2a2060c-4ad6-44be-ae5d-48f72ba76f80,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_9,SECTION 4: PROCEDURAL VIOLATIONS REQUIRING DISSOLUTION,other,,"- A. Ex Parte Order Without Legal Basis
+- B. Violation of Operating Agreement
+- C. No Bond Posted (Illinois Supreme Court Rule 137)
+",2025-09-20T18:27:29.219522+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Ex Parte', 'Order Without', 'Legal Basis', 'Operating Agreement', 'No Bond', 'Illinois Supreme', 'Court Rule'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219523+00:00,2025-09-20T18:27:29.219524+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219522+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+f3262a16-f6fb-4590-af9a-011dda694297,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_10,SECTION 5: EVIDENCE CONTRADICTING TRO CLAIMS,other,,"- A. Financial Affidavit Proves No Dissipation
+- B. Email Evidence of Collaboration
+- C. Business Continuity Evidence
+",2025-09-20T18:27:29.219541+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Financial Affidavit', 'Proves No', 'Email Evidence', 'Business Continuity'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219542+00:00,2025-09-20T18:27:29.219543+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219541+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+8e5d8202-3f61-40b8-a276-9c4aeea8e6f2,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_11,SECTION 6: THE ARIBIA LLC NON-MARITAL CLASSIFICATION,other,,"- Formation Timeline (Irrefutable)
+- Funding Sources (ChittyTrace Documented)
+- Transmutation Analysis Under 750 ILCS 5/503(c)
+- Defense Against Potential Transmutation Claims
+",2025-09-20T18:27:29.219562+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Formation Timeline', 'Funding Sources', 'Transmutation Analysis', 'Defense Against', 'Potential Transmutation'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219563+00:00,2025-09-20T18:27:29.219564+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219562+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+481d9025-b2dd-451e-90e8-48a4e168aac1,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_12,SECTION 7: COMPARATIVE HARM ANALYSIS,other,,"- Harm to Nicholas (Documented)
+- Harm to Luisa (Alleged but Unproven)
+",2025-09-20T18:27:29.219579+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219580+00:00,2025-09-20T18:27:29.219581+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219579+00:00,GENERAL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+e046caed-7802-4c87-8702-ee283e339f5d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_13,SECTION 8: PROPOSED RELIEF AND LEGAL ARGUMENTS,other,,"- PRIMARY REQUEST: Complete Dissolution
+- ALTERNATIVE: Substantial Modification
+- ADDITIONAL RELIEF REQUESTED
+",2025-09-20T18:27:29.219596+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Complete Dissolution', 'Substantial Modification'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219598+00:00,2025-09-20T18:27:29.219598+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219596+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+f6f0fb9d-fb2c-4a14-8c62-43e58126cc71,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_14,SECTION 9: KEY EVIDENCE DOCUMENTS,other,,"- Already Filed with Court
+- ChittyOS Verified Evidence
+- Neon Database Records
+",2025-09-20T18:27:29.219613+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Already Filed', 'Verified Evidence', 'Neon Database'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219614+00:00,2025-09-20T18:27:29.219615+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219613+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+eecbfcdb-bee2-4095-9240-28d36d97713d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_15,SECTION 10: CROSS-CHECK AND VALIDATION FOR ATTORNEY BRIEF,other,,"- Property Classification Defense Checklist
+- Funding Documentation Verification
+- Illinois Law Compliance
+",2025-09-20T18:27:29.219630+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Property Classification', 'Defense Checklist', 'Funding Documentation', 'Illinois Law'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219631+00:00,2025-09-20T18:27:29.219632+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219630+00:00,PROPERTY_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+0af1447b-57f6-4cdf-a249-443ab3ca9541,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_16,SECTION 11: STRATEGIC RECOMMENDATIONS FOR BRIEF,other,,"- Lead with Retaliation Narrative
+- Key Arguments and Evidence Focus
+",2025-09-20T18:27:29.219649+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Retaliation Narrative', 'Key Arguments', 'Evidence Focus'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219650+00:00,2025-09-20T18:27:29.219651+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219649+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+96a7eaa3-7916-4c7c-87a4-fa1b1d1d48f8,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_17,APPENDICES,other,,"- A. Critical Quotes for Brief
+- B. Illinois Law Citations
+- C. Evidence Inventory Checklist
+
+---
+",2025-09-20T18:27:29.219666+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Critical Quotes', 'Illinois Law', 'Evidence Inventory'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219668+00:00,2025-09-20T18:27:29.219669+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219666+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+fb2f0e41-3ddd-4ad4-b1fe-8821b00dbeb2,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_18,EXECUTIVE SUMMARY: THE RETALIATION NARRATIVE,other,,,2025-09-20T18:27:29.219679+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219680+00:00,2025-09-20T18:27:29.219681+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219679+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+749ab5a0-ea20-4ca6-a970-5e84032b0363,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_19,The One-Sentence Truth,other,,"**Luisa filed a retaliatory TRO nine days after being legitimately removed from ARIBIA LLC for documented non-performance, using the removal letter itself as ""evidence"" of an ""emergency"" that didn't exist.**
+",2025-09-20T18:27:29.219701+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219702+00:00,2025-09-20T18:27:29.219703+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219701+00:00,TRO_EVIDENCE,NO,"Luisa Arias, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+06e0c6eb-8ece-4a81-9783-c05eec0f6329,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_20,The Incontrovertible Timeline,other,,"- **October 21, 2024:** Nicholas removes Luisa from ARIBIA LLC for legitimate business reasons
+- **October 22, 2024:** ONE DAY LATER - Luisa files for divorce
+- **October 30, 2024:** NINE DAYS LATER - Luisa files ""Emergency"" TRO petition
+- **October 31, 2024:** TRO granted ex parte without notice or bond
+",2025-09-20T18:27:29.219730+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219731+00:00,2025-09-20T18:27:29.219732+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219730+00:00,TRO_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+ab22ebb0-be2a-43f1-958b-66612c299d77,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_21,"The Fatal Flaw in Their ""Emergency""",other,,"**During the 9-day gap between removal and TRO:**
+- Luisa took NO emergency actions
+- Made NO police reports
+- Sought NO immediate protection
+- Continued accessing Rocket Lawyer account (proving she wasn't ""locked out"")
+- Simply consulted lawyers and prepared retaliation
+
+---
+",2025-09-20T18:27:29.219756+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Rocket Lawyer'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219757+00:00,2025-09-20T18:27:29.219758+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219756+00:00,TRO_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+6ee79834-62c0-435f-91dd-d82aacb3910a,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_22,SECTION 1: THE PRE-TRO GOOD FAITH OFFERS,other,,,2025-09-20T18:27:29.219768+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219769+00:00,2025-09-20T18:27:29.219770+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219768+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+21b58e51-e7a2-42f3-992b-d386ce693373,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_23,Proving Nicholas's Attempts at Resolution (August-October 2024),other,,,2025-09-20T18:27:29.219780+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219781+00:00,2025-09-20T18:27:29.219782+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219780+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+8e98c0b9-bcbf-45ba-bedf-81ada3c79fd5,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_24,Timeline of Rejected Settlement Offers,other,,"
+**August 10, 2024 - First Settlement Offer**
+- Offered repayment plan for $17,820 debt
+- Proposed structured payment schedule
+- **Result:** REJECTED by Luisa
+
+**August 19 & 23, 2024 - Business Transition Offers**
+- Multiple attempts to discuss orderly transition
+- Offered continued involvement in property management
+- **Result:** DEFLECTED - Luisa refused engagement
+
+**September 4, 2024 - Medellín Property Agreement**
+- Offered favorable repayment terms for Colombia property
+- Proposed maintain",2025-09-20T18:27:29.219850+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['First Settlement', 'Business Transition', 'Property Agreement', 'Final Demand', 'Settlement Option', 'Removal Notice', 'Compromise Language', '$17,820', '$17,820'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219851+00:00,2025-09-20T18:27:29.219852+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219850+00:00,FINANCIAL_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$17,820",LOW,YES
+47439bcb-8ec5-4d8d-9305-3dce2051829b,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_25,Critical Finding,other,,"**Nicholas made FIVE documented settlement attempts over 2.5 months before Luisa chose retaliation over resolution.**
+
+---
+",2025-09-20T18:27:29.219868+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219870+00:00,2025-09-20T18:27:29.219871+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219868+00:00,GENERAL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+83a5460b-4fc8-4919-b964-d90bf7a30f4d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_26,"SECTION 2: THE OCTOBER 21 REMOVAL - BUSINESS, NOT ABUSE",other,,,2025-09-20T18:27:29.219881+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219882+00:00,2025-09-20T18:27:29.219883+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219881+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+2411eb6c-3796-419a-b487-10afe8568f1e,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_27,Legitimate Business Reasons Documented,other,,,2025-09-20T18:27:29.219895+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219896+00:00,2025-09-20T18:27:29.219897+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219895+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+b00c6dbd-9ac8-479a-a76e-6ebb91256c51,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_28,From the Removal Letter (TRO Exhibit A),other,,"1. **Financial Defaults**
+   - $17,820 outstanding to ARIBIA LLC
+   - $1,473.09 unpaid wireless bill
+   - Zero contribution to property acquisitions
+
+2. **Performance Failures**
+   - Unsigned resignation letter
+   - Abandoned guest relations duties
+   - Failed project management responsibilities
+   - Brother's incomplete renovation work at Cozy Castle
+
+3. **Compromise Language Proving Good Faith**
+   - ""manage this transition smoothly""
+   - ""arrangements for your family's continued residence""
+  ",2025-09-20T18:27:29.219936+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Financial Defaults', 'Performance Failures', 'Cozy Castle', 'Compromise Language', 'Proving Good', '$17,820', '$1,473.09'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219937+00:00,2025-09-20T18:27:29.219938+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219936+00:00,FINANCIAL_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$17,820, $1,473.09",LOW,YES
+053065d1-db65-49a7-a278-845f182afba2,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_29,What This Was NOT,other,,"- No threats of violence
+- No coercive language
+- No emergency circumstances
+- No domestic abuse elements
+- Simply a business separation with accommodations offered
+
+---
+",2025-09-20T18:27:29.219957+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219958+00:00,2025-09-20T18:27:29.219959+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219957+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+49615cdf-2f80-4074-a7ef-40f9da2af150,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_30,SECTION 3: THE NINE-DAY GAP - WHERE'S THE EMERGENCY?,other,,,2025-09-20T18:27:29.219970+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219971+00:00,2025-09-20T18:27:29.219972+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219970+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+3f62aa7b-f7b2-455f-8e6b-94b16dc57661,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_31,"October 21-30, 2024: Luisa's Actions vs. ""Emergency"" Claims",other,,,2025-09-20T18:27:29.219982+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.219983+00:00,2025-09-20T18:27:29.219984+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.219982+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+7ee3611f-08f3-4cb9-b29b-e07760e26ffd,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_32,What Someone in Real Emergency Would Do,other,,"✗ Call police immediately
+✗ Seek emergency shelter
+✗ File immediate protection order
+✗ Document injuries or threats
+✗ Secure children's safety (no children here)
+",2025-09-20T18:27:29.220005+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220006+00:00,2025-09-20T18:27:29.220007+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220005+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+44dae7c6-d4b1-4fc7-890d-4fb1fc4ed296,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_33,What Luisa Actually Did,other,,"✓ Consulted divorce attorneys (October 22)
+✓ Filed calculated divorce petition (October 22)
+✓ Continued accessing shared accounts
+✓ Maintained normal activities
+✓ Prepared retaliatory TRO petition (October 23-29)
+✓ Used business letter as ""emergency"" evidence (October 30)
+",2025-09-20T18:27:29.220034+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220035+00:00,2025-09-20T18:27:29.220036+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220034+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+f0414432-7e7e-4ab5-a901-9e55217a8a68,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_34,The Rocket Lawyer Smoking Gun,other,,"**Access logs prove Luisa was actively using the account during this period:**
+- Contradicts claims of being ""locked out""
+- Shows continued business access
+- Demonstrates no actual exclusion occurred
+
+---
+",2025-09-20T18:27:29.220057+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220058+00:00,2025-09-20T18:27:29.220059+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220057+00:00,GENERAL_EVIDENCE,YES,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+b4dd6c07-98a8-42c8-b464-0cbf35afb6cf,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_35,SECTION 4: PROCEDURAL VIOLATIONS REQUIRING DISSOLUTION,other,,,2025-09-20T18:27:29.220069+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220071+00:00,2025-09-20T18:27:29.220072+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220069+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+448ca4fd-d09a-4d95-85d8-e6dee224423b,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_36,A. Ex Parte Order Without Legal Basis,other,,,2025-09-20T18:27:29.220082+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220083+00:00,2025-09-20T18:27:29.220084+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220082+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+5a3783cb-a4be-43c3-b948-0e01a7416c8e,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_37,Illinois Law Requirements (750 ILCS 60/217),other,,"**For ex parte relief, petitioner must show:**
+1. Immediate and present danger ✗ (9-day delay negates)
+2. Irreparable harm ✗ (no harm documented)
+3. No adequate remedy at law ✗ (divorce already filed)
+4. Notice would cause harm ✗ (no evidence provided)
+",2025-09-20T18:27:29.220110+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220111+00:00,2025-09-20T18:27:29.220112+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220110+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+44604fc4-7ee1-4ee9-8c7f-a0da0c21f944,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_38,What Actually Happened,other,,"- October 30: Petition filed
+- October 31: Granted WITHOUT hearing
+- No notice to Nicholas
+- No opportunity to respond
+- No bond required or posted
+",2025-09-20T18:27:29.220131+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220132+00:00,2025-09-20T18:27:29.220133+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220131+00:00,GENERAL_EVIDENCE,NO,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+02864727-0939-4845-8756-1776d38d3b30,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_39,B. Violation of Operating Agreement,other,,,2025-09-20T18:27:29.220146+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220147+00:00,2025-09-20T18:27:29.220148+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220146+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+32c26ab8-ae77-4fa4-b82a-d22077985f02,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_40,ARIBIA LLC Operating Agreement - Article XII,other,,"**Mandatory Dispute Resolution:**
+""All disputes SHALL be resolved through mediation, and if unsuccessful, binding arbitration""
+
+**Luisa's Violation:**
+- Signed this agreement as 10% member
+- Bypassed ALL required procedures
+- Went straight to court for TRO
+- Used TRO to circumvent business agreement
+",2025-09-20T18:27:29.220174+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Mandatory Dispute'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220175+00:00,2025-09-20T18:27:29.220176+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220174+00:00,TRO_EVIDENCE,YES,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,HIGH,YES
+cd0d937b-86bc-4be1-97da-65577d2a70d3,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_41,C. No Bond Posted (Illinois Supreme Court Rule 137),other,,,2025-09-20T18:27:29.220187+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220188+00:00,2025-09-20T18:27:29.220189+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220187+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+eff4f898-862c-440a-b5be-966f42f6e89e,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_42,Legal Requirement,other,,"- Injunctions require security for wrongful restraint
+- Protects defendant from improper orders
+- Mandatory, not discretionary
+",2025-09-20T18:27:29.220205+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220206+00:00,2025-09-20T18:27:29.220207+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220205+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+86e2a63c-184f-4a1d-8c50-8892ec723147,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_43,Violation Impact,other,,"- Nicholas entitled to damages
+- No protection for wrongful TRO
+- Demonstrates lack of good faith
+
+---
+",2025-09-20T18:27:29.220223+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220224+00:00,2025-09-20T18:27:29.220225+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220223+00:00,TRO_EVIDENCE,NO,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+6a5a60f8-7126-4944-93af-5bf717175a78,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_44,SECTION 5: EVIDENCE CONTRADICTING TRO CLAIMS,other,,,2025-09-20T18:27:29.220235+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220236+00:00,2025-09-20T18:27:29.220237+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220235+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+fdb39ba4-a0b6-49fa-a208-a28a0816d470,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_45,A. Financial Affidavit Proves No Dissipation,other,,,2025-09-20T18:27:29.220248+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220249+00:00,2025-09-20T18:27:29.220250+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220248+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+53f2d7fb-bec6-4f6a-9b40-b354c4b011e3,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_46,"Filed January 30, 2025 (ChittyID: UR2F2iQ49FifzE7QdEDdEnXH)",other,,"**Complete Disclosure Shows:**
+- All properties intact and documented
+- Bank accounts with positive balances
+- Total debt disclosed: $563,386.70
+- No hidden assets
+- No transfers or dissipation
+- **11 months of TRO = Zero harm proven**
+",2025-09-20T18:27:29.220273+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Complete Disclosure', '$563,386.70'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220274+00:00,2025-09-20T18:27:29.220275+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220273+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$563,386.70",MEDIUM,YES
+faa37ccc-8b93-457a-8df6-3ba1feb0720c,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_47,B. Email Evidence of Collaboration,other,,,2025-09-20T18:27:29.220286+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220287+00:00,2025-09-20T18:27:29.220288+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220286+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+93076ff7-070d-493f-9343-02d0358ce8f3,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_48,Gurney Law Group Communications (May 2024),other,,"**Key Quote from Luisa:** ""Yes, indeed Nick is married, my name is Luisa Fernanda Arias""
+- Actively participating in property transfers
+- Using lulu@aribia.llc email
+- Signing documents jointly
+- Coordinating with attorneys together
+- **Proves partnership, not control**
+",2025-09-20T18:27:29.220312+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Key Quote', 'Luisa Fernanda', 'lulu@aribia.llc'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220313+00:00,2025-09-20T18:27:29.220314+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220312+00:00,EMAIL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,HIGH,YES
+d7ae0b1d-e65d-4525-ba30-e32a71f745c6,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_49,C. Business Continuity Evidence,other,,,2025-09-20T18:27:29.220325+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220326+00:00,2025-09-20T18:27:29.220327+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220325+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+38c209c3-b420-474e-b9b1-2852e5f10b5d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_50,ARIBIA LLC Operations Post-TRO,other,,"- Continued paying legal fees
+- Maintained property management
+- Filed required documents
+- Preserved all assets
+- **Business harmed by TRO, not protected**
+
+---
+",2025-09-20T18:27:29.220346+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220347+00:00,2025-09-20T18:27:29.220348+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220346+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+88287be3-fc83-477d-ba2a-e2d5cffa9448,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_51,SECTION 6: THE ARIBIA LLC NON-MARITAL CLASSIFICATION,other,,,2025-09-20T18:27:29.220371+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220373+00:00,2025-09-20T18:27:29.220374+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220371+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+f13dd347-5bc5-4218-be1e-c76f40d25791,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_52,Formation Timeline (Irrefutable),other,,"- **July 15, 2022:** ARIBIA LLC formed
+- **December 30, 2022:** Marriage (5+ months LATER)
+- **Ownership:** Nicholas 90%, Sharon Jones 10%
+- **Luisa's Role:** Later given informal interest, never documented
+",2025-09-20T18:27:29.220396+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Sharon Jones'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220397+00:00,2025-09-20T18:27:29.220398+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220396+00:00,GENERAL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi, Sharon Jones, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+8b1bd629-4910-4dea-80f6-20db6b2a349a,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_53,Funding Sources (Documented via ChittyTrace System),other,,,2025-09-20T18:27:29.220409+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220410+00:00,2025-09-20T18:27:29.220411+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220409+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+79108722-98f9-4995-b0fd-08e75dee0319,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_54,ChittyTrace Documentation Structure,other,,"**Location:** `/ChittyTrace - IT CAN BE LLC/` directory contains complete funding trail
+",2025-09-20T18:27:29.220426+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220427+00:00,2025-09-20T18:27:29.220428+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220426+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+34eaab0b-2e02-4414-b479-244024a071f8,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_55,Colombia Property - Morada Mami (July 2023),other,,"- **Amount:** $77,000 USD
+- **Source:** Nicholas's Fidelity pre-marital retirement account
+- **Documentation:**
+  - 03_2023-07-13_ARIBIA_77000_USD_Transfer.pdf
+  - Alianza Investment Instructions Letter (July 2023)
+  - Converted to 313,652,570 COP at rate 4073.41
+- **Transfer Path:** Fidelity → ARIBIA LLC → Colombia property
+- Nicholas acting as Representative Legal of ARIBIA LLC
+",2025-09-20T18:27:29.220464+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Alianza Investment', 'Instructions Letter', 'Transfer Path', 'Representative Legal', '$77,000'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220465+00:00,2025-09-20T18:27:29.220466+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220464+00:00,FINANCIAL_EVIDENCE,NO,"Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$77,000",LOW,YES
+a25d00f6-d5b7-4d23-940e-3cafbbb46100,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_56,All Properties (Pre-Marital and Non-Marital Funds),other,,"**US Properties documented in ChittyTrace folders:**
+- **541 W Addison 3S** (2019) - Pre-marital acquisition
+- **550 W Surf 504** (April 2022) - Pre-marital acquisition
+- **550 W Surf 211** (July 2022) - Pre-marital (5 months before marriage)
+- **4343 N Clarendon 1610** (June 2024) - Funded by:
+  - $100,000 loan to ARIBIA LLC
+  - ~$35,000 from Nicholas's pre-marital EEOC settlement (separate personal funds)
+",2025-09-20T18:27:29.220501+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['$100,000', '$35,000'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220503+00:00,2025-09-20T18:27:29.220504+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220501+00:00,FINANCIAL_EVIDENCE,NO,"Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$100,000, $35,000",LOW,YES
+a7f09a89-74c3-4722-9cc8-9994a5908fec,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_57,Funding Sources Traced,other,,"**Bank Accounts (ChittyTrace verified):**
+- USAA Statements (folder 01)
+- Huntington Bank (folder 03)
+- Mercury Bank (folder 03b)
+- Robinhood (folder 02c)
+- Coinbase (folder 02d)
+
+**Key Finding:** ALL property acquisitions traceable to Nicholas's separate/pre-marital accounts
+**Luisa's Contribution:** $0 documented across all properties
+",2025-09-20T18:27:29.220532+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Bank Accounts', 'Huntington Bank', 'Mercury Bank', 'Key Finding', '$0'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220534+00:00,2025-09-20T18:27:29.220535+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220532+00:00,FINANCIAL_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,$0,LOW,YES
+5ff13a5b-42c2-4e95-9d09-bc760b2bf2ea,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_58,Legal Classification Under 750 ILCS 5/503(a),other,,,2025-09-20T18:27:29.220545+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220546+00:00,2025-09-20T18:27:29.220547+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220545+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+a91117cd-92b9-44ec-aad9-1b771c3e6d38,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_59,Prima Facie Non-Marital Status,other,,"- ARIBIA LLC formed before marriage (July 2022 vs. December 2022) = Non-marital entity
+- Colombia property: $77,000 from Nicholas's pre-marital retirement account = Non-marital
+- 4343 N Clarendon: $135,000 from loan + pre-marital EEOC settlement = Non-marital
+- All properties (US and Colombia): Either pre-marital acquisitions or funded with traceable separate property
+- Clear tracing: Pre-marital accounts → ARIBIA LLC → Properties
+",2025-09-20T18:27:29.220586+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['$77,000', '$135,000'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220587+00:00,2025-09-20T18:27:29.220588+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220586+00:00,FINANCIAL_EVIDENCE,NO,"Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$77,000, $135,000",LOW,YES
+0275d010-ca15-48e6-bde6-d6f099cdfc61,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_60,Transmutation Analysis Under 750 ILCS 5/503(c),other,,"**Ways Property Could Be Transmuted to Marital (None Apply Here):**
+
+1. **Title Changes** (750 ILCS 5/503(c)(1))
+   - ✗ No properties titled jointly with Luisa
+   - ✗ No deeds showing marital ownership
+   - ✓ All properties remain in Nicholas/ARIBIA LLC name
+
+2. **Commingling** (750 ILCS 5/503(c)(2))
+   - ✗ No marital funds used for property improvements
+   - ✗ No joint accounts used for property expenses
+   - ✓ Separate business accounts maintained throughout
+
+3. **Express Intent to Transmute**",2025-09-20T18:27:29.220677+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Ways Property', 'Could Be', 'None Apply', 'Title Changes', 'Express Intent', 'Substantial Marital', 'Marital Use', 'Illinois Law', 'No Other', 'Business Purpose', 'Separate Ownership', '$0'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220678+00:00,2025-09-20T18:27:29.220679+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220677+00:00,PROPERTY_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+0e37943c-87d3-41c2-a5aa-119d877ea7d4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_61,Defense Against Potential Transmutation Claims,other,,"- **Clean Paper Trail:** All funding sources documented and traceable
+- **No Joint Ownership:** Properties never retitled to include Luisa
+- **Separate Business Entity:** ARIBIA LLC maintained separate corporate existence
+- **Zero Spousal Investment:** No marital funds or labor contributed
+- **Business Separation:** October 2024 removal reinforces separate ownership
+- **Cohabitation Defense:** Brief residence insufficient under Illinois law without other transmuting factors
+- **Investment Purpos",2025-09-20T18:27:29.220734+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Clean Paper', 'No Joint', 'Separate Business', 'Zero Spousal', 'Business Separation', 'Cohabitation Defense', 'Investment Purpose', 'Legal Precedent'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220735+00:00,2025-09-20T18:27:29.220736+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220734+00:00,PROPERTY_EVIDENCE,NO,"Luisa Arias, ARIBIA LLC",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+c1b7426b-29d6-4d32-85fa-cd394dc5e6a4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_62,SECTION 7: COMPARATIVE HARM ANALYSIS,other,,,2025-09-20T18:27:29.220747+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220748+00:00,2025-09-20T18:27:29.220749+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220747+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+1730d70c-b9eb-4bd4-b2d8-9af3cd9515b6,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_63,Harm to Nicholas (Documented),other,,,2025-09-20T18:27:29.220759+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220761+00:00,2025-09-20T18:27:29.220762+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220759+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+503d324f-6b68-4403-99a4-68e3704ac513,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_64,Financial Impact,other,,"- Monthly expenses: $5,914.47 continuing
+- Unable to operate ARIBIA LLC freely
+- Legal fees accumulating
+- 5 properties requiring active management
+- Business opportunities lost
+",2025-09-20T18:27:29.220781+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['$5,914.47'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220783+00:00,2025-09-20T18:27:29.220784+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220781+00:00,FINANCIAL_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$5,914.47",LOW,YES
+43bb88b0-2489-4409-9d3a-9e9074622fe4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_65,Personal Impact,other,,"- C-PTSD/ADHD exacerbated (medical documentation)
+- Reputational damage to business
+- Inability to access accounts
+- Forced to defend baseless claims
+",2025-09-20T18:27:29.220802+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220803+00:00,2025-09-20T18:27:29.220804+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220802+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+7be9ecf0-8d18-4969-b345-6875f324d01e,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_66,Harm to Luisa (Alleged but Unproven),other,,,2025-09-20T18:27:29.220814+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220815+00:00,2025-09-20T18:27:29.220816+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220814+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+29c9aace-4add-4d83-aaa8-6e2710e70a47,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_67,What She Claims,other,,"- Vague ""control"" allegations
+- Unspecified ""fear""
+- No documented injuries
+- No financial harm shown
+",2025-09-20T18:27:29.220832+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220833+00:00,2025-09-20T18:27:29.220834+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220832+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+e76a6c64-ff54-4c52-8eed-f09d842f6758,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_68,What Evidence Shows,other,,"- Continued access to accounts (Rocket Lawyer logs)
+- Active business participation through October
+- Filed for divorce before TRO (had remedies)
+- 9-day delay negates emergency claims
+
+---
+",2025-09-20T18:27:29.220854+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Rocket Lawyer'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220855+00:00,2025-09-20T18:27:29.220856+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220854+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+c4336426-0ba4-42cf-91b2-e93275651036,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_69,SECTION 8: PROPOSED RELIEF AND LEGAL ARGUMENTS,other,,,2025-09-20T18:27:29.220866+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220868+00:00,2025-09-20T18:27:29.220869+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220866+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+2c96a932-1f5a-4a56-83b9-9237b1d19943,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_70,PRIMARY REQUEST: COMPLETE DISSOLUTION,other,,,2025-09-20T18:27:29.220879+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220880+00:00,2025-09-20T18:27:29.220881+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220879+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+3ba1cba8-6fd0-47c5-82de-e57f12befe9b,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_71,Grounds for Dissolution,other,,"1. **Retaliation, Not Emergency**
+   - Clear retaliatory timeline established
+   - Business dispute, not domestic issue
+   - 9-day gap proves no emergency
+
+2. **Changed Circumstances**
+   - Full financial disclosure completed
+   - Original case dismissed July 18, 2024
+   - 11 months with no harm shown
+   - All settlement attempts rejected
+
+3. **Procedural Violations**
+   - Ex parte without legal basis
+   - No bond posted
+   - Violated Operating Agreement ADR clause
+   - No irreparable harm demon",2025-09-20T18:27:29.220928+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Not Emergency', 'Changed Circumstances', 'Procedural Violations', 'Violated Operating', 'Bad Faith'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220929+00:00,2025-09-20T18:27:29.220930+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220928+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+d3c9cb3d-a7c4-46ec-a840-e6e20ae38b2f,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_72,ALTERNATIVE: SUBSTANTIAL MODIFICATION,other,,,2025-09-20T18:27:29.220941+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220942+00:00,2025-09-20T18:27:29.220943+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220941+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+fe3bcfd8-ff1f-4816-a659-85969b23f660,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_73,"If Court Won't Dissolve, Modify to",other,,"1. **Allow ARIBIA LLC Operations**
+   - Remove all business restrictions
+   - Permit property management
+   - Allow account access for business
+
+2. **Limit Scope**
+   - Only restrict specific marital assets (if any identified)
+   - Remove non-marital property from order
+   - Allow normal business operations
+
+3. **Require Bond**
+   - Post appropriate security
+   - Protect against wrongful restraint
+   - Enable damage recovery
+",2025-09-20T18:27:29.220975+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Limit Scope', 'Require Bond'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.220977+00:00,2025-09-20T18:27:29.220978+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.220975+00:00,PROPERTY_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+4e45bb30-3cb0-4139-8256-d461b5b263f9,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_74,ADDITIONAL RELIEF REQUESTED,other,,"
+1. **Attorney Fees (750 ILCS 5/508)**
+   - For defending retaliatory action
+   - Bad faith abuse of emergency procedures
+   - Violation of ADR agreement
+
+2. **Rule 137 Sanctions**
+   - False emergency claims
+   - Misuse of TRO process
+   - Retaliatory filing
+
+3. **Damages for Wrongful Injunction**
+   - No bond posted
+   - Business losses documented
+   - Reputational harm
+
+4. **Expedited Hearing**
+   - Ongoing business harm
+   - 11 months of restrictions
+   - Need immediate relief
+
+---
+",2025-09-20T18:27:29.221015+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Attorney Fees', 'Wrongful Injunction', 'Expedited Hearing'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221016+00:00,2025-09-20T18:27:29.221017+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221015+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+23625996-4339-495b-95c8-226f74b625e4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_75,SECTION 9: KEY EVIDENCE DOCUMENTS,other,,,2025-09-20T18:27:29.221028+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221029+00:00,2025-09-20T18:27:29.221030+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221028+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+b580ed6e-9ed1-4af9-aec7-173fb586a814,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_76,Already Filed with Court,other,,"1. **Financial Affidavit** (1/30/2025)
+   - ChittyID: UR2F2iQ49FifzE7QdEDdEnXH
+   - Complete financial disclosure
+   - Proves no dissipation
+
+2. **Response to Show Cause** (2/13/2025)
+   - Denies contempt allegations
+   - Confirms compliance efforts
+   - Documents procedural issues
+
+3. **Motion for Declaratory Judgment** (1/13/2025)
+   - ARIBIA LLC non-marital status
+   - Pre-marital funding traced
+   - Statutory citations included
+",2025-09-20T18:27:29.221064+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Financial Affidavit', 'Show Cause', 'Declaratory Judgment'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221065+00:00,2025-09-20T18:27:29.221066+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221064+00:00,FINANCIAL_EVIDENCE,YES,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,HIGH,YES
+a03fe33e-5329-481c-b10e-957496be69aa,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_77,ChittyOS Verified Evidence,other,,"1. **October 21 Removal Letter**
+   - Business reasons documented
+   - Compromise language included
+   - 7-day cure period offered
+
+2. **Email Communications**
+   - Gurney Law Group (May 2024)
+   - Settlement offers (Aug-Oct 2024)
+   - Collaborative business operations
+
+3. **Timeline Documentation**
+   - ChittyChronicle verification
+   - Missing TRO from official timeline
+   - Retaliation pattern established
+",2025-09-20T18:27:29.221100+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Removal Letter', 'Email Communications', 'Gurney Law', 'Timeline Documentation'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221101+00:00,2025-09-20T18:27:29.221102+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221100+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,HIGH,YES
+9aa13c07-16a9-4632-84ce-0156a7670d50,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_78,Neon Database Records,other,,"1. **Case Entry** (case_number: 2024D007847)
+2. **Entity Mapping** (ARIBIA-LLC classified as BUSINESS)
+3. **Evidence Ledger** (All documents with ChittyIDs)
+4. **Legal Hold Status** (Active on all materials)
+
+---
+",2025-09-20T18:27:29.221125+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Case Entry', 'Entity Mapping', 'Evidence Ledger', 'Legal Hold'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221126+00:00,2025-09-20T18:27:29.221127+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221125+00:00,GENERAL_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+1ec3297f-073c-4607-8512-33e32eeed18c,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_79,SECTION 10: CROSS-CHECK AND VALIDATION FOR ATTORNEY BRIEF,other,,,2025-09-20T18:27:29.221138+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221139+00:00,2025-09-20T18:27:29.221140+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221138+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+c2610fa6-e3d0-4c57-8a4c-b4d400f50b96,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_80,Property Classification Defense Checklist,other,,"**For counsel to verify before filing:**
+
+1. **Transmutation Analysis Complete** ✓
+   - [ ] Title changes reviewed (none found)
+   - [ ] Commingling analysis complete (separate accounts maintained)
+   - [ ] Express intent documents reviewed (none found)
+   - [ ] Marital contributions calculated ($0 from Luisa)
+   - [ ] Cohabitation impact assessed (insufficient under *Heroy*)
+
+2. **Funding Documentation Verification**
+   - [ ] ChittyTrace affidavit reviewed for accuracy
+   - [ ] Fidelity retirem",2025-09-20T18:27:29.221233+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Transmutation Analysis', 'Funding Documentation', 'Illinois Law', 'Timeline Integrity', 'Potential Vulnerabilities', '$0', '$77,000', '$35,000', '$100,000'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221234+00:00,2025-09-20T18:27:29.221235+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221233+00:00,FINANCIAL_EVIDENCE,NO,Luisa Arias,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,$0,LOW,YES
+4cb41827-f302-44a9-a5a2-6d24f0788199,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_81,SECTION 11: STRATEGIC RECOMMENDATIONS FOR BRIEF,other,,,2025-09-20T18:27:29.221246+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221247+00:00,2025-09-20T18:27:29.221248+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221246+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+d99e05ff-538a-4ea8-8a00-4d0a641d8790,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_82,Lead with Retaliation Narrative,other,,"**Opening statement suggestion:**
+""Petitioner obtained this TRO through calculated retaliation for a legitimate business decision, filing an 'emergency' petition nine days after being removed from ARIBIA LLC for documented non-performance, using the removal letter itself as evidence of an emergency that demonstrably did not exist.""
+",2025-09-20T18:27:29.221275+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221276+00:00,2025-09-20T18:27:29.221277+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221275+00:00,TRO_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+cd805e9a-56d2-4cf4-a4a7-0f7dbf451c2f,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_83,Emphasize Timeline Repeatedly,other,,"- October 21: Removal
+- October 22: Divorce (1 day)
+- October 30: TRO (9 days)
+- This pattern is indefensible
+",2025-09-20T18:27:29.221296+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221297+00:00,2025-09-20T18:27:29.221298+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221296+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+31225ab9-755a-4abd-866d-04456407ac18,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_84,"Focus on ""No Emergency"" Theme",other,,"- 9-day gap
+- No police reports
+- No immediate protection sought
+- Continued normal activities
+- Rocket Lawyer access maintained
+",2025-09-20T18:27:29.221316+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Rocket Lawyer'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221317+00:00,2025-09-20T18:27:29.221318+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221316+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+eb190e17-1625-48c3-9923-d4244728a9d7,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_85,Highlight Settlement Attempts,other,,"- 5 documented offers
+- 2.5 months of trying
+- All rejected or ignored
+- Good faith demonstrated
+",2025-09-20T18:27:29.221363+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221364+00:00,2025-09-20T18:27:29.221365+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221363+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+f8480f7b-5f04-444c-a5b6-a6e0632be1f4,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_86,Demand Consequences,other,,"- Fees for defending retaliation
+- Sanctions for abuse of process
+- Damages for no bond
+- Expedited relief
+
+---
+",2025-09-20T18:27:29.221382+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221383+00:00,2025-09-20T18:27:29.221384+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221382+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+1c11c8f8-21e1-4d03-a6b7-54baf33dd406,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_87,APPENDIX A: CRITICAL QUOTES FOR BRIEF,other,,,2025-09-20T18:27:29.221394+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221395+00:00,2025-09-20T18:27:29.221396+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221394+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+ae59ff7b-56a7-4863-942a-21e1500c1600,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_88,From October 21 Removal Letter,other,,"> ""I remain open to finding a way to manage this transition smoothly, including arrangements for your family's continued residence during the sale period.""
+",2025-09-20T18:27:29.221414+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221415+00:00,2025-09-20T18:27:29.221416+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221414+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+1c691b82-0e6f-4ab6-9f1b-d9b93c19eeab,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_89,From Luisa's May 2024 Email,other,,"> ""Yes, indeed Nick is married, my name is Luisa Fernanda Arias"" 
+[Proving collaborative participation, not control]
+",2025-09-20T18:27:29.221433+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Luisa Fernanda'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221434+00:00,2025-09-20T18:27:29.221435+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221433+00:00,TRO_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+1c8c2418-8d2c-4d9c-bb62-328f8580374d,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_90,From Operating Agreement,other,,"> ""All disputes ARISING OUT OF OR RELATING TO this Agreement SHALL be resolved through mediation, and if unsuccessful, binding arbitration""
+[Mandatory ADR violated]
+",2025-09-20T18:27:29.221453+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221454+00:00,2025-09-20T18:27:29.221455+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221453+00:00,GENERAL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+f353b769-9840-4e13-b5b7-a8f8015da394,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_91,From Financial Affidavit,other,,"> Total Debt: $563,386.70
+[Complete disclosure, no hiding]
+
+---
+",2025-09-20T18:27:29.221469+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Total Debt', '$563,386.70'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221470+00:00,2025-09-20T18:27:29.221471+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221469+00:00,FINANCIAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,"$563,386.70",LOW,YES
+2ba584b0-db29-4a0b-94ac-eb0dd3dfe33e,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_92,APPENDIX B: ILLINOIS LAW CITATIONS,other,,,2025-09-20T18:27:29.221481+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221482+00:00,2025-09-20T18:27:29.221483+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221481+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+6e01e581-3045-46f0-86f7-c8c5e8bfb322,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_93,TRO Requirements,other,,"- **750 ILCS 60/217** - Ex parte order requirements
+- **750 ILCS 60/214** - Emergency order standards
+- **735 ILCS 5/11-101** - Injunction requirements
+",2025-09-20T18:27:29.221504+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221505+00:00,2025-09-20T18:27:29.221506+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221504+00:00,TRO_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+72b6a386-f825-4a98-a983-9af9b948b566,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_94,Property Classification,other,,"- **750 ILCS 5/503(a)** - Non-marital property definition
+- **750 ILCS 5/503(b)** - Marital property presumption
+- **750 ILCS 5/503(c)** - Tracing requirements
+",2025-09-20T18:27:29.221525+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221526+00:00,2025-09-20T18:27:29.221527+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221525+00:00,PROPERTY_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+78f6319e-c2ca-4ed1-a94c-b52eae2793e9,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_95,Sanctions and Fees,other,,"- **750 ILCS 5/508** - Attorney fees in dissolution
+- **735 ILCS 5/2-611** - Rule 137 sanctions
+- **Supreme Court Rule 137** - Frivolous filings
+",2025-09-20T18:27:29.221545+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Supreme Court'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221546+00:00,2025-09-20T18:27:29.221547+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221545+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+a4a4b24f-e260-4a13-9187-74c8c14210e5,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_96,Procedural Requirements,other,,"- **735 ILCS 5/2-701** - Declaratory judgments
+- **Illinois Supreme Court Rule 11** - Bond requirements
+- **Fuentes v. Shevin, 407 U.S. 67** - Due process
+
+---
+",2025-09-20T18:27:29.221567+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Illinois Supreme', 'Court Rule'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221568+00:00,2025-09-20T18:27:29.221569+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221567+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,YES
+19fe6693-43c6-4b52-ba28-0f440b40856a,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_97,APPENDIX C: EVIDENCE INVENTORY CHECKLIST,other,,,2025-09-20T18:27:29.221579+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221580+00:00,2025-09-20T18:27:29.221581+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221579+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,LOW,NO
+8c31a1e2-c329-4989-ace5-f5d2c480e068,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_98,Documents Rob Should Have,other,,"- [✓] This consolidated brief
+- [✓] TRO_MOTION_BRIEF_VANGUARD_WITH_EVIDENCE.md
+- [✓] Financial Affidavit (1/30/2025)
+- [✓] Response to Show Cause (2/13/2025)
+- [✓] Motion for Declaratory Judgment (1/13/2025)
+- [✓] October 21 Removal Letter (from TRO Exhibit A)
+- [✓] Pre-TRO Offers Timeline (Aug-Oct 2024)
+- [✓] ChittyOS Timeline Verification
+- [✓] Neon Database Evidence Ledger
+- [✓] Email evidence (Gurney Law, settlement offers)
+",2025-09-20T18:27:29.221617+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Financial Affidavit', 'Show Cause', 'Declaratory Judgment', 'Removal Letter', 'Offers Timeline', 'Timeline Verification', 'Neon Database', 'Evidence Ledger', 'Gurney Law'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221618+00:00,2025-09-20T18:27:29.221619+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221617+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,HIGH,YES
+ebb8d8ef-ba83-4e87-a01b-540e0a151698,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_99,Additional Materials If Needed,other,,"- [ ] ARIBIA LLC Operating Agreement (full)
+- [ ] ARIBIA LLC Articles of Organization
+- [ ] Marriage Certificate (12/30/2022)
+- [ ] Rocket Lawyer access logs
+- [ ] Original TRO petition and order
+
+---
+",2025-09-20T18:27:29.221640+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Operating Agreement', 'Marriage Certificate', 'Rocket Lawyer'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221641+00:00,2025-09-20T18:27:29.221642+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221640+00:00,TRO_EVIDENCE,NO,ARIBIA LLC,/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+30a794ca-c257-4268-b020-1e99d56adf64,md_TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD_100,CONCLUSION: THE WINNING ARGUMENT,other,,"
+**This TRO is legally and factually indefensible.**
+
+**Legally:** It violates ex parte requirements, lacks irreparable harm, was granted without bond, and bypasses mandatory arbitration.
+
+**Factually:** The 9-day gap destroys any emergency claim, the removal was for legitimate business reasons with compromise offers, and 11 months have passed with no harm shown.
+
+**Equitably:** Nicholas made five settlement attempts over 2.5 months, while Luisa chose retaliation over resolution, using the divor",2025-09-20T18:27:29.221694+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['The Court', 'Vanguard Advocates'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.221695+00:00,2025-09-20T18:27:29.221696+00:00,TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,18b5ebc70413af9cade33aa3fe14af0faa7fad0978bdc38417b0bcf6cc8f599a,UTC,medium,2025-09-20 18:27:29.221694+00:00,TRO_EVIDENCE,NO,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/TRO_DISSOLUTION_MATERIALS_FOR_ROB_VANGUARD.md,,MEDIUM,YES
+21f2aa11-619a-46dc-8039-90d61e5c4c5b,md_comprehensive_communication_report_0,# Comprehensive Communication Evidence Report,other,,"
+Generated: 2025-09-19
+",2025-09-20T18:27:29.222053+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222055+00:00,2025-09-20T18:27:29.222056+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222053+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,YES
+e045b763-577b-452a-9858-b9dee2c6e2d0,md_comprehensive_communication_report_1,Executive Summary,other,,"
+**Multi-Platform Communication Evidence Strategy**
+
+This report consolidates communication evidence across multiple platforms to demonstrate the comprehensive nature of Nicholas and Luisa's business relationship, directly contradicting TRO claims of exclusion.
+",2025-09-20T18:27:29.222080+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Platform Communication', 'Evidence Strategy'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222082+00:00,2025-09-20T18:27:29.222083+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222080+00:00,EMAIL_EVIDENCE,YES,"Luisa Arias, Nicholas Bianchi",/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+73da138f-5268-4a95-abc9-dea92827479c,md_comprehensive_communication_report_2,Evidence Sources,other,,,2025-09-20T18:27:29.222093+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222094+00:00,2025-09-20T18:27:29.222095+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222093+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,NO
+502f60b0-60ab-46f0-95f3-13b04abb7881,md_comprehensive_communication_report_3,1. iMessage Personal Communications,other,,"- **Status:** ✅ INTEGRATED
+- **Volume:** 5 sample messages processed (20,000+ available)
+- **Contradictions Found:** 7 direct contradictions to TRO claims
+- **Authentication:** UNASSAILABLE - Mutual device access
+- **Strategic Value:** Both parties have identical records, cannot be disputed
+",2025-09-20T18:27:29.222124+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Contradictions Found', 'Strategic Value'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222125+00:00,2025-09-20T18:27:29.222126+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222124+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+f6551d8d-dec7-4dbb-85e7-291f08d3427c,md_comprehensive_communication_report_4,2. OpenPhone Business Communications,other,,"- **Status:** 🔄 ANALYSIS IN PROGRESS
+- **Data Available:**
+  - Call records: 342KB file
+  - Messages: 2MB file
+  - Contacts: 601KB file
+- **Authentication:** Third-party service provider records
+- **Strategic Value:** Professional business communication platform
+",2025-09-20T18:27:29.222156+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Data Available', 'Strategic Value'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222158+00:00,2025-09-20T18:27:29.222158+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222156+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+de39416c-64e5-4953-aa81-5112000933dc,md_comprehensive_communication_report_5,3. Legal Document Analysis,other,,"- **Status:** ✅ COMPLETED
+- **Volume:** 860+ lease events processed
+- **Timeline:** Comprehensive property management activities
+- **Evidence Items:** 231 total (226 document + 5 message)
+",2025-09-20T18:27:29.222181+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Evidence Items'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222182+00:00,2025-09-20T18:27:29.222183+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222181+00:00,PROPERTY_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,YES
+af1f9abe-285d-4330-bc8f-76dce7393182,md_comprehensive_communication_report_6,Communication Evidence Strategy,other,,,2025-09-20T18:27:29.222193+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222194+00:00,2025-09-20T18:27:29.222195+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222193+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,NO
+40da5244-bd7a-430b-9f65-5885960bdfcf,md_comprehensive_communication_report_7,Phase 1: iMessage Foundation ✅,other,,"**COMPLETED** - Unassailable personal communication evidence
+- Mutual access eliminates fabrication claims
+- Direct contradictions to all TRO exclusion claims
+- Self-authenticating with device metadata
+",2025-09-20T18:27:29.222216+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222217+00:00,2025-09-20T18:27:29.222218+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222216+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+66c24d8e-6172-4baf-bc04-fd0fa8f9e320,md_comprehensive_communication_report_8,Phase 2: OpenPhone Business Layer 🔄,other,,"**IN PROGRESS** - Professional communication records
+- Third-party authentication via service provider
+- Business-specific communication evidence
+- Cannot be altered by either party
+",2025-09-20T18:27:29.222238+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222239+00:00,2025-09-20T18:27:29.222240+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222238+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+b2186069-ebab-425a-bf0a-53dd5c99ee1d,md_comprehensive_communication_report_9,Phase 3: Integrated Timeline 📋,other,,"**PLANNED** - Comprehensive communication proof
+- Cross-platform communication timeline
+- Business + personal evidence integration
+- Complete contradiction documentation
+",2025-09-20T18:27:29.222259+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222260+00:00,2025-09-20T18:27:29.222261+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222259+00:00,EMAIL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+6c715961-8b35-4fdc-afbb-ce3e39696bea,md_comprehensive_communication_report_11,Unassailable Authentication,other,,"1. **iMessage:** Both parties have identical device records
+2. **OpenPhone:** Third-party service provider maintains records
+3. **Timeline:** Document-backed business activities
+",2025-09-20T18:27:29.222295+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222296+00:00,2025-09-20T18:27:29.222297+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222295+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+99012f50-0842-499c-a246-28bbe0b5c658,md_comprehensive_communication_report_12,Complete Communication Spectrum,other,,"- **Personal:** iMessage evidence of relationship
+- **Business:** OpenPhone professional communications
+- **Operational:** Document evidence of joint activities
+",2025-09-20T18:27:29.222315+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222316+00:00,2025-09-20T18:27:29.222317+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222315+00:00,MESSAGE_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+917615af-739c-4390-8fb2-8e3bb8ce2c2a,md_comprehensive_communication_report_13,Contradiction Categories Covered,other,,"1. ✅ **Management Authority** - Messages show delegation of authority
+2. ✅ **Financial Involvement** - References to reports Nicholas prepared
+3. ✅ **Tenant Relations** - Tenant screening and maintenance management
+4. ✅ **Business Operations** - Active participation in all business aspects
+",2025-09-20T18:27:29.222344+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Management Authority', 'Financial Involvement', 'Tenant Relations', 'Business Operations'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222345+00:00,2025-09-20T18:27:29.222346+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222344+00:00,FINANCIAL_EVIDENCE,NO,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,YES
+9c6943b3-2784-4cc3-999d-ef2ccfaf58c7,md_comprehensive_communication_report_14,Discovery Strategy,other,,,2025-09-20T18:27:29.222356+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222358+00:00,2025-09-20T18:27:29.222358+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222356+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,LOW,NO
+cfa4d684-d186-44ce-a516-78ee72413ea5,md_comprehensive_communication_report_15,Message Exhibits Ready,other,,"- 7 discovery exhibits prepared (MSG-001 through MSG-007)
+- Each exhibit contradicts specific TRO claims
+- Authentication metadata included
+- Cannot be disputed due to mutual access
+",2025-09-20T18:27:29.222378+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222379+00:00,2025-09-20T18:27:29.222380+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222378+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+a66de121-b86e-425e-9517-75081cd15ac2,md_comprehensive_communication_report_16,OpenPhone Integration,other,,"- Large-scale business communication data available
+- Professional platform evidence
+- Service provider authentication
+- Complements personal message evidence
+",2025-09-20T18:27:29.222400+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222401+00:00,2025-09-20T18:27:29.222402+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222400+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+ef17d1ed-0e8b-418b-818f-990fcd7ef839,md_comprehensive_communication_report_18,For Nicholas,other,,"- **Overwhelming Evidence:** Multiple platforms confirm business involvement
+- **Undisputable Records:** Third-party and mutual access authentication
+- **Complete Timeline:** Personal + business + operational evidence
+- **Contradiction Proof:** Direct evidence against every TRO claim
+",2025-09-20T18:27:29.222438+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Overwhelming Evidence', 'Undisputable Records', 'Complete Timeline', 'Contradiction Proof'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222439+00:00,2025-09-20T18:27:29.222440+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222438+00:00,TRO_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+1ff4d233-dcb1-4592-bddc-bbd58da38694,md_comprehensive_communication_report_19,For Luisa's Defense,other,,"- **Discovery Risk:** Cannot selectively produce messages
+- **Authentication Challenge:** Cannot claim fabrication with mutual access
+- **Scope Problem:** Multiple platforms create comprehensive evidence
+- **Contradiction Exposure:** Own words contradict sworn statements
+",2025-09-20T18:27:29.222463+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Discovery Risk', 'Authentication Challenge', 'Scope Problem', 'Contradiction Exposure'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222465+00:00,2025-09-20T18:27:29.222465+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222463+00:00,GENERAL_EVIDENCE,YES,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+8138e8a1-50bf-46ec-b2e5-7cd5ca8b83ec,md_comprehensive_communication_report_20,Next Steps,other,,"
+1. **Complete OpenPhone Analysis** - Process business communication records
+2. **Integrate Timeline** - Merge all communication platforms with lease events
+3. **Generate Discovery Package** - Prepare comprehensive exhibit set
+4. **Prepare for Production** - Ready all evidence for legal proceedings
+",2025-09-20T18:27:29.222491+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Integrate Timeline', 'Generate Discovery'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222492+00:00,2025-09-20T18:27:29.222493+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222491+00:00,EMAIL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,MEDIUM,YES
+a1903802-b40b-49a5-92fc-51977a8cf9e2,md_comprehensive_communication_report_21,Conclusion,other,,"
+The combination of iMessage personal communications, OpenPhone business records, and document evidence creates an unassailable foundation demonstrating Nicholas's active business involvement, directly contradicting all TRO exclusion claims.
+
+**Evidence Strength: OVERWHELMING**
+**Authentication: UNASSAILABLE**
+**Strategic Advantage: DECISIVE**",2025-09-20T18:27:29.222519+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': ['Evidence Strength', 'Strategic Advantage'], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222520+00:00,2025-09-20T18:27:29.222521+00:00,comprehensive_communication_report.md,92d96a9d34b249de5a75b5a3f24d925f8b2d7ddb0569d8e1a69d0dd7a941847b,UTC,medium,2025-09-20 18:27:29.222519+00:00,MESSAGE_EVIDENCE,YES,Nicholas Bianchi,/Users/nb/.claude/projects/-/legal/case/comprehensive_communication_report.md,,HIGH,YES
+5a2e81af-e20a-4934-95b6-600d143fac2d,md_VERSION_CONTROL_GUIDE_0,# Evidence Analysis - Automatic Versioning System,other,,,2025-09-20T18:27:29.222829+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222832+00:00,2025-09-20T18:27:29.222833+00:00,VERSION_CONTROL_GUIDE.md,264acdfe451ff77a515fd182d73e28ee428303319862bf5cd660fde87fea6075,UTC,medium,2025-09-20 18:27:29.222829+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/VERSION_CONTROL_GUIDE.md,,LOW,NO
+6cef3857-441c-4cac-81bf-28faf8b75c8f,md_VERSION_CONTROL_GUIDE_1,Overview,other,,"
+The evidence analysis system now includes automatic document versioning and change detection. This ensures that all evidence updates are tracked, analyzed incrementally, and forensically documented.
+",2025-09-20T18:27:29.222858+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222862+00:00,2025-09-20T18:27:29.222863+00:00,VERSION_CONTROL_GUIDE.md,264acdfe451ff77a515fd182d73e28ee428303319862bf5cd660fde87fea6075,UTC,medium,2025-09-20 18:27:29.222858+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/VERSION_CONTROL_GUIDE.md,,LOW,YES
+927b5a73-722e-459e-94a9-97ad29a923e6,md_VERSION_CONTROL_GUIDE_2,Key Features,other,,,2025-09-20T18:27:29.222876+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222877+00:00,2025-09-20T18:27:29.222878+00:00,VERSION_CONTROL_GUIDE.md,264acdfe451ff77a515fd182d73e28ee428303319862bf5cd660fde87fea6075,UTC,medium,2025-09-20 18:27:29.222876+00:00,UNKNOWN,NO,,/Users/nb/.claude/projects/-/legal/case/VERSION_CONTROL_GUIDE.md,,LOW,NO
+65d47bfa-a385-4355-8d51-ad569eeba1a8,md_VERSION_CONTROL_GUIDE_3,1. Automatic Version Tracking,other,,"- **SHA256 hashing** for all documents ensures integrity
+- **Git integration** for complete change history
+- **SQLite database** stores detailed version metadata
+- **Incremental processing** only analyzes changed content
+",2025-09-20T18:27:29.222902+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222903+00:00,2025-09-20T18:27:29.222904+00:00,VERSION_CONTROL_GUIDE.md,264acdfe451ff77a515fd182d73e28ee428303319862bf5cd660fde87fea6075,UTC,medium,2025-09-20 18:27:29.222902+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/VERSION_CONTROL_GUIDE.md,,LOW,YES
+9df02b58-ad9f-4ac7-85c7-c9b4121c25ce,md_VERSION_CONTROL_GUIDE_4,2. Change Detection,other,,"- Automatically detects modified files since last analysis
+- Tracks line-level changes (additions, deletions, modifications)
+- Identifies affected document sections
+- Computes change statistics and confidence levels
+",2025-09-20T18:27:29.222925+00:00,,,,,,,,,USD,COMPLETED,,[],[],[],False,"{'entities': [], 'file_type': 'markdown'}",PENDING,,2025-09-20T18:27:29.222927+00:00,2025-09-20T18:27:29.222928+00:00,VERSION_CONTROL_GUIDE.md,264acdfe451ff77a515fd182d73e28ee428303319862bf5cd660fde87fea6075,UTC,medium,2025-09-20 18:27:29.222925+00:00,GENERAL_EVIDENCE,NO,,/Users/nb/.claude/projects/-/legal/case/VERSION_CONTROL_GUIDE.md,,LOW,YES
