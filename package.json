@@ -26,12 +26,13 @@
     "legacy:deploy": "wrangler deploy --config wrangler.toml"
   },
   "dependencies": {
+    "@chittyos/chittyid-client": "^1.0.0",
     "@chittyos/core": "^2.1.0",
-    "@octokit/rest": "^22.0.0",
-    "itty-router": "^4.2.2",
-    "@langchain/openai": "^0.3.12",
     "@langchain/anthropic": "^0.3.7",
     "@langchain/core": "^0.3.15",
+    "@langchain/openai": "^0.3.12",
+    "@octokit/rest": "^22.0.0",
+    "itty-router": "^4.2.2",
     "langchain": "^0.3.28"
   },
   "devDependencies": {
