@@ -4,6 +4,8 @@
  * Provides secure password management with browser extension API
  */
 
+import { generateChittyID } from "../lib/chittyid-service.js";
+
 // Password encryption helpers
 async function deriveKeyFromPassword(password, salt) {
   const encoder = new TextEncoder();
@@ -399,7 +401,11 @@ async function handleRegister(request, PASS_USERS, JWT_SECRET) {
 
   // Create user with hashed password
   const salt = crypto.getRandomValues(new Uint8Array(16));
-  const userId = crypto.randomUUID();
+  // POLICY: Use ChittyID service - NEVER generate locally
+  const userId = await generateChittyID("ACTOR", {
+    email,
+    type: "chittypass_user",
+  });
 
   const user = {
     id: userId,
@@ -501,7 +507,12 @@ async function handlePasswords(request, PASS_PASSWORDS, JWT_SECRET) {
   if (request.method === "POST") {
     // Save new password
     const passwordData = await request.json();
-    const passwordId = crypto.randomUUID();
+    // POLICY: Use ChittyID service - NEVER generate locally
+    const passwordId = await generateChittyID("INFO", {
+      userId,
+      type: "password_entry",
+      site: passwordData.site,
+    });
 
     const password = {
       id: passwordId,
