@@ -3,7 +3,7 @@
  * Connects local Claude sessions to the Cloudflare coordination agent
  */
 
-import { generateChittyID } from "../lib/chittyid-service.js";
+import ChittyIDClient from "@chittyos/chittyid-client";
 
 class ChittyOSCloudflareClient {
   constructor(agentUrl = "wss://chittyos-coordination-agent.workers.dev") {
@@ -20,10 +20,17 @@ class ChittyOSCloudflareClient {
 
   // POLICY: Use ChittyID service - NEVER generate locally
   async generateSessionId() {
-    return await generateChittyID("CONTEXT", {
-      type: "sync_client_session",
-      agentUrl: this.agentUrl,
-      timestamp: Date.now(),
+    const chittyIdClient = new ChittyIDClient({
+      apiKey: process.env.CHITTY_ID_TOKEN,
+    });
+    return await chittyIdClient.mint({
+      entity: "CONTEXT",
+      name: "Sync client session",
+      metadata: {
+        type: "sync_client_session",
+        agentUrl: this.agentUrl,
+        timestamp: Date.now(),
+      },
     });
   }
 

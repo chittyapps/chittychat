@@ -6,7 +6,7 @@
 
 import { LangChainAIService } from "../services/langchain-ai.js";
 import { ChittyCasesService } from "../services/chittycases-integration.js";
-import { generateChittyID } from "../lib/chittyid-service.js";
+import ChittyIDClient from "@chittyos/chittyid-client";
 
 export class ChittyRouterGateway {
   constructor(env) {
@@ -15,6 +15,9 @@ export class ChittyRouterGateway {
     this.chittyRouter = env.CHITTY_ROUTER;
     this.langChainAI = new LangChainAIService(env);
     this.chittyCases = new ChittyCasesService(env);
+    this.chittyIdClient = new ChittyIDClient({
+      apiKey: env.CHITTY_ID_TOKEN,
+    });
   }
 
   /**
@@ -708,10 +711,14 @@ return await this.env.CHITTY_TRUST.evaluate(;
       // Store in vector database
       if (this.env.CHITTY_VECTORS && embedding) {
         // POLICY: Use ChittyID service - NEVER generate locally
-        const vectorId = await generateChittyID("INFO", {
-          type: "vector_embedding",
-          route: emailData.to,
-          timestamp: Date.now(),
+        const vectorId = await this.chittyIdClient.mint({
+          entity: "INFO",
+          name: `Vector embedding for ${emailData.to}`,
+          metadata: {
+            type: "vector_embedding",
+            route: emailData.to,
+            timestamp: Date.now(),
+          },
         });
         await this.env.CHITTY_VECTORS.upsert([
           {

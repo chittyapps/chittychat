@@ -1,6 +1,6 @@
 import { Router } from "itty-router";
 import { SessionCoordinator } from "./session-coordinator";
-import { generateChittyID } from "../../../lib/chittyid-service.js";
+import ChittyIDClient from "@chittyos/chittyid-client";
 
 export interface Env {
   SESSIONS: KVNamespace;
@@ -19,10 +19,14 @@ router.post("/session/register", async (request: Request, env: Env) => {
   const { name, metadata } = await request.json();
 
   // POLICY: Use ChittyID service - NEVER generate locally
-  const sessionId = await generateChittyID("CONTEXT", {
-    type: "sync_session",
-    name,
-    ...metadata,
+  const chittyIdClient = new ChittyIDClient({ apiKey: env.CHITTY_ID_TOKEN });
+  const sessionId = await chittyIdClient.mint({
+    entity: "CONTEXT",
+    name: name || "Sync session",
+    metadata: {
+      type: "sync_session",
+      ...metadata,
+    },
   });
   const session = {
     id: sessionId,
@@ -267,10 +271,15 @@ router.post("/neon/state/save", async (request: Request, env: Env) => {
 
   const timestamp = Date.now();
   // POLICY: Use ChittyID service - NEVER generate locally
-  const version = await generateChittyID("INFO", {
-    type: "state_version",
-    sessionId,
-    timestamp,
+  const chittyIdClient = new ChittyIDClient({ apiKey: env.CHITTY_ID_TOKEN });
+  const version = await chittyIdClient.mint({
+    entity: "INFO",
+    name: `State version for ${sessionId}`,
+    metadata: {
+      type: "state_version",
+      sessionId,
+      timestamp,
+    },
   });
   const stateRecord = {
     session_id: sessionId,

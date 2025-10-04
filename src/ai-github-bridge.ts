@@ -6,7 +6,7 @@
 
 import { Octokit } from "@octokit/rest";
 import { createHash } from "crypto";
-import { generateChittyID } from "./lib/chittyid-service.js";
+import ChittyIDClient from "@chittyos/chittyid-client";
 
 interface AISession {
   provider: "claude" | "openai" | "universal";
@@ -508,11 +508,18 @@ Session activity will be tracked here.
 
   // POLICY: Use ChittyID service - NEVER generate locally
   private async generateSessionId(): Promise<string> {
-    return await generateChittyID("CONTEXT", {
-      type: "ai_session",
-      provider: this.currentSession?.provider || "unknown",
-      userId: this.chittyosData.userId,
-      timestamp: Date.now(),
+    const chittyIdClient = new ChittyIDClient({
+      apiKey: process.env.CHITTY_ID_TOKEN,
+    });
+    return await chittyIdClient.mint({
+      entity: "CONTEXT",
+      name: `AI session - ${this.currentSession?.provider || "unknown"}`,
+      metadata: {
+        type: "ai_session",
+        provider: this.currentSession?.provider || "unknown",
+        userId: this.chittyosData.userId,
+        timestamp: Date.now(),
+      },
     });
   }
 
