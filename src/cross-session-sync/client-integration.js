@@ -21,6 +21,7 @@ class ChittyOSCloudflareClient {
   // POLICY: Use ChittyID service - NEVER generate locally
   async generateSessionId() {
     const chittyIdClient = new ChittyIDClient({
+      serviceUrl: "https://id.chitty.cc",
       apiKey: process.env.CHITTY_ID_TOKEN,
     });
     return await chittyIdClient.mint({
