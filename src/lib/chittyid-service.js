@@ -5,7 +5,63 @@
  * Format: VV-G-LLL-SSSS-T-YM-C-X ONLY - NEVER any other format
  */
 
-const CHITTYID_SERVICE_URL = "https://id.chitty.cc/v1/mint";
+import ChittyIDClient from "@chittyos/chittyid-client";
+
+const DEFAULT_SERVICE_URL = "https://id.chitty.cc/v1";
+let sharedClient;
+
+function readEnv(key) {
+  if (typeof process !== "undefined" && process?.env?.[key]) {
+    return process.env[key];
+  }
+  return undefined;
+}
+
+function normalizeServiceUrl(urlLike) {
+  if (!urlLike) {
+    return DEFAULT_SERVICE_URL;
+  }
+  const trimmed = urlLike.trim().replace(/\/$/, "");
+  if (trimmed.endsWith("/v1")) {
+    return trimmed;
+  }
+  if (trimmed.endsWith("/api")) {
+    return `${trimmed}/v1`;
+  }
+  if (trimmed.endsWith("/api/v1")) {
+    return trimmed;
+  }
+  return `${trimmed}/api/v1`;
+}
+
+function resolveServiceUrl() {
+  const envUrl = readEnv("CHITTYID_SERVICE_URL");
+  return normalizeServiceUrl(envUrl || DEFAULT_SERVICE_URL);
+}
+
+function getSharedClient(options = {}) {
+  if (typeof options === "string") {
+    options = { apiKey: options };
+  }
+
+  const { apiKey, serviceUrl } = options;
+
+  if (apiKey || serviceUrl) {
+    return new ChittyIDClient({
+      serviceUrl: normalizeServiceUrl(serviceUrl || resolveServiceUrl()),
+      apiKey: apiKey ?? readEnv("CHITTY_ID_TOKEN"),
+    });
+  }
+
+  if (!sharedClient) {
+    sharedClient = new ChittyIDClient({
+      serviceUrl: resolveServiceUrl(),
+      apiKey: readEnv("CHITTY_ID_TOKEN"),
+    });
+  }
+
+  return sharedClient;
+}
 
 // STRICT: No local generation allowed - service or fail
 
@@ -19,40 +75,23 @@ const CHITTYID_SERVICE_URL = "https://id.chitty.cc/v1/mint";
 export async function generateChittyID(
   entityType,
   metadata = {},
-  apiKey = null,
+  options = {},
 ) {
-  // Use environment variable if no API key provided
-  const token = apiKey || process.env.CHITTY_ID_TOKEN;
-
-  if (!token) {
+  const entity = entityType?.toString().toUpperCase();
+  if (!entity || !ENTITY_TYPES[entity]) {
     throw new Error(
-      "ChittyID API token required. Set CHITTY_ID_TOKEN environment variable.",
+      `Unsupported ChittyID entity type: ${entityType}. ` +
+        "Use one of PEO, PLACE, PROP, EVNT, AUTH, INFO, FACT, CONTEXT, ACTOR.",
     );
   }
 
   try {
-    const response = await fetch(CHITTYID_SERVICE_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        entityType: entityType.toUpperCase(),
-        metadata,
-      }),
+    const client = getSharedClient(options);
+    return await client.mint({
+      entity,
+      metadata,
     });
-
-    if (!response.ok) {
-      throw new Error(
-        `ChittyID service error: ${response.status} ${response.statusText}`,
-      );
-    }
-
-    const result = await response.json();
-    return result.chittyId;
   } catch (error) {
-    // In case of service failure, throw error - NEVER fallback to local generation
     throw new Error(
       `ChittyID generation failed: ${error.message}. Service must be available.`,
     );
@@ -69,9 +108,8 @@ export function validateChittyIDFormat(chittyId) {
     return false;
   }
 
-  // ChittyID format: VV-G-LLL-SSSS-T-YM-C-X
-  const pattern = /^\d{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{4}-\d-[0-9A-Z]$/;
-  return pattern.test(chittyId);
+  const client = getSharedClient();
+  return client.validateFormat(chittyId);
 }
 
 /**

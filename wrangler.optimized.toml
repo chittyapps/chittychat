@@ -76,11 +76,17 @@ routes = [
   { pattern = "ai.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "langchain.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "mcp.chitty.cc/*", zone_name = "chitty.cc" },
+  { pattern = "portal.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "cases.chitty.cc/*", zone_name = "chitty.cc" },
 
   # Identity & Auth
-  { pattern = "id.chitty.cc/*", zone_name = "chitty.cc" },
+  # NOTE: id.chitty.cc is handled by dedicated chittyid-production worker (chittyid-worker/)
+  # The unified platform's handleID service acts as a proxy-only backup if needed
+  # ZERO local generation - ALL ChittyIDs come from central authority at id.chitty.cc
   { pattern = "auth.chitty.cc/*", zone_name = "chitty.cc" },
+
+  # Documentation
+  { pattern = "docs.chitty.cc/*", zone_name = "chitty.cc" },
 
   # Service mesh
   { pattern = "registry.chitty.cc/*", zone_name = "chitty.cc" },

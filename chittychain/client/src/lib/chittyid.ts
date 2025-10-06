@@ -84,33 +84,40 @@ export class ChittyIDSystem {
     }
   }
 
-  static validateChittyID(chittyId: string): boolean {
+  static async validateChittyID(chittyId: string): Promise<boolean> {
+    // ALWAYS use central ChittyID service for validation
+    // No local validation allowed per ChittyOS policy
     try {
-      const parts = chittyId.split("-");
-      if (parts.length !== 6) return false;
+      const response = await fetch("https://id.chitty.cc/v1/validate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.CHITTY_ID_TOKEN}`,
+        },
+        body: JSON.stringify({ chittyId }),
+      });
 
-      const [prefix, timestamp, vertical, nodeId, sequence, checksum] = parts;
+      if (!response.ok) {
+        throw new Error(
+          `ChittyID validation service error: ${response.status}`,
+        );
+      }
 
-      // Validate prefix
-      if (prefix !== this.PREFIX) return false;
-
-      // Validate vertical
-      if (!this.VERTICALS.includes(vertical.toLowerCase())) return false;
-
-      // Validate checksum
-      const expectedChecksum = this.generateChecksum(
-        [prefix, timestamp, vertical, nodeId, sequence].join("-"),
+      const data = await response.json();
+      return data.valid || false;
+    } catch (error) {
+      console.error("Failed to validate ChittyID from central service:", error);
+      // Per ChittyOS policy: NO FALLBACK - fail if service unavailable
+      throw new Error(
+        "ChittyID validation failed - central service unavailable. Format must be: VV-G-LLL-SSSS-T-YM-C-X",
       );
-      if (checksum !== expectedChecksum) return false;
-
-      return true;
-    } catch {
-      return false;
     }
   }
 
-  static parseChittyID(chittyId: string): ChittyIDComponents | null {
-    if (!this.validateChittyID(chittyId)) return null;
+  static async parseChittyID(chittyId: string): Promise<ChittyIDComponents | null> {
+    // Parse via central service to ensure validation
+    const isValid = await this.validateChittyID(chittyId);
+    if (!isValid) return null;
 
     const [prefix, timestamp, vertical, nodeId, sequence, checksum] =
       chittyId.split("-");
@@ -125,8 +132,8 @@ export class ChittyIDSystem {
     };
   }
 
-  static getTimestamp(chittyId: string): number | null {
-    const components = this.parseChittyID(chittyId);
+  static async getTimestamp(chittyId: string): Promise<number | null> {
+    const components = await this.parseChittyID(chittyId);
     if (!components) return null;
 
     try {
@@ -136,15 +143,10 @@ export class ChittyIDSystem {
     }
   }
 
-  private static generateChecksum(input: string): string {
-    let hash = 0;
-    for (let i = 0; i < input.length; i++) {
-      const char = input.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32-bit integer
-    }
-    return Math.abs(hash).toString(36).substr(0, 4).toUpperCase();
-  }
+  // REMOVED: Local checksum generation violates ChittyOS policy
+  // All validation MUST go through id.chitty.cc
+  // Format: VV-G-LLL-SSSS-T-YM-C-X NEVER ANYTHING ELSE
+}
 }
 
 // API integration functions for backend communication
@@ -167,22 +169,12 @@ export const chittyIdApi = {
 
       return await response.json();
     } catch (error) {
-      // Fallback to client-side generation if API is unavailable
-      console.warn(
-        "ChittyID API unavailable, using client-side generation:",
-        error,
+      // Per ChittyOS policy: NO FALLBACK GENERATION
+      // Service must fail if API unavailable
+      console.error("ChittyID API unavailable - cannot generate ID:", error);
+      throw new Error(
+        "ChittyID generation failed - API unavailable. All IDs must come from id.chitty.cc. Format: VV-G-LLL-SSSS-T-YM-C-X",
       );
-      const chittyId = await ChittyIDSystem.generateChittyID(options);
-      const components = ChittyIDSystem.parseChittyID(chittyId);
-      const timestamp = ChittyIDSystem.getTimestamp(chittyId);
-
-      return {
-        chittyId,
-        displayFormat: chittyId,
-        timestamp: timestamp || undefined,
-        vertical: components?.vertical,
-        valid: true,
-      };
     }
   },
 
@@ -202,22 +194,12 @@ export const chittyIdApi = {
 
       return await response.json();
     } catch (error) {
-      // Fallback to client-side validation if API is unavailable
-      console.warn(
-        "ChittyID API unavailable, using client-side validation:",
-        error,
+      // Per ChittyOS policy: NO FALLBACK VALIDATION
+      // Service must fail if API unavailable
+      console.error("ChittyID validation API unavailable:", error);
+      throw new Error(
+        "ChittyID validation failed - API unavailable. All validation must go through id.chitty.cc. Format: VV-G-LLL-SSSS-T-YM-C-X",
       );
-      const valid = ChittyIDSystem.validateChittyID(chittyId);
-      const details = ChittyIDSystem.parseChittyID(chittyId);
-      const timestamp = ChittyIDSystem.getTimestamp(chittyId);
-
-      return {
-        chittyId,
-        valid,
-        details: details || undefined,
-        timestamp: timestamp || undefined,
-        vertical: details?.vertical,
-      };
     }
   },
 };

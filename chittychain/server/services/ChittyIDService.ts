@@ -74,27 +74,42 @@ export class ChittyIDService {
     }
   }
 
-  static validateChittyID(chittyId: string): boolean {
+  static async validateChittyID(chittyId: string): Promise<boolean> {
+    // ALWAYS use central ChittyID service for validation
+    // No local validation allowed per ChittyOS policy
     try {
-      const parts = chittyId.split("-");
-      if (parts.length !== 6) return false;
+      const response = await fetch("https://id.chitty.cc/v1/validate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.CHITTY_ID_TOKEN}`,
+        },
+        body: JSON.stringify({ chittyId }),
+      });
 
-      const [prefix, timestamp, vertical, nodeId, sequence, checksum] = parts;
+      if (!response.ok) {
+        throw new Error(
+          `ChittyID validation service error: ${response.status}`,
+        );
+      }
 
-      if (prefix !== this.PREFIX) return false;
-      if (!this.VERTICALS.includes(vertical.toLowerCase())) return false;
-
-      const expectedChecksum = this.generateChecksum(
-        [prefix, timestamp, vertical, nodeId, sequence].join("-"),
+      const data = await response.json();
+      return data.valid || false;
+    } catch (error) {
+      console.error("Failed to validate ChittyID from central service:", error);
+      // Per ChittyOS policy: NO FALLBACK - fail if service unavailable
+      throw new Error(
+        "ChittyID validation failed - central service unavailable. Format must be: VV-G-LLL-SSSS-T-YM-C-X",
       );
-      return checksum === expectedChecksum;
-    } catch {
-      return false;
     }
   }
 
-  static parseChittyID(chittyId: string): ChittyIDComponents | null {
-    if (!this.validateChittyID(chittyId)) return null;
+  static async parseChittyID(
+    chittyId: string,
+  ): Promise<ChittyIDComponents | null> {
+    // Parse via central service to ensure validation
+    const isValid = await this.validateChittyID(chittyId);
+    if (!isValid) return null;
 
     const [prefix, timestamp, vertical, nodeId, sequence, checksum] =
       chittyId.split("-");
@@ -109,8 +124,8 @@ export class ChittyIDService {
     };
   }
 
-  static getTimestamp(chittyId: string): number | null {
-    const components = this.parseChittyID(chittyId);
+  static async getTimestamp(chittyId: string): Promise<number | null> {
+    const components = await this.parseChittyID(chittyId);
     if (!components) return null;
 
     try {
@@ -120,21 +135,16 @@ export class ChittyIDService {
     }
   }
 
-  private static generateChecksum(input: string): string {
-    let hash = 0;
-    for (let i = 0; i < input.length; i++) {
-      const char = input.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(36).substr(0, 4).toUpperCase();
-  }
+  // REMOVED: generateChecksum method violates ChittyOS policy
+  // All validation MUST go through id.chitty.cc
+  // Format: VV-G-LLL-SSSS-T-YM-C-X NEVER ANYTHING ELSE
 
   // Database operations using audit logs for storage
   static async storeChittyID(
     record: Omit<ChittyIDRecord, "id" | "generatedAt">,
   ): Promise<ChittyIDRecord> {
-    const id = Math.random().toString(36).substr(2, 9);
+    // Use crypto.randomUUID() for internal record IDs (not ChittyIDs)
+    const id = crypto.randomUUID();
     const fullRecord: ChittyIDRecord = {
       ...record,
       id,

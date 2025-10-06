@@ -1,22 +1,126 @@
 /**
- * ChittyID Service Module
- * Consolidated from id.chitty.cc worker
- * Handles ChittyID generation with pipeline-only architecture
+ * ChittyID Service Module - PROXY ONLY
+ * NO LOCAL GENERATION - ALL ChittyIDs come from id.chitty.cc central authority
+ * This service acts as a routing proxy in the unified platform
+ * Format: VV-G-LLL-SSSS-T-YM-C-X ONLY - NEVER any other format
  */
 
+import ChittyIDClient from "@chittyos/chittyid-client";
+
+/**
+ * Get ChittyID client instance
+ */
+function getChittyIDClient(env) {
+  const apiKey = env.CHITTY_ID_TOKEN || env.CHITTYID_API_KEY;
+  const serviceUrl = env.CHITTYID_SERVICE_URL || "https://id.chitty.cc";
+
+  return new ChittyIDClient({
+    serviceUrl,
+    apiKey,
+  });
+}
+
+/**
+ * Handle mint request - PROXY to central authority
+ * Proxies to the dedicated chittyid-production worker at id.chitty.cc
+ */
+async function handleMintRequest(request, context) {
+  const { env } = context;
+
+  try {
+    const body = await request.json().catch(() => ({}));
+    const {
+      domain,
+      subtype,
+      metadata = {},
+      entity,
+      purpose,
+      sessionContext = {},
+    } = body;
+
+    // Validate API key from request headers
+    const apiKey = request.headers.get("authorization")?.replace("Bearer ", "");
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({
+          error: "API key required",
+          message: "Include Authorization: Bearer <api-key> header",
+        }),
+        {
+          status: 401,
+          headers: { "content-type": "application/json" },
+        },
+      );
+    }
+
+    // Normalize domain/entity
+    const normalizedDomain = domain || entity || "IDN";
+    const normalizedSubtype = subtype || purpose || "initial";
+
+    // PROXY to central ChittyID authority - NO LOCAL GENERATION
+    const client = getChittyIDClient(env);
+    const chittyId = await client.mint({
+      entity: normalizedDomain,
+      metadata: {
+        ...metadata,
+        subtype: normalizedSubtype,
+        sessionContext,
+      },
+    });
+
+    // Return result
+    return new Response(
+      JSON.stringify({
+        chittyId,
+        success: true,
+        domain: normalizedDomain,
+        subtype: normalizedSubtype,
+        metadata: {
+          ...metadata,
+          generated_at: new Date().toISOString(),
+          generator: "id.chitty.cc-proxy",
+          note: "Proxied through unified platform to central authority",
+        },
+      }),
+      {
+        status: 200,
+        headers: {
+          "content-type": "application/json",
+          "x-chittyid-source": "central-authority",
+          "x-proxy-mode": "pipeline-only",
+        },
+      },
+    );
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        error: "ChittyID generation failed",
+        message: error.message,
+        note: "Service must be available at id.chitty.cc - no fallback generation",
+      }),
+      {
+        status: 500,
+        headers: { "content-type": "application/json" },
+      },
+    );
+  }
+}
+
 export async function handleID(context) {
-  const { request, cache } = context;
+  const { request, cache, env } = context;
   const url = new URL(request.url);
   const path = url.pathname.replace("/api/id", "");
 
-  // Health check
+  // Health check - indicates this is a PROXY service
   if (path === "/health") {
     return new Response(
       JSON.stringify({
-        service: "chitty-id",
+        service: "chitty-id-proxy",
         status: "healthy",
-        mode: "pipeline-only",
+        mode: "proxy-only",
         version: "2.1.0",
+        target: "https://id.chitty.cc",
+        note: "This service proxies to the central ChittyID authority - NO local generation",
       }),
       {
         headers: { "content-type": "application/json" },
@@ -24,100 +128,14 @@ export async function handleID(context) {
     );
   }
 
-  // Generate ChittyID endpoint (pipeline-only)
+  // Mint ChittyID endpoint (/mint and /v1/mint) - CONSOLIDATED ENDPOINT
+  if ((path === "/mint" || path === "/v1/mint") && request.method === "POST") {
+    return await handleMintRequest(request, context);
+  }
+
+  // Generate ChittyID endpoint (pipeline-only) - Legacy compatibility
   if (path === "/generate" && request.method === "POST") {
-    try {
-      const body = await request.json().catch(() => ({}));
-      const { metadata = {}, sessionContext = {} } = body;
-
-      // Validate API key from request headers
-      const apiKey = request.headers
-        .get("authorization")
-        ?.replace("Bearer ", "");
-      if (!apiKey) {
-        return new Response(
-          JSON.stringify({
-            error: "API key required",
-            message: "Include Authorization: Bearer <api-key> header",
-          }),
-          {
-            status: 401,
-            headers: { "content-type": "application/json" },
-          },
-        );
-      }
-
-      // PIPELINE ONLY - Forward request to central ChittyID service at id.chitty.cc
-      // NEVER generate locally - always proxy to the central authority
-      const chittyIdResponse = await fetch("https://id.chitty.cc/v1/mint", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          entityType: metadata.entityType || "INFO",
-          metadata,
-          sessionContext,
-        }),
-      });
-
-      if (!chittyIdResponse.ok) {
-        return new Response(
-          JSON.stringify({
-            error: "ChittyID service unavailable",
-            message: `Central service returned ${chittyIdResponse.status}`,
-            service: "id.chitty.cc",
-            note: "ChittyIDs can ONLY be generated by the central service",
-          }),
-          {
-            status: 502,
-            headers: { "content-type": "application/json" },
-          },
-        );
-      }
-
-      const result = await chittyIdResponse.json();
-
-      // Cache the result locally for fast lookup
-      if (result.chittyId && Object.keys(metadata).length > 0) {
-        await cache.set(
-          result.chittyId,
-          JSON.stringify({
-            metadata,
-            sessionContext,
-            created: new Date().toISOString(),
-            source: "id.chitty.cc",
-          }),
-          "id",
-          86400,
-        ); // 24 hour cache
-      }
-
-      return new Response(
-        JSON.stringify({
-          ...result,
-          source: "id.chitty.cc",
-          pipeline: "chittychat-proxy",
-          note: "Generated by central ChittyID authority",
-        }),
-        {
-          headers: { "content-type": "application/json" },
-        },
-      );
-    } catch (error) {
-      return new Response(
-        JSON.stringify({
-          error: "ChittyID proxy failed",
-          message: error.message,
-          note: "Cannot generate ChittyIDs locally - service must be available",
-        }),
-        {
-          status: 500,
-          headers: { "content-type": "application/json" },
-        },
-      );
-    }
+    return await handleMintRequest(request, context);
   }
 
   // Validate ChittyID endpoint
@@ -213,8 +231,17 @@ export async function handleID(context) {
   return new Response(
     JSON.stringify({
       error: "Endpoint not found",
-      available: ["/health", "/generate", "/validate/{id}", "/metadata/{id}"],
-      mode: "pipeline-only",
+      available: [
+        "/health",
+        "/mint",
+        "/v1/mint",
+        "/generate",
+        "/validate/{id}",
+        "/metadata/{id}",
+      ],
+      mode: "proxy-only",
+      note: "This service proxies all requests to https://id.chitty.cc - NO local generation",
+      recommendation: "Use /mint or /v1/mint for ChittyID generation",
     }),
     {
       status: 404,
