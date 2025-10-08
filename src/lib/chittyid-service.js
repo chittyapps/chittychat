@@ -13,10 +13,15 @@
 import ChittyIDClient from "@chittyos/chittyid-client";
 import { withResilience, getCircuitBreaker } from "./chittyid-resilience.js";
 import { getSharedCache } from "./chittyid-cache.js";
+import {
+  getSharedConnectionManager,
+  ConnectionState,
+} from "./chittyid-connection-manager.js";
 
 const DEFAULT_SERVICE_URL = "https://id.chitty.cc/v1";
 let sharedClient;
 let resilienceEnabled = true; // Can be disabled for testing
+let connectionManager; // Self-healing connection manager
 
 function readEnv(key) {
   if (typeof process !== "undefined" && process?.env?.[key]) {
@@ -53,6 +58,14 @@ function getSharedClient(options = {}) {
   }
 
   const { apiKey, serviceUrl } = options;
+
+  // Initialize connection manager if not already done
+  if (!connectionManager) {
+    connectionManager = getSharedConnectionManager({
+      serviceUrl: normalizeServiceUrl(serviceUrl || resolveServiceUrl()),
+      apiKey: apiKey ?? readEnv("CHITTY_ID_TOKEN"),
+    });
+  }
 
   if (apiKey || serviceUrl) {
     return new ChittyIDClient({
@@ -231,12 +244,31 @@ export function setResilienceEnabled(enabled) {
 }
 
 /**
+ * Get connection manager status
+ * @returns {object} - Connection manager state and statistics
+ */
+export function getConnectionStatus() {
+  if (!connectionManager) {
+    return {
+      initialized: false,
+      state: "NOT_INITIALIZED",
+    };
+  }
+
+  return {
+    initialized: true,
+    ...connectionManager.getState(),
+  };
+}
+
+/**
  * Get ChittyID service health status
  * @returns {object} - Health status including resilience metrics
  */
 export function getServiceHealth() {
   return {
     service: "chittyid-service",
+    connection: getConnectionStatus(),
     resilience: {
       enabled: resilienceEnabled,
       circuitBreaker: getCircuitBreakerStatus(),

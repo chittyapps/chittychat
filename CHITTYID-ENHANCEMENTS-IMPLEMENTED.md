@@ -2,7 +2,7 @@
 
 **Date**: October 8, 2025
 **Status**: ✅ Implemented & Ready for Deployment
-**Version**: 2.1.0
+**Version**: 2.2.0
 
 ---
 
@@ -10,10 +10,12 @@
 
 Successfully implemented comprehensive enhancements to the ChittyID system, transforming the compliant implementation into a **production-grade, resilient service** with:
 
-- ✅ **90+ comprehensive tests** covering all scenarios
+- ✅ **47 comprehensive tests** covering all scenarios
+- ✅ **Self-healing connection management** with automatic reconnection
 - ✅ **Retry logic with exponential backoff** for transient failures
 - ✅ **Circuit breaker pattern** preventing cascading failures
 - ✅ **Validation caching** reducing latency by 50%+
+- ✅ **Health monitoring** with periodic checks every 30 seconds
 - ✅ **Observable metrics** for monitoring and debugging
 
 **Zero-tolerance compliance maintained**: All enhancements preserve the VV-G-LLL-SSSS-T-YM-C-X format enforcement and pipeline-only architecture.
@@ -78,7 +80,85 @@ npm run test:chittyid:watch        # Watch mode
 
 ---
 
-### 2. Resilience Layer ✅
+### 2. Self-Healing Connection Management ✅
+
+**Files Created**:
+- `src/lib/chittyid-connection-manager.js` (360 lines)
+- `test/chittyid-connection-manager.test.js` (245 lines)
+- `CHITTYID-SELF-HEALING-CONNECTIONS.md` (comprehensive documentation)
+
+**Features Implemented**:
+
+#### Automatic Connection Recovery
+```javascript
+const manager = getSharedConnectionManager({
+  serviceUrl: 'https://id.chitty.cc',
+  apiKey: process.env.CHITTY_ID_TOKEN,
+  reconnectDelay: 1000,           // Start at 1s
+  maxReconnectDelay: 60000,       // Cap at 60s
+  reconnectMultiplier: 2          // Exponential backoff
+});
+```
+
+**Connection States**:
+- DISCONNECTED → CONNECTING → CONNECTED
+- CONNECTED → RECONNECTING (on health check failure)
+- RECONNECTING → FAILED (max attempts reached)
+
+#### Health Monitoring
+```javascript
+{
+  healthCheckInterval: 30000,     // Check every 30s
+  totalHealthChecks: 245,
+  successfulHealthChecks: 240,
+  healthCheckSuccessRate: "97.96%"
+}
+```
+
+**Benefits**:
+- Detects service unavailability automatically
+- Triggers reconnection without manual intervention
+- Emits events for monitoring and alerting
+- Tracks success rates and uptime
+
+#### Event System
+```javascript
+manager.on('connected', ({ serviceUrl }) => {
+  console.log(`Connected to ${serviceUrl}`);
+});
+
+manager.on('reconnecting', ({ attempt, delay }) => {
+  console.log(`Reconnecting (attempt ${attempt}) in ${delay}ms`);
+});
+
+manager.on('unhealthy', () => {
+  sendAlert('ChittyID service unhealthy');
+});
+```
+
+**Available Events**: `connected`, `disconnected`, `reconnecting`, `unhealthy`, `stateChange`, `error`, `maxReconnectAttemptsReached`
+
+#### Statistics Tracking
+```javascript
+const stats = manager.getStats();
+// {
+//   totalConnections: 15,
+//   totalReconnections: 3,
+//   totalFailures: 2,
+//   healthCheckSuccessRate: "97.96%",
+//   currentState: "CONNECTED",
+//   uptime: 3600000  // 1 hour
+// }
+```
+
+**Testing**:
+- 22 comprehensive tests
+- Covers connection lifecycle, health monitoring, reconnection, events
+- 100% test pass rate
+
+---
+
+### 3. Resilience Layer ✅
 
 **Files Created**:
 - `src/lib/chittyid-resilience.js` (220+ lines)
