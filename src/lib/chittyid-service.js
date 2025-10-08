@@ -3,12 +3,20 @@
  * Official ChittyID generation following the ChittyOS standard
  * PIPELINE ONLY - NEVER generates locally - ALWAYS uses id.chitty.cc service
  * Format: VV-G-LLL-SSSS-T-YM-C-X ONLY - NEVER any other format
+ *
+ * Enhanced with:
+ * - Retry logic with exponential backoff
+ * - Circuit breaker pattern for fault tolerance
+ * - Validation result caching for performance
  */
 
 import ChittyIDClient from "@chittyos/chittyid-client";
+import { withResilience, getCircuitBreaker } from "./chittyid-resilience.js";
+import { getSharedCache } from "./chittyid-cache.js";
 
 const DEFAULT_SERVICE_URL = "https://id.chitty.cc/v1";
 let sharedClient;
+let resilienceEnabled = true; // Can be disabled for testing
 
 function readEnv(key) {
   if (typeof process !== "undefined" && process?.env?.[key]) {
@@ -67,9 +75,10 @@ function getSharedClient(options = {}) {
 
 /**
  * Generate a ChittyID from the official service
+ * Enhanced with retry logic and circuit breaker
  * @param {string} entityType - Entity type (PEO, PLACE, PROP, EVNT, AUTH, INFO, FACT, CONTEXT, ACTOR)
  * @param {object} metadata - Optional metadata
- * @param {string} apiKey - ChittyID API key
+ * @param {object} options - Options (apiKey, serviceUrl, resilience)
  * @returns {Promise<string>} - ChittyID in format VV-G-LLL-SSSS-T-YM-C-X
  */
 export async function generateChittyID(
@@ -85,12 +94,21 @@ export async function generateChittyID(
     );
   }
 
-  try {
+  const mintFn = async () => {
     const client = getSharedClient(options);
     return await client.mint({
       entity,
       metadata,
     });
+  };
+
+  try {
+    // Use resilience features unless explicitly disabled
+    if (resilienceEnabled && options.resilience !== false) {
+      return await withResilience(mintFn, options.resilienceConfig);
+    } else {
+      return await mintFn();
+    }
   } catch (error) {
     throw new Error(
       `ChittyID generation failed: ${error.message}. Service must be available.`,
@@ -100,16 +118,38 @@ export async function generateChittyID(
 
 /**
  * Validate a ChittyID format
+ * Enhanced with caching for improved performance
  * @param {string} chittyId - ChittyID to validate
+ * @param {object} options - Options (useCache)
  * @returns {boolean} - True if valid format
  */
-export function validateChittyIDFormat(chittyId) {
+export function validateChittyIDFormat(chittyId, options = {}) {
   if (!chittyId || typeof chittyId !== "string") {
     return false;
   }
 
+  // Check cache first unless explicitly disabled
+  const useCache = options.useCache !== false;
+  if (useCache) {
+    const cache = getSharedCache();
+    const cachedResult = cache.get(chittyId);
+
+    if (cachedResult !== null) {
+      return cachedResult;
+    }
+  }
+
+  // Validate using client
   const client = getSharedClient();
-  return client.validateFormat(chittyId);
+  const isValid = client.validateFormat(chittyId);
+
+  // Cache result
+  if (useCache) {
+    const cache = getSharedCache();
+    cache.set(chittyId, isValid);
+  }
+
+  return isValid;
 }
 
 /**
@@ -147,3 +187,63 @@ export const ENTITY_TYPES = {
   CONTEXT: "CONTEXT", // Context
   ACTOR: "ACTOR", // Actor/Agent
 };
+
+/**
+ * Get circuit breaker status
+ * @returns {object} - Circuit breaker state
+ */
+export function getCircuitBreakerStatus() {
+  const circuitBreaker = getCircuitBreaker();
+  return circuitBreaker.getState();
+}
+
+/**
+ * Get cache statistics
+ * @returns {object} - Cache statistics
+ */
+export function getCacheStats() {
+  const cache = getSharedCache();
+  return cache.getStats();
+}
+
+/**
+ * Clear validation cache
+ */
+export function clearCache() {
+  const cache = getSharedCache();
+  cache.clear();
+}
+
+/**
+ * Reset circuit breaker
+ */
+export function resetCircuitBreaker() {
+  const circuitBreaker = getCircuitBreaker();
+  circuitBreaker.reset();
+}
+
+/**
+ * Enable or disable resilience features
+ * @param {boolean} enabled - Enable/disable
+ */
+export function setResilienceEnabled(enabled) {
+  resilienceEnabled = enabled;
+}
+
+/**
+ * Get ChittyID service health status
+ * @returns {object} - Health status including resilience metrics
+ */
+export function getServiceHealth() {
+  return {
+    service: "chittyid-service",
+    resilience: {
+      enabled: resilienceEnabled,
+      circuitBreaker: getCircuitBreakerStatus(),
+      cache: getCacheStats(),
+    },
+    format: "VV-G-LLL-SSSS-T-YM-C-X",
+    entityTypes: Object.keys(ENTITY_TYPES),
+    mode: "pipeline-only",
+  };
+}
