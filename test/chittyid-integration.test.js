@@ -35,7 +35,9 @@ describe("ChittyID Service Integration", () => {
       const chittyId = await generateChittyID("INFO", { purpose: "testing" });
 
       // VV-G-LLL-SSSS-T-YM-C-X pattern
-      const pattern = /^\d{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{4}-\d-[0-9A-Z]+$/;
+      // VV = 2 LETTERS, YM = 2 DIGITS, C = 1 LETTER
+      const pattern =
+        /^[A-Z]{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{2}-[A-Z]-[0-9A-Z]$/;
       expect(chittyId).toMatch(pattern);
     }, 10000);
 
@@ -87,11 +89,12 @@ describe("ChittyID Service Integration", () => {
 
   describe("ChittyID Validation", () => {
     test("should validate correct VV-G-LLL-SSSS-T-YM-C-X format", () => {
+      // Correct format: VV=2 LETTERS, YM=2 DIGITS, C=1 LETTER
       const validIds = [
-        "01-A-CHI-1234-I-2409-5-0",
-        "01-B-CHI-5678-P-2410-7-12",
-        "01-C-TES-9999-E-2510-3-45",
-        "02-A-NYC-0001-L-2409-8-67",
+        "CT-A-CHI-1234-I-24-A-0", // ChittyID for INFO
+        "ID-B-CHI-5678-P-24-B-X", // ChittyID for PERSON
+        "EV-C-TES-9999-E-25-C-Y", // ChittyID for EVENT
+        "PL-A-NYC-0001-L-24-D-Z", // ChittyID for PLACE
       ];
 
       validIds.forEach((id) => {
@@ -155,10 +158,10 @@ describe("ChittyID Service Integration", () => {
   describe("ChittyID Utilities", () => {
     test("should extract entity type correctly", () => {
       const testCases = [
-        { id: "01-A-CHI-1234-I-2409-5-0", expected: "I" },
-        { id: "01-A-CHI-5678-P-2409-7-12", expected: "P" },
-        { id: "01-C-TES-9999-E-2510-3-45", expected: "E" },
-        { id: "02-A-NYC-0001-L-2409-8-67", expected: "L" },
+        { id: "CT-A-CHI-1234-I-24-A-0", expected: "I" },
+        { id: "ID-A-CHI-5678-P-24-B-X", expected: "P" },
+        { id: "EV-C-TES-9999-E-25-C-Y", expected: "E" },
+        { id: "PL-A-NYC-0001-L-24-D-Z", expected: "L" },
       ];
 
       testCases.forEach(({ id, expected }) => {
@@ -173,7 +176,7 @@ describe("ChittyID Service Integration", () => {
     });
 
     test("isChittyID should identify valid IDs", () => {
-      expect(isChittyID("01-A-CHI-1234-I-2409-5-0")).toBe(true);
+      expect(isChittyID("CT-A-CHI-1234-I-24-A-0")).toBe(true);
       expect(isChittyID("chitty_123_abc")).toBe(false);
       expect(isChittyID("random-string")).toBe(false);
     });
@@ -215,14 +218,14 @@ describe("ChittyID Service Integration", () => {
       const chittyId = await generateChittyID("EVNT", { event: "test" });
       const parts = chittyId.split("-");
 
-      expect(parts[0]).toMatch(/^\d{2}$/); // VV - Version (2 digits)
+      expect(parts[0]).toMatch(/^[A-Z]{2}$/); // VV - Version (2 LETTERS)
       expect(parts[1]).toMatch(/^[A-Z]$/); // G - Generation (1 letter)
       expect(parts[2]).toMatch(/^[A-Z]{3}$/); // LLL - Location (3 letters)
       expect(parts[3]).toMatch(/^\d{4}$/); // SSSS - Sequence (4 digits)
       expect(parts[4]).toMatch(/^[A-Z]$/); // T - Type (1 letter)
-      expect(parts[5]).toMatch(/^\d{4}$/); // YM - Year/Month (4 digits)
-      expect(parts[6]).toMatch(/^\d$/); // C - Check (1 digit)
-      expect(parts[7]).toMatch(/^[0-9A-Z]+$/); // X - Extension (alphanumeric)
+      expect(parts[5]).toMatch(/^\d{2}$/); // YM - Year/Month (2 DIGITS)
+      expect(parts[6]).toMatch(/^[A-Z]$/); // C - Check (1 LETTER)
+      expect(parts[7]).toMatch(/^[0-9A-Z]$/); // X - Extension (1 alphanumeric)
     }, 10000);
 
     test("should NEVER generate old formats", async () => {
@@ -233,9 +236,9 @@ describe("ChittyID Service Integration", () => {
       expect(chittyId).not.toMatch(/^CHITTY-/);
       expect(chittyId).not.toMatch(/^CD-/);
 
-      // MUST match new pattern
+      // MUST match new pattern: VV=2 LETTERS, YM=2 DIGITS, C=1 LETTER
       expect(chittyId).toMatch(
-        /^\d{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{4}-\d-[0-9A-Z]+$/,
+        /^[A-Z]{2}-[A-Z]-[A-Z]{3}-\d{4}-[A-Z]-\d{2}-[A-Z]-[0-9A-Z]$/,
       );
     }, 10000);
   });
