@@ -10,7 +10,7 @@
  * - Validation result caching for performance
  */
 
-import ChittyIDClient from "@chittyos/chittyid-client";
+import { ChittyIDClient } from "@chittyos/chittyid-client";
 import { withResilience, getCircuitBreaker } from "./chittyid-resilience.js";
 import { getSharedCache } from "./chittyid-cache.js";
 import {
