@@ -215,9 +215,9 @@
     "activeForm": "Testing live agent"
   },
   {
-    "content": "Document persistent agent system",
-    "status": "pending",
-    "activeForm": "Documenting system"
+    "content": "Deploy to production environment",
+    "status": "completed",
+    "activeForm": "Deploying to production environment"
   },
   {
     "content": "Phase 1: Critical Blockers - ALL COMPLETED",
@@ -280,11 +280,6 @@
     "activeForm": "Configuring CHITTY_ID_TOKEN secret in production environment"
   },
   {
-    "content": "Deploy to production environment",
-    "status": "completed",
-    "activeForm": "Deploying to production environment"
-  },
-  {
     "content": "Test production endpoints (health, types, verify)",
     "status": "in_progress",
     "activeForm": "Testing production endpoints"
@@ -303,6 +298,26 @@
     "content": "Generate deployment report with rollback instructions",
     "status": "pending",
     "activeForm": "Generating deployment report"
+  },
+  {
+    "content": "Clean up temporary documentation files",
+    "status": "in_progress",
+    "activeForm": "Cleaning up temporary documentation files"
+  },
+  {
+    "content": "Fix the 4 failing integration tests",
+    "status": "pending",
+    "activeForm": "Fixing failing integration tests"
+  },
+  {
+    "content": "Configure .env.chitty with token",
+    "status": "pending",
+    "activeForm": "Configuring .env.chitty"
+  },
+  {
+    "content": "Prepare commit for ChittyID Phase 1",
+    "status": "pending",
+    "activeForm": "Preparing commit"
   },
   {
     "content": "Research Claude Code native todo/task structure",
@@ -785,31 +800,6 @@
     "content": "Verify all ChittyOS services",
     "status": "pending",
     "activeForm": "Verifying all services"
-  },
-  {
-    "content": "Read current chitty.js --continue implementation",
-    "status": "completed",
-    "activeForm": "Read chitty.js --continue implementation"
-  },
-  {
-    "content": "Create self-healing SessionContinuity module",
-    "status": "completed",
-    "activeForm": "Created self-healing SessionContinuity module"
-  },
-  {
-    "content": "Add tool mesh integration for session state",
-    "status": "completed",
-    "activeForm": "Integrated tool mesh into chitty command"
-  },
-  {
-    "content": "Update chitty --continue to use self-healing logic",
-    "status": "completed",
-    "activeForm": "Updated --continue handler"
-  },
-  {
-    "content": "Test session restoration with stale state",
-    "status": "in_progress",
-    "activeForm": "Testing session restoration"
   },
   {
     "content": "Deploy ChittyRouter to production environment",
@@ -1341,6 +1331,66 @@
     "content": "Test end-to-end email processing with ChittyID minting",
     "status": "pending",
     "activeForm": "Testing end-to-end email processing with ChittyID minting"
+  },
+  {
+    "content": "Deprecate FINAL-STATUS-EMAIL-WORKER.md with warning header",
+    "status": "completed",
+    "activeForm": "Deprecating FINAL-STATUS-EMAIL-WORKER.md with warning header"
+  },
+  {
+    "content": "Fix statistical claims in FINAL-STATUS-EMAIL-WORKER.md (n=1 disclosures)",
+    "status": "completed",
+    "activeForm": "Fixing statistical claims in FINAL-STATUS-EMAIL-WORKER.md (n=1 disclosures)"
+  },
+  {
+    "content": "Fix statistical claims in EMAIL-WORKER-QUICK-START.md",
+    "status": "completed",
+    "activeForm": "Fixing statistical claims in EMAIL-WORKER-QUICK-START.md"
+  },
+  {
+    "content": "Verify deployment version and resolve conflicts",
+    "status": "completed",
+    "activeForm": "Verifying deployment version and resolving conflicts"
+  },
+  {
+    "content": "Update deployment status in ACTION-PLAN.md and HONEST-STATUS.md",
+    "status": "completed",
+    "activeForm": "Updating deployment status in ACTION-PLAN.md and HONEST-STATUS.md"
+  },
+  {
+    "content": "Fix test coverage claims in FINAL-STATUS-EMAIL-WORKER.md",
+    "status": "completed",
+    "activeForm": "Fixing test coverage claims in FINAL-STATUS-EMAIL-WORKER.md"
+  },
+  {
+    "content": "Add statistical note to EMAIL-WORKER-QUICK-START.md",
+    "status": "completed",
+    "activeForm": "Adding statistical note to EMAIL-WORKER-QUICK-START.md"
+  },
+  {
+    "content": "Add verification section to GOOGLE-GROUPS-SETUP-COMPLETE.md",
+    "status": "completed",
+    "activeForm": "Adding verification section to GOOGLE-GROUPS-SETUP-COMPLETE.md"
+  },
+  {
+    "content": "Add disclaimers to speculative content in CLOUDFLARE-EMAIL-VERIFICATION-STATUS.md",
+    "status": "completed",
+    "activeForm": "Adding disclaimers to speculative content in CLOUDFLARE-EMAIL-VERIFICATION-STATUS.md"
+  },
+  {
+    "content": "Verify evidence file count and update documentation",
+    "status": "in_progress",
+    "activeForm": "Verifying evidence file count and updating documentation"
+  },
+  {
+    "content": "Create DOCUMENT-STATUS-INDEX.md",
+    "status": "pending",
+    "activeForm": "Creating DOCUMENT-STATUS-INDEX.md"
+  },
+  {
+    "content": "Re-run audit validation and generate REMEDIATION-COMPLETE.md",
+    "status": "pending",
+    "activeForm": "Re-running audit validation and generating REMEDIATION-COMPLETE.md"
   },
   {
     "content": "Review current ChittyMCP worker configuration",
@@ -1914,18 +1964,43 @@
   },
   {
     "content": "Fix account ID in wrangler.toml to ChittyCorp LLC",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Fixing account ID"
   },
   {
     "content": "Test integration locally",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Testing integration locally"
   },
   {
     "content": "Deploy integrated worker to production",
     "status": "pending",
     "activeForm": "Deploying integrated worker"
+  },
+  {
+    "content": "Read current chitty.js --continue implementation",
+    "status": "completed",
+    "activeForm": "Read chitty.js --continue implementation"
+  },
+  {
+    "content": "Create self-healing SessionContinuity module",
+    "status": "completed",
+    "activeForm": "Created self-healing SessionContinuity module"
+  },
+  {
+    "content": "Add tool mesh integration for session state",
+    "status": "completed",
+    "activeForm": "Integrated tool mesh into chitty command"
+  },
+  {
+    "content": "Update chitty --continue to use self-healing logic",
+    "status": "completed",
+    "activeForm": "Updated --continue handler"
+  },
+  {
+    "content": "Test session restoration with stale state",
+    "status": "in_progress",
+    "activeForm": "Testing session restoration"
   },
   {
     "content": "Verify ChittyCertify deployment and compliance",
@@ -1948,19 +2023,24 @@
     "activeForm": "Verifying ChittyCanon is deployed"
   },
   {
-    "content": "Assess ChittyChain readiness and deploy if complete",
+    "content": "Deploy ChittyChain to chain.chitty.cc",
+    "status": "completed",
+    "activeForm": "Deploying ChittyChain to chain.chitty.cc"
+  },
+  {
+    "content": "Confirm ChittyDNA is standards-only (no service deployment needed)",
+    "status": "completed",
+    "activeForm": "Confirming ChittyDNA architecture"
+  },
+  {
+    "content": "Run comprehensive health checks on all deployed Foundation services",
     "status": "in_progress",
-    "activeForm": "Assessing ChittyChain readiness and deploying if complete"
+    "activeForm": "Running comprehensive health checks"
   },
   {
-    "content": "Assess ChittyDNA readiness and determine if deployment needed",
+    "content": "Run /chittycheck validation if available",
     "status": "pending",
-    "activeForm": "Assessing ChittyDNA readiness"
-  },
-  {
-    "content": "Run comprehensive /chittycheck validation",
-    "status": "pending",
-    "activeForm": "Running comprehensive /chittycheck validation"
+    "activeForm": "Running /chittycheck validation"
   },
   {
     "content": "Document final architecture and deployment summary",
@@ -1991,6 +2071,31 @@
     "content": "Verify performance metrics claims",
     "status": "pending",
     "activeForm": "Verifying performance metrics"
+  },
+  {
+    "content": "Deploy derail.me worker to Cloudflare",
+    "status": "in_progress",
+    "activeForm": "Deploying derail.me worker to Cloudflare"
+  },
+  {
+    "content": "Verify derail.me health endpoint",
+    "status": "pending",
+    "activeForm": "Verifying derail.me health endpoint"
+  },
+  {
+    "content": "Build and deploy frontdoor Next.js app to Cloudflare Pages",
+    "status": "pending",
+    "activeForm": "Building and deploying frontdoor Next.js app"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor"
+  },
+  {
+    "content": "Verify frontdoor deployment and health status",
+    "status": "pending",
+    "activeForm": "Verifying frontdoor deployment and health status"
   },
   {
     "content": "ChittyOS Phase 1 Complete: Fixed gateway 403, verified services",
@@ -2623,28 +2728,18 @@
     "activeForm": "Creating inventory"
   },
   {
-    "content": "Add HF tools to getAvailableTools() function",
-    "status": "completed",
-    "activeForm": "Adding HF tools to getAvailableTools() function"
-  },
-  {
-    "content": "Add HF tool execution logic to executeTool()",
-    "status": "completed",
-    "activeForm": "Adding HF tool execution logic to executeTool()"
-  },
-  {
-    "content": "Update health endpoint with new tool count and category",
-    "status": "completed",
-    "activeForm": "Updating health endpoint with new tool count and category"
-  },
-  {
-    "content": "Update README.md with HF integration docs",
-    "status": "completed",
-    "activeForm": "Updating README.md with HF integration docs"
-  },
-  {
-    "content": "Test integrated HF tools",
+    "content": "Deploy ChittyMCP v3.4.0 to production",
     "status": "in_progress",
-    "activeForm": "Testing integrated HF tools"
+    "activeForm": "Deploying ChittyMCP v3.4.0 to production"
+  },
+  {
+    "content": "Verify deployment health",
+    "status": "pending",
+    "activeForm": "Verifying deployment health"
+  },
+  {
+    "content": "Test HF tools on production",
+    "status": "pending",
+    "activeForm": "Testing HF tools on production"
   }
 ]
