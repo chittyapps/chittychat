@@ -6,10 +6,82 @@
 # First, remove any conflicting aliases
 unalias project 2>/dev/null || true
 
+_get_script_dir() {
+    local source="${BASH_SOURCE[0]:-$0}"
+    cd "$(dirname "$source")" >/dev/null 2>&1 && pwd
+}
+
+_get_repo_root() {
+    local script_dir="$(_get_script_dir)"
+    if command -v git >/dev/null 2>&1; then
+        local root
+        root=$(git -C "$script_dir" rev-parse --show-toplevel 2>/dev/null)
+        if [ -n "$root" ]; then
+            printf '%s
+' "$root"
+            return
+        fi
+    fi
+    cd "$script_dir/.." >/dev/null 2>&1 && pwd
+}
+
+_detect_projects_dir() {
+    if [ -n "$CHITTYOS_PROJECTS_DIR" ] && [ -d "$CHITTYOS_PROJECTS_DIR" ]; then
+        printf '%s
+' "$CHITTYOS_PROJECTS_DIR"
+        return
+    fi
+
+    local repo_root="$(_get_repo_root)"
+    local parent_dir
+    parent_dir=$(cd "$repo_root/.." >/dev/null 2>&1 && pwd)
+
+    local candidates=(
+        "$parent_dir"
+        "$HOME/.claude/projects/-"
+        "$HOME/projects"
+    )
+
+    for candidate in "${candidates[@]}"; do
+        if [ -d "$candidate" ]; then
+            printf '%s
+' "$candidate"
+            return
+        fi
+    done
+
+    printf '%s
+' "$repo_root"
+}
+
+_default_sync_script() {
+    local script_dir="$(_get_script_dir)"
+    local repo_root="$(_get_repo_root)"
+
+    local candidates=(
+        "$script_dir/cross-session-sync/start-project-sync.mjs"
+        "$repo_root/chittychat/cross-session-sync/start-project-sync.mjs"
+        "$(cd "$repo_root/.." >/dev/null 2>&1 && pwd)/chittychat/cross-session-sync/start-project-sync.mjs"
+    )
+
+    for candidate in "${candidates[@]}"; do
+        if [ -f "$candidate" ]; then
+            printf '%s
+' "$candidate"
+            return
+        fi
+    done
+}
+
 project() {
-    local PROJECTS_DIR="/Users/nb/.claude/projects/-"
+    local PROJECTS_DIR="$(_detect_projects_dir)"
     local PROJECT_NAME=""
     local PROJECT_PATH=""
+
+    if [ -z "$PROJECTS_DIR" ] || [ ! -d "$PROJECTS_DIR" ]; then
+        echo "⚠️  Projects directory not found: $PROJECTS_DIR"
+        return 1
+    fi
 
     # Check for config command
     if [ "$1" = "config" ] || [ "$1" = "configure" ]; then
@@ -20,8 +92,14 @@ project() {
 
     # Select project (either from argument or interactively)
     if [ -n "$1" ]; then
-        PROJECT_NAME="$1"
-        PROJECT_PATH="$PROJECTS_DIR/$1"
+        if [[ "$1" = /* ]] && [ -d "$1" ]; then
+            PROJECT_PATH="$1"
+            PROJECT_NAME="$(basename "$PROJECT_PATH")"
+        else
+            PROJECT_NAME="$1"
+            PROJECT_PATH="$PROJECTS_DIR/$PROJECT_NAME"
+        fi
+
         if [ ! -d "$PROJECT_PATH" ]; then
             echo "❌ Project '$1' not found"
             return 1
@@ -29,7 +107,19 @@ project() {
     else
         # Interactive selection
         echo "📁 Select a project:"
-        select proj in $(ls -d "$PROJECTS_DIR"/*/ 2>/dev/null | xargs -n1 basename | sort) "Cancel"; do
+        local -a project_choices=()
+        while IFS= read -r dir; do
+            project_choices+=("$(basename "$dir")")
+        done < <(find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d -print | sort)
+
+        project_choices+=("Cancel")
+
+        if [ "${#project_choices[@]}" -le 1 ]; then
+            echo "⚠️  No projects found in $PROJECTS_DIR"
+            return 1
+        fi
+
+        select proj in "${project_choices[@]}"; do
             case $proj in
                 "Cancel") return ;;
                 "") echo "Invalid selection" ;;
@@ -70,8 +160,13 @@ project() {
 _project_config() {
     local action="$1"
     local project="$2"
-    local PROJECTS_DIR="/Users/nb/.claude/projects/-"
-    local CONFIG_DIR="$HOME/.chittyos/projects"
+    local PROJECTS_DIR="$(_detect_projects_dir)"
+    local CONFIG_DIR="${CHITTYOS_CONFIG_DIR:-$HOME/.chittyos/projects}"
+
+    if [ -z "$PROJECTS_DIR" ] || [ ! -d "$PROJECTS_DIR" ]; then
+        echo "⚠️  Projects directory not found: $PROJECTS_DIR"
+        return 1
+    fi
 
     # Create config directory if it doesn't exist
     mkdir -p "$CONFIG_DIR"
@@ -83,37 +178,35 @@ _project_config() {
             echo ""
 
             # List all projects with their config status
-            for proj_dir in "$PROJECTS_DIR"/*/; do
-                if [ -d "$proj_dir" ]; then
-                    local proj_name=$(basename "$proj_dir")
-                    local config_file="$CONFIG_DIR/$proj_name.json"
-                    local has_config=false
-                    local has_env=false
-                    local has_claude_md=false
-                    local git_status="no git"
+            while IFS= read -r proj_dir; do
+                [ -d "$proj_dir" ] || continue
+                local proj_name=$(basename "$proj_dir")
+                local config_file="$CONFIG_DIR/$proj_name.json"
+                local has_config=false
+                local has_env=false
+                local has_claude_md=false
+                local git_status="no git"
 
-                    [ -f "$config_file" ] && has_config=true
-                    [ -f "$proj_dir/.env" ] && has_env=true
-                    [ -f "$proj_dir/CLAUDE.md" ] && has_claude_md=true
-                    [ -d "$proj_dir/.git" ] && git_status="git initialized"
+                [ -f "$config_file" ] && has_config=true
+                [ -f "$proj_dir/.env" ] && has_env=true
+                [ -f "$proj_dir/CLAUDE.md" ] && has_claude_md=true
+                [ -d "$proj_dir/.git" ] && git_status="git initialized"
 
-                    echo "📁 $proj_name"
-                    echo -n "   Status: "
-                    [ "$has_config" = true ] && echo -n "✅ Config " || echo -n "⚠️  No config "
-                    [ "$has_env" = true ] && echo -n "✅ .env " || echo -n "⚠️  No .env "
-                    [ "$has_claude_md" = true ] && echo -n "✅ CLAUDE.md " || echo -n "⚠️  No CLAUDE.md "
-                    echo "($git_status)"
+                echo "📁 $proj_name"
+                echo -n "   Status: "
+                [ "$has_config" = true ] && echo -n "✅ Config " || echo -n "⚠️  No config "
+                [ "$has_env" = true ] && echo -n "✅ .env " || echo -n "⚠️  No .env "
+                [ "$has_claude_md" = true ] && echo -n "✅ CLAUDE.md " || echo -n "⚠️  No CLAUDE.md "
+                echo "($git_status)"
 
-                    # Show key config details if config exists
-                    if [ "$has_config" = true ] && command -v jq >/dev/null 2>&1; then
-                        local type=$(jq -r '.type // "unknown"' "$config_file" 2>/dev/null)
-                        local framework=$(jq -r '.framework // "none"' "$config_file" 2>/dev/null)
-                        local chittyid=$(jq -r '.chittyid_enabled // false' "$config_file" 2>/dev/null)
-                        echo "   Type: $type | Framework: $framework | ChittyID: $chittyid"
-                    fi
-                    echo ""
+                if [ "$has_config" = true ] && command -v jq >/dev/null 2>&1; then
+                    local type=$(jq -r '.type // "unknown"' "$config_file" 2>/dev/null)
+                    local framework=$(jq -r '.framework // "none"' "$config_file" 2>/dev/null)
+                    local chittyid=$(jq -r '.chittyid_enabled // false' "$config_file" 2>/dev/null)
+                    echo "   Type: $type | Framework: $framework | ChittyID: $chittyid"
                 fi
-            done
+                echo ""
+            done < <(find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d -print | sort)
             ;;
 
         "show"|"view")
@@ -744,7 +837,7 @@ _project_config() {
                 fi
 
                 # Auto-discover what depends on this project
-                local projects_dir="/Users/nb/.claude/projects/-"
+                local projects_dir="$(_detect_projects_dir)"
                 if [ -d "$projects_dir" ]; then
                     for other_project in "$projects_dir"/*/; do
                         if [ -d "$other_project" ] && [ "$(basename "$other_project")" != "$PROJECT_NAME" ]; then
@@ -1436,8 +1529,13 @@ _resolve_session_conflicts() {
         echo -n "    Start cross-session sync? (y/N): "
         read -r response
         if [[ "$response" =~ ^[Yy]$ ]]; then
-            nohup node /Users/nb/jumpoff/chittychat-repo/cross-session-sync/start-project-sync.mjs &>/dev/null &
-            echo "    ✅ Started cross-session sync"
+            local sync_script="${CHITTYOS_SYNC_SCRIPT:-$(_default_sync_script)}"
+            if [ -z "$sync_script" ] || [ ! -f "$sync_script" ]; then
+                echo "    ⚠️  Unable to locate cross-session sync script. Set CHITTYOS_SYNC_SCRIPT to enable this feature."
+            else
+                nohup node "$sync_script" &>/dev/null &
+                echo "    ✅ Started cross-session sync ($sync_script)"
+            fi
         fi
     fi
 

@@ -22,7 +22,7 @@ cat > ~/.ai-project-hook.js << 'EOF'
     stdio: 'ignore',
     env: {
       ...process.env,
-      CHITTYCHAT_URL: 'http://localhost:5000'
+      CHITTYCHAT_URL: 'https://chat.chitty.cc'
     }
   });
 

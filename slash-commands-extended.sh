@@ -341,7 +341,18 @@ clean_command() {
 # /fix - Enhanced Auto-fix with Real Issue Detection
 # ============================================
 fix_command() {
-    echo -e "${CYAN}${BOLD}🔧 CHITTYFIX ENHANCED v2.0 - Intelligent Issue Detection & Resolution${RESET}"
+    echo -e "${CYAN}${BOLD}🔧 CHITTYFIX SMART - Intelligent Code Analysis & Fixing${RESET}"
+    echo ""
+
+    # Check if the smart version exists and use it
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [[ -f "$SCRIPT_DIR/chittyfix-smart.js" ]]; then
+        node "$SCRIPT_DIR/chittyfix-smart.js"
+        return $?
+    fi
+
+    # Otherwise, continue with the bash version
+    echo -e "${YELLOW}Smart version not found, using enhanced bash version...${RESET}"
     echo ""
 
     FIXED=0

@@ -1,0 +1,50 @@
+# Wrangler configuration for evidence.chitty.cc worker
+
+name = "chittyos-evidence"
+main = "workers/evidence.ts"
+compatibility_date = "2024-10-01"
+
+# Routes
+routes = [
+  { pattern = "evidence.chitty.cc/*", zone_name = "chitty.cc" }
+]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# KV Namespace for evidence metadata
+[[kv_namespaces]]
+binding = "EVIDENCE_KV"
+id = "f8c2e9a1b4d7c3e6a5f2b8d1c7e3a9f4"
+
+# R2 Bucket for evidence storage
+[[r2_buckets]]
+binding = "EVIDENCE_R2"
+bucket_name = "chittyos-evidence"
+
+# D1 Database (optional, for relational queries)
+[[d1_databases]]
+binding = "DB"
+database_name = "chittyos"
+database_id = "12345678-1234-1234-1234-123456789012"
+
+# Secrets (set with: wrangler secret put CHITTY_ID_TOKEN)
+# CHITTY_ID_TOKEN
+# NEON_DATABASE_URL
+
+# Compatibility settings
+[build]
+command = "npm run build"
+
+# Development
+[env.development]
+name = "chittyos-evidence-dev"
+routes = []
+
+# Staging
+[env.staging]
+name = "chittyos-evidence-staging"
+routes = [
+  { pattern = "evidence-staging.chitty.cc/*", zone_name = "chitty.cc" }
+]
