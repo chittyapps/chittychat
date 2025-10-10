@@ -15,7 +15,7 @@ import path from 'path';
  */
 class ChittyChatIntegration {
   constructor(config = {}) {
-    this.chittychatUrl = config.chittychatUrl || 'http://localhost:5000';
+    this.chittychatUrl = config.chittychatUrl || 'https://chat.chitty.cc';
     this.sessionId = config.sessionId;
     this.baseDir = config.baseDir || path.join(process.cwd(), '.ai-coordination');
     this.currentProject = null;

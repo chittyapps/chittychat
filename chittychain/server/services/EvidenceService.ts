@@ -50,7 +50,7 @@ export class EvidenceService {
       
       // Create evidence record
       const evidenceRecord: EvidenceRecord = {
-        id: crypto.randomUUID(),
+        id: `pending-id-${Date.now()}`,
         hash: evidenceHash,
         caseId,
         documentType,

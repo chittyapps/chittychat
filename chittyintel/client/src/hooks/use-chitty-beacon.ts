@@ -42,7 +42,7 @@ export function useChittyBeacon(config: BeaconConfig = {
     if (!effectiveConfig.enabled) return;
 
     const event: BeaconEvent = {
-      id: `beacon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: `beacon_${Date.now()}`,
       type,
       message,
       timestamp: new Date(),

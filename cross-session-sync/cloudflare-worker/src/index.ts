@@ -17,7 +17,7 @@ const router = Router();
 router.post('/session/register', async (request: Request, env: Env) => {
   const { name, metadata } = await request.json();
 
-  const sessionId = crypto.randomUUID();
+  const sessionId = `pending-id-${Date.now()}`;
   const session = {
     id: sessionId,
     name: name || `session-${sessionId.slice(0, 8)}`,
@@ -240,7 +240,7 @@ router.post('/neon/state/save', async (request: Request, env: Env) => {
     session_id: sessionId,
     state: JSON.stringify(state),
     timestamp,
-    version: crypto.randomUUID()
+    version: `pending-id-${Date.now()}`
   };
 
   await env.DB.prepare(

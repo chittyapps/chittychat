@@ -80,7 +80,7 @@ export class LegalComplianceError extends CustomError {
 
 // Request ID middleware for tracing
 export const requestId = (req: Request, res: Response, next: NextFunction) => {
-  const id = crypto.randomUUID();
+  const id = `pending-id-${Date.now()}`;
   req.headers['x-request-id'] = id;
   res.setHeader('X-Request-ID', id);
   next();

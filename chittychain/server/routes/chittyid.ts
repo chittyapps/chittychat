@@ -48,7 +48,97 @@ router.get("/health", async (req: Request, res: Response) => {
   }
 });
 
-// Generate ChittyID
+// ChittyID minting endpoint for @chittyos/chittyid-client compatibility
+// Wraps /generate logic with client-expected interface
+router.post("/v1/mint", async (req: Request, res: Response) => {
+  try {
+    // Validate authorization
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        error: "Unauthorized",
+        message:
+          "CHITTY_ID_TOKEN required. Include Authorization: Bearer <token> header.",
+      });
+    }
+
+    // Parse request body (compatible with @chittyos/chittyid-client)
+    const { entity, name, metadata } = req.body;
+
+    // Map entity type to vertical
+    const verticalMap: Record<string, string> = {
+      PEO: "user",
+      PLACE: "property",
+      PROP: "property",
+      EVNT: "case",
+      AUTH: "audit",
+      INFO: "user",
+      FACT: "evidence",
+      CONTEXT: "evidence",
+      ACTOR: "user",
+    };
+
+    const vertical = (verticalMap[entity || "INFO"] || "user") as
+      | "user"
+      | "evidence"
+      | "case"
+      | "property"
+      | "contract"
+      | "audit";
+    const nodeId = metadata?.nodeId || "1";
+    const jurisdiction = metadata?.jurisdiction || "USA";
+
+    // Generate ChittyID using existing service
+    const chittyId = await ChittyIDService.generateChittyID(
+      vertical,
+      nodeId,
+      jurisdiction,
+    );
+    const parsed = ChittyIDService.parseChittyID(chittyId);
+    const timestamp = ChittyIDService.getTimestamp(chittyId);
+
+    // Store the generated ID
+    const record = await ChittyIDService.storeChittyID({
+      chittyId,
+      vertical,
+      nodeId,
+      jurisdiction,
+      timestamp: timestamp || Date.now(),
+      isValid: true,
+      metadata: {
+        ...metadata,
+        entity,
+        name,
+        generatedViaAPI: true,
+        endpoint: "/v1/mint",
+        userAgent: req.get("User-Agent"),
+      },
+    });
+
+    // Return in format expected by @chittyos/chittyid-client
+    res.status(201).json({
+      chittyId: chittyId,
+      entity: entity || "INFO",
+      metadata: {
+        ...metadata,
+        vertical,
+        nodeId,
+        jurisdiction,
+        generatedAt: record.generatedAt.toISOString(),
+        recordId: record.id,
+      },
+      timestamp: parsed?.timestamp || Date.now(),
+    });
+  } catch (error) {
+    console.error("ChittyID minting error:", error);
+    res.status(400).json({
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+      service: "ChittyID",
+    });
+  }
+});
+
+// Generate ChittyID (backward compatibility endpoint)
 router.post("/generate", async (req: Request, res: Response) => {
   try {
     const { vertical, nodeId, jurisdiction } = generateChittyIDSchema.parse(

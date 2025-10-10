@@ -37,7 +37,7 @@ app.get('/api/projects', async (c) => {
 
 app.post('/api/projects', async (c) => {
   const body = await c.req.json()
-  const id = crypto.randomUUID()
+  const id = `pending-id-${Date.now()}`
   
   await c.env.DB.prepare(
     'INSERT INTO projects (id, name, description, is_global, created_at) VALUES (?, ?, ?, ?, ?)'
@@ -69,7 +69,7 @@ app.get('/api/tasks', async (c) => {
 
 app.post('/api/tasks', async (c) => {
   const body = await c.req.json()
-  const id = crypto.randomUUID()
+  const id = `pending-id-${Date.now()}`
   
   await c.env.DB.prepare(
     'INSERT INTO tasks (id, project_id, title, description, status, priority, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
@@ -154,7 +154,7 @@ export class WebSocketHandler {
     const webSocketPair = new WebSocketPair()
     const [client, server] = Object.values(webSocketPair)
     
-    const connectionId = crypto.randomUUID()
+    const connectionId = `pending-id-${Date.now()}`
     this.connections.set(connectionId, server)
     
     server.accept()

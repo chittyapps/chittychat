@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// NOTE: This is a DEMO file. Production implementation should use id.chitty.cc for token ID generation.
+// See: https://id.chitty.cc/docs for ChittyID integration.
 
 /**
  * ChittyChain Property NFT System Demo
@@ -67,7 +69,7 @@ class PropertyNFTDemo {
     console.log('- Features:', sampleProperty.metadata.features.join(', '));
     
     // Simulate minting process
-    const tokenId = Math.floor(Math.random() * 10000) + 1;
+    const tokenId = Math.floor(Math.random() * 10000) + 1; // DEMO: Real implementation should use ChittyID service
     console.log('\n✅ Property NFT Minted Successfully!');
     console.log('- Token ID:', tokenId);
     console.log('- Contract Address: 0x742d35Cc6634C0532925a3b6a1c7b6f6c2f8932a');

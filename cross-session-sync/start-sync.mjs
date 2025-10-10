@@ -47,7 +47,7 @@ class CrossSessionSync {
     // Initialize ChittyChat integration
     this.chittychat = new ChittyChatIntegration({
       sessionId: this.sessionId,
-      chittychatUrl: process.env.CHITTYCHAT_URL || 'http://localhost:5000'
+      chittychatUrl: process.env.CHITTYCHAT_URL || 'https://chat.chitty.cc'
     });
 
     // Load saved project context

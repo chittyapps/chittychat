@@ -124,7 +124,7 @@ export class DatabaseStorage implements IStorage {
     firstName?: string;
     lastName?: string;
   }): Promise<User> {
-    const userId = `user_${Date.now()}_${crypto.randomUUID().substring(0, 8)}`;
+    const userId = `user_${Date.now()}_${`pending-id-${Date.now()}`.substring(0, 8)}`;
 
     // Generate ChittyID through mothership connection with proper identity service call
     const chittyIdCode = await chittyIdService.generateChittyId(

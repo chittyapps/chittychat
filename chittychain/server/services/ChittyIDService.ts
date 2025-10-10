@@ -143,8 +143,8 @@ export class ChittyIDService {
   static async storeChittyID(
     record: Omit<ChittyIDRecord, "id" | "generatedAt">,
   ): Promise<ChittyIDRecord> {
-    // Use crypto.randomUUID() for internal record IDs (not ChittyIDs)
-    const id = crypto.randomUUID();
+    // Use `pending-id-${Date.now()}` for internal record IDs (not ChittyIDs)
+    const id = `pending-id-${Date.now()}`;
     const fullRecord: ChittyIDRecord = {
       ...record,
       id,

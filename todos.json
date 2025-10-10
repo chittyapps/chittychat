@@ -25,31 +25,6 @@
     "activeForm": "Week 1 Day 3-4: Conflict detection"
   },
   {
-    "content": "Commit orphaned scanner and manual fixes",
-    "status": "completed",
-    "activeForm": "Committing orphaned scanner and manual fixes"
-  },
-  {
-    "content": "Deploy ChittyMCP v3.4.0 with HF tools",
-    "status": "completed",
-    "activeForm": "Deploying ChittyMCP v3.4.0 with HF tools"
-  },
-  {
-    "content": "Test telemetry endpoints",
-    "status": "completed",
-    "activeForm": "Testing telemetry endpoints"
-  },
-  {
-    "content": "Investigate register.chitty.cc auth",
-    "status": "completed",
-    "activeForm": "Investigating register.chitty.cc auth"
-  },
-  {
-    "content": "Run final chittycheck",
-    "status": "in_progress",
-    "activeForm": "Running final chittycheck"
-  },
-  {
     "content": "Analyze ChittyOS Framework health and sync status",
     "status": "completed",
     "activeForm": "Analyzing framework health"
@@ -1924,18 +1899,28 @@
   },
   {
     "content": "Import OntologyController into worker.js",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Importing OntologyController"
   },
   {
     "content": "Add ontology route handlers (/ontology/*, /translate/*, /governance/*)",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Adding ontology route handlers"
   },
   {
-    "content": "Test integration doesn't break existing endpoints",
+    "content": "Add required KV bindings (SERVICE_REGISTRY, SCHEMA_KV)",
+    "status": "completed",
+    "activeForm": "Adding KV bindings"
+  },
+  {
+    "content": "Fix account ID in wrangler.toml to ChittyCorp LLC",
+    "status": "in_progress",
+    "activeForm": "Fixing account ID"
+  },
+  {
+    "content": "Test integration locally",
     "status": "pending",
-    "activeForm": "Testing integration"
+    "activeForm": "Testing integration locally"
   },
   {
     "content": "Deploy integrated worker to production",
