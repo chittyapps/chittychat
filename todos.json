@@ -455,14 +455,29 @@
     "activeForm": "Verifying ChittyRouter production deployment"
   },
   {
-    "content": "Set up GitHub Projects for email infrastructure",
-    "status": "in_progress",
-    "activeForm": "Setting up GitHub Projects"
+    "content": "Fix DEPRECATION_NOTICE.md with accurate claims",
+    "status": "completed",
+    "activeForm": "Fixing DEPRECATION_NOTICE.md accuracy"
   },
   {
     "content": "Enable R2 email archival in ChittyRouter",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Enabling R2 email archival"
+  },
+  {
+    "content": "Configure custom route at router.chitty.cc/email",
+    "status": "pending",
+    "activeForm": "Configuring custom route"
+  },
+  {
+    "content": "Set workstream environment variables",
+    "status": "pending",
+    "activeForm": "Setting workstream environment variables"
+  },
+  {
+    "content": "Create migration status report",
+    "status": "completed",
+    "activeForm": "Creating migration status report"
   },
   {
     "content": "Analyze email worker project structure and deployment status",
