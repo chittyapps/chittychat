@@ -1817,19 +1817,19 @@
     "activeForm": "Completing Phase 1 & 2 deployment and verification"
   },
   {
-    "content": "Build main chico worker with full lead automation (not stubs)",
+    "content": "Fix chicagofurnishedcondos.com domain routing",
     "status": "in_progress",
-    "activeForm": "Building main chico worker with full functionality"
+    "activeForm": "Fixing chicagofurnishedcondos.com domain routing"
+  },
+  {
+    "content": "Build main chico worker with full lead automation",
+    "status": "pending",
+    "activeForm": "Building main chico worker"
   },
   {
     "content": "Create furnished-condos specialty configuration",
     "status": "pending",
     "activeForm": "Creating furnished-condos specialty configuration"
-  },
-  {
-    "content": "Remove Twilio secret from git history and push to GitHub",
-    "status": "pending",
-    "activeForm": "Removing secret from history and pushing"
   },
   {
     "content": "Verify all endpoints with curl tests",
