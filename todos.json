@@ -296,12 +296,12 @@
   },
   {
     "content": "Fix the 4 failing integration tests",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Fixing failing integration tests"
   },
   {
     "content": "Configure .env.chitty with token",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Configuring .env.chitty"
   },
   {
@@ -1259,12 +1259,12 @@
   },
   {
     "content": "Fix file watcher daemon logging configuration",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Fixing file watcher daemon logging configuration"
   },
   {
     "content": "Investigate remote sync storage KV binding issue",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Investigating remote sync storage KV binding issue"
   },
   {
@@ -1391,66 +1391,6 @@
     "content": "Test end-to-end email processing with ChittyID minting",
     "status": "pending",
     "activeForm": "Testing end-to-end email processing with ChittyID minting"
-  },
-  {
-    "content": "Deprecate FINAL-STATUS-EMAIL-WORKER.md with warning header",
-    "status": "completed",
-    "activeForm": "Deprecating FINAL-STATUS-EMAIL-WORKER.md with warning header"
-  },
-  {
-    "content": "Fix statistical claims in FINAL-STATUS-EMAIL-WORKER.md (n=1 disclosures)",
-    "status": "completed",
-    "activeForm": "Fixing statistical claims in FINAL-STATUS-EMAIL-WORKER.md (n=1 disclosures)"
-  },
-  {
-    "content": "Fix statistical claims in EMAIL-WORKER-QUICK-START.md",
-    "status": "completed",
-    "activeForm": "Fixing statistical claims in EMAIL-WORKER-QUICK-START.md"
-  },
-  {
-    "content": "Verify deployment version and resolve conflicts",
-    "status": "completed",
-    "activeForm": "Verifying deployment version and resolving conflicts"
-  },
-  {
-    "content": "Update deployment status in ACTION-PLAN.md and HONEST-STATUS.md",
-    "status": "completed",
-    "activeForm": "Updating deployment status in ACTION-PLAN.md and HONEST-STATUS.md"
-  },
-  {
-    "content": "Fix test coverage claims in FINAL-STATUS-EMAIL-WORKER.md",
-    "status": "completed",
-    "activeForm": "Fixing test coverage claims in FINAL-STATUS-EMAIL-WORKER.md"
-  },
-  {
-    "content": "Add statistical note to EMAIL-WORKER-QUICK-START.md",
-    "status": "completed",
-    "activeForm": "Adding statistical note to EMAIL-WORKER-QUICK-START.md"
-  },
-  {
-    "content": "Add verification section to GOOGLE-GROUPS-SETUP-COMPLETE.md",
-    "status": "completed",
-    "activeForm": "Adding verification section to GOOGLE-GROUPS-SETUP-COMPLETE.md"
-  },
-  {
-    "content": "Add disclaimers to speculative content in CLOUDFLARE-EMAIL-VERIFICATION-STATUS.md",
-    "status": "completed",
-    "activeForm": "Adding disclaimers to speculative content in CLOUDFLARE-EMAIL-VERIFICATION-STATUS.md"
-  },
-  {
-    "content": "Verify evidence file count and update documentation",
-    "status": "completed",
-    "activeForm": "Verifying evidence file count and updating documentation"
-  },
-  {
-    "content": "Create DOCUMENT-STATUS-INDEX.md",
-    "status": "in_progress",
-    "activeForm": "Creating DOCUMENT-STATUS-INDEX.md"
-  },
-  {
-    "content": "Re-run audit validation and generate REMEDIATION-COMPLETE.md",
-    "status": "pending",
-    "activeForm": "Re-running audit validation and generating REMEDIATION-COMPLETE.md"
   },
   {
     "content": "Review current ChittyMCP worker configuration",
@@ -2108,13 +2048,13 @@
     "activeForm": "Verifying all Foundation services health"
   },
   {
-    "content": "Run /chittycheck validation if available",
-    "status": "in_progress",
-    "activeForm": "Running /chittycheck validation"
+    "content": "Run chittycheck validation",
+    "status": "completed",
+    "activeForm": "Running chittycheck validation"
   },
   {
     "content": "Document final architecture and deployment summary",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Documenting final architecture and deployment summary"
   },
   {
@@ -2766,25 +2706,5 @@
     "content": "Create document inventory with authenticity assessment",
     "status": "pending",
     "activeForm": "Creating inventory"
-  },
-  {
-    "content": "Update wrangler.toml MCP_VERSION to 3.4.0",
-    "status": "completed",
-    "activeForm": "Updating wrangler.toml MCP_VERSION to 3.4.0"
-  },
-  {
-    "content": "Deploy ChittyMCP v3.4.0 to production",
-    "status": "completed",
-    "activeForm": "Deploying ChittyMCP v3.4.0 to production"
-  },
-  {
-    "content": "Verify health endpoint shows v3.4.0 and 40 tools",
-    "status": "in_progress",
-    "activeForm": "Verifying health endpoint shows v3.4.0 and 40 tools"
-  },
-  {
-    "content": "Test HF tool availability via /v1/mcp/tools",
-    "status": "pending",
-    "activeForm": "Testing HF tool availability via /v1/mcp/tools"
   }
 ]
