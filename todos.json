@@ -1422,46 +1422,6 @@
     "activeForm": "Updating DEPLOYMENT-STATUS.md with results"
   },
   {
-    "content": "Extract hardcoded landlord info and create environment variables",
-    "status": "completed",
-    "activeForm": "Extracting hardcoded landlord configuration"
-  },
-  {
-    "content": "Add missing database fields to schema (building_name, aka, fees, utilities, etc.)",
-    "status": "completed",
-    "activeForm": "Adding missing database fields"
-  },
-  {
-    "content": "Update TypeScript types in both db/schema.ts and shared/schema.ts",
-    "status": "completed",
-    "activeForm": "Updating TypeScript types"
-  },
-  {
-    "content": "Update generateLeasePDF.ts to use environment variables",
-    "status": "completed",
-    "activeForm": "Updating PDF generator with environment config"
-  },
-  {
-    "content": "Create comprehensive integration test suite",
-    "status": "completed",
-    "activeForm": "Creating integration tests"
-  },
-  {
-    "content": "Add pre-flight validation checks for Python dependencies",
-    "status": "completed",
-    "activeForm": "Adding pre-flight validation"
-  },
-  {
-    "content": "Implement proration calculator and auto-detection logic",
-    "status": "completed",
-    "activeForm": "Implementing proration and auto-detection"
-  },
-  {
-    "content": "Update INTEGRATION-STATUS.md with final status",
-    "status": "in_progress",
-    "activeForm": "Updating documentation"
-  },
-  {
     "content": "Diagnose MCP server connection failures",
     "status": "in_progress",
     "activeForm": "Diagnosing MCP server connection failures"
