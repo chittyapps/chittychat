@@ -1653,17 +1653,17 @@
   },
   {
     "content": "Modify handleSync in sync.js to route /api/todos/* to ChittySync Hub via service binding",
-    "status": "in_progress",
-    "activeForm": "Modifying handleSync to route todos requests via service binding"
+    "status": "completed",
+    "activeForm": "Modified handleSync to route todos via service binding with KV fallback"
   },
   {
     "content": "Deploy ChittyChat with service binding configuration",
-    "status": "pending",
-    "activeForm": "Deploying ChittyChat with service binding configuration"
+    "status": "completed",
+    "activeForm": "Deployed ChittyChat with CHITTYSYNC_HUB service binding"
   },
   {
     "content": "Test POST /api/todos (create todo) and verify D1 storage",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Testing POST endpoint and verifying D1 storage"
   },
   {
@@ -1817,34 +1817,19 @@
     "activeForm": "Completing Phase 1 & 2 deployment and verification"
   },
   {
-    "content": "Fix account confusion and redeploy to correct account",
-    "status": "completed",
-    "activeForm": "Fixing account confusion and redeploying"
+    "content": "Build main chico worker with full lead automation (not stubs)",
+    "status": "in_progress",
+    "activeForm": "Building main chico worker with full functionality"
   },
   {
-    "content": "Rename workers for clarity (remove redundancy)",
-    "status": "completed",
-    "activeForm": "Renaming workers for clarity"
-  },
-  {
-    "content": "Verify all endpoints with HTTP 200 responses",
-    "status": "completed",
-    "activeForm": "Verifying all endpoints"
-  },
-  {
-    "content": "Update all deployment documentation",
-    "status": "completed",
-    "activeForm": "Updating deployment documentation"
-  },
-  {
-    "content": "Commit final changes to git",
-    "status": "completed",
-    "activeForm": "Committing final changes"
-  },
-  {
-    "content": "Phase 3: Deploy chicago dashboard",
+    "content": "Create furnished-condos specialty configuration",
     "status": "pending",
-    "activeForm": "Deploying chicago dashboard"
+    "activeForm": "Creating furnished-condos specialty configuration"
+  },
+  {
+    "content": "Remove Twilio secret from git history and push to GitHub",
+    "status": "pending",
+    "activeForm": "Removing secret from history and pushing"
   },
   {
     "content": "Verify all endpoints with curl tests",
@@ -1870,6 +1855,11 @@
     "content": "Commit all changes to git with descriptive message",
     "status": "completed",
     "activeForm": "Committing all changes to git with descriptive message"
+  },
+  {
+    "content": "Phase 3: Deploy chicago dashboard",
+    "status": "pending",
+    "activeForm": "Deploying chicago dashboard"
   },
   {
     "content": "Deploy ChittyRouter to production environment",
