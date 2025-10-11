@@ -537,6 +537,46 @@
     "activeForm": "Suggesting tool enhancements"
   },
   {
+    "content": "Wire output-style into ChittyOS Pipeline Orchestrator API",
+    "status": "in_progress",
+    "activeForm": "Wiring output-style into ChittyOS Pipeline Orchestrator API"
+  },
+  {
+    "content": "Create ChittySchema telemetry database schema for output tracking",
+    "status": "pending",
+    "activeForm": "Creating ChittySchema telemetry database schema"
+  },
+  {
+    "content": "Build CLI tool for querying output quality metrics over time",
+    "status": "pending",
+    "activeForm": "Building CLI tool for output quality queries"
+  },
+  {
+    "content": "Integrate ChittyDNA fingerprinting for code outputs",
+    "status": "pending",
+    "activeForm": "Integrating ChittyDNA fingerprinting"
+  },
+  {
+    "content": "Connect ChittyRouter model routing with cost tracking",
+    "status": "pending",
+    "activeForm": "Connecting ChittyRouter model routing"
+  },
+  {
+    "content": "Create dashboard queries for marginal gains tracking",
+    "status": "pending",
+    "activeForm": "Creating dashboard queries for marginal gains"
+  },
+  {
+    "content": "Build automated alert system for quality degradation",
+    "status": "pending",
+    "activeForm": "Building automated alert system"
+  },
+  {
+    "content": "Deploy and test complete integration",
+    "status": "pending",
+    "activeForm": "Deploying and testing complete integration"
+  },
+  {
     "content": "Review ChittyMCP architecture and tool structure",
     "status": "in_progress",
     "activeForm": "Reviewing ChittyMCP architecture and tool structure"
@@ -1176,6 +1216,36 @@
     "content": "Phase 5: Post-Deployment - Monitor ChittyID minting patterns and error rates",
     "status": "pending",
     "activeForm": "Monitoring ChittyID minting patterns"
+  },
+  {
+    "content": "Investigate domain location across all Cloudflare accounts and registrars",
+    "status": "in_progress",
+    "activeForm": "Investigating domain location across all Cloudflare accounts and registrars"
+  },
+  {
+    "content": "Check Cloudflare API for zones with broader search",
+    "status": "pending",
+    "activeForm": "Checking Cloudflare API for zones with broader search"
+  },
+  {
+    "content": "Query domain registrar information via WHOIS",
+    "status": "pending",
+    "activeForm": "Querying domain registrar information via WHOIS"
+  },
+  {
+    "content": "Configure DNS records once domain is located",
+    "status": "pending",
+    "activeForm": "Configuring DNS records once domain is located"
+  },
+  {
+    "content": "Verify SSL certificates and domain activation",
+    "status": "pending",
+    "activeForm": "Verifying SSL certificates and domain activation"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding"
   },
   {
     "content": "Identify and login to correct Cloudflare account for furnished-condos",
@@ -1913,41 +1983,6 @@
     "activeForm": "Committing changes with proper attribution"
   },
   {
-    "content": "Integrate OntologyController into ChittyID worker",
-    "status": "completed",
-    "activeForm": "Integrating OntologyController"
-  },
-  {
-    "content": "Add ontology routes (/ontology/*, /translate/*, /governance/*)",
-    "status": "completed",
-    "activeForm": "Adding ontology routes"
-  },
-  {
-    "content": "Add KV bindings (SERVICE_REGISTRY, SCHEMA_KV)",
-    "status": "completed",
-    "activeForm": "Adding KV bindings"
-  },
-  {
-    "content": "Fix account ID to ChittyCorp LLC",
-    "status": "completed",
-    "activeForm": "Fixing account ID"
-  },
-  {
-    "content": "Test integration locally",
-    "status": "completed",
-    "activeForm": "Testing integration"
-  },
-  {
-    "content": "Commit ontology integration (50423f8)",
-    "status": "completed",
-    "activeForm": "Committing changes"
-  },
-  {
-    "content": "Deploy to production - REQUIRES AUTH",
-    "status": "in_progress",
-    "activeForm": "Deploying to production"
-  },
-  {
     "content": "Read current chitty.js --continue implementation",
     "status": "completed",
     "activeForm": "Read chitty.js --continue implementation"
@@ -2016,6 +2051,46 @@
     "content": "Document final architecture and deployment summary",
     "status": "in_progress",
     "activeForm": "Documenting final architecture and deployment summary"
+  },
+  {
+    "content": "Audit actual service implementations vs claimed deployments",
+    "status": "completed",
+    "activeForm": "Auditing actual service implementations vs claimed deployments"
+  },
+  {
+    "content": "Fix ChittyCertify to use ChittyID service (not local ID generation)",
+    "status": "completed",
+    "activeForm": "Fixing ChittyCertify to use ChittyID service"
+  },
+  {
+    "content": "Deploy updated ChittyCertify to production",
+    "status": "in_progress",
+    "activeForm": "Deploying updated ChittyCertify to production"
+  },
+  {
+    "content": "Implement ChittyVerify service (currently placeholder)",
+    "status": "pending",
+    "activeForm": "Implementing ChittyVerify service"
+  },
+  {
+    "content": "Create end-to-end integration test suite",
+    "status": "pending",
+    "activeForm": "Creating end-to-end integration test suite"
+  },
+  {
+    "content": "Test service-to-service authentication via ChittyAuth",
+    "status": "pending",
+    "activeForm": "Testing service-to-service authentication via ChittyAuth"
+  },
+  {
+    "content": "Validate ChittyRegistry service discovery integration",
+    "status": "pending",
+    "activeForm": "Validating ChittyRegistry service discovery integration"
+  },
+  {
+    "content": "Generate comprehensive integration report",
+    "status": "pending",
+    "activeForm": "Generating comprehensive integration report"
   },
   {
     "content": "Verify ChittyAuth deployment and health",
@@ -2708,43 +2783,13 @@
     "activeForm": "Creating inventory"
   },
   {
-    "content": "Implement real Hugging Face API client with working endpoints",
-    "status": "completed",
-    "activeForm": "Implementing real Hugging Face API client"
-  },
-  {
-    "content": "Add proper input validation schemas for all HF tools",
-    "status": "completed",
-    "activeForm": "Adding input validation schemas for HF tools"
-  },
-  {
-    "content": "Integrate HF client into main worker and replace stubs",
-    "status": "completed",
-    "activeForm": "Integrating HF client into main worker"
-  },
-  {
-    "content": "Create comprehensive test suite for HF integration",
-    "status": "completed",
-    "activeForm": "Creating test suite for HF integration"
-  },
-  {
-    "content": "Add git tracking for critical infrastructure files",
-    "status": "in_progress",
-    "activeForm": "Adding git tracking for infrastructure files"
-  },
-  {
-    "content": "Update deployment and verify all HF tools functional",
-    "status": "pending",
-    "activeForm": "Updating deployment and verifying HF tools"
-  },
-  {
     "content": "Integrate HF API client into executeTool function with real API calls",
     "status": "completed",
     "activeForm": "Integrating HF API client into executeTool function"
   },
   {
     "content": "Create comprehensive HF integration test suite",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Creating comprehensive HF integration test suite"
   },
   {
@@ -2754,17 +2799,42 @@
   },
   {
     "content": "Create HF MCP integration documentation",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Creating HF MCP integration documentation"
   },
   {
     "content": "Deploy updated ChittyMCP to production",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Deploying updated ChittyMCP to production"
   },
   {
     "content": "Verify production deployment with real API tests",
     "status": "pending",
     "activeForm": "Verifying production deployment with real API tests"
+  },
+  {
+    "content": "Add HF tools to getAvailableTools() function",
+    "status": "completed",
+    "activeForm": "Adding HF tools to getAvailableTools() function"
+  },
+  {
+    "content": "Add HF tool execution logic to executeTool()",
+    "status": "completed",
+    "activeForm": "Adding HF tool execution logic to executeTool()"
+  },
+  {
+    "content": "Update health endpoint with new tool count and category",
+    "status": "completed",
+    "activeForm": "Updating health endpoint with new tool count and category"
+  },
+  {
+    "content": "Update README.md with HF integration docs",
+    "status": "completed",
+    "activeForm": "Updating README.md with HF integration docs"
+  },
+  {
+    "content": "Test integrated HF tools",
+    "status": "in_progress",
+    "activeForm": "Testing integrated HF tools"
   }
 ]
