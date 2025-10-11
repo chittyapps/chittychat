@@ -112,58 +112,27 @@ class ChittyIdService {
       });
 
       if (!response.ok) {
-        console.warn(
-          "ChittyID validation API error, using fallback validation",
+        throw new Error(
+          `ChittyID validation API error: ${response.status} ${response.statusText}`,
         );
-        return this.validateFallbackChittyId(chittyId);
       }
 
       const data: ChittyIdValidationResponse = await response.json();
       return data.valid;
     } catch (error) {
-      console.warn(
+      console.error(
         "Failed to validate ChittyID with mothership:",
         error.message,
       );
-      return this.validateFallbackChittyId(chittyId);
+      throw new Error(
+        "ChittyID validation requires connection to mothership server at id.chitty.cc. Please try again when the central server is online.",
+      );
     }
   }
 
-  // REMOVED: Dead code - local fallback ID generation violates SERVICE OR FAIL principle
-  // ChittyIDs must ONLY come from id.chitty.cc mothership
-  // If mothership is unavailable, generation must fail (not fallback to local generation)
-
-  private validateFallbackChittyId(chittyId: string): boolean {
-    // Structured format validation: VV-G-LLL-SSSS-T-YM-C-X
-    const pattern =
-      /^(CP|CL|CT|CE)-[A-Z0-9]-[A-Z0-9]{3}-[0-9]{4}-[A-Z]-[0-9]{4}-[A-Z]-[0-9]{2}$/;
-    if (!pattern.test(chittyId)) {
-      return false;
-    }
-
-    // Validate Mod-97 checksum
-    const parts = chittyId.split("-");
-    if (parts.length !== 8) return false;
-
-    const baseStr = parts.slice(0, 7).join("-");
-    const providedChecksum = parseInt(parts[7]);
-    const calculatedChecksum = this.calculateMod97Checksum(baseStr);
-
-    return providedChecksum === calculatedChecksum;
-  }
-
-  private calculateMod97Checksum(str: string): number {
-    let sum = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charAt(i);
-      if (char >= "0" && char <= "9") {
-        sum += parseInt(char);
-      } else if (char >= "A" && char <= "Z") {
-        sum += char.charCodeAt(0) - 55; // A=10, B=11, etc.
-      }
-    }
-    return sum % 97;
-  }
+  // REMOVED: All local validation fallback code (validateFallbackChittyId, calculateMod97Checksum)
+  // SERVICE OR FAIL: ChittyID validation must only use id.chitty.cc mothership
+  // If mothership is unavailable, validation must fail (not fallback to local validation)
 
   // Sync with mothership - registers user with the central system
   async syncUserWithMothership(
