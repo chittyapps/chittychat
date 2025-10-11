@@ -205,6 +205,21 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
+    "content": "Fix ChittyMCP ChittyID endpoint to proxy correctly",
+    "status": "completed",
+    "activeForm": "Fixing ChittyID proxy implementation"
+  },
+  {
+    "content": "Deploy fixed ChittyMCP to production",
+    "status": "completed",
+    "activeForm": "Deploying ChittyMCP fix"
+  },
+  {
+    "content": "Verify ChittyID minting returns correct format",
+    "status": "in_progress",
+    "activeForm": "Verifying ChittyID response"
+  },
+  {
     "content": "Phase 1: Critical Blockers - ALL COMPLETED",
     "status": "completed",
     "activeForm": "Phase 1 completed"
@@ -538,12 +553,12 @@
   },
   {
     "content": "Wire output-style into ChittyOS Pipeline Orchestrator API",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Wiring output-style into ChittyOS Pipeline Orchestrator API"
   },
   {
     "content": "Create ChittySchema telemetry database schema for output tracking",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Creating ChittySchema telemetry database schema"
   },
   {
@@ -2008,51 +2023,6 @@
     "activeForm": "Testing session restoration"
   },
   {
-    "content": "Verify ChittyCertify deployment and compliance",
-    "status": "completed",
-    "activeForm": "Verifying ChittyCertify deployment and compliance"
-  },
-  {
-    "content": "Verify ChittySchema deployment and compliance",
-    "status": "completed",
-    "activeForm": "Verifying ChittySchema deployment and compliance"
-  },
-  {
-    "content": "Verify ChittyRegister deployment and §36 compliance fixes",
-    "status": "completed",
-    "activeForm": "Verifying ChittyRegister deployment and §36 compliance fixes"
-  },
-  {
-    "content": "Verify ChittyCanon is deployed (already deployed at canon.chitty.cc)",
-    "status": "completed",
-    "activeForm": "Verifying ChittyCanon is deployed"
-  },
-  {
-    "content": "Deploy ChittyChain to chain.chitty.cc",
-    "status": "completed",
-    "activeForm": "Deploying ChittyChain to chain.chitty.cc"
-  },
-  {
-    "content": "Confirm ChittyDNA is standards-only (no service deployment needed)",
-    "status": "completed",
-    "activeForm": "Confirming ChittyDNA architecture"
-  },
-  {
-    "content": "Verify all 6 Foundation services are healthy",
-    "status": "completed",
-    "activeForm": "Verifying all Foundation services health"
-  },
-  {
-    "content": "Run chittycheck validation",
-    "status": "completed",
-    "activeForm": "Running chittycheck validation"
-  },
-  {
-    "content": "Document final architecture and deployment summary",
-    "status": "in_progress",
-    "activeForm": "Documenting final architecture and deployment summary"
-  },
-  {
     "content": "Audit actual service implementations vs claimed deployments",
     "status": "completed",
     "activeForm": "Auditing actual service implementations vs claimed deployments"
@@ -2064,13 +2034,13 @@
   },
   {
     "content": "Deploy updated ChittyCertify to production",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Deploying updated ChittyCertify to production"
   },
   {
-    "content": "Implement ChittyVerify service (currently placeholder)",
-    "status": "pending",
-    "activeForm": "Implementing ChittyVerify service"
+    "content": "Implement ChittyVerify worker",
+    "status": "in_progress",
+    "activeForm": "Implementing ChittyVerify worker"
   },
   {
     "content": "Create end-to-end integration test suite",
@@ -2091,6 +2061,36 @@
     "content": "Generate comprehensive integration report",
     "status": "pending",
     "activeForm": "Generating comprehensive integration report"
+  },
+  {
+    "content": "Validate service registry and metadata completeness in ChittyRegistry",
+    "status": "in_progress",
+    "activeForm": "Validating service registry and metadata"
+  },
+  {
+    "content": "Investigate and resolve DNS issues for ChittyID and ChittyGateway",
+    "status": "pending",
+    "activeForm": "Investigating DNS issues"
+  },
+  {
+    "content": "Execute integration tests across all deployed services",
+    "status": "pending",
+    "activeForm": "Executing integration tests"
+  },
+  {
+    "content": "Review and validate configuration completeness for all services",
+    "status": "pending",
+    "activeForm": "Reviewing configuration completeness"
+  },
+  {
+    "content": "Assess production readiness (error handling, security, monitoring)",
+    "status": "pending",
+    "activeForm": "Assessing production readiness"
+  },
+  {
+    "content": "Generate comprehensive documentation and evidence package",
+    "status": "pending",
+    "activeForm": "Generating documentation package"
   },
   {
     "content": "Verify ChittyAuth deployment and health",
@@ -2804,12 +2804,12 @@
   },
   {
     "content": "Deploy updated ChittyMCP to production",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Deploying updated ChittyMCP to production"
   },
   {
     "content": "Verify production deployment with real API tests",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Verifying production deployment with real API tests"
   },
   {
