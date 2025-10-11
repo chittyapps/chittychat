@@ -375,11 +375,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   private generateApiKey(): string {
-    return (
-      "ck_" +
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
+    // Use cryptographically secure random for API keys
+    const crypto = require("crypto");
+    return "ck_" + crypto.randomBytes(16).toString("hex");
   }
 }
 
