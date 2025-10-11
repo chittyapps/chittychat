@@ -489,7 +489,8 @@ class SmartChittyFix {
 
   moveSecretToEnv(filePath, secret) {
     const content = fs.readFileSync(filePath, "utf8");
-    const envVar = `SECRET_${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    const crypto = require("crypto");
+    const envVar = `SECRET_${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
 
     // Replace in file
     const newContent = content.replace(secret, `process.env.${envVar}`);

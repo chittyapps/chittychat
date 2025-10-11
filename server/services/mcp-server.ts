@@ -433,7 +433,9 @@ class MCPServer {
   }
 
   private generateConnectionId(): string {
-    return 'mcp_' + Math.random().toString(36).substring(2);
+    // Use cryptographically secure random for connection IDs
+    const crypto = require('crypto');
+    return 'mcp_' + crypto.randomBytes(8).toString('hex');
   }
 
   private sendMessage(ws: any, message: MCPMessage) {
