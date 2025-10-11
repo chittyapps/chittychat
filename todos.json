@@ -290,26 +290,6 @@
     "activeForm": "Generating deployment report"
   },
   {
-    "content": "Clean up temporary documentation files",
-    "status": "completed",
-    "activeForm": "Cleaning up temporary documentation files"
-  },
-  {
-    "content": "Fix the 4 failing integration tests",
-    "status": "completed",
-    "activeForm": "Fixing failing integration tests"
-  },
-  {
-    "content": "Configure .env.chitty with token",
-    "status": "in_progress",
-    "activeForm": "Configuring .env.chitty"
-  },
-  {
-    "content": "Prepare commit for ChittyID Phase 1",
-    "status": "pending",
-    "activeForm": "Preparing commit"
-  },
-  {
     "content": "Research Claude Code native todo/task structure",
     "status": "completed",
     "activeForm": "Researching Claude Code native todo/task structure"
@@ -1800,27 +1780,17 @@
   {
     "content": "Fix rogue ID pattern in chittyos-security-integration.js (CRITICAL)",
     "status": "completed",
-    "activeForm": "Fixed rogue ID pattern"
+    "activeForm": "Fixed with deterministic pattern"
   },
   {
-    "content": "Investigate ChittyID service 403 errors (id.chitty.cc, register.chitty.cc, gateway.chitty.cc)",
+    "content": "Refactor to use ChittyOS-compliant deterministic pattern (pending-{entity}-{timestamp})",
+    "status": "completed",
+    "activeForm": "Refactored all files"
+  },
+  {
+    "content": "Re-run ChittyCheck to verify 80%+ compliance",
     "status": "in_progress",
-    "activeForm": "Investigating ChittyID 403 errors"
-  },
-  {
-    "content": "Configure R2 environment variables for storage",
-    "status": "pending",
-    "activeForm": "Configuring R2 environment"
-  },
-  {
-    "content": "Configure NEON_CONNECTION_STRING for database",
-    "status": "pending",
-    "activeForm": "Configuring Neon database"
-  },
-  {
-    "content": "Re-run ChittyCheck to verify all fixes",
-    "status": "pending",
-    "activeForm": "Running ChittyCheck validation"
+    "activeForm": "Running final ChittyCheck validation"
   },
   {
     "content": "Create integration tests for ChittyID minting in chittyschema",
@@ -2126,6 +2096,46 @@
     "content": "Deploy furnished-condos frontdoor to Pages",
     "status": "pending",
     "activeForm": "Deploying furnished-condos"
+  },
+  {
+    "content": "Set CHITTY_ID_TOKEN environment variable for ChittyID minting",
+    "status": "in_progress",
+    "activeForm": "Setting CHITTY_ID_TOKEN environment variable"
+  },
+  {
+    "content": "Process Priority 1 tax returns (3 RTF files - convert to PDF first)",
+    "status": "pending",
+    "activeForm": "Processing Priority 1 tax returns"
+  },
+  {
+    "content": "Extract and process bank statement archives (2022, 2023, 2024)",
+    "status": "pending",
+    "activeForm": "Extracting and processing bank statement archives"
+  },
+  {
+    "content": "Process Fidelity statements for Morada Mami funding tracing",
+    "status": "pending",
+    "activeForm": "Processing Fidelity statements for Morada Mami tracing"
+  },
+  {
+    "content": "Mint ChittyIDs for all processed Priority 1 financial documents",
+    "status": "pending",
+    "activeForm": "Minting ChittyIDs for Priority 1 documents"
+  },
+  {
+    "content": "Remove verified duplicates (5 files) from UNPROCESSED",
+    "status": "pending",
+    "activeForm": "Removing verified duplicates"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation"
+  },
+  {
+    "content": "Update evidence log and sync to Google Drive",
+    "status": "pending",
+    "activeForm": "Updating evidence log and syncing"
   },
   {
     "content": "Fix CHITTY_ID_TOKEN secret issue for chittyos-email-worker (Priority 1)",
