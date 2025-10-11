@@ -20,6 +20,56 @@
     "activeForm": "Deploying derail.me to production"
   },
   {
+    "content": "Verify Redis is installed and running",
+    "status": "completed",
+    "activeForm": "Verifying Redis installation and status"
+  },
+  {
+    "content": "Update .env with Redis configuration",
+    "status": "completed",
+    "activeForm": "Updating .env with Redis configuration"
+  },
+  {
+    "content": "Test worker manager startup (src/workers/index.js)",
+    "status": "completed",
+    "activeForm": "Testing worker manager startup"
+  },
+  {
+    "content": "Create jobService.js for queue integration",
+    "status": "completed",
+    "activeForm": "Creating jobService.js for queue integration"
+  },
+  {
+    "content": "Create jobs.js API route for job management",
+    "status": "completed",
+    "activeForm": "Creating jobs.js API route"
+  },
+  {
+    "content": "Test end-to-end job enqueue and execution",
+    "status": "completed",
+    "activeForm": "Testing end-to-end job workflow"
+  },
+  {
+    "content": "Update database schema with job tracking tables",
+    "status": "pending",
+    "activeForm": "Updating database schema"
+  },
+  {
+    "content": "Run load testing (100+ concurrent jobs)",
+    "status": "pending",
+    "activeForm": "Running load tests"
+  },
+  {
+    "content": "Fix any bugs discovered during testing",
+    "status": "in_progress",
+    "activeForm": "Fixing discovered bugs"
+  },
+  {
+    "content": "Document final results and deviations",
+    "status": "pending",
+    "activeForm": "Documenting final results"
+  },
+  {
     "content": "Implement crash restore with window reference tracking",
     "status": "completed",
     "activeForm": "Week 1 Day 1-2 implementation complete"
@@ -251,27 +301,27 @@
   },
   {
     "content": "Fix GitHub authentication and verify access",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Fixing GitHub authentication and verifying access"
   },
   {
     "content": "Restart and verify main sync daemon",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Restarting and verifying main sync daemon"
   },
   {
     "content": "Assess ChittyID service quota status",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Assessing ChittyID service quota status"
   },
   {
     "content": "Verify and test todo watcher functionality",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Verifying and testing todo watcher functionality"
   },
   {
     "content": "Audit and fix launch agent errors",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Auditing and fixing launch agent errors"
   },
   {
@@ -405,26 +455,6 @@
     "activeForm": "Implementing ChittyMCP todo sync"
   },
   {
-    "content": "Push corrected deprecation to GitHub",
-    "status": "completed",
-    "activeForm": "Pushing corrected deprecation to GitHub"
-  },
-  {
-    "content": "Verify ChittyID token configuration",
-    "status": "in_progress",
-    "activeForm": "Verifying ChittyID token"
-  },
-  {
-    "content": "Configure workstream environment variables",
-    "status": "pending",
-    "activeForm": "Configuring workstream variables"
-  },
-  {
-    "content": "Implement custom route at router.chitty.cc/email",
-    "status": "pending",
-    "activeForm": "Implementing custom route"
-  },
-  {
     "content": "Analyze email worker project structure and deployment status",
     "status": "completed",
     "activeForm": "Analyzing email worker project structure"
@@ -515,6 +545,36 @@
     "activeForm": "Testing deployed site with Chicago branding"
   },
   {
+    "content": "DECISION POINT: Choose ChittyID service upgrade path",
+    "status": "in_progress",
+    "activeForm": "Analyzing ChittyID service upgrade options"
+  },
+  {
+    "content": "Option A: Upgrade KV to paid ($5/month, keeps v2.0.0 AI features)",
+    "status": "pending",
+    "activeForm": "Upgrading Cloudflare KV namespace"
+  },
+  {
+    "content": "Option B: Deploy stateless v1.0.0 worker (free, loses AI features)",
+    "status": "pending",
+    "activeForm": "Deploying stateless ChittyID worker"
+  },
+  {
+    "content": "Update CHITTY_ID_TOKEN after service is operational",
+    "status": "pending",
+    "activeForm": "Updating ChittyID authentication token"
+  },
+  {
+    "content": "Commit RESOLUTION_SUMMARY.md to repository",
+    "status": "pending",
+    "activeForm": "Committing resolution documentation"
+  },
+  {
+    "content": "Verify GitHub Actions pipeline passes all phases",
+    "status": "pending",
+    "activeForm": "Verifying GitHub Actions CI/CD pipeline"
+  },
+  {
     "content": "Fix missing chitty command path",
     "status": "completed",
     "activeForm": "Fixing missing chitty command path"
@@ -580,6 +640,41 @@
     "content": "Add Neon database connection string",
     "status": "pending",
     "activeForm": "Adding database connection"
+  },
+  {
+    "content": "Review orchestration deliverables and execution summary",
+    "status": "pending",
+    "activeForm": "Reviewing orchestration deliverables and execution summary"
+  },
+  {
+    "content": "Mint entity ChittyIDs for all 6 entities (scripts ready)",
+    "status": "pending",
+    "activeForm": "Minting entity ChittyIDs for all 6 entities"
+  },
+  {
+    "content": "Mint domain ChittyIDs for all 14 domains (scripts ready)",
+    "status": "pending",
+    "activeForm": "Minting domain ChittyIDs for all 14 domains"
+  },
+  {
+    "content": "Submit property deed requests to Cook County (4 properties)",
+    "status": "pending",
+    "activeForm": "Submitting property deed requests to Cook County"
+  },
+  {
+    "content": "Execute chicagofurnishedcondos.com domain renewal decision (Day 25)",
+    "status": "pending",
+    "activeForm": "Executing chicagofurnishedcondos.com domain renewal decision"
+  },
+  {
+    "content": "Mint property ChittyIDs after deed acquisition (Day 14-15)",
+    "status": "pending",
+    "activeForm": "Minting property ChittyIDs after deed acquisition"
+  },
+  {
+    "content": "Create comprehensive ChittyID registry and cross-reference document",
+    "status": "pending",
+    "activeForm": "Creating comprehensive ChittyID registry and cross-reference document"
   },
   {
     "content": "Verify domain expiration dates and generate renewal commands",
@@ -692,19 +787,59 @@
     "activeForm": "Updating CLAUDE.md"
   },
   {
-    "content": "Archive Todo Hub with git tag",
-    "status": "pending",
-    "activeForm": "Archiving Todo Hub"
+    "content": "Delete duplicate/old todo/sync workers from Cloudflare",
+    "status": "in_progress",
+    "activeForm": "Deleting duplicate workers"
   },
   {
-    "content": "Deploy ChittyAuth landing page by Sunday 8pm (auth.chitty.cc with hero, features, waitlist)",
+    "content": "Keep only chittyos-todos-production (todos.chitty.cc)",
     "status": "pending",
-    "activeForm": "Deploying ChittyAuth landing page"
+    "activeForm": "Consolidating to single worker"
   },
   {
-    "content": "Post to r/LocalLLaMA by Monday morning: 'OAuth for AI tools - free beta access'",
+    "content": "Test Todo Hub after cleanup",
     "status": "pending",
-    "activeForm": "Posting to Reddit for beta users"
+    "activeForm": "Testing after cleanup"
+  },
+  {
+    "content": "Build Claude Code integration if KV works",
+    "status": "pending",
+    "activeForm": "Building integration"
+  },
+  {
+    "content": "Verify which Cloudflare account has the workers deployed",
+    "status": "in_progress",
+    "activeForm": "Verifying Cloudflare account ownership"
+  },
+  {
+    "content": "List all deployed workers (pre-cleanup snapshot)",
+    "status": "pending",
+    "activeForm": "Listing all deployed workers"
+  },
+  {
+    "content": "Review and validate DELETE-OLD-WORKERS.sh script",
+    "status": "pending",
+    "activeForm": "Reviewing cleanup script"
+  },
+  {
+    "content": "Execute worker cleanup with proper account context",
+    "status": "pending",
+    "activeForm": "Executing worker cleanup"
+  },
+  {
+    "content": "Verify worker count reduced to ≤10",
+    "status": "pending",
+    "activeForm": "Verifying worker count"
+  },
+  {
+    "content": "Test Todo Hub (todos.chitty.cc) POST /api/todos/sync",
+    "status": "pending",
+    "activeForm": "Testing Todo Hub functionality"
+  },
+  {
+    "content": "Document cleanup results and remaining workers",
+    "status": "pending",
+    "activeForm": "Documenting cleanup results"
   },
   {
     "content": "Commit modified tracking files (citations.json, issues.json)",
@@ -962,6 +1097,36 @@
     "activeForm": "Deploying and testing complete integration"
   },
   {
+    "content": "Fix validation error messages to match test expectations",
+    "status": "in_progress",
+    "activeForm": "Fixing validation error messages"
+  },
+  {
+    "content": "Run E2E tests to verify all 23 tests pass",
+    "status": "pending",
+    "activeForm": "Running E2E tests"
+  },
+  {
+    "content": "Verify integration tests still pass (11/11)",
+    "status": "pending",
+    "activeForm": "Verifying integration tests"
+  },
+  {
+    "content": "Configure frontend environment with production backend URL",
+    "status": "pending",
+    "activeForm": "Configuring frontend environment"
+  },
+  {
+    "content": "Build and deploy frontend to Cloudflare Pages",
+    "status": "pending",
+    "activeForm": "Building and deploying frontend"
+  },
+  {
+    "content": "Test full end-to-end flow through deployed UI",
+    "status": "pending",
+    "activeForm": "Testing full end-to-end flow"
+  },
+  {
     "content": "Design ChittyNarc/ChittyAlign architecture and storage strategy",
     "status": "in_progress",
     "activeForm": "Designing ChittyNarc architecture and storage strategy"
@@ -1007,24 +1172,29 @@
     "activeForm": "Documenting architecture and procedures"
   },
   {
-    "content": "Mint real ChittyIDs for agents that actually exist and need them",
-    "status": "pending",
-    "activeForm": "Minting real ChittyIDs"
+    "content": "Document ChittyID minting requires proper pipeline",
+    "status": "completed",
+    "activeForm": "Documenting minting requirements"
   },
   {
-    "content": "Strategic analysis: What agents does ChittyOS actually need?",
-    "status": "in_progress",
-    "activeForm": "Analyzing actual operational needs"
+    "content": "Complete strategic analysis document",
+    "status": "completed",
+    "activeForm": "Completing strategic analysis"
   },
   {
-    "content": "Reconcile V3 agent roster with reality",
-    "status": "pending",
-    "activeForm": "Reconciling agent roster"
+    "content": "Commit governance files with PENDING-MINT and strategic analysis",
+    "status": "completed",
+    "activeForm": "Committing governance updates"
   },
   {
-    "content": "Commit honest agent inventory and governance",
+    "content": "Push commits to GitHub",
+    "status": "completed",
+    "activeForm": "Pushing to GitHub"
+  },
+  {
+    "content": "Manual mint ChittyIDs through proper intake pipeline",
     "status": "pending",
-    "activeForm": "Committing agent governance"
+    "activeForm": "Minting ChittyIDs manually"
   },
   {
     "content": "Review ChittyMCP architecture and tool structure",
@@ -1357,84 +1527,189 @@
     "activeForm": "Validating Plex and Telegram integrations"
   },
   {
-    "content": "Configure CHITTY_ID_TOKEN production secret in Cloudflare",
-    "status": "pending",
-    "activeForm": "Configuring CHITTY_ID_TOKEN production secret in Cloudflare"
-  },
-  {
-    "content": "Deploy Phase 1 Hub API to production with wrangler",
-    "status": "pending",
-    "activeForm": "Deploying Phase 1 Hub API to production with wrangler"
-  },
-  {
-    "content": "Verify health endpoint shows 'healthy' status",
-    "status": "pending",
-    "activeForm": "Verifying health endpoint shows 'healthy' status"
-  },
-  {
-    "content": "Run full test suite (target: 15/15 passing)",
-    "status": "pending",
-    "activeForm": "Running full test suite (target: 15/15 passing)"
-  },
-  {
-    "content": "Create simple Claude Code sync script (bidirectional, no merge)",
-    "status": "pending",
-    "activeForm": "Creating simple Claude Code sync script (bidirectional, no merge)"
-  },
-  {
-    "content": "Test end-to-end sync with 5 sample todos",
-    "status": "pending",
-    "activeForm": "Testing end-to-end sync with 5 sample todos"
-  },
-  {
-    "content": "Remove Phase 2.1 routes from src/index.ts (lines 98-163)",
-    "status": "completed",
-    "activeForm": "Removing Phase 2.1 routes from src/index.ts"
-  },
-  {
-    "content": "Verify environment and database connectivity",
-    "status": "completed",
-    "activeForm": "Verifying environment and database connectivity"
-  },
-  {
-    "content": "Configure CHITTY_ID_TOKEN secret in production",
-    "status": "completed",
-    "activeForm": "Configuring CHITTY_ID_TOKEN secret"
-  },
-  {
-    "content": "Deploy Phase 1 to production (wrangler deploy --env production)",
+    "content": "Fix ChittyGateway routing to allow POST/PUT/DELETE to ChittySync",
     "status": "in_progress",
-    "activeForm": "Deploying Phase 1 to production"
+    "activeForm": "Fixing ChittyGateway routing to allow POST/PUT/DELETE to ChittySync"
   },
   {
-    "content": "Run health check validation (healthy status required)",
+    "content": "Test POST /api/todos endpoint creates todo successfully",
     "status": "pending",
-    "activeForm": "Running health check validation"
+    "activeForm": "Testing POST /api/todos endpoint creates todo successfully"
   },
   {
-    "content": "Test all Phase 1 endpoints (create, list, get, update, delete, since, bulk sync)",
+    "content": "Test PUT /api/todos/:id endpoint updates todo",
     "status": "pending",
-    "activeForm": "Testing all Phase 1 endpoints"
+    "activeForm": "Testing PUT /api/todos/:id endpoint updates todo"
   },
   {
-    "content": "Create Claude Code sync script (chittysync-phase1.js)",
+    "content": "Test DELETE /api/todos/:id endpoint soft-deletes todo",
     "status": "pending",
-    "activeForm": "Creating Claude Code sync script"
+    "activeForm": "Testing DELETE /api/todos/:id endpoint soft-deletes todo"
   },
   {
-    "content": "Test sync script locally with bidirectional sync",
+    "content": "Deploy bidirectional sync script to cron job",
     "status": "pending",
-    "activeForm": "Testing sync script locally"
+    "activeForm": "Deploying bidirectional sync script to cron job"
   },
   {
-    "content": "Run ChittyCheck compliance validation",
+    "content": "Verify end-to-end sync: Claude Code → Hub → back to Claude Code",
     "status": "pending",
-    "activeForm": "Running ChittyCheck compliance validation"
+    "activeForm": "Verifying end-to-end sync: Claude Code → Hub → back to Claude Code"
   },
   {
-    "content": "Create complete deployment documentation (PHASE1_PRODUCTION_DEPLOYMENT.md)",
+    "content": "Investigate ChittyGateway routing configuration and identify conflict with ChittySync",
+    "status": "completed",
+    "activeForm": "Investigating ChittyGateway routing configuration"
+  },
+  {
+    "content": "Design fix: Update handleSync to proxy /api/todos/* requests to chittysync-hub-production worker",
+    "status": "completed",
+    "activeForm": "Designing routing fix for /api/todos/* proxy"
+  },
+  {
+    "content": "Implement proxy logic in handleSync for POST/PUT/DELETE methods to chittysync-hub-production",
+    "status": "completed",
+    "activeForm": "Implementing proxy logic for POST/PUT/DELETE methods"
+  },
+  {
+    "content": "Test routing fix locally with wrangler dev",
+    "status": "completed",
+    "activeForm": "Testing routing fix locally with wrangler dev"
+  },
+  {
+    "content": "Deploy ChittyGateway fix to production",
+    "status": "completed",
+    "activeForm": "Deploying ChittyGateway fix to production"
+  },
+  {
+    "content": "Validate POST /api/todos endpoint returns 201 Created (not 405)",
+    "status": "in_progress",
+    "activeForm": "Validating POST /api/todos endpoint"
+  },
+  {
+    "content": "Validate PUT /api/todos/{id} endpoint returns 200 OK",
     "status": "pending",
-    "activeForm": "Creating deployment documentation"
+    "activeForm": "Validating PUT /api/todos/{id} endpoint"
+  },
+  {
+    "content": "Validate DELETE /api/todos/{id} endpoint returns 200 OK",
+    "status": "pending",
+    "activeForm": "Validating DELETE /api/todos/{id} endpoint"
+  },
+  {
+    "content": "Run full ChittySync test suite (target: 15/15 passing)",
+    "status": "pending",
+    "activeForm": "Running full ChittySync test suite"
+  },
+  {
+    "content": "Test bidirectional sync: push local todo to hub",
+    "status": "pending",
+    "activeForm": "Testing bidirectional sync: push"
+  },
+  {
+    "content": "Test bidirectional sync: pull remote todo from hub",
+    "status": "pending",
+    "activeForm": "Testing bidirectional sync: pull"
+  },
+  {
+    "content": "Test full round-trip sync (create -> push -> pull -> verify)",
+    "status": "pending",
+    "activeForm": "Testing full round-trip sync"
+  },
+  {
+    "content": "Deploy sync script to cron (every 30 minutes)",
+    "status": "pending",
+    "activeForm": "Deploying sync script to cron"
+  },
+  {
+    "content": "Update PHASE1_PRODUCTION_DEPLOYMENT.md with routing fix details",
+    "status": "pending",
+    "activeForm": "Updating PHASE1_PRODUCTION_DEPLOYMENT.md"
+  },
+  {
+    "content": "Create ROUTING_FIX_REPORT.md with root cause analysis and solution",
+    "status": "pending",
+    "activeForm": "Creating ROUTING_FIX_REPORT.md"
+  },
+  {
+    "content": "Monitor ChittyGateway and ChittySync logs for 24 hours",
+    "status": "pending",
+    "activeForm": "Monitoring logs for 24 hours"
+  },
+  {
+    "content": "Verify ChittySync Hub deployment and D1 database status",
+    "status": "completed",
+    "activeForm": "Verified ChittySync Hub deployment and D1 database status"
+  },
+  {
+    "content": "Add CHITTYSYNC_HUB service binding to ChittyChat wrangler.toml",
+    "status": "completed",
+    "activeForm": "Added CHITTYSYNC_HUB service binding to wrangler.toml"
+  },
+  {
+    "content": "Update TypeScript types to include CHITTYSYNC_HUB Fetcher binding",
+    "status": "completed",
+    "activeForm": "Skipped - project uses JavaScript not TypeScript"
+  },
+  {
+    "content": "Modify handleSync in sync.js to route /api/todos/* to ChittySync Hub via service binding",
+    "status": "in_progress",
+    "activeForm": "Modifying handleSync to route todos requests via service binding"
+  },
+  {
+    "content": "Deploy ChittyChat with service binding configuration",
+    "status": "pending",
+    "activeForm": "Deploying ChittyChat with service binding configuration"
+  },
+  {
+    "content": "Test POST /api/todos (create todo) and verify D1 storage",
+    "status": "pending",
+    "activeForm": "Testing POST endpoint and verifying D1 storage"
+  },
+  {
+    "content": "Test GET /api/todos (list todos) from D1 backend",
+    "status": "pending",
+    "activeForm": "Testing GET endpoint from D1 backend"
+  },
+  {
+    "content": "Test PUT /api/todos/:id (update todo) with D1 backend",
+    "status": "pending",
+    "activeForm": "Testing PUT endpoint with D1 backend"
+  },
+  {
+    "content": "Test DELETE /api/todos/:id (soft delete) with D1 backend",
+    "status": "pending",
+    "activeForm": "Testing DELETE endpoint with D1 backend"
+  },
+  {
+    "content": "Run full ChittySync Hub test suite against gateway.chitty.cc",
+    "status": "pending",
+    "activeForm": "Running full test suite against gateway"
+  },
+  {
+    "content": "Monitor logs for both workers to verify service binding calls",
+    "status": "pending",
+    "activeForm": "Monitoring worker logs for service binding verification"
+  },
+  {
+    "content": "Test bidirectional sync (chittysync-phase1.js push and pull)",
+    "status": "pending",
+    "activeForm": "Testing bidirectional sync push and pull"
+  },
+  {
+    "content": "Deploy sync script to cron for automated sync",
+    "status": "pending",
+    "activeForm": "Deploying sync script to cron"
+  },
+  {
+    "content": "Create SERVICE_BINDING_IMPLEMENTATION.md documentation",
+    "status": "pending",
+    "activeForm": "Creating service binding implementation documentation"
+  },
+  {
+    "content": "Update PHASE1_PRODUCTION_DEPLOYMENT.md with routing status",
+    "status": "pending",
+    "activeForm": "Updating deployment report with routing status"
   },
   {
     "content": "Verify router.chitty.cc is accessible",
@@ -1457,19 +1732,9 @@
     "activeForm": "Verifying all services"
   },
   {
-    "content": "Revise consolidation plan to 2 databases (ChittyOS-Core + Legal)",
-    "status": "completed",
-    "activeForm": "Revising consolidation plan to 2 databases"
-  },
-  {
-    "content": "Map all services to final 2-database architecture",
-    "status": "completed",
-    "activeForm": "Mapping all services to final 2-database architecture"
-  },
-  {
     "content": "Execute Phase 1 cleanup (archive 4 dormant databases)",
-    "status": "pending",
-    "activeForm": "Executing Phase 1 cleanup"
+    "status": "in_progress",
+    "activeForm": "Executing Phase 1 cleanup - archiving dormant databases"
   },
   {
     "content": "Create ChittyOS-Core unified database",
@@ -1477,49 +1742,44 @@
     "activeForm": "Creating ChittyOS-Core unified database"
   },
   {
-    "content": "Create ChittyLegal-Evidence isolated database",
+    "content": "Create ChittyLedger database",
     "status": "pending",
-    "activeForm": "Creating ChittyLegal-Evidence isolated database"
+    "activeForm": "Creating ChittyLedger database"
   },
   {
-    "content": "Migrate all services to new 2-database setup",
+    "content": "Deploy schemas to new databases",
     "status": "pending",
-    "activeForm": "Migrating all services to new 2-database setup"
+    "activeForm": "Deploying schemas to new databases"
   },
   {
-    "content": "Verify wrangler configuration and database setup",
+    "content": "Update environment variables and service connections",
+    "status": "pending",
+    "activeForm": "Updating environment variables and service connections"
+  },
+  {
+    "content": "Investigate Pages Functions deployment path",
     "status": "completed",
-    "activeForm": "Verifying wrangler configuration and database setup"
+    "activeForm": "Investigating Pages Functions deployment path"
   },
   {
-    "content": "Apply database schema to chittyos-todos",
-    "status": "completed",
-    "activeForm": "Applying database schema to chittyos-todos"
-  },
-  {
-    "content": "Configure secrets and environment variables",
-    "status": "completed",
-    "activeForm": "Configuring secrets and environment variables"
-  },
-  {
-    "content": "Deploy todo hub worker to production",
-    "status": "completed",
-    "activeForm": "Deploying todo hub worker to production"
-  },
-  {
-    "content": "Verify all API endpoints are functional",
-    "status": "completed",
-    "activeForm": "Verifying all API endpoints are functional"
-  },
-  {
-    "content": "Test bidirectional sync end-to-end",
+    "content": "Deploy Functions to Pages project",
     "status": "in_progress",
-    "activeForm": "Testing bidirectional sync end-to-end"
+    "activeForm": "Deploying Functions to Pages project"
   },
   {
-    "content": "Document deployment results and next steps",
+    "content": "Test publicly accessible URLs",
     "status": "pending",
-    "activeForm": "Documenting deployment results and next steps"
+    "activeForm": "Testing publicly accessible URLs"
+  },
+  {
+    "content": "Migrate worker logic to Pages Functions",
+    "status": "pending",
+    "activeForm": "Migrating worker logic to Pages Functions"
+  },
+  {
+    "content": "Document solution and update deployment guides",
+    "status": "pending",
+    "activeForm": "Documenting solution and updating deployment guides"
   },
   {
     "content": "Diagnose MCP server connection failures",
@@ -1552,34 +1812,64 @@
     "activeForm": "Documenting the solution and configuration"
   },
   {
-    "content": "Phase 1 & 2: Deploy frontdoor, workers, and database",
+    "content": "Phase 1 & 2: Complete deployment and verification",
     "status": "completed",
-    "activeForm": "Deploying Phase 1 & 2 applications"
+    "activeForm": "Completing Phase 1 & 2 deployment and verification"
   },
   {
-    "content": "Apply bullshit-detector audit corrections",
+    "content": "Fix account confusion and redeploy to correct account",
     "status": "completed",
-    "activeForm": "Applying bullshit-detector audit corrections"
+    "activeForm": "Fixing account confusion and redeploying"
   },
   {
-    "content": "Verify all deployments with brutal honesty audit",
+    "content": "Rename workers for clarity (remove redundancy)",
     "status": "completed",
-    "activeForm": "Verifying all deployments with brutal honesty audit"
+    "activeForm": "Renaming workers for clarity"
   },
   {
-    "content": "USER ACTION: Register workers.dev subdomain",
-    "status": "pending",
-    "activeForm": "Registering workers.dev subdomain"
+    "content": "Verify all endpoints with HTTP 200 responses",
+    "status": "completed",
+    "activeForm": "Verifying all endpoints"
   },
   {
-    "content": "Configure Twilio webhooks after subdomain",
-    "status": "pending",
-    "activeForm": "Configuring Twilio webhooks after subdomain"
+    "content": "Update all deployment documentation",
+    "status": "completed",
+    "activeForm": "Updating deployment documentation"
   },
   {
-    "content": "Plan and execute Phase 3 deployment",
+    "content": "Commit final changes to git",
+    "status": "completed",
+    "activeForm": "Committing final changes"
+  },
+  {
+    "content": "Phase 3: Deploy chicago dashboard",
     "status": "pending",
-    "activeForm": "Planning and executing Phase 3 deployment"
+    "activeForm": "Deploying chicago dashboard"
+  },
+  {
+    "content": "Verify all endpoints with curl tests",
+    "status": "completed",
+    "activeForm": "Verifying all endpoints with curl tests"
+  },
+  {
+    "content": "Update deployment documentation with verified status",
+    "status": "completed",
+    "activeForm": "Updating deployment documentation with verified status"
+  },
+  {
+    "content": "Create FINAL-DEPLOYMENT-SUMMARY.md with evidence",
+    "status": "completed",
+    "activeForm": "Creating FINAL-DEPLOYMENT-SUMMARY.md with evidence"
+  },
+  {
+    "content": "Create PHASE-3-READY.md for next steps",
+    "status": "completed",
+    "activeForm": "Creating PHASE-3-READY.md for next steps"
+  },
+  {
+    "content": "Commit all changes to git with descriptive message",
+    "status": "completed",
+    "activeForm": "Committing all changes to git with descriptive message"
   },
   {
     "content": "Deploy ChittyRouter to production environment",
@@ -1613,6 +1903,26 @@
     "delegated_at": "2025-10-06T18:44:15Z"
   },
   {
+    "content": "Create migration script for future real ID replacement",
+    "status": "completed",
+    "activeForm": "Creating migration script for future real ID replacement"
+  },
+  {
+    "content": "Update business plan with placeholder IDs and disclaimer",
+    "status": "in_progress",
+    "activeForm": "Updating business plan with placeholder IDs and disclaimer"
+  },
+  {
+    "content": "Update README.md and STATUS.md with blocker resolution",
+    "status": "pending",
+    "activeForm": "Updating README.md and STATUS.md with blocker resolution"
+  },
+  {
+    "content": "Commit all changes and documentation",
+    "status": "pending",
+    "activeForm": "Committing all changes and documentation"
+  },
+  {
     "content": "Set CHITTY_ID_TOKEN environment variable (USER ACTION REQUIRED)",
     "status": "pending",
     "activeForm": "Setting CHITTY_ID_TOKEN environment variable"
@@ -1630,102 +1940,47 @@
   {
     "content": "Audit Cloudflare domains via wrangler CLI",
     "status": "completed",
-    "activeForm": "Auditing Cloudflare domains (found critical account ID issue)"
+    "activeForm": "Auditing Cloudflare domains"
   },
   {
     "content": "Create ARIBIA LLC 2025 business plan with financial projections",
     "status": "completed",
-    "activeForm": "Creating ARIBIA LLC 2025 business plan (52 pages complete)"
+    "activeForm": "Creating ARIBIA LLC 2025 business plan"
   },
   {
-    "content": "Audit business plan for credibility issues (bullshit-detector)",
+    "content": "Audit business plan for credibility issues",
     "status": "completed",
-    "activeForm": "Auditing business plan (6.5/10 credibility, 29 issues found)"
+    "activeForm": "Auditing business plan for credibility"
   },
   {
     "content": "Revise business plan based on audit findings",
     "status": "completed",
-    "activeForm": "Revising business plan (applied 8 critical fixes)"
+    "activeForm": "Revising business plan based on audit"
   },
   {
-    "content": "Determine Cloudflare account assignment strategy (USER DECISION)",
+    "content": "Implement Cloudflare account assignment strategy (Option B)",
+    "status": "completed",
+    "activeForm": "Implementing Cloudflare account strategy"
+  },
+  {
+    "content": "Fix ChittyID minting pipeline - requires proper router/intake/trust flow",
     "status": "pending",
-    "activeForm": "Determining Cloudflare account assignments"
+    "activeForm": "Fixing ChittyID minting authentication pipeline"
   },
   {
-    "content": "Execute ChittyID minting scripts (requires CHITTY_ID_TOKEN)",
+    "content": "Week 1 compliance work: engage attorney and apply for STR licenses",
     "status": "pending",
-    "activeForm": "Executing ChittyID minting scripts"
+    "activeForm": "Engaging attorney for Chicago STR compliance"
   },
   {
-    "content": "Phase 1: Update cloudflare-account-fix.sh script with Option B strategy",
-    "status": "completed",
-    "activeForm": "Updating cloudflare-account-fix.sh script with Option B strategy"
-  },
-  {
-    "content": "Phase 1: Run cloudflare-account-fix.sh in dry-run mode to verify changes",
-    "status": "completed",
-    "activeForm": "Running cloudflare-account-fix.sh in dry-run mode"
-  },
-  {
-    "content": "Phase 1: Execute cloudflare-account-fix.sh to apply account ID fixes",
-    "status": "completed",
-    "activeForm": "Executing cloudflare-account-fix.sh to apply fixes"
-  },
-  {
-    "content": "Phase 1: Update STATUS.md with Cloudflare blocker resolution",
-    "status": "completed",
-    "activeForm": "Updating STATUS.md with blocker resolution"
-  },
-  {
-    "content": "Phase 2: Create WEEK-1-PRIORITIES.md with compliance-first approach",
-    "status": "completed",
-    "activeForm": "Creating WEEK-1-PRIORITIES.md document"
-  },
-  {
-    "content": "Phase 2: Update README.md to reflect deployment-ready status",
-    "status": "completed",
-    "activeForm": "Updating README.md status"
-  },
-  {
-    "content": "Phase 3: Update business plan Risk 7 to HIGH priority with STR compliance section",
-    "status": "completed",
-    "activeForm": "Updating business plan STR regulatory risk assessment"
-  },
-  {
-    "content": "Phase 3: Add Chicago STR regulations section (7.3.1) to business plan",
-    "status": "completed",
-    "activeForm": "Adding Chicago STR regulations section to business plan"
-  },
-  {
-    "content": "Phase 3: Add 30+ day rental pivot scenario to financial projections",
-    "status": "completed",
-    "activeForm": "Adding regulatory pivot scenario to financial projections"
-  },
-  {
-    "content": "Phase 4: Commit all changes to git with comprehensive message",
-    "status": "in_progress",
-    "activeForm": "Committing all changes to git"
-  },
-  {
-    "content": "Phase 4: Push commits to GitHub remote",
+    "content": "Refactor: Move www/ to CHITTYOS/chittyos-apps/furnished-condos/",
     "status": "pending",
-    "activeForm": "Pushing commits to GitHub"
+    "activeForm": "Moving operational components to dedicated project"
   },
   {
-    "content": "Phase 5: Create EXECUTION-REPORT-2025-10-11-PHASE2.md",
+    "content": "Create chittyos-apps/furnished-condos/ operational project structure",
     "status": "pending",
-    "activeForm": "Creating Phase 2 execution report"
-  },
-  {
-    "content": "Phase 5: Create QUICK-START-GUIDE.md for next 2 weeks",
-    "status": "pending",
-    "activeForm": "Creating quick-start guide"
-  },
-  {
-    "content": "Phase 5: Verify all scripts are executable and syntax-valid",
-    "status": "pending",
-    "activeForm": "Verifying script executability and syntax"
+    "activeForm": "Creating furnished-condos operational project"
   },
   {
     "content": "Remove hallucinated chain execution endpoints from openapi.yaml (lines 93-170)",
@@ -1774,22 +2029,22 @@
   },
   {
     "content": "Set up valid database connection with proper credentials",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Setting up valid database connection with proper credentials"
   },
   {
     "content": "Test all authentication endpoints thoroughly",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Testing all authentication endpoints thoroughly"
   },
   {
     "content": "Deploy and verify database schema",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Deploying and verifying database schema"
   },
   {
     "content": "Test complete user workflow end-to-end",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Testing complete user workflow end-to-end"
   },
   {
@@ -1806,6 +2061,26 @@
     "content": "Create final commit and document remaining issues",
     "status": "pending",
     "activeForm": "Creating final commit and documenting remaining issues"
+  },
+  {
+    "content": "Set up GitHub Actions CI/CD pipelines",
+    "status": "completed",
+    "activeForm": "Set up CI/CD"
+  },
+  {
+    "content": "Create deployment documentation",
+    "status": "completed",
+    "activeForm": "Created docs"
+  },
+  {
+    "content": "Push to GitHub to trigger automated build",
+    "status": "completed",
+    "activeForm": "Pushed to GitHub"
+  },
+  {
+    "content": "Configure GitHub Secrets for production",
+    "status": "pending",
+    "activeForm": "Configuring secrets"
   },
   {
     "content": "Fix ChittyCertify import and parameter order errors",
@@ -2453,56 +2728,6 @@
     "activeForm": "Committing changes and updating documentation"
   },
   {
-    "content": "Review existing documentation and implementation status",
-    "status": "completed",
-    "activeForm": "Reviewing existing documentation and implementation status"
-  },
-  {
-    "content": "Create comprehensive test suite for chittyid-client.ts",
-    "status": "completed",
-    "activeForm": "Creating comprehensive test suite for chittyid-client.ts"
-  },
-  {
-    "content": "Fix scripts/chittyledger-intake.sh:231 to use service",
-    "status": "completed",
-    "activeForm": "Fixing scripts/chittyledger-intake.sh:231 to use service"
-  },
-  {
-    "content": "Document chittychat submodule remediation requirements",
-    "status": "completed",
-    "activeForm": "Documenting chittychat submodule remediation requirements"
-  },
-  {
-    "content": "Create integration tests for session pipeline",
-    "status": "completed",
-    "activeForm": "Creating integration tests for session pipeline"
-  },
-  {
-    "content": "Commit Phase 1: Test suite implementation",
-    "status": "in_progress",
-    "activeForm": "Committing Phase 1: Test suite implementation"
-  },
-  {
-    "content": "Commit Phase 2: Script remediation",
-    "status": "pending",
-    "activeForm": "Committing Phase 2: Script remediation"
-  },
-  {
-    "content": "Commit Phase 3: Submodule remediation docs",
-    "status": "pending",
-    "activeForm": "Committing Phase 3: Submodule remediation docs"
-  },
-  {
-    "content": "Run ChittyCheck validation",
-    "status": "completed",
-    "activeForm": "Running ChittyCheck"
-  },
-  {
-    "content": "Final validation and update documentation",
-    "status": "pending",
-    "activeForm": "Performing final validation and updating documentation"
-  },
-  {
     "content": "Review current ChittyMCP worker configuration",
     "status": "completed",
     "activeForm": "Reviewing current ChittyMCP worker configuration"
@@ -2813,6 +3038,46 @@
     "activeForm": "Implementing verification validation functions"
   },
   {
+    "content": "Phase 1: Complete audit of all 9 workspace packages",
+    "status": "completed",
+    "activeForm": "Completing audit of all 9 workspace packages"
+  },
+  {
+    "content": "Phase 2: Decide on @chittyos/chittyid-client naming strategy",
+    "status": "completed",
+    "activeForm": "Deciding on @chittyos/chittyid-client naming strategy"
+  },
+  {
+    "content": "Phase 3: Document connector duplication for future extraction",
+    "status": "completed",
+    "activeForm": "Documenting connector duplication"
+  },
+  {
+    "content": "Phase 4: Standardize tsconfig across all apps using shared config",
+    "status": "in_progress",
+    "activeForm": "Standardizing tsconfig across all apps"
+  },
+  {
+    "content": "Phase 5: Add eslint config usage to all apps",
+    "status": "pending",
+    "activeForm": "Adding eslint config usage to all apps"
+  },
+  {
+    "content": "Phase 6: Create @furnished-condos/utils for common utilities",
+    "status": "pending",
+    "activeForm": "Creating @furnished-condos/utils for common utilities"
+  },
+  {
+    "content": "Phase 7: Verify all apps build successfully after changes",
+    "status": "pending",
+    "activeForm": "Verifying all apps build successfully"
+  },
+  {
+    "content": "Phase 8: Update CLAUDE.md with final package architecture",
+    "status": "pending",
+    "activeForm": "Updating CLAUDE.md with final package architecture"
+  },
+  {
     "content": "Analyze monorepo state and identify top priority improvements",
     "status": "completed",
     "activeForm": "Analyzing monorepo state and identifying top priority improvements"
@@ -2823,34 +3088,54 @@
     "activeForm": "Generating strategic recommendations with effort estimates"
   },
   {
-    "content": "Kill process using port 5000",
+    "content": "Analyze existing lease-wiz PDF generation implementation",
     "status": "completed",
-    "activeForm": "Killing process using port 5000"
+    "activeForm": "Analyzing existing lease-wiz PDF generation implementation"
   },
   {
-    "content": "Install Jinja2 for Python PDF generation",
+    "content": "Create @furnished-condos/lease-generator package structure",
     "status": "completed",
-    "activeForm": "Installing Jinja2 for Python PDF generation"
+    "activeForm": "Creating @furnished-condos/lease-generator package structure"
   },
   {
-    "content": "Get SENDGRID_API_KEY from 1Password",
+    "content": "Extract and refactor generateLeasePDF logic into shared package",
+    "status": "completed",
+    "activeForm": "Extracting and refactoring generateLeasePDF logic into shared package"
+  },
+  {
+    "content": "Extract Python templates and scripts to shared package",
+    "status": "completed",
+    "activeForm": "Extracting Python templates and scripts to shared package"
+  },
+  {
+    "content": "Configure package.json and TypeScript for lease-generator",
+    "status": "completed",
+    "activeForm": "Configuring package.json and TypeScript for lease-generator"
+  },
+  {
+    "content": "Update pnpm-workspace.yaml to include lease-generator",
+    "status": "completed",
+    "activeForm": "Updating pnpm-workspace.yaml to include lease-generator"
+  },
+  {
+    "content": "Refactor lease-wiz to use @furnished-condos/lease-generator",
+    "status": "completed",
+    "activeForm": "Refactoring lease-wiz to use @furnished-condos/lease-generator"
+  },
+  {
+    "content": "Test lease-wiz dev server and PDF generation",
     "status": "in_progress",
-    "activeForm": "Getting SENDGRID_API_KEY from 1Password"
+    "activeForm": "Testing lease-wiz dev server and PDF generation"
   },
   {
-    "content": "Create .env file with required variables",
+    "content": "Create comprehensive README for lease-generator package",
     "status": "pending",
-    "activeForm": "Creating .env file with required variables"
+    "activeForm": "Creating comprehensive README for lease-generator package"
   },
   {
-    "content": "Start lease-wiz on alternate port",
+    "content": "Run final validation and quality checks",
     "status": "pending",
-    "activeForm": "Starting lease-wiz on alternate port"
-  },
-  {
-    "content": "Verify lease-wiz is running and accessible",
-    "status": "pending",
-    "activeForm": "Verifying lease-wiz is running and accessible"
+    "activeForm": "Running final validation and quality checks"
   },
   {
     "content": "Create session-sync package structure in packages/",
@@ -2873,24 +3158,29 @@
     "activeForm": "Wiring session tracking into ChittyRegister"
   },
   {
-    "content": "Fix breaking import in src/pdx/pdx-core.js:7",
+    "content": "Review all changes made (git diff)",
     "status": "completed",
-    "activeForm": "Fixing breaking import in pdx-core.js"
+    "activeForm": "Reviewing changes"
   },
   {
-    "content": "Update MIGRATION_COMPLETE.md with accurate status",
+    "content": "Commit documentation and code fixes",
     "status": "completed",
-    "activeForm": "Updating MIGRATION_COMPLETE.md with accurate status"
+    "activeForm": "Committing fixes"
   },
   {
-    "content": "Create honest status report of remaining work",
-    "status": "completed",
-    "activeForm": "Creating honest status report"
-  },
-  {
-    "content": "Verify production health and integration",
+    "content": "Analyze and fix 83 failing tests",
     "status": "in_progress",
-    "activeForm": "Verifying production health"
+    "activeForm": "Analyzing test failures"
+  },
+  {
+    "content": "Improve compliance from 76% to 80%+",
+    "status": "pending",
+    "activeForm": "Improving compliance"
+  },
+  {
+    "content": "Deploy fixes to production",
+    "status": "pending",
+    "activeForm": "Deploying to production"
   },
   {
     "content": "Fix rogue ID pattern in chittyos-security-integration.js (nonce generation)",
@@ -2998,59 +3288,34 @@
     "activeForm": "Running ChittyCheck validation"
   },
   {
-    "content": "Fix local ChittyID generation - remove fake ID generation and add proper integration or remove ChittyID references",
+    "content": "Create KV namespaces in Cloudflare",
     "status": "completed",
-    "activeForm": "Fixing local ChittyID generation violations"
+    "activeForm": "Creating KV namespaces"
   },
   {
-    "content": "Fix 7-day expiration hardcoding - remove fixed expiration or add proper Stripe query logic",
+    "content": "Configure Cloudflare secrets",
     "status": "completed",
-    "activeForm": "Fixing 7-day expiration hardcoding"
+    "activeForm": "Configuring secrets"
   },
   {
-    "content": "Fix processing fee calculation - add estimated qualifier and explain variance",
+    "content": "Deploy ChittyCharge worker to production",
     "status": "completed",
-    "activeForm": "Fixing processing fee calculation"
+    "activeForm": "Deploying worker"
   },
   {
-    "content": "Add rate limiting for authentication - implement 10 req/min per token",
+    "content": "Configure DNS for charge.chitty.cc",
     "status": "completed",
-    "activeForm": "Adding rate limiting for authentication"
+    "activeForm": "Configuring DNS"
   },
   {
-    "content": "Fix CORS configuration - make origin configurable with sensible default",
-    "status": "completed",
-    "activeForm": "Fixing CORS configuration"
-  },
-  {
-    "content": "Reduce $100k maximum to $5,000 with verification note",
-    "status": "completed",
-    "activeForm": "Reducing maximum hold amount"
-  },
-  {
-    "content": "Strengthen idempotency implementation to prevent duplicate captures",
-    "status": "completed",
-    "activeForm": "Strengthening idempotency implementation"
-  },
-  {
-    "content": "Fix stripe-holds.ts service file - update max amount and remove hardcoded 7-day expiration",
+    "content": "Verify production deployment",
     "status": "in_progress",
-    "activeForm": "Fixing stripe-holds.ts service file"
+    "activeForm": "Verifying deployment"
   },
   {
-    "content": "Fix chittypay.ts service file - update processing fee and expiration",
+    "content": "Register in ChittyRegistry",
     "status": "pending",
-    "activeForm": "Fixing chittypay.ts service file"
-  },
-  {
-    "content": "Update README.md - move Mercury to Future Roadmap, add disclaimers, fix architecture",
-    "status": "pending",
-    "activeForm": "Updating README.md documentation"
-  },
-  {
-    "content": "Update QUICK-START.md - fix maximum amount references and add disclaimers",
-    "status": "pending",
-    "activeForm": "Updating QUICK-START.md documentation"
+    "activeForm": "Registering service"
   },
   {
     "content": "Create and execute comprehensive integration tests for ChittyID minting",
@@ -3621,6 +3886,11 @@
     "content": "Build production assets",
     "status": "pending",
     "activeForm": "Building production assets"
+  },
+  {
+    "content": "Run ChittyCheck validation",
+    "status": "completed",
+    "activeForm": "Running ChittyCheck"
   },
   {
     "content": "Run QA test suite",
