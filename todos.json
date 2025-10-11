@@ -1439,12 +1439,12 @@
   },
   {
     "content": "Verify evidence file count and update documentation",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Verifying evidence file count and updating documentation"
   },
   {
     "content": "Create DOCUMENT-STATUS-INDEX.md",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Creating DOCUMENT-STATUS-INDEX.md"
   },
   {
@@ -2144,17 +2144,17 @@
   },
   {
     "content": "Deploy derail.me worker to Cloudflare",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Deploying derail.me worker to Cloudflare"
   },
   {
     "content": "Verify derail.me health endpoint",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Verifying derail.me health endpoint"
   },
   {
     "content": "Build and deploy frontdoor Next.js app to Cloudflare Pages",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Building and deploying frontdoor Next.js app"
   },
   {
@@ -2186,36 +2186,6 @@
     "content": "Deploy furnished-condos frontdoor to Pages",
     "status": "pending",
     "activeForm": "Deploying furnished-condos"
-  },
-  {
-    "content": "Verify actual file counts and duplicate checksums",
-    "status": "completed",
-    "activeForm": "Verified actual file counts and duplicate checksums"
-  },
-  {
-    "content": "Locate source documents for financial amounts ($96,059, $77,000, etc.)",
-    "status": "completed",
-    "activeForm": "Located source documents for financial amounts"
-  },
-  {
-    "content": "Update documentation files with accurate counts (CLAUDE.md, CASE_TIMELINE_2025.md, etc.)",
-    "status": "completed",
-    "activeForm": "Updated documentation files with accurate counts"
-  },
-  {
-    "content": "Process Nicholas Bianchi contributions.xlsx through MCP evidence system",
-    "status": "completed",
-    "activeForm": "Processed Nicholas Bianchi contributions.xlsx through MCP"
-  },
-  {
-    "content": "Process 5 audit reports through MCP with ChittyID minting",
-    "status": "completed",
-    "activeForm": "Processed audit reports through MCP"
-  },
-  {
-    "content": "Run /chittycheck validation and generate final report",
-    "status": "in_progress",
-    "activeForm": "Running /chittycheck validation and generating final report"
   },
   {
     "content": "Fix CHITTY_ID_TOKEN secret issue for chittyos-email-worker (Priority 1)",
