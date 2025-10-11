@@ -205,26 +205,6 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
-    "content": "Run comprehensive validation of legal documentation",
-    "status": "in_progress",
-    "activeForm": "Running comprehensive validation"
-  },
-  {
-    "content": "Verify ChittyRouter persistent agents deployment",
-    "status": "pending",
-    "activeForm": "Verifying persistent agents deployment"
-  },
-  {
-    "content": "Check for any remaining issues or incomplete work",
-    "status": "pending",
-    "activeForm": "Checking for remaining issues"
-  },
-  {
-    "content": "Generate completion report",
-    "status": "pending",
-    "activeForm": "Generating completion report"
-  },
-  {
     "content": "Fix ChittyMCP ChittyID endpoint to proxy correctly",
     "status": "completed",
     "activeForm": "Fixing ChittyID proxy implementation"
@@ -390,6 +370,31 @@
     "activeForm": "Testing deployed site with Chicago branding"
   },
   {
+    "content": "Review the 273 local ID generation patterns that need replacement",
+    "status": "pending",
+    "activeForm": "Reviewing local ID generation patterns"
+  },
+  {
+    "content": "Replace UUID instances (227) with ChittyID minting calls",
+    "status": "pending",
+    "activeForm": "Replacing UUID instances with ChittyID"
+  },
+  {
+    "content": "Replace nanoid instances (17) with ChittyID minting calls",
+    "status": "pending",
+    "activeForm": "Replacing nanoid instances with ChittyID"
+  },
+  {
+    "content": "Replace random ID instances (29) with ChittyID minting calls",
+    "status": "pending",
+    "activeForm": "Replacing random ID instances with ChittyID"
+  },
+  {
+    "content": "Verify all ChittyID integrations are using proper format validation",
+    "status": "pending",
+    "activeForm": "Verifying ChittyID format validation"
+  },
+  {
     "content": "Fix missing chitty command path",
     "status": "completed",
     "activeForm": "Fixing missing chitty command path"
@@ -455,6 +460,41 @@
     "content": "Add Neon database connection string",
     "status": "pending",
     "activeForm": "Adding database connection"
+  },
+  {
+    "content": "Verify domain expiration dates and generate renewal commands",
+    "status": "completed",
+    "activeForm": "Verifying domain expiration dates"
+  },
+  {
+    "content": "Search Google Drive for IT CAN BE LLC EIN in formation documents",
+    "status": "in_progress",
+    "activeForm": "Searching for IT CAN BE LLC EIN"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from leases"
+  },
+  {
+    "content": "Create JEAN ARLENE local intake structure with download instructions",
+    "status": "pending",
+    "activeForm": "Creating JEAN ARLENE intake structure"
+  },
+  {
+    "content": "Update VERIFICATION-CHECKLIST.md with current progress and fill data gaps",
+    "status": "pending",
+    "activeForm": "Updating verification checklist"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs"
+  },
+  {
+    "content": "Update STATUS.md with execution progress and actionable next steps",
+    "status": "pending",
+    "activeForm": "Updating STATUS.md with progress"
   },
   {
     "content": "Review ChittySchema architectural contradiction (docs vs tests)",
@@ -633,17 +673,17 @@
   },
   {
     "content": "Create ChittySchema telemetry database schema for output tracking",
-    "status": "completed",
+    "status": "in_progress",
     "activeForm": "Creating ChittySchema telemetry database schema"
   },
   {
     "content": "Build CLI tool for querying output quality metrics over time",
-    "status": "completed",
-    "activeForm": "Building CLI tool for querying output metrics"
+    "status": "pending",
+    "activeForm": "Building CLI tool for output quality queries"
   },
   {
     "content": "Integrate ChittyDNA fingerprinting for code outputs",
-    "status": "in_progress",
+    "status": "pending",
     "activeForm": "Integrating ChittyDNA fingerprinting"
   },
   {
@@ -663,11 +703,6 @@
   },
   {
     "content": "Deploy and test complete integration",
-    "status": "pending",
-    "activeForm": "Deploying and testing complete integration"
-  },
-  {
-    "content": "Deploy and test complete integration end-to-end",
     "status": "pending",
     "activeForm": "Deploying and testing complete integration"
   },
@@ -945,6 +980,31 @@
     "content": "Verify all ChittyOS services",
     "status": "pending",
     "activeForm": "Verifying all services"
+  },
+  {
+    "content": "Audit ChittyMCP and MCP server capabilities",
+    "status": "completed",
+    "activeForm": "Auditing ChittyMCP and MCP server capabilities"
+  },
+  {
+    "content": "Analyze FURNISHED-CONDOS app inventory and deployment status",
+    "status": "in_progress",
+    "activeForm": "Analyzing FURNISHED-CONDOS app inventory and deployment status"
+  },
+  {
+    "content": "Map domain routing and digital channel requirements",
+    "status": "pending",
+    "activeForm": "Mapping domain routing and digital channel requirements"
+  },
+  {
+    "content": "Create comprehensive deployment plan with priorities",
+    "status": "pending",
+    "activeForm": "Creating comprehensive deployment plan with priorities"
+  },
+  {
+    "content": "Document orchestration strategy using ChittyMCP",
+    "status": "pending",
+    "activeForm": "Documenting orchestration strategy using ChittyMCP"
   },
   {
     "content": "Deploy ChittyRouter to production environment",
@@ -1961,6 +2021,36 @@
     "content": "Wire session tracking into ChittyRegister",
     "status": "completed",
     "activeForm": "Wiring session tracking into ChittyRegister"
+  },
+  {
+    "content": "Review local ID generation patterns and plan migration to ChittyID",
+    "status": "completed",
+    "activeForm": "Reviewing local ID generation patterns"
+  },
+  {
+    "content": "Document ChittyID integration analysis findings",
+    "status": "in_progress",
+    "activeForm": "Documenting findings"
+  },
+  {
+    "content": "Replace random ID generation in test files with ChittyID minting",
+    "status": "pending",
+    "activeForm": "Replacing test file ID generation"
+  },
+  {
+    "content": "Replace Math.random() patterns in production code (PDX, minting services)",
+    "status": "pending",
+    "activeForm": "Replacing production random patterns"
+  },
+  {
+    "content": "Add ChittyID format validation using CHITTY_ID_RX pattern",
+    "status": "pending",
+    "activeForm": "Adding format validation"
+  },
+  {
+    "content": "Update .env.example with CHITTY_ID_TOKEN configuration",
+    "status": "pending",
+    "activeForm": "Updating environment template"
   },
   {
     "content": "Fix rogue ID pattern in chittyos-security-integration.js (nonce generation)",
