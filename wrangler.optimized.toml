@@ -57,7 +57,7 @@ class_name = "SyncState"
 # Global environment variables
 [vars]
 PLATFORM_VERSION = "1.0.0"
-CHITTYOS_ACCOUNT_ID = "84f0f32886f1d6196380fe6cbe9656a8"
+CHITTYOS_ACCOUNT_ID = "0bc21e3a5a9de1a4cc843be9c3e98121"
 MAX_CONCURRENT_REQUESTS = "1000"
 CACHE_TTL = "3600"
 DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct"

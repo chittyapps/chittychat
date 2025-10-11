@@ -118,9 +118,19 @@ jobs:
           echo "Running ChittyID compliance validation..."
           ./chittycheck-enhanced.sh --ci-mode
 
-          # Ensure no local ID generation
-          if grep -r "CHITTY-.*-.*-.*" . --exclude-dir=node_modules --exclude="*.json" --exclude="*.md"; then
-            echo "❌ Found hardcoded ChittyIDs - all IDs must come from id.chitty.cc"
+          # Ensure no local ID generation (exclude submodules and build artifacts)
+          if grep -r "CHITTY-.*-.*-.*" . \
+            --exclude-dir=node_modules \
+            --exclude-dir=.git \
+            --exclude-dir=chittychronicle \
+            --exclude-dir=chittychain \
+            --exclude-dir=chittyforce \
+            --exclude-dir=nevershitty-github \
+            --exclude-dir=dist \
+            --exclude-dir=build \
+            --exclude="*.json" \
+            --exclude="*.md"; then
+            echo "❌ Found hardcoded ChittyIDs in source code - all IDs must come from id.chitty.cc"
             exit 1
           fi
 
