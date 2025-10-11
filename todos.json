@@ -2673,6 +2673,51 @@
     "activeForm": "Running ChittyCheck validation"
   },
   {
+    "content": "Create Stripe service with authorization hold methods",
+    "status": "completed",
+    "activeForm": "Creating Stripe service with authorization hold methods"
+  },
+  {
+    "content": "Review ChargeAutomation pattern for consistency",
+    "status": "completed",
+    "activeForm": "Reviewing ChargeAutomation pattern for consistency"
+  },
+  {
+    "content": "Create ChittyPay service wrapping Stripe with future Mercury integration",
+    "status": "in_progress",
+    "activeForm": "Creating ChittyPay service"
+  },
+  {
+    "content": "Add database schema for authorization_holds table",
+    "status": "pending",
+    "activeForm": "Adding database schema for authorization_holds table"
+  },
+  {
+    "content": "Create API routes matching existing patterns",
+    "status": "pending",
+    "activeForm": "Creating API routes"
+  },
+  {
+    "content": "Create webhook handler for Stripe events",
+    "status": "pending",
+    "activeForm": "Creating webhook handler"
+  },
+  {
+    "content": "Create frontend component for authorization holds",
+    "status": "pending",
+    "activeForm": "Creating frontend component"
+  },
+  {
+    "content": "Update environment configuration",
+    "status": "pending",
+    "activeForm": "Updating environment configuration"
+  },
+  {
+    "content": "Create README with setup instructions",
+    "status": "pending",
+    "activeForm": "Creating README"
+  },
+  {
     "content": "Create and execute comprehensive integration tests for ChittyID minting",
     "status": "in_progress",
     "activeForm": "Creating integration tests for ChittyID minting"
