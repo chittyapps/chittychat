@@ -36,7 +36,7 @@
   },
   {
     "content": "Add rate limit bypass for test environment",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Adding test environment bypass"
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "content": "Re-run load tests and capture improved results",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Re-running load tests"
   },
   {
@@ -1032,6 +1032,31 @@
     "activeForm": "Documenting architecture and procedures"
   },
   {
+    "content": "Mint real ChittyIDs from id.chitty.cc for all 11 agents",
+    "status": "completed",
+    "activeForm": "Minting real ChittyIDs"
+  },
+  {
+    "content": "Strip fake ChittyIDs from AGENTS_INDEX.md",
+    "status": "in_progress",
+    "activeForm": "Stripping fake IDs from AGENTS_INDEX"
+  },
+  {
+    "content": "Strip fake ChittyIDs from CHITTYOS_TEAM_MANIFEST_V3.md",
+    "status": "pending",
+    "activeForm": "Stripping fake IDs from manifest"
+  },
+  {
+    "content": "Strip fake ChittyIDs from all other governance files",
+    "status": "pending",
+    "activeForm": "Stripping fake IDs from governance files"
+  },
+  {
+    "content": "Commit the fixes",
+    "status": "pending",
+    "activeForm": "Committing fixes"
+  },
+  {
     "content": "Review ChittyMCP architecture and tool structure",
     "status": "in_progress",
     "activeForm": "Reviewing ChittyMCP architecture and tool structure"
@@ -1591,6 +1616,46 @@
     "content": "Create cleaned archive for GitHub deployment",
     "status": "pending",
     "activeForm": "Creating cleaned archive for GitHub deployment"
+  },
+  {
+    "content": "Investigate JSON parsing error in registration endpoint",
+    "status": "in_progress",
+    "activeForm": "Investigating JSON parsing error in registration endpoint"
+  },
+  {
+    "content": "Set up valid database connection with proper credentials",
+    "status": "pending",
+    "activeForm": "Setting up valid database connection with proper credentials"
+  },
+  {
+    "content": "Test all authentication endpoints thoroughly",
+    "status": "pending",
+    "activeForm": "Testing all authentication endpoints thoroughly"
+  },
+  {
+    "content": "Deploy and verify database schema",
+    "status": "pending",
+    "activeForm": "Deploying and verifying database schema"
+  },
+  {
+    "content": "Test complete user workflow end-to-end",
+    "status": "pending",
+    "activeForm": "Testing complete user workflow end-to-end"
+  },
+  {
+    "content": "Clean up temporary files and backup artifacts",
+    "status": "pending",
+    "activeForm": "Cleaning up temporary files and backup artifacts"
+  },
+  {
+    "content": "Provide production deployment recommendations",
+    "status": "pending",
+    "activeForm": "Providing production deployment recommendations"
+  },
+  {
+    "content": "Create final commit and document remaining issues",
+    "status": "pending",
+    "activeForm": "Creating final commit and documenting remaining issues"
   },
   {
     "content": "Fix ChittyCertify import and parameter order errors",
@@ -2529,12 +2594,12 @@
   },
   {
     "content": "Kill process using port 5000",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Killing process using port 5000"
   },
   {
     "content": "Install Jinja2 for Python PDF generation",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Installing Jinja2 for Python PDF generation"
   },
   {
@@ -2671,51 +2736,6 @@
     "content": "Run final ChittyCheck validation on all services",
     "status": "pending",
     "activeForm": "Running ChittyCheck validation"
-  },
-  {
-    "content": "Create Stripe service with authorization hold methods",
-    "status": "completed",
-    "activeForm": "Creating Stripe service with authorization hold methods"
-  },
-  {
-    "content": "Review ChargeAutomation pattern for consistency",
-    "status": "completed",
-    "activeForm": "Reviewing ChargeAutomation pattern for consistency"
-  },
-  {
-    "content": "Create ChittyPay service wrapping Stripe with future Mercury integration",
-    "status": "in_progress",
-    "activeForm": "Creating ChittyPay service"
-  },
-  {
-    "content": "Add database schema for authorization_holds table",
-    "status": "pending",
-    "activeForm": "Adding database schema for authorization_holds table"
-  },
-  {
-    "content": "Create API routes matching existing patterns",
-    "status": "pending",
-    "activeForm": "Creating API routes"
-  },
-  {
-    "content": "Create webhook handler for Stripe events",
-    "status": "pending",
-    "activeForm": "Creating webhook handler"
-  },
-  {
-    "content": "Create frontend component for authorization holds",
-    "status": "pending",
-    "activeForm": "Creating frontend component"
-  },
-  {
-    "content": "Update environment configuration",
-    "status": "pending",
-    "activeForm": "Updating environment configuration"
-  },
-  {
-    "content": "Create README with setup instructions",
-    "status": "pending",
-    "activeForm": "Creating README"
   },
   {
     "content": "Create and execute comprehensive integration tests for ChittyID minting",
