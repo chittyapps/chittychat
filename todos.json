@@ -205,6 +205,26 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
+    "content": "Run comprehensive validation of legal documentation",
+    "status": "in_progress",
+    "activeForm": "Running comprehensive validation"
+  },
+  {
+    "content": "Verify ChittyRouter persistent agents deployment",
+    "status": "pending",
+    "activeForm": "Verifying persistent agents deployment"
+  },
+  {
+    "content": "Check for any remaining issues or incomplete work",
+    "status": "pending",
+    "activeForm": "Checking for remaining issues"
+  },
+  {
+    "content": "Generate completion report",
+    "status": "pending",
+    "activeForm": "Generating completion report"
+  },
+  {
     "content": "Fix ChittyMCP ChittyID endpoint to proxy correctly",
     "status": "completed",
     "activeForm": "Fixing ChittyID proxy implementation"
@@ -320,6 +340,31 @@
     "activeForm": "Implementing ChittyMCP todo sync"
   },
   {
+    "content": "Add HF tools to getAvailableTools() function",
+    "status": "completed",
+    "activeForm": "Adding HF tools to getAvailableTools() function"
+  },
+  {
+    "content": "Add HF tool execution logic to executeTool()",
+    "status": "completed",
+    "activeForm": "Adding HF tool execution logic to executeTool()"
+  },
+  {
+    "content": "Update health endpoint with new tool count and category",
+    "status": "completed",
+    "activeForm": "Updating health endpoint with new tool count and category"
+  },
+  {
+    "content": "Update README.md with HF integration docs",
+    "status": "completed",
+    "activeForm": "Updating README.md with HF integration docs"
+  },
+  {
+    "content": "Test integrated HF tools",
+    "status": "in_progress",
+    "activeForm": "Testing integrated HF tools"
+  },
+  {
     "content": "Copy Chicago Furnished Condos branding to frontdoor",
     "status": "completed",
     "activeForm": "Copied logo variants to frontdoor/public"
@@ -410,6 +455,36 @@
     "content": "Add Neon database connection string",
     "status": "pending",
     "activeForm": "Adding database connection"
+  },
+  {
+    "content": "Review ChittySchema architectural contradiction (docs vs tests)",
+    "status": "completed",
+    "activeForm": "Reviewing ChittySchema architectural contradiction"
+  },
+  {
+    "content": "Fix TypeScript error count claim (119 actual vs 85 claimed)",
+    "status": "in_progress",
+    "activeForm": "Fixing TypeScript error count claim"
+  },
+  {
+    "content": "Update integration tests to expect errors not pending IDs",
+    "status": "pending",
+    "activeForm": "Updating integration tests"
+  },
+  {
+    "content": "Remove pending ID validation tests",
+    "status": "pending",
+    "activeForm": "Removing pending ID tests"
+  },
+  {
+    "content": "Verify tests pass after alignment",
+    "status": "pending",
+    "activeForm": "Verifying tests pass"
+  },
+  {
+    "content": "Update CLAUDE.md with accurate claims",
+    "status": "pending",
+    "activeForm": "Updating CLAUDE.md"
   },
   {
     "content": "Read ARIBIA LLC Articles of Organization (notarized PDF)",
@@ -558,17 +633,17 @@
   },
   {
     "content": "Create ChittySchema telemetry database schema for output tracking",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Creating ChittySchema telemetry database schema"
   },
   {
     "content": "Build CLI tool for querying output quality metrics over time",
-    "status": "pending",
-    "activeForm": "Building CLI tool for output quality queries"
+    "status": "completed",
+    "activeForm": "Building CLI tool for querying output metrics"
   },
   {
     "content": "Integrate ChittyDNA fingerprinting for code outputs",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Integrating ChittyDNA fingerprinting"
   },
   {
@@ -588,6 +663,11 @@
   },
   {
     "content": "Deploy and test complete integration",
+    "status": "pending",
+    "activeForm": "Deploying and testing complete integration"
+  },
+  {
+    "content": "Deploy and test complete integration end-to-end",
     "status": "pending",
     "activeForm": "Deploying and testing complete integration"
   },
@@ -1323,39 +1403,94 @@
     "activeForm": "Created quick start guide"
   },
   {
-    "content": "Fix file watcher daemon logging configuration",
-    "status": "completed",
-    "activeForm": "Fixing file watcher daemon logging configuration"
+    "content": "Fix integration test expectations - remove pending ID validation, expect errors instead",
+    "status": "in_progress",
+    "activeForm": "Fixing integration test expectations - removing pending ID validation"
   },
   {
-    "content": "Investigate remote sync storage KV binding issue",
-    "status": "completed",
-    "activeForm": "Investigating remote sync storage KV binding issue"
-  },
-  {
-    "content": "Create ChittySync background agent in chittychat/src/agents/",
-    "status": "completed",
-    "activeForm": "Creating ChittySync background agent in chittychat/src/agents/"
-  },
-  {
-    "content": "Add conflict detection reporting to ChittySync",
-    "status": "completed",
-    "activeForm": "Adding conflict detection reporting to ChittySync"
-  },
-  {
-    "content": "Implement incremental consolidation for changed files only",
-    "status": "completed",
-    "activeForm": "Implementing incremental consolidation for changed files only"
-  },
-  {
-    "content": "Add parallel file reading for performance optimization",
-    "status": "completed",
-    "activeForm": "Adding parallel file reading for performance optimization"
-  },
-  {
-    "content": "Optimize cron interval scheduling",
+    "content": "Update CLAUDE.md with accurate TypeScript error counts (119 not 85)",
     "status": "pending",
-    "activeForm": "Optimizing cron interval scheduling"
+    "activeForm": "Updating CLAUDE.md with accurate TypeScript error counts"
+  },
+  {
+    "content": "Update TYPESCRIPT-FIXES-SUMMARY.md with accurate error counts",
+    "status": "pending",
+    "activeForm": "Updating TYPESCRIPT-FIXES-SUMMARY.md with accurate error counts"
+  },
+  {
+    "content": "Add architectural clarity note to CLAUDE.md about zero-generation enforcement",
+    "status": "pending",
+    "activeForm": "Adding architectural clarity note to CLAUDE.md"
+  },
+  {
+    "content": "Tone down absolutist claims in CLAUDE.md",
+    "status": "pending",
+    "activeForm": "Toning down absolutist claims in CLAUDE.md"
+  },
+  {
+    "content": "Run integration tests to verify they now pass",
+    "status": "pending",
+    "activeForm": "Running integration tests to verify they pass"
+  },
+  {
+    "content": "Verify TypeScript error count matches claims",
+    "status": "pending",
+    "activeForm": "Verifying TypeScript error count matches claims"
+  },
+  {
+    "content": "Update verdict.md from FAIL to PASS with new score",
+    "status": "pending",
+    "activeForm": "Updating verdict.md from FAIL to PASS"
+  },
+  {
+    "content": "Update issues.json to mark issues as resolved",
+    "status": "pending",
+    "activeForm": "Updating issues.json to mark issues as resolved"
+  },
+  {
+    "content": "Update fixes.md with completion status",
+    "status": "pending",
+    "activeForm": "Updating fixes.md with completion status"
+  },
+  {
+    "content": "Commit all changes with comprehensive message",
+    "status": "pending",
+    "activeForm": "Committing all changes with comprehensive message"
+  },
+  {
+    "content": "Remove contradictory pending ID tests from mintid-integration.test.ts",
+    "status": "in_progress",
+    "activeForm": "Removing contradictory pending ID tests"
+  },
+  {
+    "content": "Update CLAUDE.md documentation with corrected error counts and phase status",
+    "status": "pending",
+    "activeForm": "Updating CLAUDE.md documentation"
+  },
+  {
+    "content": "Update TYPESCRIPT-FIXES-SUMMARY.md with correct error counts",
+    "status": "pending",
+    "activeForm": "Updating TYPESCRIPT-FIXES-SUMMARY.md"
+  },
+  {
+    "content": "Run integration tests to verify all tests pass",
+    "status": "pending",
+    "activeForm": "Running integration tests"
+  },
+  {
+    "content": "Update audit files (risk_score.txt, verdict.md)",
+    "status": "pending",
+    "activeForm": "Updating audit files"
+  },
+  {
+    "content": "Create comprehensive commit with all fixes",
+    "status": "pending",
+    "activeForm": "Creating comprehensive commit"
+  },
+  {
+    "content": "Run verification checklist",
+    "status": "pending",
+    "activeForm": "Running verification checklist"
   },
   {
     "content": "Change aribia.llc MX records to Google Workspace",
@@ -1461,6 +1596,41 @@
     "content": "Test end-to-end email processing with ChittyID minting",
     "status": "pending",
     "activeForm": "Testing end-to-end email processing with ChittyID minting"
+  },
+  {
+    "content": "Fix file watcher daemon logging configuration",
+    "status": "completed",
+    "activeForm": "Fixing file watcher daemon logging configuration"
+  },
+  {
+    "content": "Investigate remote sync storage KV binding issue",
+    "status": "completed",
+    "activeForm": "Investigating remote sync storage KV binding issue"
+  },
+  {
+    "content": "Create ChittySync background agent in chittychat/src/agents/",
+    "status": "completed",
+    "activeForm": "Creating ChittySync background agent in chittychat/src/agents/"
+  },
+  {
+    "content": "Add conflict detection reporting to ChittySync",
+    "status": "completed",
+    "activeForm": "Adding conflict detection reporting to ChittySync"
+  },
+  {
+    "content": "Implement incremental consolidation for changed files only",
+    "status": "completed",
+    "activeForm": "Implementing incremental consolidation for changed files only"
+  },
+  {
+    "content": "Add parallel file reading for performance optimization",
+    "status": "completed",
+    "activeForm": "Adding parallel file reading for performance optimization"
+  },
+  {
+    "content": "Optimize cron interval scheduling",
+    "status": "pending",
+    "activeForm": "Optimizing cron interval scheduling"
   },
   {
     "content": "Review current ChittyMCP worker configuration",
@@ -2061,36 +2231,6 @@
     "content": "Generate comprehensive integration report",
     "status": "pending",
     "activeForm": "Generating comprehensive integration report"
-  },
-  {
-    "content": "Validate service registry and metadata completeness in ChittyRegistry",
-    "status": "in_progress",
-    "activeForm": "Validating service registry and metadata"
-  },
-  {
-    "content": "Investigate and resolve DNS issues for ChittyID and ChittyGateway",
-    "status": "pending",
-    "activeForm": "Investigating DNS issues"
-  },
-  {
-    "content": "Execute integration tests across all deployed services",
-    "status": "pending",
-    "activeForm": "Executing integration tests"
-  },
-  {
-    "content": "Review and validate configuration completeness for all services",
-    "status": "pending",
-    "activeForm": "Reviewing configuration completeness"
-  },
-  {
-    "content": "Assess production readiness (error handling, security, monitoring)",
-    "status": "pending",
-    "activeForm": "Assessing production readiness"
-  },
-  {
-    "content": "Generate comprehensive documentation and evidence package",
-    "status": "pending",
-    "activeForm": "Generating documentation package"
   },
   {
     "content": "Verify ChittyAuth deployment and health",
@@ -2783,6 +2923,91 @@
     "activeForm": "Creating inventory"
   },
   {
+    "content": "Test hf_whoami - Verify HF authentication status",
+    "status": "in_progress",
+    "activeForm": "Testing hf_whoami authentication"
+  },
+  {
+    "content": "Test hf_model_search - Search for ML models",
+    "status": "pending",
+    "activeForm": "Testing hf_model_search"
+  },
+  {
+    "content": "Test hf_paper_search - Search research papers",
+    "status": "pending",
+    "activeForm": "Testing hf_paper_search"
+  },
+  {
+    "content": "Test hf_dataset_search - Find datasets",
+    "status": "pending",
+    "activeForm": "Testing hf_dataset_search"
+  },
+  {
+    "content": "Test hf_space_search - Discover Spaces",
+    "status": "pending",
+    "activeForm": "Testing hf_space_search"
+  },
+  {
+    "content": "Test hf_repo_details - Get repository info",
+    "status": "pending",
+    "activeForm": "Testing hf_repo_details"
+  },
+  {
+    "content": "Test hf_doc_search - Search documentation",
+    "status": "pending",
+    "activeForm": "Testing hf_doc_search"
+  },
+  {
+    "content": "Test hf_doc_fetch - Fetch specific doc pages",
+    "status": "pending",
+    "activeForm": "Testing hf_doc_fetch"
+  },
+  {
+    "content": "Test hf_use_space - Access Space UI",
+    "status": "pending",
+    "activeForm": "Testing hf_use_space"
+  },
+  {
+    "content": "Test hf_generate_image - Generate images with Flux",
+    "status": "pending",
+    "activeForm": "Testing hf_generate_image"
+  },
+  {
+    "content": "Document test results in JSON report",
+    "status": "pending",
+    "activeForm": "Documenting test results"
+  },
+  {
+    "content": "Update README with HF tool examples",
+    "status": "pending",
+    "activeForm": "Updating README with examples"
+  },
+  {
+    "content": "Create HF integration usage guide",
+    "status": "pending",
+    "activeForm": "Creating usage guide"
+  },
+  {
+    "content": "Test HF tools via production endpoint",
+    "status": "completed",
+    "activeForm": "Testing HF tools via production endpoint"
+  },
+  {
+    "content": "Test HF tools via MCP inspector",
+    "status": "in_progress",
+    "activeForm": "Testing HF tools via MCP inspector"
+  },
+  {
+    "content": "Verify HF API integration in production",
+    "status": "pending",
+    "activeForm": "Verifying HF API integration in production"
+  },
+  {
+    "content": "Document HF tool testing results",
+    "status": "pending",
+    "activeForm": "Documenting HF tool testing results"
+  },
+  {
     "content": "Integrate HF API client into executeTool function with real API calls",
     "status": "completed",
     "activeForm": "Integrating HF API client into executeTool function"
@@ -2811,30 +3036,5 @@
     "content": "Verify production deployment with real API tests",
     "status": "in_progress",
     "activeForm": "Verifying production deployment with real API tests"
-  },
-  {
-    "content": "Add HF tools to getAvailableTools() function",
-    "status": "completed",
-    "activeForm": "Adding HF tools to getAvailableTools() function"
-  },
-  {
-    "content": "Add HF tool execution logic to executeTool()",
-    "status": "completed",
-    "activeForm": "Adding HF tool execution logic to executeTool()"
-  },
-  {
-    "content": "Update health endpoint with new tool count and category",
-    "status": "completed",
-    "activeForm": "Updating health endpoint with new tool count and category"
-  },
-  {
-    "content": "Update README.md with HF integration docs",
-    "status": "completed",
-    "activeForm": "Updating README.md with HF integration docs"
-  },
-  {
-    "content": "Test integrated HF tools",
-    "status": "in_progress",
-    "activeForm": "Testing integrated HF tools"
   }
 ]
