@@ -1752,24 +1752,14 @@
     "activeForm": "Waiting for manual deletion via Neon Console"
   },
   {
-    "content": "Phase 2: Create ChittyOS-Core database in Neon Console",
+    "content": "Phase 2: Create ChittyOS-Core database and deploy schema",
     "status": "pending",
     "activeForm": "Creating ChittyOS-Core database"
   },
   {
-    "content": "Phase 2: Deploy ChittyOS-Core schema",
-    "status": "pending",
-    "activeForm": "Deploying ChittyOS-Core schema"
-  },
-  {
-    "content": "Phase 2: Create ChittyLedger database in Neon Console",
+    "content": "Phase 3: Create ChittyLedger database and deploy schema",
     "status": "pending",
     "activeForm": "Creating ChittyLedger database"
-  },
-  {
-    "content": "Phase 2: Deploy ChittyLedger schema",
-    "status": "pending",
-    "activeForm": "Deploying ChittyLedger schema"
   },
   {
     "content": "Investigate Pages Functions deployment path",
