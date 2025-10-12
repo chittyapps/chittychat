@@ -1392,34 +1392,24 @@
     "delegated_at": "2025-10-06T18:44:16Z"
   },
   {
-    "content": "Analyze codebase structure and identify refactoring opportunities",
+    "content": "Find ChittyID blocking error in router",
     "status": "completed",
-    "activeForm": "Analyzing codebase structure"
+    "activeForm": "Finding blocking error"
   },
   {
-    "content": "Fix ESLint unused variable errors (18 issues)",
+    "content": "Fix ChittyID routing to pass through to id.chitty.cc",
     "status": "in_progress",
-    "activeForm": "Fixing ESLint unused variable errors"
+    "activeForm": "Fixing ChittyID routing"
   },
   {
-    "content": "Extract Durable Object classes from index.js to separate files",
+    "content": "Update router configuration for external services",
     "status": "pending",
-    "activeForm": "Extracting Durable Object classes"
+    "activeForm": "Updating router configuration"
   },
   {
-    "content": "Split monolithic handler functions into route modules",
+    "content": "Test ChittyID minting flow",
     "status": "pending",
-    "activeForm": "Splitting handler functions"
-  },
-  {
-    "content": "Consolidate duplicate service handler logic",
-    "status": "pending",
-    "activeForm": "Consolidating service handlers"
-  },
-  {
-    "content": "Run tests and validate changes",
-    "status": "pending",
-    "activeForm": "Running tests and validation"
+    "activeForm": "Testing minting flow"
   },
   {
     "content": "Phase 1.1: Deploy React frontend to Cloudflare Pages",
