@@ -330,31 +330,6 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
-    "content": "Fix GitHub authentication",
-    "status": "completed",
-    "activeForm": "Fixing GitHub auth"
-  },
-  {
-    "content": "Restart sync daemon and verify PID",
-    "status": "completed",
-    "activeForm": "Restarting sync daemon"
-  },
-  {
-    "content": "Test todo watcher responsiveness",
-    "status": "completed",
-    "activeForm": "Testing todo watcher"
-  },
-  {
-    "content": "Audit and restart failed launch agents",
-    "status": "in_progress",
-    "activeForm": "Auditing launch agents"
-  },
-  {
-    "content": "Clean branch of backup files",
-    "status": "pending",
-    "activeForm": "Cleaning branch"
-  },
-  {
     "content": "Fix GitHub authentication and verify access",
     "status": "completed",
     "activeForm": "Fixing GitHub authentication and verifying access"
