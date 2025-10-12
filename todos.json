@@ -1392,6 +1392,36 @@
     "delegated_at": "2025-10-06T18:44:16Z"
   },
   {
+    "content": "Analyze codebase structure and identify refactoring opportunities",
+    "status": "completed",
+    "activeForm": "Analyzing codebase structure"
+  },
+  {
+    "content": "Fix ESLint unused variable errors (18 issues)",
+    "status": "in_progress",
+    "activeForm": "Fixing ESLint unused variable errors"
+  },
+  {
+    "content": "Extract Durable Object classes from index.js to separate files",
+    "status": "pending",
+    "activeForm": "Extracting Durable Object classes"
+  },
+  {
+    "content": "Split monolithic handler functions into route modules",
+    "status": "pending",
+    "activeForm": "Splitting handler functions"
+  },
+  {
+    "content": "Consolidate duplicate service handler logic",
+    "status": "pending",
+    "activeForm": "Consolidating service handlers"
+  },
+  {
+    "content": "Run tests and validate changes",
+    "status": "pending",
+    "activeForm": "Running tests and validation"
+  },
+  {
     "content": "Phase 1.1: Deploy React frontend to Cloudflare Pages",
     "status": "completed",
     "activeForm": "Deploying React frontend to Cloudflare Pages"
