@@ -1814,22 +1814,27 @@
   {
     "content": "Phase 1 & 2: Complete deployment and verification",
     "status": "completed",
-    "activeForm": "Completing Phase 1 & 2 deployment and verification"
+    "activeForm": "Completing Phase 1 & 2"
   },
   {
-    "content": "Fix chicagofurnishedcondos.com domain routing",
-    "status": "in_progress",
-    "activeForm": "Fixing chicagofurnishedcondos.com domain routing"
+    "content": "Fixed chicagofurnishedcondos.com - deployed fresh build to Vercel",
+    "status": "completed",
+    "activeForm": "Fixing chicagofurnishedcondos.com"
+  },
+  {
+    "content": "Created ChatGPT prompt for property database content generation",
+    "status": "completed",
+    "activeForm": "Creating ChatGPT prompt"
+  },
+  {
+    "content": "Populate database with property data (use ChatGPT prompt or DoorLoop export)",
+    "status": "pending",
+    "activeForm": "Populating property database"
   },
   {
     "content": "Build main chico worker with full lead automation",
     "status": "pending",
     "activeForm": "Building main chico worker"
-  },
-  {
-    "content": "Create furnished-condos specialty configuration",
-    "status": "pending",
-    "activeForm": "Creating furnished-condos specialty configuration"
   },
   {
     "content": "Verify all endpoints with curl tests",
