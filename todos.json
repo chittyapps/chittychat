@@ -1,33 +1,33 @@
 [
   {
-    "content": "Analyze current codebase structure and identify refactoring needs",
+    "content": "Create agent-executor output style",
     "status": "completed",
-    "activeForm": "Analyzing current codebase structure and identifying refactoring needs"
-  },
-  {
-    "content": "Create refactoring plan based on analysis",
-    "status": "in_progress",
-    "activeForm": "Creating refactoring plan based on analysis"
+    "activeForm": "Creating agent-executor output style"
   },
   {
     "content": "Remove backup and temporary files",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Removing backup and temporary files"
   },
   {
+    "content": "Fix 2 compliance failures (73% → 80%)",
+    "status": "completed",
+    "activeForm": "Fixing 2 compliance failures"
+  },
+  {
     "content": "Consolidate duplicate service handlers",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Consolidating duplicate service handlers"
   },
   {
-    "content": "Optimize service imports and routing",
-    "status": "pending",
-    "activeForm": "Optimizing service imports and routing"
+    "content": "Optimize platform-worker.js routing",
+    "status": "in_progress",
+    "activeForm": "Optimizing platform-worker.js routing"
   },
   {
-    "content": "Run compliance validation",
+    "content": "Test refactored build",
     "status": "pending",
-    "activeForm": "Running compliance validation"
+    "activeForm": "Testing refactored build"
   },
   {
     "content": "Validate load testing suite with running server",
@@ -330,6 +330,31 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
+    "content": "Fix GitHub authentication",
+    "status": "completed",
+    "activeForm": "Fixing GitHub auth"
+  },
+  {
+    "content": "Restart sync daemon and verify PID",
+    "status": "in_progress",
+    "activeForm": "Restarting sync daemon"
+  },
+  {
+    "content": "Test todo watcher responsiveness",
+    "status": "pending",
+    "activeForm": "Testing todo watcher"
+  },
+  {
+    "content": "Audit and restart failed launch agents",
+    "status": "pending",
+    "activeForm": "Auditing launch agents"
+  },
+  {
+    "content": "Clean branch of backup files",
+    "status": "pending",
+    "activeForm": "Cleaning branch"
+  },
+  {
     "content": "Fix GitHub authentication and verify access",
     "status": "completed",
     "activeForm": "Fixing GitHub authentication and verifying access"
@@ -571,32 +596,32 @@
   },
   {
     "content": "Phase 1: Remove duplicate ChittyIDClient implementation",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Removing duplicate ChittyIDClient implementation"
   },
   {
     "content": "Phase 1: Update all imports to use @chittyos/chittyid-client",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Updating all imports to use @chittyos/chittyid-client"
   },
   {
     "content": "Phase 1: Test ChittyID minting and validation",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Testing ChittyID minting and validation"
   },
   {
     "content": "Phase 2: Consolidate rate limiting to single RateLimiter.js",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Consolidating rate limiting to single RateLimiter.js"
   },
   {
     "content": "Phase 2: Refactor index.js to use RateLimiter middleware",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Refactoring index.js to use RateLimiter middleware"
   },
   {
     "content": "Phase 3: Extract auth endpoints to src/handlers/auth.js",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Extracting auth endpoints to src/handlers/auth.js"
   },
   {
@@ -1505,6 +1530,56 @@
     "content": "Document ChittyAuth integration strategy",
     "status": "pending",
     "activeForm": "Documenting integration"
+  },
+  {
+    "content": "Analyze codebase structure and identify refactoring targets",
+    "status": "completed",
+    "activeForm": "Analyzing codebase structure and identifying refactoring targets"
+  },
+  {
+    "content": "Remove deprecated ChittyID minting implementations (soft/hard/verifiable)",
+    "status": "completed",
+    "activeForm": "Removing deprecated ChittyID minting implementations"
+  },
+  {
+    "content": "Extract duplicate VectorClock to common utility",
+    "status": "in_progress",
+    "activeForm": "Extracting duplicate VectorClock to common utility"
+  },
+  {
+    "content": "Consolidate 3 session sync implementations into unified manager",
+    "status": "pending",
+    "activeForm": "Consolidating session sync implementations"
+  },
+  {
+    "content": "Standardize error handling usage across modules",
+    "status": "pending",
+    "activeForm": "Standardizing error handling usage across modules"
+  },
+  {
+    "content": "Extract common AI agent utilities (parseAIResponse, fallback patterns)",
+    "status": "pending",
+    "activeForm": "Extracting common AI agent utilities"
+  },
+  {
+    "content": "Remove local minting imports from dependent files",
+    "status": "completed",
+    "activeForm": "Removing local minting imports from dependent files"
+  },
+  {
+    "content": "Update wrangler.toml to remove minting bindings if any",
+    "status": "pending",
+    "activeForm": "Updating wrangler.toml to remove minting bindings"
+  },
+  {
+    "content": "Fix TODOs/FIXMEs in flagged files",
+    "status": "pending",
+    "activeForm": "Fixing TODOs/FIXMEs in flagged files"
+  },
+  {
+    "content": "Run test suite to validate refactoring",
+    "status": "pending",
+    "activeForm": "Running test suite to validate refactoring"
   },
   {
     "content": "Phase 1.1: Deploy React frontend to Cloudflare Pages",
@@ -3599,57 +3674,57 @@
   },
   {
     "content": "Create TypeScript interfaces and types module",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Creating TypeScript interfaces and types module"
   },
   {
-    "content": "Extract route handlers into separate modules",
-    "status": "pending",
-    "activeForm": "Extracting route handlers into separate modules"
-  },
-  {
-    "content": "Create dedicated middleware (CORS, auth, rate limiting)",
-    "status": "pending",
-    "activeForm": "Creating dedicated middleware"
-  },
-  {
-    "content": "Extract Stripe operations into service layer",
-    "status": "pending",
-    "activeForm": "Extracting Stripe operations into service layer"
-  },
-  {
-    "content": "Extract ChittyID operations into dedicated service",
-    "status": "pending",
-    "activeForm": "Extracting ChittyID operations into dedicated service"
-  },
-  {
-    "content": "Create router with proper routing logic",
-    "status": "pending",
-    "activeForm": "Creating router with proper routing logic"
-  },
-  {
-    "content": "Add comprehensive error handling",
-    "status": "pending",
-    "activeForm": "Adding comprehensive error handling"
-  },
-  {
-    "content": "Create test suite with Vitest",
-    "status": "pending",
-    "activeForm": "Creating test suite with Vitest"
-  },
-  {
     "content": "Add environment validation and configuration",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Adding environment validation and configuration"
   },
   {
+    "content": "Add comprehensive error handling",
+    "status": "completed",
+    "activeForm": "Adding comprehensive error handling"
+  },
+  {
+    "content": "Extract ChittyID operations into dedicated service",
+    "status": "completed",
+    "activeForm": "Extracting ChittyID operations into dedicated service"
+  },
+  {
+    "content": "Extract Stripe operations into service layer",
+    "status": "completed",
+    "activeForm": "Extracting Stripe operations into service layer"
+  },
+  {
+    "content": "Create dedicated middleware (CORS, auth, rate limiting)",
+    "status": "completed",
+    "activeForm": "Creating dedicated middleware"
+  },
+  {
+    "content": "Extract route handlers into separate modules",
+    "status": "completed",
+    "activeForm": "Extracting route handlers into separate modules"
+  },
+  {
+    "content": "Create router with proper routing logic",
+    "status": "completed",
+    "activeForm": "Creating router with proper routing logic"
+  },
+  {
     "content": "Update main index.ts to use new modular structure",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Updating main index.ts to use new modular structure"
   },
   {
+    "content": "Create test suite with Vitest",
+    "status": "completed",
+    "activeForm": "Creating test suite with Vitest"
+  },
+  {
     "content": "Add API documentation and README",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Adding API documentation and README"
   },
   {
@@ -3926,31 +4001,6 @@
     "content": "Commit all fixes with detailed message",
     "status": "pending",
     "activeForm": "Committing all fixes"
-  },
-  {
-    "content": "Fix missing imports in storage.ts",
-    "status": "completed",
-    "activeForm": "Fixing missing imports in storage.ts"
-  },
-  {
-    "content": "Split routes.ts into feature-based modules",
-    "status": "in_progress",
-    "activeForm": "Splitting routes.ts into feature-based modules"
-  },
-  {
-    "content": "Create standardized error handling middleware",
-    "status": "pending",
-    "activeForm": "Creating standardized error handling middleware"
-  },
-  {
-    "content": "Improve type safety across routes",
-    "status": "pending",
-    "activeForm": "Improving type safety across routes"
-  },
-  {
-    "content": "Refactor AI Agent class",
-    "status": "pending",
-    "activeForm": "Refactoring AI Agent class"
   },
   {
     "content": "Get chitty.cc zone ID from Cloudflare",
@@ -4274,27 +4324,27 @@
   },
   {
     "content": "Consolidate duplicate quickstart files",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Consolidating quickstart files"
   },
   {
     "content": "Archive session reports to reports/archive/",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Archiving session reports"
   },
   {
     "content": "Move .txt artifacts to .artifacts/",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Moving artifacts"
   },
   {
     "content": "Organize docs into docs/guides/",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Organizing documentation"
   },
   {
     "content": "Clean up root-level clutter",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Cleaning root directory"
   },
   {
