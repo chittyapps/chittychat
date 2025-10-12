@@ -21,8 +21,8 @@
   },
   {
     "content": "Optimize platform-worker.js routing",
-    "status": "in_progress",
-    "activeForm": "Optimizing platform-worker.js routing"
+    "status": "completed",
+    "activeForm": "Optimizing platform routing"
   },
   {
     "content": "Test refactored build",
@@ -1528,7 +1528,7 @@
   },
   {
     "content": "Document ChittyAuth integration strategy",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Documenting integration"
   },
   {
@@ -2721,6 +2721,16 @@
     "content": "Run verification checklist",
     "status": "in_progress",
     "activeForm": "Running verification checklist"
+  },
+  {
+    "content": "Phase 2: Create ChittyOS-Core database",
+    "status": "pending",
+    "activeForm": "Creating ChittyOS-Core database"
+  },
+  {
+    "content": "Archive standalone email-worker-repo",
+    "status": "pending",
+    "activeForm": "Archiving email worker"
   },
   {
     "content": "Change aribia.llc MX records to Google Workspace",

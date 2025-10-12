@@ -67,6 +67,13 @@ ROUTER_VERSION = "1.0.0"
 # Production Environment (all services on one worker)
 [env.production]
 name = "chittyos-platform-production"
+
+# Service bindings - ChittySync Hub for todo management
+[[env.production.services]]
+binding = "CHITTYSYNC_HUB"
+service = "chittysync-hub-production"
+environment = "production"
+
 routes = [
   # Core services
   { pattern = "gateway.chitty.cc/*", zone_name = "chitty.cc" },

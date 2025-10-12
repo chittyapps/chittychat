@@ -6,7 +6,7 @@
 
 // Import real service handlers
 import { handleAIGateway } from "./services/ai-gateway.js";
-import { handleLangChain } from "./services/langchain.js";
+import { handleLangChainEnhanced as handleLangChain } from "./services/langchain-enhanced.js";
 import { handleAuth } from "./services/auth.js";
 import { handleID } from "./services/id.js";
 import { handleBeacon } from "./services/beacon.js";
@@ -35,8 +35,7 @@ import {
 // Import ChittyPass - Service #35
 import { handleChittyPass } from "./services/chittypass.js";
 
-// Import LangChain AI and ChittyCases Integration
-import { handleLangChainAI } from "./services/langchain-handler.js";
+// Import ChittyCases Integration
 import { handleChittyCases } from "./services/chittycases-handler.js";
 
 // Import Project Orchestration - Session Management
@@ -82,22 +81,35 @@ function wrapHandler(handler) {
 }
 
 /**
- * Service route mapping for intelligent routing
+ * Service route mapping - Optimized with Map for O(1) lookup
  */
-let SERVICE_ROUTES = {
+const SERVICE_ROUTES_MAP = new Map([
   // Gateway Entry Point - Main platform landing
-  "gateway.chitty.cc": wrapHandler(handleSync), // Main gateway routes to sync/API handler
+  ["gateway.chitty.cc", wrapHandler(handleSync)],
 
   // AI Infrastructure - LIVE
-  "ai.chitty.cc": handleAIGateway, // Uses direct params, no wrapper needed
-  "langchain.chitty.cc": wrapHandler(handleLangChainAI),
-  "cases.chitty.cc": wrapHandler(handleChittyCases),
-  "mcp.chitty.cc": wrapHandler(handleMCP),
-  "portal.chitty.cc": wrapHandler(handleMCP), // MCP Portal uses same handler as mcp.chitty.cc
-  "agents.chitty.cc": wrapHandler(handleAgents),
-  "unified.chitty.cc": wrapHandler(handleUnified),
+  ["ai.chitty.cc", handleAIGateway],
+  ["langchain.chitty.cc", handleLangChain],
+  ["cases.chitty.cc", wrapHandler(handleChittyCases)],
+  ["mcp.chitty.cc", wrapHandler(handleMCP)],
+  ["portal.chitty.cc", wrapHandler(handleMCP)],
+  ["agents.chitty.cc", wrapHandler(handleAgents)],
+  ["unified.chitty.cc", wrapHandler(handleUnified)],
 
   // Core Services - LIVE
+  ["sync.chitty.cc", wrapHandler(handleSync)],
+]);
+
+// Legacy object export for compatibility
+let SERVICE_ROUTES = {
+  "gateway.chitty.cc": wrapHandler(handleSync),
+  "ai.chitty.cc": handleAIGateway,
+  "langchain.chitty.cc": handleLangChain,
+  "cases.chitty.cc": wrapHandler(handleChittyCases),
+  "mcp.chitty.cc": wrapHandler(handleMCP),
+  "portal.chitty.cc": wrapHandler(handleMCP),
+  "agents.chitty.cc": wrapHandler(handleAgents),
+  "unified.chitty.cc": wrapHandler(handleUnified),
   "sync.chitty.cc": wrapHandler(handleSync),
   "api.chitty.cc": wrapHandler(handleSync), // Main API endpoint
   "beacon.chitty.cc": wrapHandler(handleBeacon),
@@ -322,6 +334,14 @@ export default {
     }
 
     try {
+      // Fast-path: Use Map for O(1) hostname lookup
+      const handler = SERVICE_ROUTES_MAP.get(hostname);
+      if (handler) {
+        const response = await handler(request, env, ctx);
+        response.headers.set("X-ChittyOS-RT", Date.now() - startTime);
+        return response;
+      }
+
       // API Documentation - accessible from any domain
       if (pathname.startsWith("/docs")) {
         const context = buildContext(request, env, ctx);
@@ -370,15 +390,17 @@ export default {
 
         const response = await serviceHandler(request, env, ctx);
 
-        // Add platform headers
-        response.headers.set(
-          "X-Platform-Version",
-          env.PLATFORM_VERSION || "1.0.0",
-        );
-        response.headers.set("X-Service-Host", hostname);
-        response.headers.set("X-Response-Time", `${Date.now() - startTime}ms`);
+        // Clone response to add platform headers (service binding responses have immutable headers)
+        const newHeaders = new Headers(response.headers);
+        newHeaders.set("X-Platform-Version", env.PLATFORM_VERSION || "1.0.0");
+        newHeaders.set("X-Service-Host", hostname);
+        newHeaders.set("X-Response-Time", `${Date.now() - startTime}ms`);
 
-        return response;
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: newHeaders,
+        });
       }
 
       // Default handler for unknown routes

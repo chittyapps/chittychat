@@ -1,0 +1,83 @@
+[
+  {
+    "content": "Address 6 documentation quality issues (version IDs, bundle sizes, MCP tool count)",
+    "status": "pending",
+    "activeForm": "Addressing documentation quality issues",
+    "priority": "low",
+    "estimated_time": "30m",
+    "project": "ChittyAuth",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["issues.json", "CLAIM-VERIFICATION-AUDIT.md"],
+    "propagate_to": ["claude-desktop", "chatgpt"]
+  },
+  {
+    "content": "Apply ChittyCheck enhancement pattern (ChittyID health validation) to ChittyRouter",
+    "status": "pending",
+    "activeForm": "Applying ChittyCheck enhancement to ChittyRouter",
+    "priority": "high",
+    "estimated_time": "20m",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["git commit 7d2dcac"],
+    "propagate_to": ["all-chittyos-services"],
+    "service": "chittyrouter"
+  },
+  {
+    "content": "Apply ChittyCheck enhancement pattern (ChittyID health validation) to ChittyChat",
+    "status": "pending",
+    "activeForm": "Applying ChittyCheck enhancement to ChittyChat",
+    "priority": "high",
+    "estimated_time": "20m",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["git commit 7d2dcac"],
+    "propagate_to": ["all-chittyos-services"],
+    "service": "chittychat"
+  },
+  {
+    "content": "Apply ChittyCheck enhancement pattern (ChittyID health validation) to ChittyRegistry",
+    "status": "pending",
+    "activeForm": "Applying ChittyCheck enhancement to ChittyRegistry",
+    "priority": "medium",
+    "estimated_time": "20m",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["git commit 7d2dcac"],
+    "propagate_to": ["all-chittyos-services"],
+    "service": "chittyregistry"
+  },
+  {
+    "content": "Apply ChittyCheck enhancement pattern (ChittyID health validation) to ChittySchema",
+    "status": "pending",
+    "activeForm": "Applying ChittyCheck enhancement to ChittySchema",
+    "priority": "high",
+    "estimated_time": "20m",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["git commit 7d2dcac"],
+    "propagate_to": ["all-chittyos-services"],
+    "service": "chittyschema"
+  },
+  {
+    "content": "Create DEPLOYMENT-VERIFICATION.md template for all ChittyOS services",
+    "status": "pending",
+    "activeForm": "Creating deployment verification template",
+    "priority": "medium",
+    "estimated_time": "30m",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["ChittyAuth DEPLOYMENT-VERIFICATION.md example"],
+    "propagate_to": ["all-chittyos-services"]
+  },
+  {
+    "content": "Create ChittyOS Todo Hub (todos.chitty.cc) with sync API",
+    "status": "pending",
+    "activeForm": "Creating ChittyOS Todo Hub",
+    "priority": "high",
+    "estimated_time": "1h",
+    "project": "ChittyOS Ecosystem",
+    "session_id": "014dc6db-9d22-413b-9f3b-5cb62abb995b",
+    "evidence": ["omnidirectional-sync-design analysis"],
+    "propagate_to": ["all-platforms"]
+  }
+]

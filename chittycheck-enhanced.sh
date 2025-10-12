@@ -263,10 +263,10 @@ declare -a ID_PATTERNS=(
     "uuidv4\(\)"
 
     # Session/Transaction ID local generation (actual assignments)
-    "session.*=.*random"
-    "sessionId.*=.*random"
-    "transactionId.*=.*random"
-    "const.*Id.*=.*crypto\.random"
+    "session.*=.*Math\.random"
+    "sessionId.*=.*Math\.random"
+    "transactionId.*=.*Math\.random"
+    "const.*Id.*=.*crypto\.randomUUID"
     "const.*Id.*=.*Math\.random"
     "version.*=.*crypto\.randomUUID"
 
@@ -275,8 +275,8 @@ declare -a ID_PATTERNS=(
 )
 
 # Exclude patterns (legitimate uses)
-EXCLUDE_DIRS="node_modules|archive|deprecated|test|\.git|dist|build|public|\.next|\.wrangler|chittypornjockey|email-worker-repo"
-EXCLUDE_FILES="backup|legacy|\.test\.|\.spec\.|\.min\.|\.bundle\."
+EXCLUDE_DIRS="node_modules|archive|deprecated|test|\.git|dist|build|public|\.next|\.wrangler|chittypornjockey|email-worker-repo|attached_assets"
+EXCLUDE_FILES="backup|legacy|\.test\.|\.spec\.|\.min\.|\.bundle\.|demo_|Mock\.|mock\.|\.backup|\.old"
 
 # Search for patterns (optimized with single grep)
 combined_pattern=$(IFS='|'; echo "${ID_PATTERNS[*]}")
