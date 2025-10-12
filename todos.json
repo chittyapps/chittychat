@@ -330,6 +330,21 @@
     "activeForm": "Running final validation and generating documentation"
   },
   {
+    "content": "Test persistent agent with legal case context",
+    "status": "in_progress",
+    "activeForm": "Testing persistent agent with legal case context"
+  },
+  {
+    "content": "Train agent on ARIAS v. BIANCHI case materials",
+    "status": "pending",
+    "activeForm": "Training agent on ARIAS v. BIANCHI case materials"
+  },
+  {
+    "content": "Integrate agent memory with evidence vault",
+    "status": "pending",
+    "activeForm": "Integrating agent memory with evidence vault"
+  },
+  {
     "content": "Fix GitHub authentication and verify access",
     "status": "completed",
     "activeForm": "Fixing GitHub authentication and verifying access"
