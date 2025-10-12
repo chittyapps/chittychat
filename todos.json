@@ -455,6 +455,21 @@
     "activeForm": "Implementing ChittyMCP todo sync"
   },
   {
+    "content": "Fix custom route at router.chitty.cc/email",
+    "status": "completed",
+    "activeForm": "Fixing custom route"
+  },
+  {
+    "content": "Run live email test suite",
+    "status": "in_progress",
+    "activeForm": "Running live email tests"
+  },
+  {
+    "content": "Verify R2 archival functionality",
+    "status": "pending",
+    "activeForm": "Verifying R2 archival"
+  },
+  {
     "content": "Analyze email worker project structure and deployment status",
     "status": "completed",
     "activeForm": "Analyzing email worker project structure"
@@ -1732,29 +1747,29 @@
     "activeForm": "Verifying all services"
   },
   {
-    "content": "Execute Phase 1 cleanup (archive 4 dormant databases)",
-    "status": "in_progress",
-    "activeForm": "Executing Phase 1 cleanup - archiving dormant databases"
-  },
-  {
-    "content": "Create ChittyOS-Core unified database",
+    "content": "Phase 1: Delete 4 dormant databases via Neon Console",
     "status": "pending",
-    "activeForm": "Creating ChittyOS-Core unified database"
+    "activeForm": "Waiting for manual deletion via Neon Console"
   },
   {
-    "content": "Create ChittyLedger database",
+    "content": "Phase 2: Create ChittyOS-Core database in Neon Console",
+    "status": "pending",
+    "activeForm": "Creating ChittyOS-Core database"
+  },
+  {
+    "content": "Phase 2: Deploy ChittyOS-Core schema",
+    "status": "pending",
+    "activeForm": "Deploying ChittyOS-Core schema"
+  },
+  {
+    "content": "Phase 2: Create ChittyLedger database in Neon Console",
     "status": "pending",
     "activeForm": "Creating ChittyLedger database"
   },
   {
-    "content": "Deploy schemas to new databases",
+    "content": "Phase 2: Deploy ChittyLedger schema",
     "status": "pending",
-    "activeForm": "Deploying schemas to new databases"
-  },
-  {
-    "content": "Update environment variables and service connections",
-    "status": "pending",
-    "activeForm": "Updating environment variables and service connections"
+    "activeForm": "Deploying ChittyLedger schema"
   },
   {
     "content": "Investigate Pages Functions deployment path",
@@ -3031,46 +3046,6 @@
     "content": "Implement verification validation functions",
     "status": "completed",
     "activeForm": "Implementing verification validation functions"
-  },
-  {
-    "content": "Phase 1: Complete audit of all 9 workspace packages",
-    "status": "completed",
-    "activeForm": "Completing audit of all 9 workspace packages"
-  },
-  {
-    "content": "Phase 2: Decide on @chittyos/chittyid-client naming strategy",
-    "status": "completed",
-    "activeForm": "Deciding on @chittyos/chittyid-client naming strategy"
-  },
-  {
-    "content": "Phase 3: Document connector duplication for future extraction",
-    "status": "completed",
-    "activeForm": "Documenting connector duplication"
-  },
-  {
-    "content": "Phase 4: Standardize tsconfig across all apps using shared config",
-    "status": "in_progress",
-    "activeForm": "Standardizing tsconfig across all apps"
-  },
-  {
-    "content": "Phase 5: Add eslint config usage to all apps",
-    "status": "pending",
-    "activeForm": "Adding eslint config usage to all apps"
-  },
-  {
-    "content": "Phase 6: Create @furnished-condos/utils for common utilities",
-    "status": "pending",
-    "activeForm": "Creating @furnished-condos/utils for common utilities"
-  },
-  {
-    "content": "Phase 7: Verify all apps build successfully after changes",
-    "status": "pending",
-    "activeForm": "Verifying all apps build successfully"
-  },
-  {
-    "content": "Phase 8: Update CLAUDE.md with final package architecture",
-    "status": "pending",
-    "activeForm": "Updating CLAUDE.md with final package architecture"
   },
   {
     "content": "Analyze monorepo state and identify top priority improvements",
