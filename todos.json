@@ -336,17 +336,17 @@
   },
   {
     "content": "Restart sync daemon and verify PID",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Restarting sync daemon"
   },
   {
     "content": "Test todo watcher responsiveness",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Testing todo watcher"
   },
   {
     "content": "Audit and restart failed launch agents",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Auditing launch agents"
   },
   {
