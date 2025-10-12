@@ -1392,24 +1392,24 @@
     "delegated_at": "2025-10-06T18:44:16Z"
   },
   {
-    "content": "Find ChittyID blocking error in router",
+    "content": "Analyze ChittyAuth token issuance architecture",
     "status": "completed",
-    "activeForm": "Finding blocking error"
+    "activeForm": "Analyzing ChittyAuth"
   },
   {
-    "content": "Fix ChittyID routing to pass through to id.chitty.cc",
+    "content": "Map current vs proper authentication flow",
     "status": "in_progress",
-    "activeForm": "Fixing ChittyID routing"
+    "activeForm": "Mapping authentication flows"
   },
   {
-    "content": "Update router configuration for external services",
+    "content": "Create authentication flow diagram",
     "status": "pending",
-    "activeForm": "Updating router configuration"
+    "activeForm": "Creating flow diagram"
   },
   {
-    "content": "Test ChittyID minting flow",
+    "content": "Document ChittyAuth integration strategy",
     "status": "pending",
-    "activeForm": "Testing minting flow"
+    "activeForm": "Documenting integration"
   },
   {
     "content": "Phase 1.1: Deploy React frontend to Cloudflare Pages",
