@@ -1,5 +1,35 @@
 [
   {
+    "content": "Analyze current codebase structure and identify refactoring needs",
+    "status": "completed",
+    "activeForm": "Analyzing current codebase structure and identifying refactoring needs"
+  },
+  {
+    "content": "Create refactoring plan based on analysis",
+    "status": "in_progress",
+    "activeForm": "Creating refactoring plan based on analysis"
+  },
+  {
+    "content": "Remove backup and temporary files",
+    "status": "pending",
+    "activeForm": "Removing backup and temporary files"
+  },
+  {
+    "content": "Consolidate duplicate service handlers",
+    "status": "pending",
+    "activeForm": "Consolidating duplicate service handlers"
+  },
+  {
+    "content": "Optimize service imports and routing",
+    "status": "pending",
+    "activeForm": "Optimizing service imports and routing"
+  },
+  {
+    "content": "Run compliance validation",
+    "status": "pending",
+    "activeForm": "Running compliance validation"
+  },
+  {
     "content": "Validate load testing suite with running server",
     "status": "in_progress",
     "activeForm": "Validating load testing suite with running server"
@@ -533,6 +563,71 @@
     "content": "Test integrated HF tools",
     "status": "in_progress",
     "activeForm": "Testing integrated HF tools"
+  },
+  {
+    "content": "Create git branch for refactoring work",
+    "status": "completed",
+    "activeForm": "Creating git branch for refactoring work"
+  },
+  {
+    "content": "Phase 1: Remove duplicate ChittyIDClient implementation",
+    "status": "in_progress",
+    "activeForm": "Removing duplicate ChittyIDClient implementation"
+  },
+  {
+    "content": "Phase 1: Update all imports to use @chittyos/chittyid-client",
+    "status": "pending",
+    "activeForm": "Updating all imports to use @chittyos/chittyid-client"
+  },
+  {
+    "content": "Phase 1: Test ChittyID minting and validation",
+    "status": "pending",
+    "activeForm": "Testing ChittyID minting and validation"
+  },
+  {
+    "content": "Phase 2: Consolidate rate limiting to single RateLimiter.js",
+    "status": "pending",
+    "activeForm": "Consolidating rate limiting to single RateLimiter.js"
+  },
+  {
+    "content": "Phase 2: Refactor index.js to use RateLimiter middleware",
+    "status": "pending",
+    "activeForm": "Refactoring index.js to use RateLimiter middleware"
+  },
+  {
+    "content": "Phase 3: Extract auth endpoints to src/handlers/auth.js",
+    "status": "pending",
+    "activeForm": "Extracting auth endpoints to src/handlers/auth.js"
+  },
+  {
+    "content": "Phase 3: Extract OAuth endpoints to src/handlers/oauth.js",
+    "status": "pending",
+    "activeForm": "Extracting OAuth endpoints to src/handlers/oauth.js"
+  },
+  {
+    "content": "Phase 3: Extract API key endpoints to src/handlers/api-keys.js",
+    "status": "pending",
+    "activeForm": "Extracting API key endpoints to src/handlers/api-keys.js"
+  },
+  {
+    "content": "Phase 3: Extract token endpoints to src/handlers/tokens.js",
+    "status": "pending",
+    "activeForm": "Extracting token endpoints to src/handlers/tokens.js"
+  },
+  {
+    "content": "Phase 3: Extract verify endpoint to src/handlers/verify.js",
+    "status": "pending",
+    "activeForm": "Extracting verify endpoint to src/handlers/verify.js"
+  },
+  {
+    "content": "Phase 3: Refactor index.js to use extracted handlers",
+    "status": "pending",
+    "activeForm": "Refactoring index.js to use extracted handlers"
+  },
+  {
+    "content": "Run comprehensive test suite and validate deployment",
+    "status": "pending",
+    "activeForm": "Running comprehensive test suite and validating deployment"
   },
   {
     "content": "Copy Chicago Furnished Condos branding to frontdoor",
@@ -1535,6 +1630,41 @@
     "content": "Generate ChittyID Minting Readiness Report with verified data",
     "status": "pending",
     "activeForm": "Generating ChittyID Minting Readiness Report"
+  },
+  {
+    "content": "Analyze current codebase structure and identify refactoring opportunities",
+    "status": "completed",
+    "activeForm": "Analyzing current codebase structure"
+  },
+  {
+    "content": "Create comprehensive refactoring plan",
+    "status": "in_progress",
+    "activeForm": "Creating comprehensive refactoring plan"
+  },
+  {
+    "content": "Refactor environment configuration and dependency injection",
+    "status": "pending",
+    "activeForm": "Refactoring environment configuration"
+  },
+  {
+    "content": "Extract validation logic into separate concerns",
+    "status": "pending",
+    "activeForm": "Extracting validation logic"
+  },
+  {
+    "content": "Improve error handling and type safety",
+    "status": "pending",
+    "activeForm": "Improving error handling"
+  },
+  {
+    "content": "Add configuration validation and documentation",
+    "status": "pending",
+    "activeForm": "Adding configuration validation"
+  },
+  {
+    "content": "Run validation tests after refactoring",
+    "status": "pending",
+    "activeForm": "Running validation tests"
   },
   {
     "content": "Optimize Worker TTFB from 280ms to <200ms (edge caching, query optimization)",
@@ -3463,6 +3593,66 @@
     "activeForm": "Generating comprehensive integration report"
   },
   {
+    "content": "Create modular directory structure (handlers/, middleware/, lib/, types/)",
+    "status": "completed",
+    "activeForm": "Creating modular directory structure"
+  },
+  {
+    "content": "Create TypeScript interfaces and types module",
+    "status": "in_progress",
+    "activeForm": "Creating TypeScript interfaces and types module"
+  },
+  {
+    "content": "Extract route handlers into separate modules",
+    "status": "pending",
+    "activeForm": "Extracting route handlers into separate modules"
+  },
+  {
+    "content": "Create dedicated middleware (CORS, auth, rate limiting)",
+    "status": "pending",
+    "activeForm": "Creating dedicated middleware"
+  },
+  {
+    "content": "Extract Stripe operations into service layer",
+    "status": "pending",
+    "activeForm": "Extracting Stripe operations into service layer"
+  },
+  {
+    "content": "Extract ChittyID operations into dedicated service",
+    "status": "pending",
+    "activeForm": "Extracting ChittyID operations into dedicated service"
+  },
+  {
+    "content": "Create router with proper routing logic",
+    "status": "pending",
+    "activeForm": "Creating router with proper routing logic"
+  },
+  {
+    "content": "Add comprehensive error handling",
+    "status": "pending",
+    "activeForm": "Adding comprehensive error handling"
+  },
+  {
+    "content": "Create test suite with Vitest",
+    "status": "pending",
+    "activeForm": "Creating test suite with Vitest"
+  },
+  {
+    "content": "Add environment validation and configuration",
+    "status": "pending",
+    "activeForm": "Adding environment validation and configuration"
+  },
+  {
+    "content": "Update main index.ts to use new modular structure",
+    "status": "pending",
+    "activeForm": "Updating main index.ts to use new modular structure"
+  },
+  {
+    "content": "Add API documentation and README",
+    "status": "pending",
+    "activeForm": "Adding API documentation and README"
+  },
+  {
     "content": "Verify ChittyAuth deployment and health",
     "status": "completed",
     "activeForm": "Verifying ChittyAuth"
@@ -3736,6 +3926,31 @@
     "content": "Commit all fixes with detailed message",
     "status": "pending",
     "activeForm": "Committing all fixes"
+  },
+  {
+    "content": "Fix missing imports in storage.ts",
+    "status": "completed",
+    "activeForm": "Fixing missing imports in storage.ts"
+  },
+  {
+    "content": "Split routes.ts into feature-based modules",
+    "status": "in_progress",
+    "activeForm": "Splitting routes.ts into feature-based modules"
+  },
+  {
+    "content": "Create standardized error handling middleware",
+    "status": "pending",
+    "activeForm": "Creating standardized error handling middleware"
+  },
+  {
+    "content": "Improve type safety across routes",
+    "status": "pending",
+    "activeForm": "Improving type safety across routes"
+  },
+  {
+    "content": "Refactor AI Agent class",
+    "status": "pending",
+    "activeForm": "Refactoring AI Agent class"
   },
   {
     "content": "Get chitty.cc zone ID from Cloudflare",
@@ -4051,6 +4266,46 @@
     "content": "Verify custom domain and SSL",
     "status": "pending",
     "activeForm": "Verifying domain"
+  },
+  {
+    "content": "Create new directory structure (docs/, reports/, .artifacts/)",
+    "status": "completed",
+    "activeForm": "Creating new directory structure"
+  },
+  {
+    "content": "Consolidate duplicate quickstart files",
+    "status": "in_progress",
+    "activeForm": "Consolidating quickstart files"
+  },
+  {
+    "content": "Archive session reports to reports/archive/",
+    "status": "pending",
+    "activeForm": "Archiving session reports"
+  },
+  {
+    "content": "Move .txt artifacts to .artifacts/",
+    "status": "pending",
+    "activeForm": "Moving artifacts"
+  },
+  {
+    "content": "Organize docs into docs/guides/",
+    "status": "pending",
+    "activeForm": "Organizing documentation"
+  },
+  {
+    "content": "Clean up root-level clutter",
+    "status": "pending",
+    "activeForm": "Cleaning root directory"
+  },
+  {
+    "content": "Update README.md with new structure",
+    "status": "pending",
+    "activeForm": "Updating README"
+  },
+  {
+    "content": "Validate structure and run git status",
+    "status": "pending",
+    "activeForm": "Validating structure"
   },
   {
     "content": "Audit complete ChittyOS-Data ecosystem for missing tools and documentation",
