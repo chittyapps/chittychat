@@ -2723,21 +2723,6 @@
     "activeForm": "Running verification checklist"
   },
   {
-    "content": "Fix Evidence Intake Script",
-    "status": "completed",
-    "activeForm": "Fixing evidence intake"
-  },
-  {
-    "content": "Read ARIBIA LLC Operating Agreement",
-    "status": "in_progress",
-    "activeForm": "Reading operating agreement"
-  },
-  {
-    "content": "Extract entity data from documents",
-    "status": "pending",
-    "activeForm": "Extracting entity data"
-  },
-  {
     "content": "Change aribia.llc MX records to Google Workspace",
     "status": "completed",
     "activeForm": "Changing aribia.llc DNS to Google MX"
