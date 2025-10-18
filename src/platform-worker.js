@@ -49,6 +49,9 @@ import { handleProjectInitiation } from "./services/project-initiation.js";
 import { handleDocs } from "./services/docs.js";
 import { createKVCache } from "./lib/cache.js";
 
+// Import Ontology Service
+import { handleOntologyRequest } from "./services/ontology-routes.js";
+
 /**
  * Build context object for service handlers
  */
@@ -107,6 +110,7 @@ let SERVICE_ROUTES = {
   "registry.chitty.cc": wrapHandler(handleRegistry),
   "canon.chitty.cc": wrapHandler(handleCanon),
   "verify.chitty.cc": handlePlaceholderService("ChittyVerify"),
+  "ontology.chitty.cc": wrapHandler(handleOntologyRequest),
   "chat.chitty.cc": wrapHandler(handleChat),
 
   // Project Management - Session Orchestration

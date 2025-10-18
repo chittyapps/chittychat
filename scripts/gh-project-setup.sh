@@ -46,8 +46,15 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 if ! python3 -c "import yaml" 2>/dev/null; then
-    echo -e "${YELLOW}Installing PyYAML...${RESET}"
-    pip3 install pyyaml
+    echo -e "${YELLOW}PyYAML not found. Installing...${RESET}"
+    pip3 install --user pyyaml 2>/dev/null || {
+        echo -e "${RED}Failed to install PyYAML. Trying with --break-system-packages...${RESET}"
+        pip3 install --break-system-packages pyyaml || {
+            echo -e "${RED}Could not install PyYAML. Please install manually:${RESET}"
+            echo "  pip3 install --user pyyaml"
+            exit 1
+        }
+    }
 fi
 
 echo -e "${CYAN}${BOLD}GitHub Project Setup${RESET}"
@@ -66,7 +73,7 @@ echo ""
 
 # Step 1: Create Labels
 echo -e "${CYAN}${BOLD}📍 Creating Labels${RESET}"
-python3 << 'LABELS_EOF'
+python3 - "$CONFIG_FILE" << 'END_LABELS'
 import yaml
 import json
 import sys
@@ -95,15 +102,13 @@ for label in labels:
             print(f"❌ Error: {result.stderr.strip()}")
     except Exception as e:
         print(f"❌ Error creating label {name}: {e}")
-LABELS_EOF
-
-python3 "$CONFIG_FILE"
+END_LABELS
 
 echo ""
 
 # Step 2: Create Milestones
 echo -e "${CYAN}${BOLD}🎯 Creating Milestones${RESET}"
-python3 << 'MILESTONES_EOF'
+python3 - "$CONFIG_FILE" << 'END_MILES'
 import yaml
 import json
 import sys
@@ -152,15 +157,13 @@ for milestone in milestones:
 # Save milestone map for issue creation
 with open('/tmp/milestone_map.json', 'w') as f:
     json.dump(milestone_map, f)
-MILESTONES_EOF
-
-python3 "$CONFIG_FILE"
+END_MILES
 
 echo ""
 
 # Step 3: Create Issues
 echo -e "${CYAN}${BOLD}📝 Creating Issues${RESET}"
-python3 << 'ISSUES_EOF'
+python3 - "$CONFIG_FILE" << 'END_ISSUES'
 import yaml
 import json
 import sys
@@ -207,9 +210,7 @@ for issue in issues:
             print(f"   {result.stderr.strip()}")
     except Exception as e:
         print(f"❌ Error: {e}")
-ISSUES_EOF
-
-python3 "$CONFIG_FILE"
+END_ISSUES
 
 echo ""
 echo -e "${GREEN}${BOLD}✨ Project setup complete!${RESET}"

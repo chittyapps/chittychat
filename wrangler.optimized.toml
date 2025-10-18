@@ -21,6 +21,23 @@ binding = "AI"
 # binding = "PLATFORM_KV"
 # id = "b2d174ca8aec43beabae50669f465396"
 
+# GitHub App KV namespaces (create these with: wrangler kv:namespace create <NAME>)
+# [[kv_namespaces]]
+# binding = "IDEMP_KV"
+# id = "to-be-created-idempotency"
+
+# [[kv_namespaces]]
+# binding = "TOKEN_KV"
+# id = "to-be-created-token-cache"
+
+# [[kv_namespaces]]
+# binding = "TENANT_KV"
+# id = "to-be-created-tenant-mapping"
+
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "to-be-created-rate-limiting"
+
 # Shared R2 buckets - commented until R2 is enabled
 # [[r2_buckets]]
 # binding = "PLATFORM_STORAGE"
@@ -29,6 +46,17 @@ binding = "AI"
 # [[r2_buckets]]
 # binding = "AUDIT_LOGS"
 # bucket_name = "chittyos-audit-logs"
+
+# GitHub Webhook Queue (create with: wrangler queues create github-webhook-queue)
+# [[queues.producers]]
+# binding = "GITHUB_WEBHOOK_QUEUE"
+# queue = "github-webhook-queue"
+
+# Queue consumer for async webhook processing
+# [[queues.consumers]]
+# queue = "github-webhook-queue"
+# max_batch_size = 10
+# max_batch_timeout = 30
 
 # Shared Vectorize (multi-dimensional) - commented until enabled
 # [[vectorize]]
@@ -70,6 +98,13 @@ DATA_REPO_OWNER = "chitcommit"
 DATA_REPO_NAME = "chittychat-data"
 CHITTYROUTER_URL = "https://router.chitty.cc"
 
+# GitHub App Configuration
+# GITHUB_APP_ID = "your-app-id"
+# GITHUB_APP_PK = "your-pem-private-key"
+# GITHUB_WEBHOOK_SECRET = "your-webhook-secret"
+# MCP_DISPATCH_URL = "https://mcp.chitty.cc/dispatch"
+# CHITTYCHAIN_URL = "https://chain.chitty.cc"
+
 # Production Environment (all services on one worker)
 [env.production]
 name = "chittyos-platform-production"
@@ -106,6 +141,7 @@ routes = [
   { pattern = "registry.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "canon.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "verify.chitty.cc/*", zone_name = "chitty.cc" },
+  { pattern = "ontology.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "chat.chitty.cc/*", zone_name = "chitty.cc" },
 
   # Project Management

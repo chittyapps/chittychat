@@ -1,0 +1,287 @@
+project:
+  name: "ChittyChat Platform"
+  repo: "chittyos/chittychat"
+  description: "Unified Cloudflare Workers platform consolidating 34+ ChittyOS services"
+
+labels:
+  # Priority
+  - name: "priority:critical"
+    description: "Critical priority - blocking operations"
+    color: "d73a4a"
+
+  - name: "priority:high"
+    description: "High priority - important features/fixes"
+    color: "ff6b6b"
+
+  - name: "priority:medium"
+    description: "Medium priority - normal workflow"
+    color: "ffa502"
+
+  - name: "priority:low"
+    description: "Low priority - nice to have"
+    color: "0984e3"
+
+  # Type
+  - name: "type:feature"
+    description: "New feature or enhancement"
+    color: "a2eeef"
+
+  - name: "type:bug"
+    description: "Bug fix"
+    color: "d73a4a"
+
+  - name: "type:refactor"
+    description: "Code refactoring"
+    color: "fbca04"
+
+  - name: "type:documentation"
+    description: "Documentation updates"
+    color: "0075ca"
+
+  - name: "type:infrastructure"
+    description: "Infrastructure and tooling"
+    color: "c2e0c6"
+
+  # Service/Component
+  - name: "service:platform"
+    description: "Platform worker core"
+    color: "bfdaff"
+
+  - name: "service:ai-gateway"
+    description: "AI Gateway service"
+    color: "bfdaff"
+
+  - name: "service:auth"
+    description: "Authentication service"
+    color: "bfdaff"
+
+  - name: "service:sync"
+    description: "Database sync service"
+    color: "bfdaff"
+
+  - name: "service:registry"
+    description: "Service registry"
+    color: "bfdaff"
+
+  # ChittyOS
+  - name: "chittyos:compliance"
+    description: "ChittyOS compliance and standards"
+    color: "7057ff"
+
+  - name: "chittyos:chittyid"
+    description: "ChittyID integration"
+    color: "7057ff"
+
+  - name: "chittyos:schema"
+    description: "ChittySchema integration"
+    color: "7057ff"
+
+  # Status
+  - name: "status:blocked"
+    description: "Blocked by dependencies"
+    color: "e11d48"
+
+  - name: "status:in-progress"
+    description: "Currently being worked on"
+    color: "10b981"
+
+  - name: "status:needs-review"
+    description: "Needs code review"
+    color: "f59e0b"
+
+milestones:
+  - title: "v1.0.0 - Platform Consolidation"
+    description: "Complete consolidation of 34+ services into unified platform worker"
+    due_date: "2025-11-01"
+    state: "open"
+
+  - title: "v1.1.0 - Optimization & Performance"
+    description: "Performance optimization, caching strategies, bundle size reduction"
+    due_date: "2025-11-15"
+    state: "open"
+
+  - title: "v1.2.0 - Enhanced Monitoring"
+    description: "Comprehensive monitoring, logging, and observability"
+    due_date: "2025-12-01"
+    state: "open"
+
+  - title: "v2.0.0 - Multi-Tenant Architecture"
+    description: "Full multi-tenant support with isolation and resource management"
+    due_date: "2025-12-31"
+    state: "open"
+
+issues:
+  # Platform Core
+  - title: "Validate platform worker consolidation"
+    body: |
+      **Description**
+      Validate that all 34+ services are properly consolidated into the unified platform worker.
+
+      **Tasks**
+      - [ ] Verify all service handlers are registered
+      - [ ] Test routing for each service endpoint
+      - [ ] Validate shared resource bindings
+      - [ ] Check backward compatibility with legacy subdomains
+
+      **Success Criteria**
+      - All services respond to health checks
+      - No 404s on legacy routes
+      - Shared AI/KV/DB bindings working
+    milestone: "v1.0.0 - Platform Consolidation"
+    labels:
+      - "type:infrastructure"
+      - "service:platform"
+      - "priority:critical"
+    state: "open"
+
+  - title: "ChittyID compliance validation"
+    body: |
+      **Description**
+      Ensure all ChittyID generation goes through id.chitty.cc - no local generation.
+
+      **Tasks**
+      - [ ] Run chittycheck validation
+      - [ ] Remove any local ID generation patterns
+      - [ ] Verify proxy-only implementation
+      - [ ] Test offline behavior (should fail gracefully)
+
+      **Reference**
+      - ChittyID is sole authority
+      - No fallback generation allowed
+      - Evidence uses CT- prefix
+    milestone: "v1.0.0 - Platform Consolidation"
+    labels:
+      - "chittyos:compliance"
+      - "chittyos:chittyid"
+      - "priority:critical"
+    state: "open"
+
+  - title: "Optimize bundle size for 10MB limit"
+    body: |
+      **Description**
+      Cloudflare Workers have a 10MB size limit. Need to optimize bundle to stay well under.
+
+      **Tasks**
+      - [ ] Analyze current bundle size
+      - [ ] Identify largest dependencies
+      - [ ] Implement code splitting where possible
+      - [ ] Remove unused code
+      - [ ] Use dynamic imports for large modules
+
+      **Target**
+      - Bundle size < 8MB (80% of limit)
+      - Cold start < 100ms
+    milestone: "v1.1.0 - Optimization & Performance"
+    labels:
+      - "type:refactor"
+      - "priority:high"
+    state: "open"
+
+  - title: "Implement comprehensive health checks"
+    body: |
+      **Description**
+      Add health checks for all services, bindings, and external dependencies.
+
+      **Tasks**
+      - [ ] Service-level health endpoints
+      - [ ] Database connectivity checks
+      - [ ] AI binding validation
+      - [ ] KV/R2 availability
+      - [ ] External API health (ChittyID, Registry)
+
+      **Output**
+      - /health/detailed endpoint
+      - Prometheus-compatible metrics
+    milestone: "v1.2.0 - Enhanced Monitoring"
+    labels:
+      - "type:feature"
+      - "service:platform"
+      - "priority:medium"
+    state: "open"
+
+  - title: "Documentation: Service routing architecture"
+    body: |
+      **Description**
+      Document the unified routing architecture and service consolidation strategy.
+
+      **Content**
+      - Path-based routing (`/api/{service}/*`)
+      - Subdomain backward compatibility
+      - Shared resource bindings
+      - Service handler patterns
+      - Migration guide from legacy workers
+
+      **Location**
+      - docs/architecture/ROUTING.md
+    milestone: "v1.0.0 - Platform Consolidation"
+    labels:
+      - "type:documentation"
+      - "priority:medium"
+    state: "open"
+
+  - title: "Sync service stability improvements"
+    body: |
+      **Description**
+      Improve reliability and error handling for Neon ↔ Notion/Sheets sync.
+
+      **Tasks**
+      - [ ] Add retry logic with exponential backoff
+      - [ ] Implement conflict resolution
+      - [ ] Add webhook validation
+      - [ ] Improve error logging
+      - [ ] Add sync status monitoring
+
+      **Metrics**
+      - 99.9% sync success rate
+      - < 5 minute sync latency
+    milestone: "v1.1.0 - Optimization & Performance"
+    labels:
+      - "type:feature"
+      - "service:sync"
+      - "priority:high"
+    state: "open"
+
+  - title: "AI Gateway optimization"
+    body: |
+      **Description**
+      Optimize AI Gateway for latency and cost efficiency.
+
+      **Tasks**
+      - [ ] Implement response caching
+      - [ ] Add request batching
+      - [ ] Optimize prompt templates
+      - [ ] Add rate limiting per tenant
+      - [ ] Monitor token usage
+
+      **Goals**
+      - < 500ms p95 latency
+      - 30% cost reduction through caching
+    milestone: "v1.1.0 - Optimization & Performance"
+    labels:
+      - "type:refactor"
+      - "service:ai-gateway"
+      - "priority:high"
+    state: "open"
+
+  - title: "Multi-tenant resource isolation"
+    body: |
+      **Description**
+      Implement proper multi-tenant architecture with resource isolation.
+
+      **Tasks**
+      - [ ] Tenant identification and auth
+      - [ ] Resource quotas and limits
+      - [ ] Isolated KV namespaces
+      - [ ] Separate D1 databases per tenant
+      - [ ] Billing and usage tracking
+
+      **Architecture**
+      - Durable Objects for tenant state
+      - KV for tenant config
+      - D1 for tenant data
+    milestone: "v2.0.0 - Multi-Tenant Architecture"
+    labels:
+      - "type:feature"
+      - "service:platform"
+      - "priority:medium"
+    state: "open"

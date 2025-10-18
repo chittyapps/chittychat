@@ -192,6 +192,58 @@ const API_DOCS_JSON = {
       ],
     },
 
+    ontology: {
+      name: "Ontology Service",
+      baseUrl: "https://ontology.chitty.cc",
+      description: "Entity classification and discovery using ChittyOS ontology rules",
+      classification_order: [
+        "1. Registry entities (highest precedence)",
+        "2. Legal patterns (arias*, legal*)",
+        "3. Version control (.git)",
+        "4. Unstructured data (default)",
+      ],
+      endpoints: [
+        {
+          path: "/classify",
+          methods: ["GET", "POST"],
+          description: "Classify a single entity",
+          request: {
+            entity: "string (path or identifier)",
+          },
+          response: {
+            type: "entity type (services, legal_data, etc.)",
+            category: "classification category",
+            source: "registry | pattern_detection | default",
+            precedence: "number (1-4)",
+          },
+        },
+        {
+          path: "/batch-classify",
+          method: "POST",
+          description: "Classify multiple entities in batch",
+          request: {
+            entities: ["array of entity paths"],
+          },
+        },
+        {
+          path: "/types",
+          method: "GET",
+          description: "List all valid entity types and classification rules",
+        },
+        {
+          path: "/lookup",
+          method: "GET",
+          description: "Lookup hybrid ID mapping",
+          query: "?id=CHITTY-ID",
+        },
+        {
+          path: "/health",
+          method: "GET",
+          description: "Health check for ontology service",
+        },
+      ],
+    },
+
     ai: {
       name: "AI Gateway",
       baseUrl: "https://ai.chitty.cc",
