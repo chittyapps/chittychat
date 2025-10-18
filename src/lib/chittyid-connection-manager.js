@@ -28,6 +28,7 @@ export class ChittyIDConnectionManager {
   constructor(options = {}) {
     this.serviceUrl = options.serviceUrl || "https://id.chitty.cc";
     this.apiKey = options.apiKey;
+    this.healthPath = options.healthPath || "/health";
     this.healthCheckInterval = options.healthCheckInterval || 30000; // 30s
     this.reconnectDelay = options.reconnectDelay || 1000; // Start at 1s
     this.maxReconnectDelay = options.maxReconnectDelay || 60000; // Max 60s
@@ -114,7 +115,9 @@ export class ChittyIDConnectionManager {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
 
-      const response = await fetch(`${this.serviceUrl}/health`, {
+      const base = this.serviceUrl.replace(/\/$/, "");
+      const path = this.healthPath.startsWith("/") ? this.healthPath : `/${this.healthPath}`;
+      const response = await fetch(`${base}${path}`, {
         method: "GET",
         signal: controller.signal,
         headers: this.apiKey

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json.schemastore.org/aspire-8.0.json",
+  "resources": {
+    "chittyos-platform": {
+      "type": "project.v0",
+      "connectionString": "https://gateway.chitty.cc",
+      "env": {
+        "ENVIRONMENT": "production",
+        "PLATFORM_VERSION": "1.0.0"
+      }
+    },
+    "project-initiation": {
+      "type": "container.v0",
+      "image": "cloudflare/workers:latest",
+      "connectionString": "https://initiate.chitty.cc",
+      "env": {
+        "SERVICE_NAME": "project-initiation",
+        "SERVICE_VERSION": "1.0.0",
+        "CHITTYID_URL": "https://id.chitty.cc",
+        "DATA_REPO_OWNER": "chitcommit",
+        "DATA_REPO_NAME": "chittychat-data"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "health": {
+      "url": "https://initiate.chitty.cc/health",
+      "type": "http",
+      "interval": "30s",
+      "timeout": "5s"
+    },
+    "health-secure": {
+      "url": "https://initiate.chitty.cc/health/secure",
+      "type": "http",
+      "interval": "60s",
+      "timeout": "10s",
+      "headers": {
+        "Authorization": "Bearer ${CHITTY_ID_TOKEN}"
+      }
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics": {
+      "provider": "cloudflare",
+      "endpoint": "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/chittyos-platform-production/metrics",
+      "interval": "60s"
+    },
+    "logs": {
+      "provider": "cloudflare",
+      "endpoint": "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/scripts/chittyos-platform-production/logs",
+      "level": "info"
+    },
+    "traces": {
+      "enabled": false
+    }
+  },
+  "deployment": {
+    "strategy": "blue-green",
+    "autoRollback": true,
+    "healthCheckTimeout": "60s",
+    "minimumHealthyDuration": "120s"
+  }
+}

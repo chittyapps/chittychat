@@ -144,9 +144,9 @@ chittyos_services() {
     echo "  • Auth:         $AUTH_SERVICE"
     echo "  • Cert:         $CERT_SERVICE"
 
-    echo -e "\n${BOLD}Data Services:${RESET}"
+    echo -e "\n${BOLD}Data Services (Evidential):${RESET}"
     echo "  • Evidence:     $EVIDENCE_SERVICE"
-    echo "  • Ledger:       $LEDGER_SERVICE"
+    echo "  • Ledger:       $LEDGER_SERVICE (evidential + financial)"
     echo "  • Chronicle:    $CHRONICLE_SERVICE"
 
     echo -e "\n${BOLD}Communication:${RESET}"
@@ -156,6 +156,7 @@ chittyos_services() {
     echo "  • Router:       $ROUTER_SERVICE"
 
     echo -e "\n${BOLD}Financial:${RESET}"
+    echo "  • Ledger:       $LEDGER_SERVICE (evidential + financial)"
     echo "  • Accounts:     $ACCOUNTS_SERVICE"
     echo "  • Payments:     $PAYMENTS_SERVICE"
     echo "  • Billing:      $BILLING_SERVICE"

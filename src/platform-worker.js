@@ -10,6 +10,7 @@ import { handleLangChainEnhanced as handleLangChain } from "./services/langchain
 import { handleAuth } from "./services/auth.js";
 import { handleID } from "./services/id.js";
 import { handleBeacon } from "./services/beacon.js";
+import { handleContext } from "./services/context.js";
 
 // Import stub handlers for services in development
 import {
@@ -41,27 +42,24 @@ import { handleChittyCases } from "./services/chittycases-handler.js";
 // Import Project Orchestration - Session Management
 import { handleProjectOrchestration } from "./services/project-orchestrator.js";
 
+// Import Project Initiation - GitHub Project Setup
+import { handleProjectInitiation } from "./services/project-initiation.js";
+
 // Import API Documentation Service
 import { handleDocs } from "./services/docs.js";
+import { createKVCache } from "./lib/cache.js";
 
 /**
  * Build context object for service handlers
  */
 function buildContext(request, env, ctx) {
+  const cache = createKVCache(env.PLATFORM_CACHE);
+
   return {
     request,
     env,
     ctx,
-    cache: {
-      get: async (key) => env.PLATFORM_CACHE?.get(key),
-      put: async (key, value, options) =>
-        env.PLATFORM_CACHE?.put(key, value, options),
-      set: async (key, value, namespace, ttl) => {
-        const options = {};
-        if (ttl) options.expirationTtl = ttl;
-        return env.PLATFORM_CACHE?.put(key, value, options);
-      },
-    },
+    cache,
     userDb: env.PLATFORM_DB,
     platformDb: env.PLATFORM_DB,
     cacheDb: env.PLATFORM_CACHE,
@@ -81,24 +79,10 @@ function wrapHandler(handler) {
 }
 
 /**
- * Service route mapping - Optimized with Map for O(1) lookup
+ * Service route mapping - single source of truth is SERVICE_ROUTES object
+ * We'll derive a Map from it for O(1) lookups.
  */
-const SERVICE_ROUTES_MAP = new Map([
-  // Gateway Entry Point - Main platform landing
-  ["gateway.chitty.cc", wrapHandler(handleSync)],
-
-  // AI Infrastructure - LIVE
-  ["ai.chitty.cc", handleAIGateway],
-  ["langchain.chitty.cc", handleLangChain],
-  ["cases.chitty.cc", wrapHandler(handleChittyCases)],
-  ["mcp.chitty.cc", wrapHandler(handleMCP)],
-  ["portal.chitty.cc", wrapHandler(handleMCP)],
-  ["agents.chitty.cc", wrapHandler(handleAgents)],
-  ["unified.chitty.cc", wrapHandler(handleUnified)],
-
-  // Core Services - LIVE
-  ["sync.chitty.cc", wrapHandler(handleSync)],
-]);
+let SERVICE_ROUTES_MAP = new Map();
 
 // Legacy object export for compatibility
 let SERVICE_ROUTES = {
@@ -113,6 +97,7 @@ let SERVICE_ROUTES = {
   "sync.chitty.cc": wrapHandler(handleSync),
   "api.chitty.cc": wrapHandler(handleSync), // Main API endpoint
   "beacon.chitty.cc": wrapHandler(handleBeacon),
+  "context.chitty.cc": wrapHandler(handleContext),
 
   // Identity & Auth - LIVE
   "id.chitty.cc": wrapHandler(handleID),
@@ -128,6 +113,9 @@ let SERVICE_ROUTES = {
   "projects.chitty.cc": wrapHandler(handleProjectOrchestration),
   // NOTE: Session sync moved to sync.chitty.cc/api/session
   // NOTE: Consolidation moved to sync.chitty.cc/local/consolidate
+
+  // Project Initiation - GitHub Project Setup
+  "initiate.chitty.cc": wrapHandler(handleProjectInitiation),
 
   // Data Services - LIVE
   "schema.chitty.cc": handlePlaceholderService("Schema Registry"),
@@ -168,6 +156,9 @@ let SERVICE_ROUTES = {
 
 // Add status monitoring routes
 SERVICE_ROUTES = setupStatusRoutes(SERVICE_ROUTES);
+
+// Derive fast lookup map from routes object
+SERVICE_ROUTES_MAP = new Map(Object.entries(SERVICE_ROUTES));
 
 /**
  * Placeholder service handler for services in development
@@ -222,7 +213,7 @@ async function handleDefault(request, env, ctx) {
     JSON.stringify({
       error: "Service Not Found",
       message: `No handler found for ${url.hostname}`,
-      availableServices: Object.keys(SERVICE_ROUTES),
+      availableServices: Array.from(SERVICE_ROUTES_MAP.keys()),
       timestamp: new Date().toISOString(),
       version: env.PLATFORM_VERSION || "1.0.0",
     }),
@@ -338,8 +329,15 @@ export default {
       const handler = SERVICE_ROUTES_MAP.get(hostname);
       if (handler) {
         const response = await handler(request, env, ctx);
-        response.headers.set("X-ChittyOS-RT", Date.now() - startTime);
-        return response;
+        const newHeaders = new Headers(response.headers);
+        newHeaders.set("X-ChittyOS-RT", `${Date.now() - startTime}`);
+        newHeaders.set("X-Service-Host", hostname);
+        newHeaders.set("X-Platform-Version", env.PLATFORM_VERSION || "1.0.0");
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: newHeaders,
+        });
       }
 
       // API Documentation - accessible from any domain
@@ -371,8 +369,10 @@ export default {
       // Check for path-based routing (e.g., gateway.chitty.cc/pass)
       let serviceHandler = null;
 
-      // ChittyPass path-based routing
-      if (pathname.startsWith("/pass")) {
+      // Path-based routing for API services
+      if (pathname.startsWith("/api/initiate/")) {
+        serviceHandler = wrapHandler(handleProjectInitiation);
+      } else if (pathname.startsWith("/pass")) {
         serviceHandler = wrapHandler(handleChittyPass);
       } else {
         // Route to appropriate service handler based on hostname/subdomain

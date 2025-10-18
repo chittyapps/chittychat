@@ -10,3 +10,13 @@ coverage/
 .vscode/
 .idea/
 .chittycheck/
+
+# Cutover artifacts
+# Env files (keep sample tracked)
+.env.*
+!.env.sample
+# DB dumps and globals
+*.dump
+*.globals.sql
+# State directory
+.cutover_state/

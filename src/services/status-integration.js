@@ -4,6 +4,7 @@
  */
 
 import { handleChittyStatusMonitor } from './chitty-status-monitor.js';
+import { createKVCache, withNamespace } from '../lib/cache.js';
 
 /**
  * Add status route to platform worker
@@ -24,8 +25,7 @@ async function handleStatusWrapper(request, env, ctx) {
     env,
     ctx,
     cache: {
-      get: async (key) => env.PLATFORM_CACHE?.get(key),
-      put: async (key, value, options) => env.PLATFORM_CACHE?.put(key, value, options)
+      ...createKVCache(env.PLATFORM_CACHE)
     },
     userDb: env.PLATFORM_DB,
     platformDb: env.PLATFORM_DB,

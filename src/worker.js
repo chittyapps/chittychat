@@ -3,6 +3,8 @@
  * Provides sync services at sync.chitty.cc and viewer.chitty.cc
  */
 
+import { getChittyId, sanitizeIdentifier, sha256Hex, corsHeaders } from "./lib/chittyid.js";
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -35,13 +37,7 @@ async function handleSyncService(request, env) {
 
   // CORS
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      headers: {
-        "access-control-allow-origin": "*",
-        "access-control-allow-methods": "GET, POST, PUT, DELETE",
-        "access-control-allow-headers": "content-type",
-      },
-    });
+    return new Response(null, { headers: corsHeaders() });
   }
 
   // Route sync endpoints
@@ -100,13 +96,7 @@ async function handleViewerService(request, env) {
 
   // CORS for read operations
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      headers: {
-        "access-control-allow-origin": "*",
-        "access-control-allow-methods": "GET",
-        "access-control-allow-headers": "content-type",
-      },
-    });
+    return new Response(null, { headers: corsHeaders() });
   }
 
   // Route viewer endpoints
@@ -268,17 +258,21 @@ async function getSyncStatus(env) {
 
 async function viewData(tableName, env) {
   try {
+    tableName = sanitizeIdentifier(tableName);
+    
     // Query with read-only transaction
     const data = await env.DB.prepare(
       `SELECT * FROM ${tableName} LIMIT 100`,
     ).all();
 
     // Calculate hashes for integrity
-    const dataWithHashes = data.results.map((row) => ({
-      ...row,
-      _integrity_hash: calculateHash(row),
-      _verified: true,
-    }));
+    const dataWithHashes = await Promise.all(
+      data.results.map(async (row) => ({
+        ...row,
+        _integrity_hash: await sha256Hex(row),
+        _verified: true,
+      }))
+    );
 
     // Log access to audit
     await logAuditEvent(env, {
@@ -325,10 +319,10 @@ async function getProof(chittyId, env) {
 
     const proof = {
       chitty_id: chittyId,
-      data_hash: calculateHash(record),
+      data_hash: await sha256Hex(record),
       timestamp: record.created_at,
-      merkle_root: calculateMerkleRoot([record]),
-      signature: generateSignature(record),
+      merkle_root: await calculateMerkleRoot([record]),
+      signature: await generateSignature(record),
       verification_method: "SHA-256",
       immutable: true,
     };
@@ -351,22 +345,26 @@ async function getProof(chittyId, env) {
 
 async function verifyIntegrity(tableName, env) {
   try {
+    tableName = sanitizeIdentifier(tableName);
+    
     const sample = await env.DB.prepare(
       `SELECT * FROM ${tableName} ORDER BY RANDOM() LIMIT 10`,
     ).all();
 
-    const verificationResults = sample.results.map((row) => {
-      const currentHash = calculateHash(row);
-      const storedHash = row.data_hash || row.hash;
+    const verificationResults = await Promise.all(
+      sample.results.map(async (row) => {
+        const currentHash = await sha256Hex(row);
+        const storedHash = row.data_hash || row.hash;
 
-      return {
-        id: row.chitty_id || row.id,
-        current_hash: currentHash,
-        stored_hash: storedHash,
-        match: currentHash === storedHash,
-        timestamp: new Date().toISOString(),
-      };
-    });
+        return {
+          id: row.chitty_id || row.id,
+          current_hash: currentHash,
+          stored_hash: storedHash,
+          match: currentHash === storedHash,
+          timestamp: new Date().toISOString(),
+        };
+      })
+    );
 
     const allValid = verificationResults.every((r) => r.match !== false);
 
@@ -417,32 +415,23 @@ async function getAuditLog(env) {
 }
 
 async function logAuditEvent(env, event) {
-  const key = `audit-${Date.now()}-${await this.generateChittyId().substr(2, 9)}`;
+  const chittyId = await getChittyId(env, "audit");
+  const key = `audit-${Date.now()}-${chittyId.substr(2, 9)}`;
   await env.AUDIT_LOGS.put(key, JSON.stringify(event));
 }
 
-function calculateHash(data) {
-  const encoder = new TextEncoder();
-  const dataString = JSON.stringify(data, Object.keys(data).sort());
-  const dataBuffer = encoder.encode(dataString);
-  return btoa(String.fromCharCode(...new Uint8Array(dataBuffer))).substring(
-    0,
-    16,
-  );
+async function calculateMerkleRoot(data) {
+  const hashes = await Promise.all(data.map((d) => sha256Hex(d)));
+  return await sha256Hex(hashes.join(""));
 }
 
-function calculateMerkleRoot(data) {
-  const hashes = data.map((d) => calculateHash(d));
-  return calculateHash(hashes.join(""));
-}
-
-function generateSignature(data) {
+async function generateSignature(data) {
   const proof = {
-    data_hash: calculateHash(data),
+    data_hash: await sha256Hex(data),
     timestamp: new Date().toISOString(),
     service: "ChittyOS-Worker",
   };
-  return calculateHash(proof);
+  return await sha256Hex(proof);
 }
 
 // Durable Object for managing sync state

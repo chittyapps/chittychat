@@ -5,7 +5,8 @@
 
 import { LangChainAIService } from "./langchain-ai.js";
 import { ChittyCasesService } from "./chittycases-integration.js";
-import { ChittyRouterGateway } from "../../../chittyrouter/src/integrations/chittyrouter-gateway.js";
+// Use local stub to avoid cross-repo dev dependency
+import { ChittyRouterGateway } from "./chittyrouter-gateway-stub.js";
 
 /**
  * ChittyID Validation Middleware

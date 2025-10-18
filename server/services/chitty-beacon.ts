@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -115,7 +114,7 @@ class ChittyBeacon {
       return acc + char.charCodeAt(0);
     }, 0);
     
-    return `chittypm-${hash.toString(36)}-${nanoid(8)}`;
+    return `chittypm-${hash.toString(36)}`;
   }
 
   private loadPackageJson(): any {

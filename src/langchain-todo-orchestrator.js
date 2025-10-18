@@ -12,7 +12,7 @@ import { Document } from '@langchain/core/documents';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 
 export class TodoLangChainOrchestrator {
-  async constructor(env) {
+  constructor(env) {
     // CloudFlare Workers AI LLM
     this.llm = new CloudflareWorkersAI({
       binding: env.AI,

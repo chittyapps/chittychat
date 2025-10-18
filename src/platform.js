@@ -6,6 +6,7 @@
  */
 
 import { Router } from "itty-router";
+import { createCompositeCache } from "./lib/cache.js";
 
 // Initialize router with base path handling
 const router = Router();
@@ -31,61 +32,23 @@ import {
 // Shared cache utilities
 class SharedCache {
   constructor(env) {
-    this.cache = env.CACHE;
-    this.memory = env.MEMORY;
-    this.metrics = env.METRICS;
+    this._delegate = createCompositeCache({
+      cache: env.CACHE,
+      memory: env.MEMORY,
+      metrics: env.METRICS,
+    });
   }
-
-  // Intelligent caching with prefixes
-  async get(key, namespace = "default") {
-    const prefixedKey = `${namespace}:${key}`;
-
-    // Try cache first, then memory for different data types
-    if (
-      namespace.startsWith("session:") ||
-      namespace.startsWith("auth:") ||
-      namespace.startsWith("api:")
-    ) {
-      return await this.cache.get(prefixedKey);
-    } else if (
-      namespace.startsWith("agent:") ||
-      namespace.startsWith("memory:") ||
-      namespace.startsWith("vector:")
-    ) {
-      return await this.memory.get(prefixedKey);
-    } else if (
-      namespace.startsWith("metric:") ||
-      namespace.startsWith("beacon:")
-    ) {
-      return await this.metrics.get(prefixedKey);
-    }
-
-    return await this.cache.get(prefixedKey);
+  async get(key, namespace) {
+    return this._delegate.get(key, namespace);
   }
-
-  async set(key, value, namespace = "default", ttl = 3600) {
-    const prefixedKey = `${namespace}:${key}`;
-
-    if (
-      namespace.startsWith("session:") ||
-      namespace.startsWith("auth:") ||
-      namespace.startsWith("api:")
-    ) {
-      return await this.cache.put(prefixedKey, value, { expirationTtl: ttl });
-    } else if (
-      namespace.startsWith("agent:") ||
-      namespace.startsWith("memory:") ||
-      namespace.startsWith("vector:")
-    ) {
-      return await this.memory.put(prefixedKey, value, { expirationTtl: ttl });
-    } else if (
-      namespace.startsWith("metric:") ||
-      namespace.startsWith("beacon:")
-    ) {
-      return await this.metrics.put(prefixedKey, value, { expirationTtl: ttl });
-    }
-
-    return await this.cache.put(prefixedKey, value, { expirationTtl: ttl });
+  async set(key, value, namespace, ttl) {
+    return this._delegate.set(key, value, namespace, ttl);
+  }
+  async delete(key, namespace) {
+    return this._delegate.delete(key, namespace);
+  }
+  async put(key, value, options) {
+    return this._delegate.put(key, value, options);
   }
 }
 

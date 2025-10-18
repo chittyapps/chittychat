@@ -1,0 +1,1454 @@
+[
+  {
+    "content": "Test project-scoped todo",
+    "status": "pending",
+    "activeForm": "",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Delete deprecated @furnished-condos/connectors package",
+    "status": "pending",
+    "activeForm": "Deleting deprecated @furnished-condos/connectors package",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Created ChatGPT prompt for property database content generation",
+    "status": "completed",
+    "activeForm": "Creating ChatGPT prompt",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Populate database with property data (use ChatGPT prompt or DoorLoop export)",
+    "status": "pending",
+    "activeForm": "Populating property database",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create @furnished-condos/lease-generator package structure",
+    "status": "completed",
+    "activeForm": "Creating @furnished-condos/lease-generator package structure",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Refactor lease-wiz to use @furnished-condos/lease-generator",
+    "status": "completed",
+    "activeForm": "Refactoring lease-wiz to use @furnished-condos/lease-generator",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Submit property deed requests to Cook County (4 properties)",
+    "status": "pending",
+    "activeForm": "Submitting property deed requests to Cook County",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Execute chicagofurnishedcondos.com domain renewal decision (Day 25)",
+    "status": "pending",
+    "activeForm": "Executing chicagofurnishedcondos.com domain renewal decision",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create GitHub issues for urgent domain renewal (chicagofurnishedcondos.com)",
+    "status": "pending",
+    "activeForm": "Creating GitHub issue for urgent domain renewal",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Document property deeds acquisition process for Cook County Recorder",
+    "status": "completed",
+    "activeForm": "Documenting property deeds acquisition process",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "completed",
+    "activeForm": "Extracting property addresses from leases",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Created ChatGPT prompt for property database content generation",
+    "status": "completed",
+    "activeForm": "Creating ChatGPT prompt",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Populate database with property data (use ChatGPT prompt or DoorLoop export)",
+    "status": "pending",
+    "activeForm": "Populating property database",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create @furnished-condos/lease-generator package structure",
+    "status": "completed",
+    "activeForm": "Creating @furnished-condos/lease-generator package structure",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Refactor lease-wiz to use @furnished-condos/lease-generator",
+    "status": "completed",
+    "activeForm": "Refactoring lease-wiz to use @furnished-condos/lease-generator",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Submit property deed requests to Cook County (4 properties)",
+    "status": "pending",
+    "activeForm": "Submitting property deed requests to Cook County",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Execute chicagofurnishedcondos.com domain renewal decision (Day 25)",
+    "status": "pending",
+    "activeForm": "Executing chicagofurnishedcondos.com domain renewal decision",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create GitHub issues for urgent domain renewal (chicagofurnishedcondos.com)",
+    "status": "pending",
+    "activeForm": "Creating GitHub issue for urgent domain renewal",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Document property deeds acquisition process for Cook County Recorder",
+    "status": "completed",
+    "activeForm": "Documenting property deeds acquisition process",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "completed",
+    "activeForm": "Extracting property addresses from leases",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Created ChatGPT prompt for property database content generation",
+    "status": "completed",
+    "activeForm": "Creating ChatGPT prompt",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Populate database with property data (use ChatGPT prompt or DoorLoop export)",
+    "status": "pending",
+    "activeForm": "Populating property database",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create @furnished-condos/lease-generator package structure",
+    "status": "completed",
+    "activeForm": "Creating @furnished-condos/lease-generator package structure",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Refactor lease-wiz to use @furnished-condos/lease-generator",
+    "status": "completed",
+    "activeForm": "Refactoring lease-wiz to use @furnished-condos/lease-generator",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Submit property deed requests to Cook County (4 properties)",
+    "status": "pending",
+    "activeForm": "Submitting property deed requests to Cook County",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Execute chicagofurnishedcondos.com domain renewal decision (Day 25)",
+    "status": "pending",
+    "activeForm": "Executing chicagofurnishedcondos.com domain renewal decision",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create GitHub issues for urgent domain renewal (chicagofurnishedcondos.com)",
+    "status": "pending",
+    "activeForm": "Creating GitHub issue for urgent domain renewal",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Document property deeds acquisition process for Cook County Recorder",
+    "status": "completed",
+    "activeForm": "Documenting property deeds acquisition process",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "completed",
+    "activeForm": "Extracting property addresses from leases",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create GitHub issues for urgent domain renewal (chicagofurnishedcondos.com)",
+    "status": "pending",
+    "activeForm": "Creating GitHub issue for urgent domain renewal",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "completed",
+    "activeForm": "Extracting property addresses from leases",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements for deed research",
+    "status": "completed",
+    "activeForm": "Extracting property addresses from leases",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County deed search URLs pre-filled with property addresses",
+    "status": "pending",
+    "activeForm": "Generating deed search URLs",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test all domains resolve with Chicago branding",
+    "status": "pending",
+    "activeForm": "Testing all domains resolve with Chicago branding",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Process Colombian property documentation archives",
+    "status": "pending",
+    "activeForm": "Processing Colombian property documentation",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Configure custom domains for frontdoor (furnished-condos.com, chicago.furnished-condos.com)",
+    "status": "pending",
+    "activeForm": "Configuring custom domains for frontdoor",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Test full verification endpoint with real property data",
+    "status": "in_progress",
+    "activeForm": "Testing full verification endpoint with real property data",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Copy Chicago Furnished Condos branding to frontdoor",
+    "status": "completed",
+    "activeForm": "Copied logo variants to frontdoor/public",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Build frontdoor for production",
+    "status": "completed",
+    "activeForm": "Built Next.js app successfully",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Extract property addresses from lease agreements and create deed acquisition list",
+    "status": "pending",
+    "activeForm": "Extracting property addresses from lease agreements",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "List current domains on furnished-condos Pages project",
+    "status": "completed",
+    "activeForm": "Listing current domains on furnished-condos Pages project",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com as custom domain",
+    "status": "in_progress",
+    "activeForm": "Adding furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add www.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com as custom domain",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com as custom domain",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add furnished-condos.com custom domain via API",
+    "status": "completed",
+    "activeForm": "Added furnished-condos.com custom domain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add chicago.furnished-condos.com subdomain via API",
+    "status": "completed",
+    "activeForm": "Added chicago.furnished-condos.com subdomain via API",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain www.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding www.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Add custom domain chicago.furnished-condos.com",
+    "status": "pending",
+    "activeForm": "Adding chicago.furnished-condos.com",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Create session middleware for frontdoor app",
+    "status": "completed",
+    "activeForm": "Creating session middleware for frontdoor app",
+    "project": "furnished-condos"
+  },
+  {
+    "content": "Generate Cook County property record requests",
+    "status": "pending",
+    "activeForm": "Generating Cook County property record requests",
+    "project": "furnished-condos"
+  }
+]

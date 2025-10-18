@@ -192,41 +192,34 @@ sync_command() {
     echo ""
 
     local ACTION=${1:-status}
+    local CHITTYSYNC_BIN="/Users/nb/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/bin/chittysync"
 
     case $ACTION in
         start)
-            echo "Starting cross-session sync..."
-            nohup node /Users/nb/jumpoff/chittychat-repo/cross-session-sync/start-project-sync.mjs &>/dev/null &
-            echo -e "${GREEN}✓${RESET} Cross-session sync started"
+            echo "ChittySync runs automatically via cron (every 30 min)"
+            echo "Use 'sync now' to trigger manual sync"
             ;;
 
         stop)
-            echo "Stopping sync services..."
-            pkill -f "start-project-sync" 2>/dev/null
-            echo -e "${GREEN}✓${RESET} Sync services stopped"
+            echo "ChittySync is cron-based, no daemon to stop"
+            echo "To disable, remove cron job: crontab -e"
+            ;;
+
+        now)
+            echo "Triggering manual sync..."
+            if [ -f "$CHITTYSYNC_BIN" ]; then
+                "$CHITTYSYNC_BIN" --sync
+            else
+                echo -e "${RED}✗${RESET} ChittySync binary not found"
+            fi
             ;;
 
         status|*)
-            echo -e "${BOLD}Sync Status:${RESET}"
-
-            # Cross-session sync
-            if ps aux | grep "start-project-sync" | grep -v grep >/dev/null; then
-                echo -e "  ${GREEN}✓${RESET} Cross-session sync: Running"
-                SYNC_PID=$(ps aux | grep "start-project-sync" | grep -v grep | awk '{print $2}' | head -1)
-                echo "    PID: $SYNC_PID"
+            if [ -f "$CHITTYSYNC_BIN" ]; then
+                "$CHITTYSYNC_BIN" --time
             else
-                echo -e "  ${YELLOW}○${RESET} Cross-session sync: Not running"
-            fi
-
-            # Check for sync endpoints
-            if [ -f "neon-universal-sync.js" ]; then
-                echo -e "  ${GREEN}✓${RESET} Neon sync available"
-            fi
-
-            # Recent sync activity
-            if [ -d "$HOME/.claude/evidence" ]; then
-                RECENT=$(find "$HOME/.claude/evidence" -type f -mmin -10 2>/dev/null | wc -l | tr -d ' ')
-                [ "$RECENT" -gt 0 ] && echo -e "  ${CYAN}ℹ${RESET} Recent activity: $RECENT files (last 10 min)"
+                echo -e "${RED}✗${RESET} ChittySync not installed"
+                echo "Location: $CHITTYSYNC_BIN"
             fi
             ;;
     esac
@@ -1345,6 +1338,61 @@ branch_command() {
     esac
 }
 
+# ============================================
+# /gh-project - GitHub Project Setup
+# ============================================
+gh_project_command() {
+    echo -e "${CYAN}${BOLD}════════════════════════════════════════════════════════════${RESET}"
+    echo -e "${CYAN}${BOLD}   GITHUB PROJECT SETUP${RESET}"
+    echo -e "${CYAN}${BOLD}════════════════════════════════════════════════════════════${RESET}"
+    echo ""
+
+    local CONFIG_FILE="$1"
+
+    if [ -z "$CONFIG_FILE" ]; then
+        echo -e "${YELLOW}Usage: /gh-project <config-file>${RESET}"
+        echo ""
+        echo "Setup GitHub project from YAML configuration"
+        echo ""
+        echo "Example config (.github-project.yaml):"
+        echo "---"
+        echo "project:"
+        echo "  name: \"My Project\""
+        echo "  repo: \"owner/repo\""
+        echo "labels:"
+        echo "  - name: \"bug\""
+        echo "    description: \"Something broken\""
+        echo "    color: \"d73a4a\""
+        echo "milestones:"
+        echo "  - title: \"Phase 1\""
+        echo "    description: \"Foundation\""
+        echo "    due_date: \"2025-12-01\""
+        echo "issues:"
+        echo "  - title: \"[Phase 1] Setup\""
+        echo "    body: \"Initialize project\""
+        echo "    milestone: \"Phase 1\""
+        echo "    labels: [\"enhancement\"]"
+        return 1
+    fi
+
+    if [ ! -f "$CONFIG_FILE" ]; then
+        echo -e "${RED}Config file not found: $CONFIG_FILE${RESET}"
+        return 1
+    fi
+
+    echo "📄 Loading config: $CONFIG_FILE"
+    echo ""
+
+    # Check if gh CLI is available
+    if ! command -v gh &> /dev/null; then
+        echo -e "${RED}gh CLI not found. Install: brew install gh${RESET}"
+        return 1
+    fi
+
+    # Execute the setup script
+    bash /Users/nb/.claude/projects/-/chittychat/scripts/gh-project-setup.sh "$CONFIG_FILE"
+}
+
 # Main command router
 case "$1" in
     status) status_command ;;
@@ -1356,16 +1404,18 @@ case "$1" in
     clean) clean_command ;;
     fix) fix_command ;;
     branch) branch_command "$2" ;;
+    gh-project) gh_project_command "$2" ;;
     *)
         echo "Available commands:"
-        echo "  /status  - System status"
-        echo "  /deploy  - Smart deployment"
-        echo "  /commit  - Commit with ChittyID"
-        echo "  /sync    - Sync management"
-        echo "  /dev     - Start dev server"
-        echo "  /test    - Run tests"
-        echo "  /clean   - Clean project"
-        echo "  /fix     - Auto-fix issues"
-        echo "  /branch  - Branch management"
+        echo "  /status     - System status"
+        echo "  /deploy     - Smart deployment"
+        echo "  /commit     - Commit with ChittyID"
+        echo "  /sync       - Sync management"
+        echo "  /dev        - Start dev server"
+        echo "  /test       - Run tests"
+        echo "  /clean      - Clean project"
+        echo "  /fix        - Auto-fix issues"
+        echo "  /branch     - Branch management"
+        echo "  /gh-project - Setup GitHub project from YAML"
         ;;
 esac

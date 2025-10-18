@@ -1,0 +1,75 @@
+name: Auto Deploy on Push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'wrangler.optimized.toml'
+      - 'package.json'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  auto-deploy:
+    name: Automatic Deployment
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging.chitty.cc
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Quick validation
+        run: |
+          echo "Validating configuration..."
+          if [ ! -f "wrangler.optimized.toml" ]; then
+            echo "❌ wrangler.optimized.toml missing"
+            exit 1
+          fi
+          echo "✅ Configuration valid"
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --env staging
+          workingDirectory: .
+          wranglerVersion: '3.78.0'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PROJECT_TOKEN }}
+          CHITTY_ID_TOKEN: ${{ secrets.CHITTY_ID_TOKEN_STAGING }}
+
+      - name: Quick health check
+        run: |
+          sleep 15
+          curl -f https://staging.chitty.cc/health || {
+            echo "❌ Health check failed"
+            exit 1
+          }
+          echo "✅ Deployment successful"
+
+      - name: Notify deployment
+        run: |
+          echo "🚀 Auto-deployment completed"
+          echo "Environment: staging"
+          echo "URL: https://staging.chitty.cc"
+          echo "Commit: ${{ github.sha }}"
+          echo "Author: ${{ github.actor }}"

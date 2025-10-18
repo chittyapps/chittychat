@@ -1,0 +1,553 @@
+#!/bin/bash
+#
+# ChittySync Enhanced CLI - Dashboard Tools for Three-Tier Architecture
+# Supports: Sessions → Projects → Topics
+#
+# Usage:
+#   chittysync-enhanced sessions             - List active sessions
+#   chittysync-enhanced sessions sync <id>   - Manual session sync
+#   chittysync-enhanced projects             - List projects with todo counts
+#   chittysync-enhanced projects view <id>   - Project topic breakdown
+#   chittysync-enhanced projects consolidate <id> - Force consolidation
+#   chittysync-enhanced topics               - List all topics
+#   chittysync-enhanced topics view <id>     - Topic dashboard (cross-project)
+#   chittysync-enhanced topics compare <t1,t2,t3> - Compare topics
+#
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source dependencies
+source "${SCRIPT_DIR}/chittysync-api-client.sh"
+source "${SCRIPT_DIR}/chittysync-ui.sh"
+
+# Configuration
+LOG_FILE="$HOME/.chittychat/todo-consolidation.log"
+CONSOLIDATED_FILE="$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/todos.json"
+TODO_DIR="$HOME/.claude/todos"
+CHITTYOS_ROOT="$HOME/.claude/projects/-/CHITTYOS"
+
+#
+# ========== SESSION COMMANDS ==========
+#
+
+# List active sessions
+cmd_sessions_list() {
+    draw_box_header "Active Sessions" 70
+    echo ""
+
+    # Get todos and extract unique sessions
+    local response=$(api_list_todos "claude-code" "" 1000)
+
+    if [ $? -ne 0 ] || [ -z "$response" ]; then
+        draw_box_line "${RED}Failed to fetch sessions${NC}" 70
+        echo ""
+        draw_box_footer 70
+        return 1
+    fi
+
+    # Parse sessions from response (simplified - in production would use jq)
+    local session_count=$(echo "$response" | grep -o '"session_id":"[^"]*"' | sort -u | wc -l | tr -d ' ')
+
+    draw_box_line "Total Sessions: ${GREEN}${session_count}${NC}" 70
+    echo ""
+
+    # List sessions with todo counts
+    echo "$response" | grep -o '"session_id":"[^"]*"' | sed 's/"session_id":"//;s/"$//' | sort -u | while read session_id; do
+        if [ -n "$session_id" ] && [ "$session_id" != "null" ]; then
+            local session_todos=$(echo "$response" | grep "\"session_id\":\"${session_id}\"" | grep -c '"id":')
+            local status_indicator=$(status_indicator "in_progress")
+            draw_box_line "  ${status_indicator} ${CYAN}${session_id}${NC} - ${session_todos} todos" 70
+        fi
+    done
+
+    echo ""
+    draw_box_footer 70
+}
+
+# Manual session sync
+cmd_sessions_sync() {
+    local session_id="$1"
+
+    if [ -z "$session_id" ]; then
+        echo -e "${RED}Error: Session ID required${NC}"
+        echo "Usage: chittysync-enhanced sessions sync <session_id>"
+        return 1
+    fi
+
+    draw_box_header "Syncing Session: ${session_id}" 70
+    echo ""
+
+    draw_box_line "${YELLOW}Triggering sync...${NC}" 70
+
+    # Trigger consolidation script
+    if [ -f "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh" ]; then
+        "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh" 2>&1 | tail -5 | while read line; do
+            draw_box_line "${DIM}${line}${NC}" 70
+        done
+    fi
+
+    echo ""
+    draw_box_line "${GREEN}✓ Sync completed${NC}" 70
+    echo ""
+    draw_box_footer 70
+}
+
+#
+# ========== PROJECT COMMANDS ==========
+#
+
+# List projects with todo counts
+cmd_projects_list() {
+    draw_box_header "Projects" 70
+    echo ""
+
+    # Find all .chitty directories
+    local projects=$(find "${CHITTYOS_ROOT}/chittyos-services" -type d -name ".chitty" 2>/dev/null | sed "s|${CHITTYOS_ROOT}/chittyos-services/||;s|/.chitty||")
+
+    if [ -z "$projects" ]; then
+        draw_box_line "${YELLOW}No projects found with .chitty directories${NC}" 70
+        echo ""
+        draw_box_footer 70
+        return
+    fi
+
+    draw_box_line "Project                    Todos    Topics    Status" 70
+    draw_box_separator 70
+
+    echo "$projects" | while read project; do
+        local project_dir="${CHITTYOS_ROOT}/chittyos-services/${project}/.chitty"
+        local todos_file="${project_dir}/todos.json"
+        local topics_dir="${project_dir}/topics"
+
+        if [ -f "$todos_file" ]; then
+            local todo_count=$(grep -c '"id":' "$todos_file" 2>/dev/null || echo "0")
+            local topic_count=$(find "$topics_dir" -name "*.json" 2>/dev/null | wc -l | tr -d ' ')
+            local progress=$(draw_progress_bar 5 10 10)
+
+            printf "${BLUE}${BOX_V}${NC}  %-23s   %-6s   %-7s   %s${BLUE}${BOX_V}${NC}\n" \
+                "$(truncate_string "$project" 23)" \
+                "${GREEN}${todo_count}${NC}" \
+                "${CYAN}${topic_count}${NC}" \
+                "${DIM}active${NC}"
+        else
+            printf "${BLUE}${BOX_V}${NC}  %-23s   ${DIM}%-6s   %-7s   %s${NC}${BLUE}${BOX_V}${NC}\n" \
+                "$(truncate_string "$project" 23)" \
+                "0" \
+                "0" \
+                "empty"
+        fi
+    done
+
+    echo ""
+    draw_box_footer 70
+}
+
+# View project topic breakdown
+cmd_projects_view() {
+    local project_id="$1"
+
+    if [ -z "$project_id" ]; then
+        echo -e "${RED}Error: Project ID required${NC}"
+        echo "Usage: chittysync-enhanced projects view <project_id>"
+        return 1
+    fi
+
+    local project_dir="${CHITTYOS_ROOT}/chittyos-services/${project_id}/.chitty"
+    local todos_file="${project_dir}/todos.json"
+    local topics_dir="${project_dir}/topics"
+
+    if [ ! -f "$todos_file" ]; then
+        echo -e "${RED}Error: Project not found or has no todos${NC}"
+        return 1
+    fi
+
+    draw_box_header "Project: ${project_id}" 70
+    echo ""
+
+    local total_todos=$(grep -c '"id":' "$todos_file" 2>/dev/null || echo "0")
+    local completed=$(grep -c '"status":"completed"' "$todos_file" 2>/dev/null || echo "0")
+    local in_progress=$(grep -c '"status":"in_progress"' "$todos_file" 2>/dev/null || echo "0")
+    local pending=$(grep -c '"status":"pending"' "$todos_file" 2>/dev/null || echo "0")
+
+    draw_box_line "Total Todos: ${GREEN}${total_todos}${NC}" 70
+    draw_box_line "  Completed:   ${GREEN}${completed}${NC} $(draw_progress_bar $completed $total_todos 20)" 70
+    draw_box_line "  In Progress: ${YELLOW}${in_progress}${NC}" 70
+    draw_box_line "  Pending:     ${DIM}${pending}${NC}" 70
+
+    echo ""
+    draw_box_separator 70
+
+    draw_box_line "${BOLD}Topics:${NC}" 70
+    echo ""
+
+    if [ -d "$topics_dir" ]; then
+        find "$topics_dir" -name "*.json" | while read topic_file; do
+            local topic=$(basename "$topic_file" .json)
+            local topic_count=$(grep -c '"id":' "$topic_file" 2>/dev/null || echo "0")
+            local topic_completed=$(grep -c '"status":"completed"' "$topic_file" 2>/dev/null || echo "0")
+            local progress=$(draw_progress_bar $topic_completed $topic_count 10)
+
+            draw_box_line "  ${CYAN}${topic}${NC}: ${topic_count} todos ${progress}" 70
+        done
+    else
+        draw_box_line "  ${DIM}No topics organized yet${NC}" 70
+    fi
+
+    echo ""
+    draw_box_separator 70
+
+    draw_box_line "${BOLD}Active Sessions:${NC}" 70
+    echo ""
+
+    local sessions=$(grep -o '"session_id":"[^"]*"' "$todos_file" 2>/dev/null | sed 's/"session_id":"//;s/"$//' | sort -u)
+    if [ -n "$sessions" ]; then
+        echo "$sessions" | while read session; do
+            if [ -n "$session" ] && [ "$session" != "null" ]; then
+                draw_box_line "  $(status_indicator "in_progress") ${session}" 70
+            fi
+        done
+    else
+        draw_box_line "  ${DIM}No active sessions${NC}" 70
+    fi
+
+    echo ""
+    draw_box_footer 70
+}
+
+# Force project consolidation
+cmd_projects_consolidate() {
+    local project_id="$1"
+
+    if [ -z "$project_id" ]; then
+        echo -e "${RED}Error: Project ID required${NC}"
+        echo "Usage: chittysync-enhanced projects consolidate <project_id>"
+        return 1
+    fi
+
+    draw_box_header "Consolidating Project: ${project_id}" 70
+    echo ""
+
+    draw_box_line "${YELLOW}Running consolidation...${NC}" 70
+
+    # In production, this would call the consolidation endpoint
+    # For now, trigger the global consolidation
+    if [ -f "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh" ]; then
+        "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh" 2>&1 | tail -3 | while read line; do
+            draw_box_line "${DIM}${line}${NC}" 70
+        done
+    fi
+
+    echo ""
+    draw_box_line "${GREEN}✓ Consolidation complete${NC}" 70
+    echo ""
+    draw_box_footer 70
+}
+
+#
+# ========== TOPIC COMMANDS ==========
+#
+
+# List all topics
+cmd_topics_list() {
+    draw_box_header "Topics" 70
+    echo ""
+
+    # Find all topic files across all projects
+    local all_topics=$(find "${CHITTYOS_ROOT}/chittyos-services" -path "*/.chitty/topics/*.json" 2>/dev/null)
+
+    if [ -z "$all_topics" ]; then
+        draw_box_line "${YELLOW}No topics found${NC}" 70
+        echo ""
+        draw_box_footer 70
+        return
+    fi
+
+    # Extract unique topic names and count occurrences
+    local unique_topics=$(echo "$all_topics" | xargs -I {} basename {} .json | sort -u)
+
+    draw_box_line "Topic              Projects    Total Todos    Completion" 70
+    draw_box_separator 70
+
+    echo "$unique_topics" | while read topic; do
+        local topic_files=$(find "${CHITTYOS_ROOT}/chittyos-services" -path "*/.chitty/topics/${topic}.json" 2>/dev/null)
+        local project_count=$(echo "$topic_files" | wc -l | tr -d ' ')
+        local total_todos=0
+        local completed_todos=0
+
+        echo "$topic_files" | while read file; do
+            local count=$(grep -c '"id":' "$file" 2>/dev/null || echo "0")
+            local completed=$(grep -c '"status":"completed"' "$file" 2>/dev/null || echo "0")
+            total_todos=$((total_todos + count))
+            completed_todos=$((completed_todos + completed))
+        done
+
+        # Calculate once and display
+        local total=$(echo "$topic_files" | xargs grep -c '"id":' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+        local completed=$(echo "$topic_files" | xargs grep -c '"status":"completed"' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+
+        [ -z "$total" ] && total=0
+        [ -z "$completed" ] && completed=0
+
+        local progress=$(draw_progress_bar $completed $total 10)
+
+        printf "${BLUE}${BOX_V}${NC}  %-15s   %-9s   %-12s   %s${BLUE}${BOX_V}${NC}\n" \
+            "${CYAN}${topic}${NC}" \
+            "${project_count}" \
+            "${GREEN}${total}${NC}" \
+            "${progress}"
+    done
+
+    echo ""
+    draw_box_footer 70
+}
+
+# View topic dashboard (cross-project)
+cmd_topics_view() {
+    local topic_id="$1"
+
+    if [ -z "$topic_id" ]; then
+        echo -e "${RED}Error: Topic ID required${NC}"
+        echo "Usage: chittysync-enhanced topics view <topic_id>"
+        return 1
+    fi
+
+    draw_box_header "Topic: ${topic_id}" 70
+    echo ""
+
+    # Find all projects with this topic
+    local topic_files=$(find "${CHITTYOS_ROOT}/chittyos-services" -path "*/.chitty/topics/${topic_id}.json" 2>/dev/null)
+
+    if [ -z "$topic_files" ]; then
+        draw_box_line "${YELLOW}Topic not found in any project${NC}" 70
+        echo ""
+        draw_box_footer 70
+        return
+    fi
+
+    local project_count=$(echo "$topic_files" | wc -l | tr -d ' ')
+    local total_todos=$(echo "$topic_files" | xargs grep -c '"id":' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+    local completed=$(echo "$topic_files" | xargs grep -c '"status":"completed"' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+    local in_progress=$(echo "$topic_files" | xargs grep -c '"status":"in_progress"' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+    local pending=$(echo "$topic_files" | xargs grep -c '"status":"pending"' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+
+    [ -z "$total_todos" ] && total_todos=0
+    [ -z "$completed" ] && completed=0
+    [ -z "$in_progress" ] && in_progress=0
+    [ -z "$pending" ] && pending=0
+
+    draw_box_line "Total Todos: ${GREEN}${total_todos}${NC}         Projects: ${CYAN}${project_count}${NC}" 70
+    draw_box_line "Completed:   ${GREEN}${completed}${NC} $(draw_progress_bar $completed $total_todos 15)" 70
+    draw_box_line "In Progress: ${YELLOW}${in_progress}${NC}" 70
+    draw_box_line "Pending:     ${DIM}${pending}${NC}" 70
+
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}By Project:${NC}" 70
+    echo ""
+
+    echo "$topic_files" | while read file; do
+        local project=$(echo "$file" | sed "s|${CHITTYOS_ROOT}/chittyos-services/||;s|/.chitty/topics/${topic_id}.json||")
+        local count=$(grep -c '"id":' "$file" 2>/dev/null || echo "0")
+        local proj_completed=$(grep -c '"status":"completed"' "$file" 2>/dev/null || echo "0")
+        local progress=$(draw_progress_bar $proj_completed $count 10)
+
+        draw_box_line "  ${CYAN}${project}${NC}: ${count} todos ${progress}" 70
+    done
+
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}Recent Activity:${NC}" 70
+    echo ""
+
+    # Show recent todos (last 5)
+    echo "$topic_files" | head -1 | xargs cat 2>/dev/null | grep -o '"content":"[^"]*"' | head -5 | while read line; do
+        local content=$(echo "$line" | sed 's/"content":"//;s/"$//')
+        draw_box_line "  $(status_indicator "pending") $(truncate_string "$content" 60)" 70
+    done
+
+    echo ""
+    draw_box_footer 70
+}
+
+# Compare multiple topics
+cmd_topics_compare() {
+    local topics="$1"
+
+    if [ -z "$topics" ]; then
+        echo -e "${RED}Error: Topics required (comma-separated)${NC}"
+        echo "Usage: chittysync-enhanced topics compare <topic1,topic2,topic3>"
+        return 1
+    fi
+
+    draw_box_header "Topic Comparison" 70
+    echo ""
+
+    draw_box_line "Topic              Projects    Todos    Completion" 70
+    draw_box_separator 70
+
+    IFS=',' read -ra TOPIC_ARRAY <<< "$topics"
+    for topic in "${TOPIC_ARRAY[@]}"; do
+        topic=$(echo "$topic" | xargs) # trim whitespace
+
+        local topic_files=$(find "${CHITTYOS_ROOT}/chittyos-services" -path "*/.chitty/topics/${topic}.json" 2>/dev/null)
+
+        if [ -z "$topic_files" ]; then
+            printf "${BLUE}${BOX_V}${NC}  %-15s   ${DIM}%-9s   %-6s   %s${NC}${BLUE}${BOX_V}${NC}\n" \
+                "${topic}" "0" "0" "not found"
+            continue
+        fi
+
+        local project_count=$(echo "$topic_files" | wc -l | tr -d ' ')
+        local total=$(echo "$topic_files" | xargs grep -c '"id":' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+        local completed=$(echo "$topic_files" | xargs grep -c '"status":"completed"' 2>/dev/null | awk -F: '{sum+=$2} END {print sum}')
+
+        [ -z "$total" ] && total=0
+        [ -z "$completed" ] && completed=0
+
+        local progress=$(draw_progress_bar $completed $total 10)
+
+        printf "${BLUE}${BOX_V}${NC}  %-15s   %-9s   %-6s   %s${BLUE}${BOX_V}${NC}\n" \
+            "${CYAN}${topic}${NC}" \
+            "${project_count}" \
+            "${GREEN}${total}${NC}" \
+            "${progress}"
+    done
+
+    echo ""
+    draw_box_footer 70
+}
+
+#
+# ========== LEGACY COMMANDS (backward compatibility) ==========
+#
+
+# Show timing and status (original --time command)
+cmd_legacy_time() {
+    source "${SCRIPT_DIR}/chittysync" --time
+}
+
+# Show activity (original --activity command)
+cmd_legacy_activity() {
+    source "${SCRIPT_DIR}/chittysync" --activity
+}
+
+# Show logs (original --logs command)
+cmd_legacy_logs() {
+    local lines="${1:-20}"
+    source "${SCRIPT_DIR}/chittysync" --logs "$lines"
+}
+
+# Manual sync (original --sync command)
+cmd_legacy_sync() {
+    source "${SCRIPT_DIR}/chittysync" --sync
+}
+
+#
+# ========== HELP ==========
+#
+
+show_help() {
+    draw_box_header "ChittySync Enhanced CLI" 70
+    echo ""
+    draw_box_line "${BOLD}Session Commands:${NC}" 70
+    draw_box_line "  sessions                   - List active sessions" 70
+    draw_box_line "  sessions sync <id>         - Manual session sync" 70
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}Project Commands:${NC}" 70
+    draw_box_line "  projects                   - List projects with todo counts" 70
+    draw_box_line "  projects view <id>         - Project topic breakdown" 70
+    draw_box_line "  projects consolidate <id>  - Force consolidation" 70
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}Topic Commands:${NC}" 70
+    draw_box_line "  topics                     - List all topics" 70
+    draw_box_line "  topics view <id>           - Topic dashboard (cross-project)" 70
+    draw_box_line "  topics compare <t1,t2,t3>  - Compare topics" 70
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}Legacy Commands (backward compatibility):${NC}" 70
+    draw_box_line "  --time, -t                 - Show timing info" 70
+    draw_box_line "  --activity, -a             - Show recent activity" 70
+    draw_box_line "  --logs [N], -l [N]         - Show last N log entries" 70
+    draw_box_line "  --sync, -s                 - Trigger manual sync" 70
+    echo ""
+    draw_box_separator 70
+    draw_box_line "${BOLD}Examples:${NC}" 70
+    draw_box_line "  chittysync-enhanced sessions" 70
+    draw_box_line "  chittysync-enhanced projects view chittyauth" 70
+    draw_box_line "  chittysync-enhanced topics view auth" 70
+    draw_box_line "  chittysync-enhanced topics compare auth,music,routing" 70
+    echo ""
+    draw_box_footer 70
+}
+
+#
+# ========== MAIN DISPATCHER ==========
+#
+
+main() {
+    case "${1:-}" in
+        sessions)
+            case "${2:-}" in
+                sync)
+                    cmd_sessions_sync "$3"
+                    ;;
+                *)
+                    cmd_sessions_list
+                    ;;
+            esac
+            ;;
+        projects)
+            case "${2:-}" in
+                view)
+                    cmd_projects_view "$3"
+                    ;;
+                consolidate)
+                    cmd_projects_consolidate "$3"
+                    ;;
+                *)
+                    cmd_projects_list
+                    ;;
+            esac
+            ;;
+        topics)
+            case "${2:-}" in
+                view)
+                    cmd_topics_view "$3"
+                    ;;
+                compare)
+                    cmd_topics_compare "$3"
+                    ;;
+                *)
+                    cmd_topics_list
+                    ;;
+            esac
+            ;;
+        --time|-t)
+            cmd_legacy_time
+            ;;
+        --activity|-a)
+            cmd_legacy_activity
+            ;;
+        --logs|-l)
+            cmd_legacy_logs "${2:-20}"
+            ;;
+        --sync|-s)
+            cmd_legacy_sync
+            ;;
+        --help|-h|help|"")
+            show_help
+            ;;
+        *)
+            echo -e "${RED}Unknown command: $1${NC}"
+            echo ""
+            show_help
+            exit 1
+            ;;
+    esac
+}
+
+# Run main
+main "$@"

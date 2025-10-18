@@ -6,13 +6,16 @@
 import { ChittyChatAPI } from '../session-persistence/claude-integration.js';
 import fs from 'fs/promises';
 import path from 'path';
-import { execSync } from 'child_process';
+// Note: child_process execSync removed (unused)
 
 export class ClaudeCodeIntegration {
   constructor() {
-    this.claudeProjectsDir = '/Users/nb/.claude/projects';
-    this.claudeTodosDir = '/Users/nb/.claude/todos';
-    this.claudeSessionsDir = '/Users/nb/.claude/sessions';
+    const home = (typeof process !== 'undefined' && process.env && (process.env.CLAUDE_BASE_PATH || process.env.HOME)) || '';
+    const base = process.env?.CLAUDE_BASE_PATH || (home ? path.join(home, '.claude') : '/Users/nb/.claude');
+
+    this.claudeProjectsDir = path.join(base, 'projects');
+    this.claudeTodosDir = path.join(base, 'todos');
+    this.claudeSessionsDir = path.join(base, 'sessions');
 
     this.isActive = false;
     this.fileWatcher = null;

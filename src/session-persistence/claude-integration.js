@@ -355,36 +355,6 @@ export const ChittyChatAPI = {
   getStatus() {
     return claude.getStatus();
   },
-
-  async start(sessionId = null) {
-    await claude.initialize();
-    return claude.activateSession(sessionId);
-  },
-
-  async getCurrentSession() {
-    return claude.getCurrentSession();
-  },
-
-  async getSystemStatus() {
-    return {
-      health: 'OPERATIONAL',
-      storageType: 'LOCAL',
-      syncEnabled: false,
-      activeSessions: 1,
-    };
-  },
-
-  async syncToGitHub() {
-    return claude.sync?.syncToGitHub() || { success: false, error: 'GitHub sync not configured' };
-  },
-
-  async createBackup() {
-    return { success: true, backupId: `backup-${Date.now()}` };
-  },
-
-  async restoreFromBackup(backupId) {
-    return { success: true, backupId };
-  },
 };
 
 export default ClaudeIntegration;

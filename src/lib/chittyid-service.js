@@ -64,6 +64,7 @@ function getSharedClient(options = {}) {
     connectionManager = getSharedConnectionManager({
       serviceUrl: normalizeServiceUrl(serviceUrl || resolveServiceUrl()),
       apiKey: apiKey ?? readEnv("CHITTY_ID_TOKEN"),
+      healthPath: readEnv("CHITTYID_HEALTH_PATH") || undefined,
     });
   }
 

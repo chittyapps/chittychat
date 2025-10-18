@@ -1,3 +1,12 @@
+<!-- SYNCED WITH: registry.chitty.cc -->
+<!-- LAST SYNC: 2025-10-18T08:10:58Z -->
+
+# GLOBAL CONFIGURATION (from registry.chitty.cc)
+
+null
+
+# LOCAL CONFIGURATION
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -248,3 +257,5 @@ All services implement `/health` endpoints. Test files follow this structure:
 - **Route Coverage**: All chitty.cc subdomains route to gateway.chitty.cc unified worker
 - **Shared Bindings**: AI, KV, Durable Objects, R2 shared across services
 - **Legacy Support**: `wrangler.toml` maintained for backward compatibility
+
+<!-- END SYNC -->
