@@ -1,0 +1,237 @@
+#!/bin/bash
+# ChittyOS Sync Client
+# Unified synchronization via sync.chitty.cc Platform Integration Hub
+
+set -euo pipefail
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+# Configuration
+SYNC_SERVICE="https://sync.chitty.cc"
+COMMAND="${1:-help}"
+
+# Helper function for API calls
+sync_api() {
+    local method="$1"
+    local endpoint="$2"
+    local data="${3:-}"
+
+    if [ -n "$data" ]; then
+        curl -s -X "$method" "$SYNC_SERVICE$endpoint" \
+            -H "Content-Type: application/json" \
+            -d "$data"
+    else
+        curl -s -X "$method" "$SYNC_SERVICE$endpoint"
+    fi
+}
+
+# Project Sync
+projectsync() {
+    echo -e "${CYAN}🔄 Project Sync${NC}"
+    echo "Syncing projects across AI instances..."
+
+    # Get current project name (from git or directory)
+    PROJECT_NAME=$(basename "$(pwd)")
+
+    # Sync project to remote service
+    result=$(sync_api POST "/api/project" "{\"id\":\"$PROJECT_NAME\",\"name\":\"$PROJECT_NAME\"}")
+
+    if echo "$result" | grep -q "success.*true"; then
+        echo -e "${GREEN}✅ Project synced: $PROJECT_NAME${NC}"
+
+        # Show sync details
+        if echo "$result" | grep -q "syncedToGitHub"; then
+            echo -e "  ${BLUE}├─${NC} GitHub: Synced"
+        fi
+        if echo "$result" | grep -q "servicesRegistered"; then
+            echo -e "  ${BLUE}└─${NC} Services: Registered with Register & Registry"
+        fi
+    else
+        echo -e "${RED}❌ Project sync failed${NC}"
+        echo "$result" | jq '.' 2>/dev/null || echo "$result"
+        exit 1
+    fi
+}
+
+# Session Sync
+sessionsync() {
+    echo -e "${CYAN}🔄 Session Sync${NC}"
+    echo "Registering session for cross-AI coordination..."
+
+    # Generate or get session ID
+    SESSION_ID="${SESSION_ID:-$(uuidgen 2>/dev/null || echo "session-$(date +%s)")}"
+    PROJECT_NAME=$(basename "$(pwd)")
+
+    # Detect AI platform
+    AI_PLATFORM="claude" # Default
+    if [ -n "${OPENAI_API_KEY:-}" ]; then
+        AI_PLATFORM="openai"
+    elif [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+        AI_PLATFORM="claude"
+    fi
+
+    # Register session
+    result=$(sync_api POST "/api/session" "{
+        \"id\":\"$SESSION_ID\",
+        \"projectId\":\"$PROJECT_NAME\",
+        \"aiPlatform\":\"$AI_PLATFORM\",
+        \"machineId\":\"$(hostname)\",
+        \"metadata\":{\"pwd\":\"$(pwd)\"}
+    }")
+
+    if echo "$result" | grep -q "success.*true"; then
+        echo -e "${GREEN}✅ Session registered: $SESSION_ID${NC}"
+        echo -e "  ${BLUE}├─${NC} Platform: $AI_PLATFORM"
+        echo -e "  ${BLUE}├─${NC} Project: $PROJECT_NAME"
+        echo -e "  ${BLUE}└─${NC} Machine: $(hostname)"
+
+        # Export session ID for shell
+        echo "export SESSION_ID=$SESSION_ID" > ~/.chittyos_session
+        echo -e "\n${YELLOW}Session ID exported to ~/.chittyos_session${NC}"
+    else
+        echo -e "${RED}❌ Session registration failed${NC}"
+        echo "$result" | jq '.' 2>/dev/null || echo "$result"
+        exit 1
+    fi
+}
+
+# Topic Sync
+topicsync() {
+    echo -e "${CYAN}🔄 Topic Sync${NC}"
+    echo "Categorizing conversations with AI semantic analysis..."
+
+    # Find recent conversation files
+    CONV_DIR="${HOME}/.claude/conversations"
+    if [ ! -d "$CONV_DIR" ]; then
+        echo -e "${YELLOW}⚠️  No conversations directory found${NC}"
+        return
+    fi
+
+    # Find files modified in last 7 days
+    count=0
+    while IFS= read -r file; do
+        echo -e "\n${BLUE}Analyzing:${NC} $(basename "$file")"
+
+        # Read first 500 chars for categorization
+        content=$(head -c 500 "$file")
+
+        # Send to topic sync API
+        result=$(sync_api POST "/api/topic" "{
+            \"id\":\"$(basename "$file")\",
+            \"file\":\"$file\",
+            \"content\":\"$content\"
+        }")
+
+        if echo "$result" | grep -q "success.*true"; then
+            category=$(echo "$result" | jq -r '.conversation.category' 2>/dev/null || echo "unknown")
+            confidence=$(echo "$result" | jq -r '.conversation.confidence' 2>/dev/null || echo "0")
+
+            echo -e "  ${GREEN}✅${NC} Category: ${CYAN}$category${NC} (${confidence})"
+            count=$((count + 1))
+        fi
+    done < <(find "$CONV_DIR" -type f -mtime -7 2>/dev/null)
+
+    echo -e "\n${GREEN}✅ Categorized $count conversations${NC}"
+}
+
+# Status
+status() {
+    echo -e "${CYAN}📊 Sync Status${NC}"
+
+    # Get overall status
+    result=$(sync_api GET "/api/status")
+
+    if echo "$result" | grep -q "service"; then
+        echo -e "\n${BLUE}Projects:${NC}"
+        echo "$result" | jq -r '.projects | "  Total: \(.total)\n  Synced: \(.synced)"' 2>/dev/null || echo "  Unable to parse"
+
+        echo -e "\n${BLUE}Sessions:${NC}"
+        echo "$result" | jq -r '.sessions | "  Total: \(.total)\n  Active: \(.active)"' 2>/dev/null || echo "  Unable to parse"
+
+        echo -e "\n${BLUE}Topics:${NC}"
+        echo "$result" | jq -r '.topics | "  Categories: \(.categories)\n  Conversations: \(.total_conversations)"' 2>/dev/null || echo "  Unable to parse"
+
+        echo -e "\n${BLUE}Platforms:${NC}"
+        for platform in neon notion github drive cloudflare local; do
+            platform_health=$(curl -s -o /dev/null -w "%{http_code}" "${SYNC_SERVICE}/${platform}/health" 2>/dev/null || echo "000")
+            if [ "$platform_health" = "200" ]; then
+                echo -e "  ${GREEN}✅${NC} $platform"
+            else
+                echo -e "  ${RED}❌${NC} $platform"
+            fi
+        done
+    else
+        echo -e "${RED}❌ Cannot reach sync service${NC}"
+        exit 1
+    fi
+}
+
+# All sync operations
+syncall() {
+    echo -e "${CYAN}🚀 Running Complete Sync${NC}\n"
+
+    projectsync
+    echo ""
+    sessionsync
+    echo ""
+    topicsync
+    echo ""
+
+    echo -e "\n${GREEN}✅ Complete sync finished${NC}"
+}
+
+# Main command dispatcher
+case "$COMMAND" in
+    projectsync|ps)
+        projectsync
+        ;;
+
+    sessionsync|ss)
+        sessionsync
+        ;;
+
+    topicsync|ts)
+        topicsync
+        ;;
+
+    status|stat)
+        status
+        ;;
+
+    all|sync|syncall)
+        syncall
+        ;;
+
+    help|--help|-h|"")
+        echo -e "${CYAN}ChittyOS Sync Client${NC}"
+        echo "Unified synchronization via sync.chitty.cc"
+        echo ""
+        echo "Usage: chitty-sync <command>"
+        echo ""
+        echo "Commands:"
+        echo "  projectsync, ps    - Sync project across AI instances"
+        echo "  sessionsync, ss    - Register/sync current session"
+        echo "  topicsync, ts      - Categorize conversations by topic"
+        echo "  all, sync, syncall - Run all sync operations"
+        echo "  status, stat       - Show sync status"
+        echo "  help               - Show this help"
+        echo ""
+        echo "Architecture:"
+        echo "  sync.chitty.cc/{platform} - Platform-specific sync"
+        echo "  sync.chitty.cc/api/{resource} - Unified resource APIs"
+        echo ""
+        echo "Platforms: neon, notion, github, drive, cloudflare, local"
+        ;;
+
+    *)
+        echo -e "${RED}Unknown command: $COMMAND${NC}"
+        echo "Run 'chitty-sync help' for usage"
+        exit 1
+        ;;
+esac

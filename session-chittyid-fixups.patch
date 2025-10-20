@@ -1,0 +1,139 @@
+diff --git a/cross-session-sync/src/session-manager.js b/cross-session-sync/src/session-manager.js
+index 1234567..abcdefg 100644
+--- a/cross-session-sync/src/session-manager.js
++++ b/cross-session-sync/src/session-manager.js
+@@ -4,6 +4,7 @@
+ const path = require('path');
+ const crypto = require('crypto');
++const ChittyIDClient = require('@chittyos/chittyid-client').default;
+
+ class SessionManager {
+   constructor(config = {}) {
+@@ -260,8 +261,26 @@ class SessionManager {
+     }
+   }
+
+-  generateSessionId() {
+-    return crypto.randomBytes(16).toString('hex');
++  // CHITTYOS POLICY: Session IDs MUST come from id.chitty.cc
++  async generateSessionId() {
++    // Validate CHITTY_ID_TOKEN environment variable
++    if (!process.env.CHITTY_ID_TOKEN) {
++      throw new Error(
++        'CHITTY_ID_TOKEN environment variable is required for session ID generation. ' +
++        'Obtain token from: https://id.chitty.cc'
++      );
++    }
++
++    const chittyIdClient = new ChittyIDClient({
++      serviceUrl: 'https://id.chitty.cc',
++      apiKey: process.env.CHITTY_ID_TOKEN,
++    });
++
++    return await chittyIdClient.mint({
++      entity: 'CONTEXT',
++      name: 'Session Manager Session',
++      metadata: {
++        type: 'session_manager_session',
++        timestamp: Date.now(),
++      },
++    });
+   }
+
+   async cleanupStaleSessions() {
+@@ -21,7 +40,7 @@ class SessionManager {
+   }
+
+   async registerSession(name, metadata = {}) {
+-    this.sessionId = this.generateSessionId();
++    this.sessionId = await this.generateSessionId();
+     this.sessionData = {
+       id: this.sessionId,
+       name: name || `session-${this.sessionId.slice(0, 8)}`,
+
+diff --git a/src/session-persistence/session-state.js b/src/session-persistence/session-state.js
+index 2345678..bcdefgh 100644
+--- a/src/session-persistence/session-state.js
++++ b/src/session-persistence/session-state.js
+@@ -6,10 +6,14 @@
+ import fs from 'fs/promises';
+ import path from 'path';
+ import crypto from 'crypto';
++import ChittyIDClient from '@chittyos/chittyid-client';
+
+ export class SessionState {
+-  constructor(sessionId = null) {
+-    this.sessionId = sessionId || this.generateSessionId();
++  constructor(sessionId = null, options = {}) {
++    // If no sessionId provided, it will be generated in initialize()
++    // This allows async ChittyID generation
++    this.sessionId = sessionId;
++    this.options = options;
+     this.stateDir = '/Users/nb/.claude/sessions';
+     this.sessionFile = path.join(this.stateDir, `${this.sessionId}.json`);
+
+@@ -34,6 +38,11 @@ export class SessionState {
+    */
+   async initialize() {
+     await this.ensureStateDir();
++
++    // Generate ChittyID if no sessionId provided
++    if (!this.sessionId) {
++      this.sessionId = await this.generateSessionId();
++      this.sessionFile = path.join(this.stateDir, `${this.sessionId}.json`);
++    }
+
+     // Try to load existing session
+     try {
+@@ -121,7 +130,7 @@ export class SessionState {
+    * Create child session (hand off to new session)
+    */
+   async createChildSession(reason = 'context limit') {
+-    const childId = this.generateSessionId();
++    const childId = await this.generateSessionId();
+
+     // Create handoff context
+     const handoffContext = {
+@@ -247,8 +256,27 @@ export class SessionState {
+   /**
+    * Helper methods
+    */
+-  generateSessionId() {
+-    return `session-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
++  // CHITTYOS POLICY: Session IDs MUST come from id.chitty.cc
++  async generateSessionId() {
++    // Validate CHITTY_ID_TOKEN environment variable
++    if (!process.env.CHITTY_ID_TOKEN) {
++      throw new Error(
++        'CHITTY_ID_TOKEN environment variable is required for session ID generation. ' +
++        'Obtain token from: https://id.chitty.cc'
++      );
++    }
++
++    const chittyIdClient = new ChittyIDClient({
++      serviceUrl: 'https://id.chitty.cc',
++      apiKey: process.env.CHITTY_ID_TOKEN,
++    });
++
++    return await chittyIdClient.mint({
++      entity: 'CONTEXT',
++      name: 'Session State',
++      metadata: {
++        type: 'session_state',
++        timestamp: Date.now(),
++      },
++    });
+   }
+
+   detectPlatform() {
+@@ -274,7 +302,7 @@ export class SessionManager {
+   /**
+    * Start or resume a session
+    */
+-  static async start(sessionId = null) {
++  static async start(sessionId = null, options = {}) {
+-    this.currentSession = new SessionState(sessionId);
++    this.currentSession = new SessionState(sessionId, options);
+     await this.currentSession.initialize();
+     return this.currentSession;
+   }

@@ -5,6 +5,7 @@
  */
 
 import { Octokit } from '@octokit/rest';
+import { generateChittyID as mintChittyID } from '../lib/chittyid-service.js';
 
 export async function handleNotionDataPipeline(context) {
   const { request, env } = context;
@@ -186,7 +187,12 @@ async function processAuthoritativePipeline(context, intakeData) {
 
   try {
     // Step 1: Generate or validate ChittyID
-    const chittyId = data.chitty_id || generateChittyID(determineEntityType(data));
+    const chittyId =
+      data.chitty_id ||
+      (await requestChittyID(determineEntityType(data), env, {
+        notionId: data?.id,
+        source,
+      }));
     data.chitty_id = chittyId;
     pipelineSteps.push({ step: 'chitty_id_assignment', status: 'success', id: chittyId });
 
@@ -280,7 +286,7 @@ async function processPageChange(context, page) {
 
   try {
     // 1. Determine entity type from Notion page
-    const entityData = await parseNotionPage(page);
+    const entityData = await parseNotionPage(page, env);
 
     // 2. Check for file attachments and process them
     const fileResults = await processNotionFiles(context, page, entityData);
@@ -342,15 +348,19 @@ async function processPageChange(context, page) {
 /**
  * Parse Notion page into ChittyOS entity format
  */
-async function parseNotionPage(page) {
+async function parseNotionPage(page, env) {
   const properties = page.properties || {};
 
   // Extract entity type from database or page properties
   const entityType = determineEntityType(page);
 
   // Generate ChittyID if not present
-  const chittyId = properties.ChittyID?.rich_text?.[0]?.text?.content ||
-                   generateChittyID(entityType);
+  const chittyId =
+    properties.ChittyID?.rich_text?.[0]?.text?.content ||
+    (await requestChittyID(entityType, env, {
+      notionId: page.id,
+      title: extractTitle(properties),
+    }));
 
   // Base entity data
   const entityData = {
@@ -915,11 +925,12 @@ function determineEntityType(page) {
   return 'UNKNOWN';
 }
 
-function generateChittyID(entityType) {
-  const prefix = entityType.substring(0, 3).toUpperCase();
-  const timestamp = Date.now().toString(36);
-  const random = Math.random().toString(36).substring(2, 8);
-  return `${prefix}-${timestamp}-${random}`;
+async function requestChittyID(entityType, env, metadata = {}) {
+  const normalizedEntity = entityType || 'INFO';
+  return mintChittyID(normalizedEntity, metadata, {
+    apiKey: env?.CHITTY_ID_TOKEN,
+    serviceUrl: env?.CHITTYID_SERVICE_URL,
+  });
 }
 
 function extractTitle(properties) {

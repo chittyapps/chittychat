@@ -17,7 +17,7 @@ import path from 'path';
 class ProjectBasedSync {
   constructor(config = {}) {
     this.sessionId = config.sessionId;
-    this.chittychatUrl = config.chittychatUrl || 'http://localhost:5000';
+    this.chittychatUrl = config.chittychatUrl || 'https://chat.chitty.cc';
     this.baseDir = path.join(process.cwd(), '.ai-coordination');
 
     // Current project context

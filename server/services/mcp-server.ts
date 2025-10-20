@@ -138,7 +138,7 @@ class MCPServer {
       
       // Create the task
       const task = {
-        id: this.generateId(),
+        id: await this.generateId(),
         title: this.extractTitle(params.content),
         description: params.content,
         status: 'todo' as const,
@@ -280,7 +280,7 @@ class MCPServer {
       }
       
       const project = {
-        id: this.generateId(),
+        id: await this.generateId(),
         name,
         description: description || '',
         status: 'active' as const,
@@ -426,12 +426,16 @@ class MCPServer {
     return content.substring(0, 100).trim() + (content.length > 100 ? '...' : '');
   }
 
-  private generateId(): string {
-    return Math.random().toString(36).substring(2) + Date.now().toString(36);
+  private async await generateId(): Promise<string> {
+    // FIXED: Replaced local generation with ChittyID service call
+    const { generateChittyID } = await import('../lib/chittyid-service.js');
+    return await generateChittyID('INFO', { source: 'mcp-protocol', auto: true });
   }
 
   private generateConnectionId(): string {
-    return 'mcp_' + Math.random().toString(36).substring(2);
+    // Use cryptographically secure random for connection IDs
+    const crypto = require('crypto');
+    return 'mcp_' + crypto.randomBytes(8).toString('hex');
   }
 
   private sendMessage(ws: any, message: MCPMessage) {

@@ -39,6 +39,12 @@ import { handleChittyPass } from "./services/chittypass.js";
 import { handleLangChainAI } from "./services/langchain-handler.js";
 import { handleChittyCases } from "./services/chittycases-handler.js";
 
+// Import Project Orchestration - Session Management
+import { handleProjectOrchestration } from "./services/project-orchestrator.js";
+
+// Import API Documentation Service
+import { handleDocs } from "./services/docs.js";
+
 /**
  * Build context object for service handlers
  */
@@ -79,11 +85,15 @@ function wrapHandler(handler) {
  * Service route mapping for intelligent routing
  */
 let SERVICE_ROUTES = {
+  // Gateway Entry Point - Main platform landing
+  "gateway.chitty.cc": wrapHandler(handleSync), // Main gateway routes to sync/API handler
+
   // AI Infrastructure - LIVE
   "ai.chitty.cc": handleAIGateway, // Uses direct params, no wrapper needed
   "langchain.chitty.cc": wrapHandler(handleLangChainAI),
   "cases.chitty.cc": wrapHandler(handleChittyCases),
   "mcp.chitty.cc": wrapHandler(handleMCP),
+  "portal.chitty.cc": wrapHandler(handleMCP), // MCP Portal uses same handler as mcp.chitty.cc
   "agents.chitty.cc": wrapHandler(handleAgents),
   "unified.chitty.cc": wrapHandler(handleUnified),
 
@@ -101,6 +111,11 @@ let SERVICE_ROUTES = {
   "canon.chitty.cc": wrapHandler(handleCanon),
   "verify.chitty.cc": handlePlaceholderService("ChittyVerify"),
   "chat.chitty.cc": wrapHandler(handleChat),
+
+  // Project Management - Session Orchestration
+  "projects.chitty.cc": wrapHandler(handleProjectOrchestration),
+  // NOTE: Session sync moved to sync.chitty.cc/api/session
+  // NOTE: Consolidation moved to sync.chitty.cc/local/consolidate
 
   // Data Services - LIVE
   "schema.chitty.cc": handlePlaceholderService("Schema Registry"),
@@ -121,7 +136,7 @@ let SERVICE_ROUTES = {
   "audit.chitty.cc": handlePlaceholderService("Audit Service"),
   "assets.chitty.cc": handlePlaceholderService("Assets CDN"),
   "cdn.chitty.cc": handlePlaceholderService("CDN Service"),
-  "docs.chitty.cc": handlePlaceholderService("Documentation"),
+  "docs.chitty.cc": wrapHandler(handleDocs), // API Documentation (JSON, Markdown, OpenAPI)
   "www.chitty.cc": handlePlaceholderService("Main Website"),
 
   // Staging Environments
@@ -307,6 +322,12 @@ export default {
     }
 
     try {
+      // API Documentation - accessible from any domain
+      if (pathname.startsWith("/docs")) {
+        const context = buildContext(request, env, ctx);
+        return handleDocs(context);
+      }
+
       // Global platform health check (only for main domain or no Host header)
       if (
         (pathname === "/health" || pathname === "/platform/health") &&

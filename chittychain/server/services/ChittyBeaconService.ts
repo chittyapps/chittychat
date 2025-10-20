@@ -3,11 +3,11 @@
  * Based on @chittycorp/app-beacon functionality
  */
 
-import { createServer } from 'http';
-import { neonStorage as storage } from '../neon-storage.js';
-import { execSync } from 'child_process';
-import { readFileSync, existsSync } from 'fs';
-import { hostname, type, release, uptime } from 'os';
+import { createServer } from "http";
+import { neonStorage as storage } from "../neon-storage.js";
+import { execSync } from "child_process";
+import { readFileSync, existsSync } from "fs";
+import { hostname, type, release, uptime } from "os";
 
 export interface BeaconData {
   id: string;
@@ -22,7 +22,7 @@ export interface BeaconData {
   has_git: boolean;
   started_at: string;
   pid: number;
-  event: 'startup' | 'heartbeat' | 'shutdown' | 'custom';
+  event: "startup" | "heartbeat" | "shutdown" | "custom";
   timestamp: string;
   uptime?: number;
   git?: {
@@ -59,10 +59,10 @@ export interface BeaconRecord extends BeaconData {
 export class ChittyBeaconService {
   private static instance: ChittyBeaconService;
   private config = {
-    endpoint: process.env.BEACON_ENDPOINT || 'internal',
-    interval: parseInt(process.env.BEACON_INTERVAL || '300000'), // 5 minutes
-    enabled: process.env.BEACON_DISABLED !== 'true',
-    silent: process.env.BEACON_VERBOSE !== 'true'
+    endpoint: process.env.BEACON_ENDPOINT || "internal",
+    interval: parseInt(process.env.BEACON_INTERVAL || "300000"), // 5 minutes
+    enabled: process.env.BEACON_DISABLED !== "true",
+    silent: process.env.BEACON_VERBOSE !== "true",
   };
   private appInfo: BeaconData | null = null;
   private heartbeatInterval: NodeJS.Timeout | null = null;
@@ -76,12 +76,16 @@ export class ChittyBeaconService {
 
   private generateAppId(): string {
     if (process.env.REPL_ID) return `replit-${process.env.REPL_ID}`;
-    if (process.env.GITHUB_REPOSITORY) return `github-${process.env.GITHUB_REPOSITORY.replace('/', '-')}`;
+    if (process.env.GITHUB_REPOSITORY)
+      return `github-${process.env.GITHUB_REPOSITORY.replace("/", "-")}`;
     if (process.env.VERCEL_URL) return `vercel-${process.env.VERCEL_URL}`;
-    if (process.env.HEROKU_APP_NAME) return `heroku-${process.env.HEROKU_APP_NAME}`;
+    if (process.env.HEROKU_APP_NAME)
+      return `heroku-${process.env.HEROKU_APP_NAME}`;
 
     try {
-      const pkg = JSON.parse(readFileSync(process.cwd() + '/package.json', 'utf8'));
+      const pkg = JSON.parse(
+        readFileSync(process.cwd() + "/package.json", "utf8"),
+      );
       return `npm-${pkg.name}`;
     } catch (e) {
       return `host-${hostname()}`;
@@ -89,58 +93,108 @@ export class ChittyBeaconService {
   }
 
   private detectAppName(): string {
-    return process.env.REPL_SLUG ||
-           process.env.GITHUB_REPOSITORY ||
-           process.env.VERCEL_URL ||
-           process.env.HEROKU_APP_NAME ||
-           process.env.npm_package_name ||
-           (() => {
-             try {
-               const pkg = JSON.parse(readFileSync(process.cwd() + '/package.json', 'utf8'));
-               return pkg.name;
-             } catch (e) {
-               return 'chittychain-app';
-             }
-           })();
+    return (
+      process.env.REPL_SLUG ||
+      process.env.GITHUB_REPOSITORY ||
+      process.env.VERCEL_URL ||
+      process.env.HEROKU_APP_NAME ||
+      process.env.npm_package_name ||
+      (() => {
+        try {
+          const pkg = JSON.parse(
+            readFileSync(process.cwd() + "/package.json", "utf8"),
+          );
+          return pkg.name;
+        } catch (e) {
+          return "chittychain-app";
+        }
+      })()
+    );
   }
 
   private detectVersion(): string {
     try {
-      const pkg = JSON.parse(readFileSync(process.cwd() + '/package.json', 'utf8'));
+      const pkg = JSON.parse(
+        readFileSync(process.cwd() + "/package.json", "utf8"),
+      );
       return pkg.version;
     } catch (e) {
-      return '1.0.0';
+      return "1.0.0";
     }
   }
 
   private detectPlatform(): string {
-    if (process.env.REPL_ID) return 'replit';
-    if (process.env.GITHUB_ACTIONS) return 'github-actions';
-    if (process.env.VERCEL) return 'vercel';
-    if (process.env.NETLIFY) return 'netlify';
-    if (process.env.RENDER) return 'render';
-    if (process.env.HEROKU_APP_NAME) return 'heroku';
-    if (process.env.AWS_LAMBDA_FUNCTION_NAME) return 'aws-lambda';
-    if (process.env.GOOGLE_CLOUD_PROJECT) return 'google-cloud';
-    if (process.env.WEBSITE_INSTANCE_ID) return 'azure';
-    return 'unknown';
+    if (process.env.REPL_ID) return "replit";
+    if (process.env.GITHUB_ACTIONS) return "github-actions";
+    if (process.env.VERCEL) return "vercel";
+    if (process.env.NETLIFY) return "netlify";
+    if (process.env.RENDER) return "render";
+    if (process.env.HEROKU_APP_NAME) return "heroku";
+    if (process.env.AWS_LAMBDA_FUNCTION_NAME) return "aws-lambda";
+    if (process.env.GOOGLE_CLOUD_PROJECT) return "google-cloud";
+    if (process.env.WEBSITE_INSTANCE_ID) return "azure";
+    return "unknown";
   }
 
   private detectClaudeCode(): boolean {
-    return process.env.CLAUDE_CODE === 'true' ||
-           existsSync('.claude') ||
-           existsSync('claude.json') ||
-           (() => {
-             try {
-               const pkg = JSON.parse(readFileSync(process.cwd() + '/package.json', 'utf8'));
-               return !!(pkg.devDependencies?.['@anthropic-ai/sdk'] ||
-                        pkg.dependencies?.['@anthropic-ai/sdk'] ||
-                        pkg.devDependencies?.['@anthropic/claude'] ||
-                        pkg.dependencies?.['@anthropic/claude']);
-             } catch (e) {
-               return false;
-             }
-           })();
+    return (
+      process.env.CLAUDE_CODE === "true" ||
+      existsSync(".claude") ||
+      existsSync("claude.json") ||
+      (() => {
+        try {
+          const pkg = JSON.parse(
+            readFileSync(process.cwd() + "/package.json", "utf8"),
+          );
+          return !!(
+            pkg.devDependencies?.["@anthropic-ai/sdk"] ||
+            pkg.dependencies?.["@anthropic-ai/sdk"] ||
+            pkg.devDependencies?.["@anthropic/claude"] ||
+            pkg.dependencies?.["@anthropic/claude"]
+          );
+        } catch (e) {
+          return false;
+        }
+      })()
+    );
+  }
+
+  /**
+   * Generate a ChittyID-compliant beacon record ID
+   * Falls back to timestamp-based ID if service is unavailable
+   */
+  private async generateBeaconId(event: string): Promise<string> {
+    try {
+      const response = await fetch("https://id.chitty.cc/v1/mint", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.CHITTY_ID_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          domain: "beacon",
+          subtype: "record",
+          metadata: { event },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`ChittyID service unavailable: ${response.status}`);
+      }
+
+      const { chitty_id } = await response.json();
+      return chitty_id;
+    } catch (error) {
+      // Fallback for service outages - uses timestamp for uniqueness
+      const fallbackId = `beacon_${Date.now()}_${process.pid}`;
+      if (!this.config.silent) {
+        console.warn(
+          "[ChittyBeacon] ChittyID service unavailable, using fallback:",
+          fallbackId,
+        );
+      }
+      return fallbackId;
+    }
   }
 
   public detectApp(): BeaconData {
@@ -152,7 +206,7 @@ export class ChittyBeaconService {
 
       // Platform
       platform: this.detectPlatform(),
-      environment: process.env.NODE_ENV || 'production',
+      environment: process.env.NODE_ENV || "production",
 
       // System
       hostname: hostname(),
@@ -161,22 +215,28 @@ export class ChittyBeaconService {
 
       // Features
       has_claude_code: this.detectClaudeCode(),
-      has_git: existsSync('.git'),
+      has_git: existsSync(".git"),
 
       // Metadata
       started_at: new Date().toISOString(),
       pid: process.pid,
-      event: 'startup',
-      timestamp: new Date().toISOString()
+      event: "startup",
+      timestamp: new Date().toISOString(),
     };
 
     // Add git info if available
     if (app.has_git) {
       try {
         app.git = {
-          branch: execSync('git branch --show-current', { encoding: 'utf8' }).trim(),
-          commit: execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim(),
-          remote: execSync('git remote get-url origin', { encoding: 'utf8' }).trim()
+          branch: execSync("git branch --show-current", {
+            encoding: "utf8",
+          }).trim(),
+          commit: execSync("git rev-parse --short HEAD", {
+            encoding: "utf8",
+          }).trim(),
+          remote: execSync("git remote get-url origin", {
+            encoding: "utf8",
+          }).trim(),
         };
       } catch (e) {
         // Git commands failed, but that's okay
@@ -187,26 +247,26 @@ export class ChittyBeaconService {
     if (process.env.REPL_ID) {
       app.replit = {
         id: process.env.REPL_ID,
-        slug: process.env.REPL_SLUG || '',
-        owner: process.env.REPL_OWNER || '',
-        url: `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`
+        slug: process.env.REPL_SLUG || "",
+        owner: process.env.REPL_OWNER || "",
+        url: `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`,
       };
     }
 
     if (process.env.GITHUB_REPOSITORY) {
       app.github = {
         repository: process.env.GITHUB_REPOSITORY,
-        workflow: process.env.GITHUB_WORKFLOW || '',
-        run_id: process.env.GITHUB_RUN_ID || '',
-        actor: process.env.GITHUB_ACTOR || ''
+        workflow: process.env.GITHUB_WORKFLOW || "",
+        run_id: process.env.GITHUB_RUN_ID || "",
+        actor: process.env.GITHUB_ACTOR || "",
       };
     }
 
     if (process.env.VERCEL) {
       app.vercel = {
-        url: process.env.VERCEL_URL || '',
-        env: process.env.VERCEL_ENV || '',
-        region: process.env.VERCEL_REGION || ''
+        url: process.env.VERCEL_URL || "",
+        env: process.env.VERCEL_ENV || "",
+        region: process.env.VERCEL_REGION || "",
       };
     }
 
@@ -216,9 +276,9 @@ export class ChittyBeaconService {
   private async storeBeacon(data: BeaconData): Promise<BeaconRecord> {
     const record: BeaconRecord = {
       ...data,
-      recordId: Math.random().toString(36).substr(2, 9),
+      recordId: await this.generateBeaconId(data.event),
       last_seen: new Date().toISOString(),
-      created_at: new Date()
+      created_at: new Date(),
     };
 
     // Store using generic storage interface
@@ -232,11 +292,11 @@ export class ChittyBeaconService {
         metadata: {
           beacon: true,
           app_id: data.id,
-          platform: data.platform
-        }
+          platform: data.platform,
+        },
       });
     } catch (error) {
-      console.error('Failed to store beacon:', error);
+      console.error("Failed to store beacon:", error);
     }
 
     return record;
@@ -250,11 +310,15 @@ export class ChittyBeaconService {
       await this.storeBeacon(data);
 
       if (!this.config.silent) {
-        console.log(`[ChittyBeacon] ${data.event} from ${data.name} (${data.platform})`);
+        console.log(
+          `[ChittyBeacon] ${data.event} from ${data.name} (${data.platform})`,
+        );
       }
     } catch (error) {
       if (!this.config.silent) {
-        console.log(`[ChittyBeacon] Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        console.log(
+          `[ChittyBeacon] Error: ${error instanceof Error ? error.message : "Unknown error"}`,
+        );
       }
     }
   }
@@ -262,7 +326,7 @@ export class ChittyBeaconService {
   public async initialize(): Promise<void> {
     if (!this.config.enabled) {
       if (!this.config.silent) {
-        console.log('[ChittyBeacon] Disabled');
+        console.log("[ChittyBeacon] Disabled");
       }
       return;
     }
@@ -272,8 +336,8 @@ export class ChittyBeaconService {
     // Send initial beacon
     await this.sendBeacon({
       ...this.appInfo,
-      event: 'startup',
-      timestamp: new Date().toISOString()
+      event: "startup",
+      timestamp: new Date().toISOString(),
     });
 
     // Send periodic heartbeats
@@ -292,9 +356,9 @@ export class ChittyBeaconService {
           has_git: this.appInfo.has_git,
           started_at: this.appInfo.started_at,
           pid: this.appInfo.pid,
-          event: 'heartbeat',
+          event: "heartbeat",
           timestamp: new Date().toISOString(),
-          uptime: process.uptime()
+          uptime: process.uptime(),
         });
       }
     }, this.config.interval);
@@ -320,19 +384,21 @@ export class ChittyBeaconService {
           has_git: this.appInfo.has_git,
           started_at: this.appInfo.started_at,
           pid: this.appInfo.pid,
-          event: 'shutdown',
+          event: "shutdown",
           timestamp: new Date().toISOString(),
-          uptime: process.uptime()
+          uptime: process.uptime(),
         });
       }
     };
 
-    process.once('exit', shutdown);
-    process.once('SIGINT', shutdown);
-    process.once('SIGTERM', shutdown);
+    process.once("exit", shutdown);
+    process.once("SIGINT", shutdown);
+    process.once("SIGTERM", shutdown);
 
     if (!this.config.silent) {
-      console.log(`[ChittyBeacon] Tracking ${this.appInfo.name} on ${this.appInfo.platform}`);
+      console.log(
+        `[ChittyBeacon] Tracking ${this.appInfo.name} on ${this.appInfo.platform}`,
+      );
     }
   }
 
@@ -340,16 +406,19 @@ export class ChittyBeaconService {
     try {
       const auditLogs = await storage.getAllAuditLogs();
       return auditLogs
-        .filter(log => log.metadata?.beacon === true)
-        .map(log => {
+        .filter((log) => log.metadata?.beacon === true)
+        .map((log) => {
           try {
             return JSON.parse(log.details) as BeaconRecord;
           } catch {
             return null;
           }
         })
-        .filter(record => record !== null)
-        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        .filter((record) => record !== null)
+        .sort(
+          (a, b) =>
+            new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+        );
     } catch {
       return [];
     }
@@ -364,16 +433,16 @@ export class ChittyBeaconService {
     try {
       const history = await this.getBeaconHistory();
       const now = Date.now();
-      const oneHourAgo = now - (60 * 60 * 1000);
+      const oneHourAgo = now - 60 * 60 * 1000;
 
       const platforms: Record<string, number> = {};
       const activeApps = new Set<string>();
       let recentActivity = 0;
 
-      history.forEach(record => {
+      history.forEach((record) => {
         platforms[record.platform] = (platforms[record.platform] || 0) + 1;
         activeApps.add(record.id);
-        
+
         if (new Date(record.timestamp).getTime() > oneHourAgo) {
           recentActivity++;
         }
@@ -383,14 +452,14 @@ export class ChittyBeaconService {
         total_beacons: history.length,
         active_apps: activeApps.size,
         platforms,
-        recent_activity: recentActivity
+        recent_activity: recentActivity,
       };
     } catch {
       return {
         total_beacons: 0,
         active_apps: 0,
         platforms: {},
-        recent_activity: 0
+        recent_activity: 0,
       };
     }
   }

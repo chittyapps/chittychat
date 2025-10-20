@@ -57,7 +57,7 @@ class_name = "SyncState"
 # Global environment variables
 [vars]
 PLATFORM_VERSION = "1.0.0"
-CHITTYOS_ACCOUNT_ID = "84f0f32886f1d6196380fe6cbe9656a8"
+CHITTYOS_ACCOUNT_ID = "0bc21e3a5a9de1a4cc843be9c3e98121"
 MAX_CONCURRENT_REQUESTS = "1000"
 CACHE_TTL = "3600"
 DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct"
@@ -69,21 +69,22 @@ ROUTER_VERSION = "1.0.0"
 name = "chittyos-platform-production"
 routes = [
   # Core services
+  { pattern = "gateway.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "sync.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "api.chitty.cc/*", zone_name = "chitty.cc" },
 
   # AI services
   { pattern = "ai.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "langchain.chitty.cc/*", zone_name = "chitty.cc" },
-  { pattern = "mcp.chitty.cc/*", zone_name = "chitty.cc" },
+  # NOTE: mcp.chitty.cc handled by dedicated chittymcp worker
   { pattern = "portal.chitty.cc/*", zone_name = "chitty.cc" },
   { pattern = "cases.chitty.cc/*", zone_name = "chitty.cc" },
 
   # Identity & Auth
   # NOTE: id.chitty.cc is handled by dedicated chittyid-production worker (chittyid-worker/)
+  # NOTE: auth.chitty.cc is handled by dedicated chittyauth-production worker
   # The unified platform's handleID service acts as a proxy-only backup if needed
   # ZERO local generation - ALL ChittyIDs come from central authority at id.chitty.cc
-  { pattern = "auth.chitty.cc/*", zone_name = "chitty.cc" },
 
   # Documentation
   { pattern = "docs.chitty.cc/*", zone_name = "chitty.cc" },

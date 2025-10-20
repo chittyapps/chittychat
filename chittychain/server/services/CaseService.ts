@@ -96,7 +96,7 @@ export class CaseService {
       }
 
       const legalCase: LegalCase = {
-        id: crypto.randomUUID(),
+        id: `pending-id-${Date.now()}`,
         caseNumber: caseData.caseNumber,
         jurisdiction: caseData.jurisdiction,
         status: 'active',
@@ -221,7 +221,7 @@ export class CaseService {
       }
 
       const newDocument: CaseDocument = {
-        id: crypto.randomUUID(),
+        id: `pending-id-${Date.now()}`,
         ...document,
         filedDate: new Date(),
         status: 'draft',

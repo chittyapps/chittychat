@@ -1,0 +1,154 @@
+#!/usr/bin/env node
+
+/**
+ * ChittyFix - Automated ChittyID Compliance Fixer
+ * Replaces local ID generation with ChittyID service calls
+ *
+ * Usage:
+ *   chitfix                    # Fix all files in current directory
+ *   chitfix path/to/file.ts    # Fix specific file
+ *   chitfix --dry-run          # Show what would be fixed without changing files
+ */
+
+import { readFileSync, writeFileSync, existsSync, statSync } from 'fs';
+import { join, resolve } from 'path';
+import { execSync } from 'child_process';
+
+const args = process.argv.slice(2);
+const dryRun = args.includes('--dry-run') || args.includes('-n');
+const targetPath = args.find(arg => !arg.startsWith('-')) || '.';
+
+console.log('\n🔧 ChittyFix - Automated ChittyID Compliance Fixer\n');
+
+const violations = [];
+
+// Violation patterns
+const patterns = [
+  {
+    name: 'Math.random() private method',
+    regex: /private\s+generateId\(\):\s*string\s*\{[^}]*Math\.random\(\)[^}]*\}/gs,
+    replacement: `private async generateId(): Promise<string> {
+    // FIXED: Replaced local generation with ChittyID service call
+    const { generateChittyID } = await import('../lib/chittyid-service.js');
+    return await generateChittyID('INFO', { source: 'mcp-protocol', auto: true });
+  }`
+  },
+  {
+    name: 'Math.random() function',
+    regex: /function\s+generateId\(\):\s*string\s*\{[^}]*Math\.random\(\)[^}]*\}/gs,
+    replacement: `async function generateId(): Promise<string> {
+  // FIXED: Replaced local generation with ChittyID service call
+  const { generateChittyID } = await import('../lib/chittyid-service.js');
+  return await generateChittyID('INFO', { source: 'auto-generated', auto: true });
+}`
+  }
+];
+
+function fixFile(filePath) {
+  if (!existsSync(filePath)) {
+    console.error(`❌ File not found: ${filePath}`);
+    return 0;
+  }
+
+  let content = readFileSync(filePath, 'utf-8');
+  let fixes = 0;
+  const fileViolations = [];
+
+  patterns.forEach(pattern => {
+    const matches = content.match(pattern.regex);
+    if (matches) {
+      matches.forEach(match => {
+        const lineNumber = content.substring(0, content.indexOf(match)).split('\n').length;
+
+        fileViolations.push({
+          file: filePath,
+          line: lineNumber,
+          pattern: pattern.name,
+          old: match.substring(0, 80) + '...'
+        });
+
+        content = content.replace(match, pattern.replacement);
+        fixes++;
+      });
+    }
+  });
+
+  if (fixes > 0) {
+    // Make generateId() calls async
+    content = content.replace(/(?<!await\s)this\.generateId\(\)/g, 'await this.generateId()');
+    content = content.replace(/(?<!await\s)generateId\(\)/g, 'await generateId()');
+
+    if (!dryRun) {
+      writeFileSync(filePath, content, 'utf-8');
+    }
+
+    violations.push(...fileViolations);
+  }
+
+  return fixes;
+}
+
+function fixDirectory(dirPath) {
+  try {
+    const files = execSync(`find "${dirPath}" -type f \\( -name "*.ts" -o -name "*.js" -o -name "*.tsx" -o -name "*.jsx" \\) ! -path "*/node_modules/*" ! -path "*/dist/*" ! -path "*/.git/*" ! -path "*/test/*"`,
+      { encoding: 'utf-8' }
+    ).trim().split('\n').filter(Boolean);
+
+    let totalFixes = 0;
+    files.forEach(file => {
+      totalFixes += fixFile(file);
+    });
+
+    return totalFixes;
+  } catch (error) {
+    console.error('❌ Error scanning directory:', error.message);
+    return 0;
+  }
+}
+
+// Main execution
+const targetResolved = resolve(targetPath);
+const isDirectory = existsSync(targetResolved) && statSync(targetResolved).isDirectory();
+
+let totalFixes = 0;
+
+if (isDirectory) {
+  console.log(`📂 Scanning directory: ${targetResolved}\n`);
+  totalFixes = fixDirectory(targetResolved);
+} else {
+  console.log(`📄 Processing file: ${targetResolved}\n`);
+  totalFixes = fixFile(targetResolved);
+}
+
+// Report results
+console.log('\n' + '═'.repeat(60));
+console.log('📊 ChittyFix Summary');
+console.log('═'.repeat(60));
+console.log(`Violations found: ${totalFixes}`);
+console.log(`Files modified: ${new Set(violations.map(v => v.file)).size}`);
+console.log(`Mode: ${dryRun ? 'DRY RUN (no changes made)' : 'LIVE (files modified)'}`);
+console.log('═'.repeat(60));
+
+if (violations.length > 0) {
+  console.log('\n📋 Fixed Violations:\n');
+  violations.forEach((v, i) => {
+    console.log(`${i + 1}. ${v.file}:${v.line}`);
+    console.log(`   Pattern: ${v.pattern}`);
+    console.log(`   Old: ${v.old}\n`);
+  });
+}
+
+if (totalFixes > 0 && !dryRun) {
+  console.log('✅ All local ID generation replaced with ChittyID service calls');
+  console.log('\n💡 Next steps:');
+  console.log('   1. Review the changes');
+  console.log('   2. Run tests: npm test');
+  console.log('   3. Run chittycheck for compliance validation');
+} else if (totalFixes > 0 && dryRun) {
+  console.log('ℹ️  Dry run complete - run without --dry-run to apply fixes');
+} else {
+  console.log('✅ No violations found - all code is compliant!');
+}
+
+console.log();
+process.exit(totalFixes > 0 && !dryRun ? 0 : totalFixes);

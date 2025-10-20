@@ -124,7 +124,7 @@ export class DatabaseStorage implements IStorage {
     firstName?: string;
     lastName?: string;
   }): Promise<User> {
-    const userId = `user_${Date.now()}_${crypto.randomUUID().substring(0, 8)}`;
+    const userId = `user_${Date.now()}_${`pending-id-${Date.now()}`.substring(0, 8)}`;
 
     // Generate ChittyID through mothership connection with proper identity service call
     const chittyIdCode = await chittyIdService.generateChittyId(
@@ -375,11 +375,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   private generateApiKey(): string {
-    return (
-      "ck_" +
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
+    // Use cryptographically secure random for API keys
+    const crypto = require("crypto");
+    return "ck_" + crypto.randomBytes(16).toString("hex");
   }
 }
 

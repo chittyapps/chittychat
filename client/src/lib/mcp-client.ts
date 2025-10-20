@@ -133,14 +133,16 @@ class MCPClient {
     });
   }
 
-  private generateId(): string {
-    return 'mcp_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+  private async await generateId(): Promise<string> {
+    // FIXED: Replaced local generation with ChittyID service call
+    const { generateChittyID } = await import('../lib/chittyid-service.js');
+    return await generateChittyID('INFO', { source: 'mcp-protocol', auto: true });
   }
 
   // Replace Claude's todowrite function
   async todowrite(request: TodoWriteRequest): Promise<TodoWriteResponse> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'todowrite.create',
       params: request
     };
@@ -155,7 +157,7 @@ class MCPClient {
     limit?: number;
   }): Promise<{ tasks: any[]; total: number; filtered: boolean }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'todowrite.list',
       params: filters || {}
     };
@@ -166,7 +168,7 @@ class MCPClient {
 
   async updateTodo(taskId: string, updates: any): Promise<{ task: any; message: string }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'todowrite.update',
       params: { taskId, updates }
     };
@@ -177,7 +179,7 @@ class MCPClient {
 
   async deleteTodo(taskId: string): Promise<{ message: string }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'todowrite.delete',
       params: { taskId }
     };
@@ -188,7 +190,7 @@ class MCPClient {
 
   async createProject(name: string, description?: string, category?: string): Promise<{ project: any; message: string }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'project.create',
       params: { name, description, category }
     };
@@ -199,7 +201,7 @@ class MCPClient {
 
   async getRecommendations(type: string, targetId: string): Promise<{ recommendations: any[] }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'recommendations.get',
       params: { type, targetId }
     };
@@ -210,7 +212,7 @@ class MCPClient {
 
   async getReputation(agentAddress: string): Promise<{ reputation: any }> {
     const message: MCPMessage = {
-      id: this.generateId(),
+      id: await this.generateId(),
       method: 'reputation.get',
       params: { agentAddress }
     };

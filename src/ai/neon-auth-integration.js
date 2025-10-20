@@ -3,14 +3,14 @@
  * Implements JWT-based authentication with Row-Level Security (RLS)
  */
 
-import { neon } from '@neondatabase/serverless';
-import jwt from 'jsonwebtoken';
-import { createHash } from 'crypto';
+import { neon } from "@neondatabase/serverless";
+import jwt from "jsonwebtoken";
+import { createHash } from "crypto";
 
 export class NeonAuthIntegration {
   constructor(config) {
     this.db = neon(config.DATABASE_URL);
-    this.jwtSecret = config.JWT_SECRET || 'chittychat-secret';
+    this.jwtSecret = config.JWT_SECRET || "chittychat-secret";
     this.neonAuthURL = config.NEON_AUTH_URL;
     this.projectId = config.NEON_PROJECT_ID;
   }
@@ -220,10 +220,10 @@ export class NeonAuthIntegration {
         id: user.id,
         email: user.email,
         tenant_id: user.tenant_id,
-        role: user.role
+        role: user.role,
       },
       tenant,
-      token
+      token,
     };
   }
 
@@ -241,7 +241,7 @@ export class NeonAuthIntegration {
     `;
 
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new Error("Invalid credentials");
     }
 
     // Update last login
@@ -264,9 +264,9 @@ export class NeonAuthIntegration {
         tenant_id: user.tenant_id,
         tenant_name: user.tenant_name,
         tenant_slug: user.tenant_slug,
-        role: user.role
+        role: user.role,
       },
-      token
+      token,
     };
   }
 
@@ -287,7 +287,7 @@ export class NeonAuthIntegration {
       `;
 
       if (!session) {
-        throw new Error('Session expired or invalid');
+        throw new Error("Session expired or invalid");
       }
 
       // Update last accessed
@@ -302,10 +302,10 @@ export class NeonAuthIntegration {
         email: session.email,
         role: session.role,
         tenant_id: session.tenant_id,
-        session_id: session.id
+        session_id: session.id,
       };
     } catch (error) {
-      throw new Error('Invalid token');
+      throw new Error("Invalid token");
     }
   }
 
@@ -328,7 +328,7 @@ export class NeonAuthIntegration {
         // Execute the actual query
         return await this.db(sql, ...params);
       },
-      userContext
+      userContext,
     };
   }
 
@@ -347,7 +347,7 @@ export class NeonAuthIntegration {
         ${agentConfig.type},
         ${JSON.stringify({
           ...agentConfig.capabilities,
-          tenant_id: ${authDB.userContext.tenant_id}
+          tenant_id: authDB.userContext.tenant_id,
         })},
         'active'
       ) RETURNING *
@@ -363,20 +363,20 @@ export class NeonAuthIntegration {
     const authDB = await this.createAuthenticatedConnection(token);
 
     switch (dataType) {
-      case 'projects':
+      case "projects":
         return await authDB.query`
           SELECT * FROM chittychat_projects
           ORDER BY updated_at DESC
         `;
 
-      case 'agents':
+      case "agents":
         return await authDB.query`
           SELECT * FROM ai_agents.registry
           WHERE status = 'active'
           ORDER BY created_at DESC
         `;
 
-      case 'sessions':
+      case "sessions":
         return await authDB.query`
           SELECT s.*, a.name as agent_name, a.type as agent_type
           FROM ai_agents.sessions s
@@ -386,7 +386,7 @@ export class NeonAuthIntegration {
         `;
 
       default:
-        throw new Error('Invalid data type');
+        throw new Error("Invalid data type");
     }
   }
 
@@ -413,9 +413,9 @@ export class NeonAuthIntegration {
         role: user.role,
         tenant_id: user.tenant_id,
         iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
+        exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 hours
       },
-      this.jwtSecret
+      this.jwtSecret,
     );
   }
 
@@ -423,23 +423,26 @@ export class NeonAuthIntegration {
    * Helper: Hash password
    */
   hashPassword(password) {
-    return createHash('sha256').update(password + 'chittychat-salt').digest('hex');
+    return createHash("sha256")
+      .update(password + "chittychat-salt")
+      .digest("hex");
   }
 
   /**
    * Helper: Hash token for storage
    */
   hashToken(token) {
-    return createHash('sha256').update(token).digest('hex');
+    return createHash("sha256").update(token).digest("hex");
   }
 
   /**
    * Helper: Generate tenant slug
    */
   generateSlug(name) {
-    return name.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
   }
 
   /**
@@ -492,7 +495,7 @@ export class NeonAuthIntegration {
       users: stats,
       sessions: sessionStats,
       timestamp: new Date(),
-      status: 'healthy'
+      status: "healthy",
     };
   }
 }

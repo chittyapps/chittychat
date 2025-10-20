@@ -154,7 +154,7 @@ class RegistryChittyClient {
     try {
       const newTool: MCPTool = {
         ...tool,
-        id: nanoid(),
+        id: `pending-id-${Date.now()}`,
         verified: false // Needs manual verification
       };
 

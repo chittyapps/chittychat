@@ -1,0 +1,257 @@
+#!/bin/bash
+#
+# ChittySync - Todo Orchestration Sync Manager
+# Shows sync status, timing, and statistics
+#
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Configuration
+LOG_FILE="$HOME/.chittychat/todo-consolidation.log"
+CONSOLIDATED_FILE="$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/todos.json"
+TODO_DIR="$HOME/.claude/todos"
+SYNC_ENDPOINT="https://sync.chitty.cc"
+
+# Function to get last sync time
+get_last_sync() {
+    if [ -f "$LOG_FILE" ]; then
+        grep "=== Consolidation complete ===" "$LOG_FILE" | tail -1 | sed 's/\[//g' | sed 's/\].*//g'
+    else
+        echo "Never"
+    fi
+}
+
+# Function to get next sync time (cron runs every 30 minutes)
+get_next_sync() {
+    local last_sync="$1"
+    if [ "$last_sync" = "Never" ]; then
+        echo "Unknown"
+        return
+    fi
+
+    # Parse last sync time and add 30 minutes
+    local last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last_sync" +%s 2>/dev/null)
+    if [ $? -eq 0 ]; then
+        local next_epoch=$((last_epoch + 1800)) # 30 minutes = 1800 seconds
+        date -r $next_epoch "+%Y-%m-%d %H:%M:%S"
+    else
+        echo "Unknown"
+    fi
+}
+
+# Function to get todo count
+get_todo_count() {
+    if [ -f "$CONSOLIDATED_FILE" ]; then
+        local count=$(grep -c '"content"' "$CONSOLIDATED_FILE" 2>/dev/null || echo "0")
+        echo "$count"
+    else
+        echo "0"
+    fi
+}
+
+# Function to get session file count
+get_session_count() {
+    find "$TODO_DIR" -name "*-agent-*.json" 2>/dev/null | wc -l | tr -d ' '
+}
+
+# Function to get last consolidation stats
+get_last_stats() {
+    if [ -f "$LOG_FILE" ]; then
+        grep "Consolidated" "$LOG_FILE" | tail -1
+    else
+        echo "No consolidation data"
+    fi
+}
+
+# Function to check sync health
+check_sync_health() {
+    local last_sync="$1"
+    if [ "$last_sync" = "Never" ]; then
+        echo -e "${RED}⚠️  Never synced${NC}"
+        return
+    fi
+
+    local last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last_sync" +%s 2>/dev/null)
+    local now_epoch=$(date +%s)
+    local diff=$((now_epoch - last_epoch))
+
+    if [ $diff -lt 1800 ]; then
+        echo -e "${GREEN}✅ Healthy (synced $(($diff / 60))m ago)${NC}"
+    elif [ $diff -lt 3600 ]; then
+        echo -e "${YELLOW}⚠️  Warning (synced $(($diff / 60))m ago)${NC}"
+    else
+        echo -e "${RED}❌ Stale (synced $(($diff / 3600))h ago)${NC}"
+    fi
+}
+
+# Function to show time info
+show_time() {
+    local current_time=$(date "+%Y-%m-%d %H:%M:%S")
+    local current_epoch=$(date +%s)
+    local last_sync=$(get_last_sync)
+    local next_sync=$(get_next_sync "$last_sync")
+    local health=$(check_sync_health "$last_sync")
+    local todo_count=$(get_todo_count)
+    local session_count=$(get_session_count)
+    local last_stats=$(get_last_stats)
+
+    # Calculate time since last sync
+    local time_since="Unknown"
+    if [ "$last_sync" != "Never" ]; then
+        local last_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$last_sync" +%s 2>/dev/null)
+        if [ $? -eq 0 ]; then
+            local diff=$((current_epoch - last_epoch))
+            if [ $diff -lt 60 ]; then
+                time_since="${diff}s ago"
+            elif [ $diff -lt 3600 ]; then
+                time_since="$(($diff / 60))m ago"
+            else
+                time_since="$(($diff / 3600))h $(( ($diff % 3600) / 60 ))m ago"
+            fi
+        fi
+    fi
+
+    # Calculate time until next sync
+    local time_until="Unknown"
+    if [ "$next_sync" != "Unknown" ]; then
+        local next_epoch=$(date -j -f "%Y-%m-%d %H:%M:%S" "$next_sync" +%s 2>/dev/null)
+        if [ $? -eq 0 ]; then
+            local diff=$((next_epoch - current_epoch))
+            if [ $diff -lt 0 ]; then
+                time_until="overdue"
+            elif [ $diff -lt 60 ]; then
+                time_until="${diff}s"
+            else
+                time_until="$(($diff / 60))m"
+            fi
+        fi
+    fi
+
+    echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${BLUE}║${NC}  ${GREEN}ChittySync - Todo Orchestration System${NC}                ${BLUE}║${NC}"
+    echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo -e "${BLUE}🕐 Current Time:${NC}"
+    echo -e "   Now:           ${GREEN}${current_time}${NC}"
+    echo ""
+    echo -e "${BLUE}⏰ Sync Timing:${NC}"
+    echo -e "   Last Sync:     ${GREEN}${last_sync}${NC} (${time_since})"
+    echo -e "   Next Sync:     ${YELLOW}${next_sync}${NC} (in ${time_until})"
+    echo -e "   Frequency:     Every 30 minutes"
+    echo ""
+    echo -e "${BLUE}📊 Statistics:${NC}"
+    echo -e "   Consolidated Todos:  ${GREEN}${todo_count}${NC}"
+    echo -e "   Session Files:       ${YELLOW}${session_count}${NC}"
+    echo -e "   Last Consolidation:  ${last_stats}"
+    echo ""
+    echo -e "${BLUE}🔍 Health Status:${NC}"
+    echo -e "   System:        ${health}"
+    echo -e "   Endpoint:      ${SYNC_ENDPOINT}"
+    echo -e "   Cron Job:      $(crontab -l | grep -q auto-consolidate && echo -e "${GREEN}✅ Active${NC}" || echo -e "${RED}❌ Inactive${NC}")"
+    echo ""
+}
+
+# Function to show recent activity
+show_activity() {
+    echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${BLUE}║${NC}  ${GREEN}Recent Sync Activity (Last 10)${NC}                        ${BLUE}║${NC}"
+    echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+
+    if [ -f "$LOG_FILE" ]; then
+        grep "=== Consolidation complete ===" "$LOG_FILE" | tail -10 | while read line; do
+            local timestamp=$(echo "$line" | sed 's/\[//g' | sed 's/\].*//g')
+            echo -e "   ${GREEN}✓${NC} $timestamp"
+        done
+    else
+        echo -e "   ${RED}No activity log found${NC}"
+    fi
+    echo ""
+}
+
+# Function to show log tail
+show_logs() {
+    local lines="${1:-20}"
+    echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${BLUE}║${NC}  ${GREEN}Recent Log Entries (Last ${lines})${NC}                           ${BLUE}║${NC}"
+    echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+
+    if [ -f "$LOG_FILE" ]; then
+        tail -n "$lines" "$LOG_FILE" | sed 's/^/   /'
+    else
+        echo -e "   ${RED}No log file found${NC}"
+    fi
+    echo ""
+}
+
+# Function to trigger manual sync
+trigger_sync() {
+    echo -e "${BLUE}🔄 Triggering manual consolidation...${NC}"
+    echo ""
+
+    if [ -f "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh" ]; then
+        "$HOME/.claude/projects/-/CHITTYOS/chittyos-services/chittychat/hooks/auto-consolidate-cron.sh"
+        echo ""
+        echo -e "${GREEN}✅ Manual sync completed${NC}"
+        echo ""
+        show_time
+    else
+        echo -e "${RED}❌ Consolidation script not found${NC}"
+        exit 1
+    fi
+}
+
+# Function to show help
+show_help() {
+    echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${BLUE}║${NC}  ${GREEN}ChittySync - Usage${NC}                                     ${BLUE}║${NC}"
+    echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo "Usage: chittysync [OPTION]"
+    echo ""
+    echo "Options:"
+    echo "  --time, -t          Show timing and status information (default)"
+    echo "  --activity, -a      Show recent sync activity"
+    echo "  --logs [N], -l [N]  Show last N log entries (default: 20)"
+    echo "  --sync, -s          Trigger manual sync now"
+    echo "  --help, -h          Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  chittysync              # Show timing info"
+    echo "  chittysync --time       # Show timing info"
+    echo "  chittysync --activity   # Show recent activity"
+    echo "  chittysync --logs 50    # Show last 50 log entries"
+    echo "  chittysync --sync       # Trigger manual sync"
+    echo ""
+}
+
+# Main command dispatcher
+case "${1:-}" in
+    --time|-t|"")
+        show_time
+        ;;
+    --activity|-a)
+        show_activity
+        ;;
+    --logs|-l)
+        show_logs "${2:-20}"
+        ;;
+    --sync|-s)
+        trigger_sync
+        ;;
+    --help|-h)
+        show_help
+        ;;
+    *)
+        echo -e "${RED}Unknown option: $1${NC}"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac

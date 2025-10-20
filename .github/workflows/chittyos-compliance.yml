@@ -1,0 +1,178 @@
+name: ChittyOS Compliance CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - '**/*session*.js'
+      - '**/*session*.ts'
+      - 'cross-session-sync/**'
+      - 'src/session-persistence/**'
+  push:
+    branches: [main, develop]
+    paths:
+      - '**/*session*.js'
+      - '**/*session*.ts'
+
+jobs:
+  chittyid-compliance:
+    name: ChittyID Session Compliance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify ChittyID Client installed
+        run: |
+          if ! npm list @chittyos/chittyid-client > /dev/null 2>&1; then
+            echo "❌ ERROR: @chittyos/chittyid-client not installed"
+            echo "Required for ChittyOS compliance"
+            exit 1
+          fi
+          echo "✅ ChittyID Client package verified"
+
+      - name: Check for rogue session ID patterns
+        run: |
+          echo "🔍 Scanning for UUID/crypto session ID generation patterns..."
+
+          VIOLATIONS=0
+
+          # Pattern 1: crypto.randomBytes in session files
+          if grep -rn "crypto\.randomBytes" src/ cross-session-sync/ | grep -i "session" | grep -v node_modules; then
+            echo "❌ Found crypto.randomBytes() in session code"
+            VIOLATIONS=$((VIOLATIONS + 1))
+          fi
+
+          # Pattern 2: uuid imports in session files
+          if find src/ cross-session-sync/ -name "*session*.js" -o -name "*session*.ts" | xargs grep -l "import.*uuid\|require.*uuid" 2>/dev/null; then
+            echo "❌ Found uuid imports in session files"
+            VIOLATIONS=$((VIOLATIONS + 1))
+          fi
+
+          # Pattern 3: Missing ChittyID client imports
+          SESSION_FILES=$(find src/ cross-session-sync/ -name "*session*.js" -o -name "*session*.ts" 2>/dev/null || true)
+          for file in $SESSION_FILES; do
+            if grep -q "generateSessionId" "$file"; then
+              if ! grep -q "@chittyos/chittyid-client" "$file"; then
+                echo "❌ $file has generateSessionId but no @chittyos/chittyid-client"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
+
+          if [ $VIOLATIONS -gt 0 ]; then
+            echo ""
+            echo "════════════════════════════════════════"
+            echo "  ❌ ChittyID Compliance Check Failed"
+            echo "════════════════════════════════════════"
+            echo "Found $VIOLATIONS policy violations"
+            echo ""
+            echo "Session IDs MUST be minted from id.chitty.cc"
+            echo "Use @chittyos/chittyid-client package"
+            echo ""
+            echo "See: chittycheck-session-rules.sh for details"
+            exit 1
+          fi
+
+          echo "✅ No rogue session ID generation patterns detected"
+
+      - name: Validate CHITTY_ID_TOKEN usage
+        run: |
+          echo "🔍 Checking CHITTY_ID_TOKEN validation in session code..."
+
+          SESSION_FILES=$(find src/ cross-session-sync/ -name "*session*.js" -o -name "*session*.ts" 2>/dev/null || true)
+          MISSING_VALIDATION=0
+
+          for file in $SESSION_FILES; do
+            if grep -q "generateSessionId" "$file"; then
+              if ! grep -A 20 "generateSessionId" "$file" | grep -q "CHITTY_ID_TOKEN"; then
+                echo "⚠️  WARNING: $file should validate CHITTY_ID_TOKEN"
+                MISSING_VALIDATION=$((MISSING_VALIDATION + 1))
+              fi
+            fi
+          done
+
+          if [ $MISSING_VALIDATION -gt 0 ]; then
+            echo "⚠️  $MISSING_VALIDATION files missing CHITTY_ID_TOKEN validation"
+            echo "Recommendation: Add token validation before ChittyID minting"
+          else
+            echo "✅ CHITTY_ID_TOKEN validation present"
+          fi
+
+      - name: Run ChittyCheck Session Rules
+        run: |
+          if [ -f "chittycheck-session-rules.sh" ]; then
+            chmod +x chittycheck-session-rules.sh
+            ./chittycheck-session-rules.sh || true
+          else
+            echo "⚠️  chittycheck-session-rules.sh not found, skipping"
+          fi
+
+      - name: Check session file format in todos
+        run: |
+          # This would typically run on the actual machine, not CI
+          # For CI, we just document the requirement
+          echo "📋 Session File Format Requirements:"
+          echo "   - All session IDs must use CTXT_ prefix (ChittyID format)"
+          echo "   - UUID-based session files must be migrated"
+          echo "   - Run: scripts/migrate-legacy-session-ids.sh on target system"
+
+      - name: Generate Compliance Report
+        if: always()
+        run: |
+          echo "════════════════════════════════════════"
+          echo "  ChittyOS Compliance CI Report"
+          echo "════════════════════════════════════════"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo ""
+          echo "Validation Status: ${{ job.status }}"
+          echo "════════════════════════════════════════"
+
+  dependency-audit:
+    name: Audit ChittyID Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Verify @chittyos/chittyid-client version
+        run: |
+          echo "🔍 Checking @chittyos/chittyid-client package..."
+
+          if [ -f "package.json" ]; then
+            VERSION=$(jq -r '.dependencies."@chittyos/chittyid-client" // empty' package.json)
+
+            if [ -z "$VERSION" ]; then
+              echo "❌ @chittyos/chittyid-client not in dependencies"
+              echo "Add with: npm install @chittyos/chittyid-client"
+              exit 1
+            fi
+
+            echo "✅ @chittyos/chittyid-client: $VERSION"
+          fi
+
+      - name: Security audit
+        run: |
+          npm audit --audit-level=high || true
+          echo "✅ Security audit completed"

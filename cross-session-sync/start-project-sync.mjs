@@ -40,7 +40,7 @@ class ProjectSync {
     // Initialize project-based sync
     this.projectSync = new ProjectBasedSync({
       sessionId: this.sessionId,
-      chittychatUrl: process.env.CHITTYCHAT_URL || 'http://localhost:5000'
+      chittychatUrl: process.env.CHITTYCHAT_URL || 'https://chat.chitty.cc'
     });
 
     // Try to find and register to active project
